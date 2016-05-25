@@ -1,0 +1,121 @@
+\documentclass{article}
+
+%encoding
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%----------------------------
+
+%fonts
+%--------------------------------------
+%---------------
+% \setromanfont{Times New Roman}
+% \setsansfont{Arial}
+% \setmonofont[Color={0019D4}]{Courier New}
+%
+\usepackage{libertine}
+\usepackage{beramono}
+\usepackage[utopia]{mathdesign}
+
+%units
+%--------------------------------------
+\usepackage{siunitx}
+
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+}
+
+
+
+\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+  }
+}
+\begin{document}
+%\input{lua_functions}
+%\input{tikz_plot}
+
+\noindent
+
+\section{Bodenkollone} % (fold)
+\begin{tabular}{l*{5}{c}}
+Heizbad & $n^{20}_D$ & $x_{Sumpf}$ & $T^{Kopf}$ & $T^{Sumpf}$  \\
+\hline
+145 V & 1.4750 & 0.43 & 106.9 \si\celsius & 104.1 \si\celsius    \\
+170 V & 1.4750 & 0.44 & 106.2 \si\celsius & 103.9 \si\celsius    \\
+185 V & 1.4740 & 0.46 & 104.4 \si\celsius & 103.6 \si\celsius    \\
+220 V & 1.4733 & 0.48 & 102.4 \si\celsius & 103.2 \si\celsius    \\
+\end{tabular}
+\section{Packungskollone} % (fold)
+\begin{tabular}{l*{5}{c}}
+Rücklaufverhältnis & $n^{20}_D$ & $V_{MCH}$ & $x$  \\
+\hline
+3 & 1.4860 & 9.4 &  0.16167   \\
+5  & 1.4851 & 10.0 &  0.17234   \\
+10  & 1.4855 & 9.7 & 0.16700   \\
+$\infty$  & 1.4860 & 9.4 &  0.16167  \\
+\end{tabular}
+
+\begin{figure}[h!]
+      \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major,
+          grid style={dashed,gray!30},
+          xlabel= $x$, % Set the labels
+          ylabel= $y$,
+          xlabel style={font=\large},
+          ylabel style={font=\large},
+          %x unit= \si{\milli\volt} , % Set the respective units
+          y unit= \si{\volt},
+          x tick label style={rotate=90,anchor=east}
+          ]
+      \addplot[only marks] table{
+  X Y
+  0.00 0.000
+  0.10 0.143
+  0.20 0.270
+  0.30 0.378
+  0.40 0.470
+  0.50 0.560
+  0.60 0.650
+  0.70 0.737
+  0.80 0.818
+  0.90 0.906
+  1.00 1.000
+};
+
+\addplot[only marks] table{
+   X Y
+   0.43 0.000
+   0.10 0.143
+   0.20 0.270
+   0.30 0.378
+};
+
+\addplot[domain=0:1]{x};
+%\addlegendentry{ }
+\end{axis}
+\end{tikzpicture}
+\caption*{Abbildung 1.1: Gleichgewichtsdiagramm }
+
+\end{figure}
+
+
+\end{document}

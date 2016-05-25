@@ -1,0 +1,31 @@
+\begin{luacode*}
+function string:split(sep)
+        local sep, fields = sep or "%s", {}
+        local pattern = string.format("([^%s]+)", sep)
+        self:gsub(pattern, function(c) fields[#fields+1] = c end)
+        return fields
+end
+
+function printHyperbola()
+    local lines={}
+
+    for line in io.lines("dampf.csv") do
+            table.insert(lines, line)
+    end
+    tex.sprint("\\addplot[color=black] coordinates{")
+
+    for i=2,#lines do
+        local a=lines[i]:split()
+        tex.sprint("("..a[1]..","..a[2]..")")
+    end
+     tex.sprint("};")
+    tex.sprint("\\addplot[color=blue] coordinates{")
+
+    for i=2,#lines do
+        local a=lines[i]:split()
+        tex.sprint("("..a[1]..","..a[3]..")")
+    end
+     tex.sprint("};")
+
+end
+\end{luacode*}

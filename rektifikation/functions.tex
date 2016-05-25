@@ -1,0 +1,21 @@
+\begin{luacode*}
+function getCenterRadius(t)
+    a = 1;
+    b = 1;
+    h = 0;
+    k = 0;
+    cX = a*(1/math.cos(t)) + h;
+    cY = b*math.tan(t) + k;
+    R = math.sqrt((cX-h)^2 + (cY-k)^2) -- Classic
+    return cX, cY, R
+end
+
+function printHyperbola()
+    for t=-1.56,1.56,0.02555 do
+        xL,yL,RL = getCenterRadius(t)
+        xR,yR,RR = getCenterRadius(3.1415+t)
+        tex.sprint("\\draw[very thin] (axis cs:"..(xL)..","..(yL)..") circle("..(RL*10)..");")
+        tex.sprint("\\draw[very thin] (axis cs:"..(xR)..","..(yR)..") circle("..(RR*10)..");")
+    end
+end
+\end{luacode*}
