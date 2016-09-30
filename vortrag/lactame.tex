@@ -1,0 +1,144 @@
+% Page Layout
+\documentclass[12pt]{beamer}
+\usepackage[latin1]{}
+\usepackage{tikz}
+\usepackage{chemfig}
+\usepackage{xcolor}
+%\documentclass[12pt]{article}
+
+%\usepackage{fancyhdr}
+%\usepackage{chemfig}
+%\usepackage{sectsty}
+%\usepackage{setspace}
+%\usepackage{helvet}
+%\usepackage{graphicx}
+%\usepackage{overcite}
+%\usepackage{parskip}
+%\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+\usepackage[method=mhchem]{chemmacros}
+%\usepackage{libertine}
+%\usepackage[scaled=.83]{beramono}
+\usepackage{graphicx}
+%\usepackage{hyperref}
+%\usepackage[a4paper]{geometry}
+%\usepackage{unicode-math}
+%\usepackage{microtype}
+%\usepackage{xcolor}
+%\usepackage{chemformula}
+\usetikzlibrary{positioning,calc,arrows}
+\usepackage{url}
+\usepackage[german]{babel}
+%\usepackage{libertine}
+%\renewcommand*\familydefault{\sfdefault}  %%
+\usepackage[default]{opensans}
+%\usepackage{gillius2}
+%\usepackage{lato}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+\usepackage{chemstyle}
+\usepackage{array} % needed for \arraybackslash
+\usepackage{graphicx}
+\usepackage{adjustbox} % for \adjincludegraphics
+ % Avoid an error due to a lack of registers
+\renewcommand*\printatom[1]{{\fontsize{14}{14}\selectfont\ensuremath{\mathsf{#1}}}}
+\definesubmol\cycleoplus{-[,0.25,,,draw=none]\oplus}
+\definesubmol{e}{-[,.1,,,draw=none]}
+\definesubmol\nobond{[,0.2,,,draw=none]}
+
+\definecolor{orange}{RGB}{255,127,0}
+%\include{head}
+\title[]{Lactame und ihre Verwendung}
+\author[N. Arslan]{Nevroz Arslan}
+\date[14.10.16]{16. Oct 2014}
+%\titlegraphic{\includegraphics[width=\textwidth,height=.5\textheight]{bogen1200.png}}
+\setbeamerfont{page number in head/foot}{size=\large}
+\beamertemplatenavigationsymbolsempty
+\setbeamertemplate{footline}[frame number]
+
+\setdoublesep{4pt}
+\setatomsep{2em}
+\definesubmol{e}{-[,.1,,,draw=none]}
+\begin{document}
+\setbeamercolor{block title}{use=structure,fg=black,bg=white}
+\setbeamercolor{block body}{use=structure,fg=black,bg=white}
+%\input{title.tex}
+
+
+
+
+%%%%%%%%%%%% Start of content %%%%%%%%%%%%
+
+%\input{seite11.tex}
+\usebackgroundtemplate{
+
+\includegraphics[width=1.0\paperwidth,height=0.17\paperheight]{bogen1200}
+\begin{tikzpicture}[overlay, remember picture]
+    \node[xshift=-10.80cm,yshift=1.15cm] at (0,0)    {\includegraphics[scale=0.6]{logo}};
+\end{tikzpicture}
+}
+\addtobeamertemplate{frametitle}{\vskip+5ex}{}
+\setbeamercolor{frametitle}{fg=black}
+
+
+\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+
+\frame{\titlepage}
+\begin{frame}
+  \frametitle{Inhaltsübersicht}
+  \tableofcontents
+  \end{frame}
+
+\section{Lactamen}
+
+\begin{frame}
+\subsection{Definition}
+
+\begin{tabular}{p{.8\textwidth} p{.2\textwidth}}
+\adjincludegraphics[width=.8\linewidth,valign=t]{gaba}
+&
+""
+\end{tabular}
+
+
+\end{frame}
+
+%\input{a1.tex}
+\subsection{Herstellung}
+\begin{frame}
+  Zur Herstellung von Butyrolactam kann die Reaktion von $\gamma$-Butyrolacton mit
+  Ammoniak bei erhöhter Temperatur genutzt werden
+  Luvitec®: Adhesive Raw Materials
+water solubility, non toxic
+\end{frame}
+
+
+
+%\input{a2.tex}
+\subsection{Eigenschaften}
+%\input{a3.tex}
+\section{Reaktionen}
+%\input{seite2.tex}
+
+\begin{frame}
+\begin{thebibliography}{}
+
+\bibitem{bio}
+Technisches Datenblatt,\url{http://www.dispersions-pigments.basf.com/portal/basf/ide/dt.jsp?setCursor=1_736581}
+\bibitem{march}
+M. Smith,J. March, \textit{March's Advanced Organic Chemistry}, 6. Aufl., Wiley, New York \textbf{2007}, S. 924-926.
+\end{thebibliography}
+\end{frame}
+%%\input{seite11.tex}
+
+%%%%%%%%%%%% End of content %%%%%%%%%%%%
+
+%\input{end.tex}
+
+%%%%%%%%%%%% Start of appendix %%%%%%%%%%%%
+
+%%%%%%%%%%%% End of appendix %%%%%%%%%%%%
+
+\end{document}

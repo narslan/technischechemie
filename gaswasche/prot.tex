@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+\usepackage{fourier}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+\usepackage{verbatim}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+\usepackage{setspace}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+
+
+
+
+\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+  }
+}
+\usepackage{url}
+
+\begin{document}
+%\input{lua_functions}
+%\input{tikz_plot}
+
+\noindent
+\begin{onehalfspace}
+
+\section{Ziel des Versuches}
+In einer Hydrogencarbonat/Carbonat-Pufferlösung soll die Absorptionsrate für die $CO_2$ -
+Absorption gemessen werden. Durch Arsenoxid wird die Reaktion katalysiert. Die
+Phasengrenzfläche $A$ und die Geschwindigkeitskonstante $k_kat$ der Reaktion werden ermittelt.
+\section{Versuchsdurchführung}
+Zuerst wurde eine Stammlösung von 150 mg As 4 O 6 in 300 mL 0.5 M K 2 CO 3 -Lösung hergestellt.
+Daraus wurden drei weitere Lösungen á 400 mL angesetzt. Die Zusammensetzungen der
+Lösungen befinden sich in Tabelle 1.
+Die Pufferlösung wurde in eine Rührzelle überführt und für ca. 8 Minuten evakuiert.
+Anschließend wurde unter Rühren Kohlenstoffdioxid über einen Gasballon zugeführt. Über
+einen Seifenblasenströmungsmesser wurde die Zufuhrgeschwindigkeit für 20 Minuten
+gemessen.
+\section{Messwerte}
+\text{Konzentration $c(As_4O_6) = 0$ \si{\milli\mol\per\liter}}
+% subsection subsection_name (end)
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXX}
+$c_{kat}$ [\si{\milli\mol\per\liter}] & $V_{Stamm}$ [\si{\milli\liter}]  & $V_{K_2O_3}$ [\si{\milli\liter}] & $V_{NaHCO_3}$ [\si{\milli\liter}]  \\
+\hline
+\rowcolor{LightCyan}
+0  & 0 & 200 & 200\\
+132.6  & 100 & 100 & 200\\
+\rowcolor{LightCyan}
+265.3 & 200 & 0 & 200\\
+\end{tabularx}
+  \caption{Herstellungen der Messlösungen}
+\end{table}
+Die Pufferlösung wurde in eine Rührzelle überführt und für ca. 8 Minuten evakuiert.
+Anschließend wurde unter Rühren Kohlenstoffdioxid über einen Gasballon zugeführt. Über
+einen Seifenblasenströmungsmesser wurde die Zufuhrgeschwindigkeit für 20 Minuten
+gemessen.
+\section{Auswertung}
+Für $c(As_4O_6)= 0$ :
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XX}
+$T_{kat}$ [\si{\second}] & $V_{Stamm}$ [\si{\milli\liter}]    \\
+\hline
+\rowcolor{LightCyan}
+ 200 & 200\\
+ 100 & 200\\
+\rowcolor{LightCyan}
+ 0 & 200\\
+\end{tabularx}
+  \caption{Herstellungen der Messlösungen}
+\end{table}
+
+\begin{thebibliography}{}
+\bibitem{crc1}
+D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 888.
+\bibitem{crc2}
+D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 1069.
+\bibitem{crc3}
+\url{http://webbook.nist.gov/chemistry/fluid/}
+\bibitem{skript1}
+A. Brehm, \textit{Praktikumskript Wärmeübertragung}, Oldenburg, \textbf{2014},  S. 14.
+\end{thebibliography}
+\end{onehalfspace}
+
+\end{document}

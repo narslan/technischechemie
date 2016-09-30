@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+%\usepackage[utopia]{mathdesign}
+\usepackage{amsmath,mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usetikzlibrary{arrows,chains,matrix,positioning,scopes,patterns,decorations.pathmorphing,shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.12}
+\usepgfplotslibrary{units}
+\usepgfplotslibrary{fillbetween}
+\usepackage{comment}
+\usepackage{booktabs}
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+\usepackage[justification=justified,singlelinecheck=false]{caption}
+% header
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{11.06.2015}
+\lhead{Justin König, Nevroz Arslan Gruppe 14}
+\setlength{\headheight}{15pt}
+\rfoot{\thepage }
+\lfoot{Versuch 4: Siedepunkterhöhung }
+\usepackage[
+backend=biber,
+style=numeric
+]{biblatex}
+\addbibresource{books.bib}
+\usepackage{chemfig}
+\usepackage{url}
+\usepackage{csquotes}
+\sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
+\renewcommand{\arraystretch}{1.5}
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+
+\usepackage{luacode}
+
+\begin{luacode*}
+
+function fun (t)
+local A = 46.23
+local beta = 0.2893
+local tc = 497.1
+
+local tr = t/tc
+  return A*math.sin(beta*tr)*(1-tr)^beta
+end
+
+function trigtable ()
+for t = 298, 342, 1  do
+tex.print(string.format('%1.2f & %1.3f  \\\\',t, fun(t)))
+end
+end
+
+function draw (tMax,npoints,option)
+
+if option~=[[]] then
+  tex.sprint("\\addplot["..option.."] coordinates{")
+else
+tex.sprint("\\addplot coordinates{")
+end
+for t = 298, 342, 1  do
+  tex.sprint("("..t..","..fun(t)..")")
+end
+
+tex.sprint("}")
+end
+
+\end{luacode*}
+\newcommand{\addLUADEDtable}{\luadirect{trigtable()}}
+\newcommand\addLUADEDplot[3][]{\directlua{draw(#2,#3,[[#1]])}}
+
+\begin{document}
+
+\begin{tabular}{rc}
+\hline
+ x & $x$  \\
+\hline
+\addLUADEDtable
+\hline
+\end{tabular}
+
+\pgfplotsset{width=0.9\textwidth, height=0.6\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+enlarge x limits=true,
+minor x tick num=4, minor y tick num=4,
+axis lines=middle, axis line style={-}
+]
+% SYNTAX: Solution of the initial value problem
+% in the interval [0,30] sampled at 200 points
+\addLUADEDplot[color=blue,smooth]{298}{200};
+\end{axis}
+\end{tikzpicture}
+
+
+\end{document}
+
