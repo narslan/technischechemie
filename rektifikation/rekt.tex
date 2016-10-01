@@ -62,15 +62,14 @@ insgesamt viermal wiederholt.
 % subsection subsection_name (end)
 \begin{table}[ht!]
   \centering
- \begin{tabularx}{\textwidth}{XXXXX}
-Heizlast & $n^{20}_D$ & $x_{Sumpf}$ & $T^{Kopf}$ & $T^{Sumpf}$  \\
+ \begin{tabularx}{\textwidth}{XXXX}
+Heizlast & $n^{20}_D$ & $x_{Sumpf}$ &  $T^{Sumpf}$  \\
 \hline
 \rowcolor{LightCyan}
-220 V & 1.4750 & 0.43 & 106.9 \si\celsius & 104.1 \si\celsius    \\
-185 V & 1.4750 & 0.44 & 106.2 \si\celsius & 103.9 \si\celsius    \\
-\rowcolor{LightCyan}
-170 V & 1.4740 & 0.46 & 104.4 \si\celsius & 103.6 \si\celsius    \\
-145 V & 1.4733 & 0.48 & 102.4 \si\celsius & 103.2 \si\celsius    \\
+220 V & 1.4750 & 0.43 &  104.1 \si\celsius    \\
+185 V & 1.4750 & 0.44 &  103.9 \si\celsius    \\
+170 V & 1.4740 & 0.46 &  103.6 \si\celsius    \\
+145 V & 1.4733 & 0.48 &  103.2 \si\celsius    \\
 \end{tabularx}
   \caption{Messwerte der Bodenkolonne}
 
@@ -263,7 +262,7 @@ einem gemittelten Brechungsindex von ergibt sich eine Sumpfzusammensetzung von.
   1.00 1.000
 };
 
-\addplot[only marks] table{
+\addplot[only marks,color=red] table{
    X Y
    0.43 0.000
    0.10 0.143

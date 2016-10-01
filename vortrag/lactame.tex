@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{chemfig}
 \usepackage{xcolor}
+
 %\documentclass[12pt]{article}
 
 %\usepackage{fancyhdr}
@@ -42,6 +43,9 @@
 \usepackage{array} % needed for \arraybackslash
 \usepackage{graphicx}
 \usepackage{adjustbox} % for \adjincludegraphics
+\usepackage{biblatex}
+\addbibresource{lactam.bib}
+
  % Avoid an error due to a lack of registers
 \renewcommand*\printatom[1]{{\fontsize{14}{14}\selectfont\ensuremath{\mathsf{#1}}}}
 \definesubmol\cycleoplus{-[,0.25,,,draw=none]\oplus}
@@ -115,21 +119,23 @@ water solubility, non toxic
 \end{frame}
 
 
+\begin{frame}
+\end{frame}
 
 %\input{a2.tex}
 \subsection{Eigenschaften}
 %\input{a3.tex}
-\section{Reaktionen}
+\subsection{Macrolactame}
 %\input{seite2.tex}
 
 \begin{frame}
-\begin{thebibliography}{}
-
-\bibitem{bio}
-Technisches Datenblatt,\url{http://www.dispersions-pigments.basf.com/portal/basf/ide/dt.jsp?setCursor=1_736581}
-\bibitem{march}
-M. Smith,J. March, \textit{March's Advanced Organic Chemistry}, 6. Aufl., Wiley, New York \textbf{2007}, S. 924-926.
-\end{thebibliography}
+\begin{tabular}{p{.8\textwidth} p{.2\textwidth}}
+\adjincludegraphics[width=.3\linewidth,valign=t]{macrolactam}
+&
+""
+\end{tabular}
+Ascomycin
+\footfullcite{macrolactam}
 \end{frame}
 %%\input{seite11.tex}
 
