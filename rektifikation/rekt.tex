@@ -63,13 +63,13 @@ insgesamt viermal wiederholt.
 \begin{table}[ht!]
   \centering
  \begin{tabularx}{\textwidth}{XXXX}
-Heizlast & $n^{20}_D$ & $x_{Sumpf}$ &  $T^{Sumpf}$  \\
+Heizlast & $n^{20}_D$ & $x_{Kopf}$ &  $T^{Kopf}$  \\
 \hline
 \rowcolor{LightCyan}
 220 V & 1.4750 & 0.43 &  104.1 \si\celsius    \\
 185 V & 1.4750 & 0.44 &  103.9 \si\celsius    \\
 170 V & 1.4740 & 0.46 &  103.6 \si\celsius    \\
-145 V & 1.4733 & 0.48 &  103.2 \si\celsius    \\
+145 V & 1.4739 & 0.48 &  103.2 \si\celsius    \\
 \end{tabularx}
   \caption{Messwerte der Bodenkolonne}
 
@@ -77,24 +77,21 @@ Heizlast & $n^{20}_D$ & $x_{Sumpf}$ &  $T^{Sumpf}$  \\
 
 \begin{table}[ht!]
   \centering
- \begin{tabularx}{\textwidth}{XXXX}
-Rücklaufverhältnis & $n^{20}_D$ & $V_{MCH}$ & $x$  \\
+ \begin{tabularx}{\textwidth}{XXX}
+Rücklaufverhältnis & $n^{20}_D$  & $x$  \\
 \hline
 \rowcolor{LightCyan}
-3 & 1.4860 & 9.4 &  0.16167   \\
-5  & 1.4851 & 10.0 &  0.17234   \\
+3 & 1.4860 &  0.16167   \\
+5  & 1.4851 &   0.17234   \\
 \rowcolor{LightCyan}
-10  & 1.4855 & 9.7 & 0.16700   \\
-$\infty$  & 1.4860 & 9.4 &  0.16167  \\
+10  & 1.4855 &  0.16700   \\
+$\infty$  & 1.4860 &  0.16167  \\
 \end{tabularx}
   \caption{Messwerte der Packungskolonne}
 \end{table}
 
 \section{Auswertung}
-\subsection{Ermittlung der Kopfzusammensetzung} % (fold)
-Mit den gegebenen Literaturdaten [1] kann ein Siedediagramm des binären Gemisches
-Methylcyclohexan/Toluol erstellt werden.
-
+\subsection{Siedediagramm}
 \begin{figure}
   \begin{center}
 
@@ -146,30 +143,19 @@ Methylcyclohexan/Toluol erstellt werden.
 \end{center}
 \caption{Siedediagramm}
 \end{figure}
-\begin{equation}
-y = -5.64 x ^ 3 + 17.14 x ^2 - 21.22 x + 110.55
-\qquad \text{Taukurve}
-\end{equation}
 
-\begin{equation}
-y = 2.54 x ^ 3 + 2.34 x ^2 - 14.61 x + 110.60
-\qquad \text{Siedekurve}
-\end{equation}
-% subsection ermittlung_der_kopfzusammensetzung_ (end)
-Setzt man die oben genannten Regressionsgleichungen (1) und (2) mit den jeweils
-gemessenen Kopftemperaturen gleich und löst nach der Variable auf, so erhält man jeweils
-die Zusammensetzung der flüssigen Phase (MCH), als auch die Zusammensetzung des
-gasförmigen Phase (MCH)
+\subsection{Ermittlung der Kopfzusammensetzung} % (fold)
+
 \begin{table}[ht!]
   \centering
  \begin{tabularx}{\textwidth}{XXXX}
-Heizlast \si{\volt} & $T_{Sumpf}$ & $x_D$ & $y_D$  \\
+Heizlast \si{\volt} & $T_{Kopf}$ & $x_D$ & $y_D$  \\
 \hline
 \rowcolor{LightCyan}
 145 & 106.9 & 0.2029 &  0.2680    \\
 170 & 106.2 & 0.2519 &  0.3237 \\
 \rowcolor{LightCyan}
-185 & 104.4 & 0.4805 &  0.4041 \\
+185 & 104.4 & 0.4042 &  0.4041 \\
 220 & 102.4 & 0.6581 &  0.6986 \\
 \end{tabularx}
   \caption{Zusammensetzung des Destillats in der Bodenkolonne}
@@ -189,6 +175,21 @@ $\infty$  & 103.2  &  0.5401 & 0.6026  \\
 \end{tabularx}
   \caption{Zusammensetzung des Destillats in der Packungskolonne}
 \end{table}
+
+
+
+\begin{equation}
+y = -5.64 x ^ 3 + 17.14 x ^2 - 21.22 x + 110.55
+\qquad \text{Taukurve}
+\end{equation}
+
+\begin{equation}
+y = 2.54 x ^ 3 + 2.34 x ^2 - 14.61 x + 110.60
+\qquad \text{Siedekurve}
+\end{equation}
+% subsection ermittlung_der_kopfzusammensetzung_ (end)
+
+
 \subsection{Ermittlung der Blasenzusammensetzung} % (fold)
 Zur Erstellung einer Kalibrierkurve, für die Abhängigkeit des Brechungsindex‘ von der
 Blasenzusammensetzung, muss zuerst der Molenbruch $x_{MCH}$
@@ -244,37 +245,65 @@ einem gemittelten Brechungsindex von ergibt sich eine Sumpfzusammensetzung von.
           xlabel style={font=\large},
           ylabel style={font=\large},
           %x unit= \si{\milli\volt} , % Set the respective units
-          y unit= \si{\volt},
+          %y unit= \si{\volt},
           x tick label style={rotate=90,anchor=east}
           ]
-      \addplot[only marks] table{
-  X Y
-  0.00 0.000
-  0.10 0.143
-  0.20 0.270
-  0.30 0.378
-  0.40 0.470
-  0.50 0.560
-  0.60 0.650
-  0.70 0.737
-  0.80 0.818
-  0.90 0.906
-  1.00 1.000
-};
+
 
 \addplot[only marks,color=red] table{
    X Y
-   0.43 0.000
-   0.10 0.143
-   0.20 0.270
-   0.30 0.378
+   0.203 0.256
+   0.252 0.310
+   0.404 0.469
+   0.658 0.710
 };
 
 \addplot[domain=0:1]{x};
+
+\addplot[domain=0:1]{-0.25221*x^(2)+1.21531*x+0.0199};
+
 %\addlegendentry{ }
 \end{axis}
 \end{tikzpicture}
-\caption*{Abbildung 1.1: Gleichgewichtsdiagramm }
+\caption*{Abbildung 1.1: Gleichgewichtsdiagramm  McCabe Bodenkolonne}
+
+\end{figure}
+
+\begin{figure}[htbp!]
+      \begin{tikzpicture}
+      \begin{axis}[
+          width=\linewidth, % Scale the plot to \linewidth
+          grid=major,
+          grid style={dashed,gray!30},
+          xlabel= $x$, % Set the labels
+          ylabel= $y$,
+          xlabel style={font=\large},
+          ylabel style={font=\large},
+          %x unit= \si{\milli\volt} , % Set the respective units
+          %y unit= \si{\volt},
+          x tick label style={rotate=90,anchor=east}
+          ]
+
+
+\addplot[only marks,color=red] table{
+   X Y
+0.43478 0.50061
+0.45627 0.52190
+0.49041 0.55524
+0.54009 0.60270
+};
+
+\addplot[domain=0:1,color=teal]{3/4*x+0.1092};
+\addplot[domain=0:1,color=red]{5/6*x+0.076};
+\addplot[domain=0:1,color=blue]{10/11*x+0.0445};
+
+\addplot[domain=0:1]{x};
+\addplot[domain=0:1]{-0.25221*x^(2)+1.21531*x+0.0199};
+
+%\addlegendentry{ }
+\end{axis}
+\end{tikzpicture}
+\caption*{Abbildung 1.2: McCabe Füllkörperkolonne }
 
 \end{figure}
 
