@@ -1,0 +1,42 @@
+\documentclass{article}
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+\usepackage{fourier}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+\usepackage{chemfig}
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+}
+
+
+\begin{document}
+%\input{lua_functions}
+%\input{tikz_plot}
+\setdoublesep{3pt}
+\definesubmol{&}{-[,,,,draw=none]}
+\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]R)=[:-90]O)-[:-30]*4(-(=O)-N*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)--)}
+
+\end{document}

@@ -35,15 +35,16 @@
 \usepackage[default]{opensans}
 %\usepackage{gillius2}
 %\usepackage{lato}
-
+\usepackage{adjustbox}
 \usepackage[utf8]{inputenc}
 
 \usepackage[T1]{fontenc}
-\usepackage{chemstyle}
+
 \usepackage{array} % needed for \arraybackslash
 \usepackage{graphicx}
 \usepackage{adjustbox} % for \adjincludegraphics
 \usepackage{biblatex}
+\usepackage{tabularx}
 \addbibresource{lactam.bib}
 
  % Avoid an error due to a lack of registers
@@ -56,7 +57,7 @@
 %\include{head}
 \title[]{Lactame und ihre Verwendung}
 \author[N. Arslan]{Nevroz Arslan}
-\date[14.10.16]{16. Oct 2014}
+\date[14.10.16]{16. Oct 2016}
 %\titlegraphic{\includegraphics[width=\textwidth,height=.5\textheight]{bogen1200.png}}
 \setbeamerfont{page number in head/foot}{size=\large}
 \beamertemplatenavigationsymbolsempty
@@ -64,13 +65,17 @@
 
 \setdoublesep{4pt}
 \setatomsep{2em}
-\definesubmol{e}{-[,.1,,,draw=none]}
+
 \begin{document}
 \setbeamercolor{block title}{use=structure,fg=black,bg=white}
 \setbeamercolor{block body}{use=structure,fg=black,bg=white}
 %\input{title.tex}
-
-
+%\setbeamerfont{bibliography item}{size=\scriptsize}
+%\setbeamerfont{bibliography entry author}{size=\scriptsize}
+%\setbeamerfont{bibliography entry title}{size=\scriptsize}
+%\setbeamerfont{bibliography entry location}{size=\scriptsize}
+%\setbeamerfont{bibliography entry note}{size=\scriptsize}
+%\setbeamerfont{bibliography entry url}{size=\scriptsize}
 
 
 %%%%%%%%%%%% Start of content %%%%%%%%%%%%
@@ -83,6 +88,7 @@
     \node[xshift=-10.80cm,yshift=1.15cm] at (0,0)    {\includegraphics[scale=0.6]{logo}};
 \end{tikzpicture}
 }
+
 \addtobeamertemplate{frametitle}{\vskip+5ex}{}
 \setbeamercolor{frametitle}{fg=black}
 
@@ -90,61 +96,90 @@
 \setbeamertemplate{itemize/enumerate body begin}{\normalsize}
 
 \frame{\titlepage}
+
+\newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
+\def\makebraces[#1,#2]#3#4#5{%
+\edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+\edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+\chemmove{%
+\node[at=(#4),yshift=(\delimvshift)]
+{$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right.$};%
+\node[at=(#5),yshift=(\delimvshift)]
+{$\left.\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right\delimright_{\rlap{$\scriptstyle#3$}}$};}}
+\setpolymerdelim()
+\setatomsep{2em}
+\definesubmol{&}{-[,,,,draw=none]}
 \begin{frame}
-  \frametitle{Inhaltsübersicht}
-  \tableofcontents
-  \end{frame}
+  \begin{itemize}
+    \item Lactame werden von Carbonsäuren abgeleitet
+    \item \scalebox{0.5}{
+    \schemestart
+\chemname{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OH}}{\\ \\ $\gamma$-Aminobuttersäure }
+\arrow{->[][][7mm]}
+\chemname{\chemfig{ *5(-\chembelow{N}{H}-(=O)---)}}{\\ \\ $\gamma$-Butyrolactam}
+\+{,,7pt}
+\arrow(--[yshift=8mm]){0}[,0]
+\chemfig{H_2O}
+\schemestop
+\chemnameinit{}
+}
+  \end{itemize}
+\end{frame}
 
-\section{Lactamen}
 
 \begin{frame}
-\subsection{Definition}
+\frametitle{Wichtige Lactame}
 
-\begin{tabular}{p{.8\textwidth} p{.2\textwidth}}
-\adjincludegraphics[width=.8\linewidth,valign=t]{gaba}
-&
-""
-\end{tabular}
-
+\setdoublesep{3pt}
+\setbondstyle{line width=1pt}
+  \centering
+\adjustbox{max height=\dimexpr\textheight-5.5cm\relax,
+           max width=\textwidth}{
+ \begin{tabularx}{\textwidth}{rXXX}
+ ~ &  ~ &  ~  & Ausgangsstoff \\[4ex]
+\scalebox{0.6}{\chemfig{ *5([:-35]--*6(--*6(--{NH}-(=[:40]O)---[,,,,draw=none])-[,,,,draw=none]--)-[,,,,draw=none]--)}} &\scriptsize  Laurinlactam & \scriptsize Beckman & \scalebox{0.6}{\chemfig{=[:30]-[:-30]=[:30]}}  \\[4ex]
+\scalebox{0.6}{\chemfig{ *7(---{NH}-(=[:60,0.8]O)---)}} & \scriptsize $\epsilon$-caprolactam & \scriptsize Beckman & \scalebox{0.6}{\chemfig{*6(----(=O)--)}} \\[4ex]
+\scalebox{0.6}{\chemfig{ *6(---{NH}-(=[,0.8]O)--)} }& \scriptsize $\delta$-valerolactam & \scriptsize Beckman& \scalebox{0.6}{\chemfig{*5(---(=O)--)}} \\[4ex]
+\scalebox{0.6}{\chemfig{ *5(--{NH}-(=[,0.8]O)--)} }&\scriptsize $\gamma$-butyrolactam  & \scriptsize Kondensation & \scalebox{0.6}{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OC_2H_5} } \\[4ex]
+\scalebox{0.6}{\chemfig{ *4(-{NH}-(=[:60,0.8]O)---)} }& \scriptsize $\beta$-lactam & \scriptsize Biosynthese & \scalebox{0.6}{\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]R)=[:-90]O)-[:-30]*4(-(=O)-N*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)--)}}\\[4ex]
+\end{tabularx}
+}
 
 \end{frame}
 
-%\input{a1.tex}
-\subsection{Herstellung}
 \begin{frame}
-  Zur Herstellung von Butyrolactam kann die Reaktion von $\gamma$-Butyrolacton mit
-  Ammoniak bei erhöhter Temperatur genutzt werden
-  Luvitec®: Adhesive Raw Materials
-water solubility, non toxic
+  \frametitle{Lactame zur Faserherstellung}
+\begin{itemize}
+  \item langkettige Polyamiden
+  \item üblich über Anionische Ringöffnende Polymerisation
+\end{itemize}
 \end{frame}
 
-
-\begin{frame}
+\begin{frame}{Anionische Ringöffnende Polymerisation}
+\scalebox{0.5}{
+    \schemestart
+\chemname{\chemfig{ *7(---\chemabove{N}{\hspace{3mm}\scriptstyle -}-(=[:60]O)---)}}{Cprolactam}
+\+
+\chemfig{ *7(---N(-H)-(=[:60]O)---)}
+\arrow{<=>}
+\chemname{\chemfig{ *7(---N(-C(=[2]O)-C|{(CH_2)_5}N-\chemabove{H}{\hspace{2mm}\scriptstyle -})-(=[:60]O)---)}}{Polymer}
+\schemestop
+}
+\vspace{10mm}
+\scalebox{0.5}{
+ \schemestart
+\chemfig{ *7(---\chemabove{N}{\hspace{3mm}\scriptstyle -}-(=[:60]O)---)}
+\+
+\chemfig{ *7(---N(-H)-(=[:60]O)---)}
+\arrow{<=>}
+\chemfig{ *7(---N(-C(=[2]O)-C|{(CH_2)_5}\chemabove{N}{\hspace{2mm}-H\scriptstyle -})-(=[:60]O)---)}
+\schemestop
+}
 \end{frame}
-
-%\input{a2.tex}
-\subsection{Eigenschaften}
-%\input{a3.tex}
-\subsection{Macrolactame}
-%\input{seite2.tex}
-
 \begin{frame}
-\begin{tabular}{p{.8\textwidth} p{.2\textwidth}}
-\adjincludegraphics[width=.3\linewidth,valign=t]{macrolactam}
-&
-""
-\end{tabular}
-Ascomycin
-\footfullcite{macrolactam}
+
 \end{frame}
-%%\input{seite11.tex}
-
-%%%%%%%%%%%% End of content %%%%%%%%%%%%
-
-%\input{end.tex}
-
-%%%%%%%%%%%% Start of appendix %%%%%%%%%%%%
-
-%%%%%%%%%%%% End of appendix %%%%%%%%%%%%
 
 \end{document}
