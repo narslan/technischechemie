@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+\usepackage{fourier}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+\usepackage{verbatim}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+
+\usepackage{chemfig}
+
+\begin{document}
+\newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
+\def\makebraces[#1,#2]#3#4#5{%
+\edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+\edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+\chemmove{%
+\node[at=(#4),yshift=(\delimvshift)]
+{$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right.$};%
+\node[at=(#5),yshift=(\delimvshift)]
+{$\left.\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right\delimright_{\rlap{$\scriptstyle#3$}}$};}}
+\setpolymerdelim()
+\setatomsep{2em}
+
+\renewcommand * \printatom[1]{\ensuremath{\mathsf{#1}}}
+\schemestart
+\chemfig{ *6(=- * 6(-\chembelow{N}{H}-NH_2)=-=-)}
+\+
+\chemfig{(=[:-150]O)(-[:-30]R_2)-[2]-[:150]R_1}
+\arrow(.mid east--.mid west){->[\chemfig{H^+}]}
+\chemfig{[:-30]-[@{left,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{right,0.25}:30]}
+\makebraces[5pt,25pt]{\!\!\!n}{left}{right}
+\chemfig{ * 6(-= * 5(-\chembelow{N}{H}-(-R_2)=(-R_1)-)-=-=)}
+\schemestop
+
+\end{document}
