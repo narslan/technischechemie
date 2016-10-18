@@ -358,7 +358,7 @@ Somit ergibt sich:
 3.03e-7 80.89e-12
 6.06e-7 109.4e-12
 };
-\addplot[domain=0:0.7]{1.109e-4*x+4.388e-11};
+\addplot{1.109e-7*x+4.388e-11};
 \end{axis}
 \end{tikzpicture}
 \caption*{Abbildung 1.1: Bestimmung von $t_0$ }
@@ -377,15 +377,17 @@ Zur Ermmitlung der \ce{k_{cat}} muss die Phasengrenzfläche \ce{A} noch bestimmt
     &= \sqrt{\frac{\SI{4.388e-11}{\square\mol\per\square\second}}{\SI{0.86}{\per\second} \cdot \SI{1.6e-5}{\square\centi\meter\per\second} \cdot \SI{1.925e-5}{\mol\per\cubic\centi\meter} }}\\
 \end{align}
 
-Durch Einsetzen der Phasengrenzfläche \ce{A}, \ce{D^L} = \SI{1.6e-5}{\square\centi\meter\per\second} 
+Durch Einsetzen der Phasengrenzfläche \ce{A}, \\ 
+\ce{D^L} = \SI{1.6e-5}{\square\centi\meter\per\second} \\ 
 und \ce{c_A^i} = \SI{1.925e-5}{\mol\per\cubic\centi\meter} in die Gleichung (7) ergibt sich:
 
 \begin{equation}
- \frac{\num{1.109e-4}}{\SI{1.6e-5}{\square\centi\meter\per\second} \cdot  \cdot \SI{3.706e-10}{\square\mol\per\centi\meter\tothe{6}} }
+ \SI{1.13e5}{\cubic\centi\meter\per\mol\per\second}=\frac{\num{1.109e-7}}{\SI{1.6e-5}{\square\centi\meter\per\second} \cdot (128.56)^2 \cdot \SI{3.706e-10}{\square\mol\per\centi\meter\tothe{6}} }
 \end{equation}
 \begin{equation}
-  A = 128.56 \si{\square\centi\meter}
+  A = \SI{128.56}{\square\centi\meter}
 \end{equation}
+  
 \begin{thebibliography}{}
 \bibitem{crc1}
 D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 888.
