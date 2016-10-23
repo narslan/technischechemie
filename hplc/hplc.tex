@@ -1,0 +1,91 @@
+\documentclass[a4paper]{article}
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{fontspec}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{fontspec}
+\usepackage{chemfig}
+\setmainfont{Ubuntu}
+\newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
+
+\def\makebraces(#1,#2)#3#4#5{%
+  \edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+  \edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+  \chemmove{
+    \node[at=(#4),yshift=(\delimvshift)]
+      {$
+       \left\delimleft
+         \vrule height\delimhalfdim depth\delimhalfdim width0pt
+       \right.
+      $};
+    \node[at=(#5),yshift=(\delimvshift)]
+      {$
+        \left.
+          \vrule height\delimhalfdim depth\delimhalfdim width0pt
+        \right\delimright_{\rlap{#3}}
+      $};
+  }%
+}
+\begin{document}
+\title{Voltametrie}
+\author{Nevroz Arslan, Universität Oldenburg}
+\lhead{\textbf{HPLC}-Gruppe 18 \footnotesize{Anatoli Schmidt, Nevroz Arslan}}
+\subsection*{HPLC}
+In der hochauflösenden Flüssigkeitschromotographie \textbf{(HPLC)} wird das
+Lösungsmittel bei hohem Druck durch eine kleine Säule gepumpt, die 3-10 $\mu$m 
+große Teilchen als stationäre Phase enthält.\footnote{Harris C.D, Lehrbuch der
+quantitativen Analyse, vieweg Verlag,1997, s. 843}  Die Säule ist mit nur
+wenige Mikrometer großen Partikeln gefüllt, die eine Trennung 
+von sehr kleiner Mengen($\mu$g,ng) an Analyt ermöglichen. 
+\subsection*{\small Stationäre Phase}
+Bei dem Versuch wird es 5$\mu$ Lichrospher 100RP18e Kieselgel verwendet. 
+\bigskip
+\par
+\setpolymerdelim()
+\chemname{\chemfig{-[,1,,,decorate,decoration=snake]O-Si(-[:90]CH_3)(-[@{op,.75}]-CH_2-[@{cl,0.25}]-CH_3)(-[:-90]CH_3)}}{polymere Stationäre Phase mit Octadecylschwanz}
+\makebraces(10pt,10pt){$\!\!17$}{op}{cl}
+\subsection*{\small Mobile Phase}
+\begin{itemize}
+\item Methanol-Waser Gemisch für Elution
+\item Polar-Polar Mischung
+\item Verwendung der sauberer Lösüngsmittel erforderlich
+\end{itemize}
+\subsection*{\small UV-Detektor}
+
+\begin{itemize}
+\item Viele Analyte ultraviolettes Licht absorbieren
+\item Der UV-Detektor ein Signal zur Konzentration des Analytes
+\item Die (HPLC-Anlage A) verwendet eine intensive Emmision bei 280 nm \\
+  \textit{Peakwert des Absorptionsspektrums des Koffeins(~275nm).\footnote{http:\/\/webbook.nist.gov\/cgi\/cbook.cgi?ID=C58082\&Mask=400\#UV-Vis-Spec}}
+\item  Die HPLC-Anlage B verwendet eine Emmision bei 254 nm\\
+ \textit{Peakwert des Absorptionsspektrums der Benzoesäure und der Benzoesäurederivaten(~250nm).\footnote{http:\/\/webbook.nist.gov\/cgi\/cbook.cgi?ID=C65850\&Mask=400\#UV-Vis-Spec}}
+\item Die Flieszelle des UV-Detektors besitzt ein Volumen von 20$\mu$l
+\end{itemize}
+
+\newpage
+
+
+\subsection*{\small Stufenhöhe als Säuleneffienz}
+\begin{itemize}
+\item kleine Stufenhöhe \\
+  =>schmale Peaks\\
+  =>bessere Trennung
+\item Stufenhöhe ist die Proportionalitätskonstante zwischen $\sigma^2$ der
+      Bande und der zurückgelegten Strecke (x) \\
+      \textbf{\textit{Stufenhöhe}$=\sigma^2/x$}
+\item Diffussionskoeffizient(D) charakterisiert die Geschwindigkeit von der
+Region hoher Konzentration zur Region niedriger Konzentration\\
+       Eine funktion der Molmenge und der Zeit
+\item $\sigma^2=(2Dt)=2D(x/u_x)$ , wobei $u_x$ für lineare Fließgeschwindigket
+  steht und x für die in der Säule zurückgelegte Strecke steht  
+\item Bei dem zweiten Teil des Versuches, wird das Verhältnis des\\
+  Kapazitätsfaktors(Retenzionsfaktor) zum Peak untersucht  
+
+\end{itemize}
+
+
+
+
+\end{document}
+

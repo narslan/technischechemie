@@ -1,0 +1,58 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{report}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.8} 
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+\begin{luacode*}
+-- Code to write PGFplots data as coordinates
+function print_chiPF(file,option)
+    local     x  = file
+    if option~=[[]] then
+        tex.sprint("\\addplot["..option.."] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    for i=1,100 do
+      tex.sprint("("..i..","..math.random()..")")
+    end
+    tex.sprint("};")
+
+end
+
+
+\end{luacode*}
+\newcommand\addplotCHIpf[2][]{\directlua{print_chiPF(#2,[[#1]])}}
+
+\pgfplotsset{
+    standard/.style={
+        axis x line=middle,
+        axis y line=middle,
+        grid=major,
+    }
+}
+\begin{document}
+\lhead{Photometrie-Gruppe 18 Aufgabe (Referenz vs Max-Lösung) }
+\begin{tikzpicture}[scale=1.4,font=\sffamily]
+\tikzset{
+every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+small dot/.style={fill=chameleon1,circle,scale=0.3}
+}
+\begin{axis}[no marks]
+
+\foreach \k in {"02320.SP","02350.SP"}{
+\addplotCHIpf{\k}
+}
+\end{axis}
+\end{tikzpicture}
+\par
+%\tabellenwerte
+\end{document}

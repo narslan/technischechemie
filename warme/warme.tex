@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 \usepackage{amsmath}
 
 
@@ -7,9 +7,24 @@
 
 %----------------------------
 \usepackage{microtype}
-\usepackage{fourier}
+%\usepackage{fourier}
+%\usepackage{mathpazo} % add possibly `sc` and `osf` options
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage{MinionPro}
+\usepackage{Myriad}
+%\usepackage{CronosPro}
+\usepackage{MnSymbol}
+
+%\usepackage[default]{gillius}
+\usepackage{mhchem}
+\usepackage{listings}
 \usepackage[utf8]{inputenc}
+\usepackage{CronosPro}
 \usepackage[T1]{fontenc}
+
+%\usepackage[minionint,mathlf]{MinionPro}
+%\renewcommand{\sfdefault}{Myriad-LF}
 %units
 %--------------------------------------
 \usepackage{siunitx}
@@ -69,7 +84,7 @@ Fluidstrom von 120 – 420 \si{\liter\per\hour} in 50 \si{\liter\per\hour} Schri
 \begin{table}[ht!]
   \centering
  \begin{tabularx}{\textwidth}{XXXX}
-$\dot V$ [\si{\liter\per\hour}] & $T_{Ein}$ [\si{\celsius}]  & $T_{Aus}$ [\si{\celsius}] & $T_{Bad}$ [\si{\celsius}]  \\
+\ce{\.{V}} / \si{\liter\per\hour} & \ce{T_{Ein}} / \si{\celsius}  & \ce{T_{Aus}} / \si{\celsius} & \ce{T_{Bad}} / \si{\celsius}  \\
 \hline
 \rowcolor{LightCyan}
 120  & 20.2 & 32.1 & 40.0\\
@@ -99,14 +114,16 @@ Die Wärmekapazitäten sind aus Tabellenwerken zu entnehmen.
 \subsection{Spezifische Wärmekapazität $c _p$}
 Da die spezifische Wärmekapazität $c _p$ \cite{crc1} in 10 \si{\celsius} Schritten
 tabelliert sind, wurden sie mittels R über ein Polynom vierten Grades interpoliert.
-\begin{verbatim}
+\lstset{ basicstyle=\small, stringstyle=\ttfamily}
+\begin{lstlisting}
 assign("t1", c(0,10,20,30,40,50,60,70,80,90,100))
 assign("cp", c(4.2176,4.1921,4.1818,4.1784,4.1785,4.1806,
 4.1843,4.1895,4.1963,4.2050,4.2159))
 fitcp<-lm(cp ~ t1 +I(t1^2)+I(t1^3)+I(t1^4))
 summary(fitcp)
 --R2 = 0.9971
-\end{verbatim}
+\end{lstlisting}
+
 Daraus wurden folgende Funktionen erhalten:
 \begin{equation}
  cp (T) = -3.4 \cdot 10^{-9} T ^4 -8.323 \cdot 10^{-7} T ^ 3 + 7.966 \cdot 10^{-5} T ^ 2 - 3.049 \cdot 10^{-3} T + 4.217
@@ -143,7 +160,7 @@ Es ergibt sich folgende Tabelle:
 \begin{table}[ht!]
   \centering
  \begin{tabularx}{\textwidth}{XXXXXXX}
-$T _{Bad}$ [\si{\kelvin}] & $c _p$ [\si{\joule\per\gram\per\kelvin}]  & $\eta$ [\si{\meter\pascal\second}] &  $\lambda _{H_2O}$ [\si{\watt\per\meter\kelvin}]
+\ce{T_{Bad}} / \si{\kelvin} & \ce{c_p} [\si{\joule\per\gram\per\kelvin}]  & \ce{\eta} [\si{\meter\pascal\second}] &  $\lambda _{H_2O}$ [\si{\watt\per\meter\kelvin}]
 & $Pr_1$ & $Nu _1$ & $\alpha _1$ [\si{\watt\per\square\meter\per\kelvin}] \\
 \hline
 \rowcolor{LightCyan}
