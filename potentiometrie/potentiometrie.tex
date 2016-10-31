@@ -1,0 +1,202 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+%\usepackage{fourier}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[german]{babel}
+
+%units
+%--------------------------------------
+\usepackage{siunitx}
+\usepackage{verbatim}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{graphicx}
+
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{mhchem}
+
+\renewcommand{\familydefault}{\sfdefault}
+\captionsetup{font=footnotesize}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+
+%\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+  }
+}
+\usepackage{url}
+
+\begin{document}
+%\input{lua_functions}
+%\input{tikz_plot}
+
+\noindent
+\begin{onehalfspace}
+
+\begin{table}[!htbp]
+
+\begin{tabular}{rcc}
+\hline
+ \ce{t_{total}} &\ce{t_{5\si{\milli\liter}}}   &\ce{t_{10\si{\milli\liter}}}  \\
+\hline
+10 & 19 & 41 \\
+70 & 24 & 49 \\
+150 & 27 & 52 \\
+240 & 26 & 52 \\
+310 & 27 & 55 \\
+390 & 28 & 56 \\
+480 & 26 & 55 \\
+550 & 28 & 57 \\
+660 & 28 & 55 \\
+810 & 29 & 58 \\
+900 & 29 & 59 \\
+990 & 30 & 59 \\
+1080 & 30 & 61  \\
+1170 & 30 & 60 \\
+\hline
+\end{tabular}
+\caption{\ce{c_{kat} =} \SI{3e-6}{\mol\per\cubic\centi\meter}}
+
+\end{table}
+
+\begin{tikzpicture}[scale=1.2]
+\begin{axis}[
+xtick=data,
+ytick=data,
+axis equal=false,
+axis x line=bottom,
+axis y line=middle,
+legend style={draw=none,legend pos=outer north east},
+xlabel=Konzentration /(mg/ml),
+ ylabel=Area]
+\addplot[only marks] table[meta=c] {
+  X Y c
+  0.851 3.5 color=red
+  0.548 4.2 color=green
+  1.891 5.1 color=green
+  2.912 6.0 color=green
+};
+\addplot[color=red] table[
+y={create col/linear regression={y=Y}}]
+{
+  X Y c
+  0.851 3.5 color=red
+  0.548 4.2 color=green
+  1.891 5.1 color=green
+  2.912 6.0 color=green
+};
+
+\addlegendentry{%
+        $\pgfmathprintnumber{\pgfplotstableregressiona} \cdot x
+        \pgfmathprintnumber[print sign]{\pgfplotstableregressionb}$ lin. Regression} %
+\end{axis}
+\end{tikzpicture}
+
+
+
+\begin{figure}[htbp]
+      \begin{tikzpicture}[scale=0.8]
+      \begin{axis}[
+          grid=major,
+          grid style={dashed,gray!30},
+          ylabel= $t_{10}$, % Set the labels
+          xlabel= $t_{total}$,
+          xlabel style={font=\large},
+          ylabel style={font=\large},
+          x unit= \si{\second} , % Set the respective units
+          y unit= \si{\second},
+          x tick label style={rotate=90,anchor=east}
+          ]
+\addplot[domain=0:1200]{-1.74e-5*x^(2)+3.08e-2*x+39.11};
+\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
+\addplot[domain=0:1200]{9.518e-3*x+62.97};
+ \addplot[only marks,color=red] table{
+40   38
+130  41
+230  48
+300  49
+380  50
+450  51
+540  51
+600  51
+680  49
+760  52
+840  51
+910  53
+1020 52
+1080 50
+1160 55
+    };
+ \addplot[only marks,color=blue] table{
+10   41
+70   49
+150  52
+240  52
+310  55
+390  56
+480  55
+550  57
+660  55
+810  58
+900  59
+990  59
+1080 61
+1170 60
+ };
+
+ \addplot[only marks,color=pink] table{
+300  66
+420  67
+570  68
+660  70
+780  71
+870  72
+960  71
+1050 73
+};
+
+\end{axis}
+\end{tikzpicture}
+\caption*{Abbildung 1.1: Bestimmung von \ce{t0}  }\label{regression}
+
+
+\end{figure}
+
+
+
+
+\end{onehalfspace}
+
+\end{document}
+

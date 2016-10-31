@@ -10,20 +10,24 @@
 %\usepackage{fourier}
 %\usepackage{mathpazo} % add possibly `sc` and `osf` options
 
-%\usepackage[urw-garamond]{mathdesign}
-%\usepackage{MinionPro}
-\usepackage{Myriad}
-%\usepackage{CronosPro}
-\usepackage{MnSymbol}
+%\usepackage[default,osfigures,scale=0.85]{opensans} %% Alternatively
+%% use the option 'defaultsans' instead of 'default' to replace the
+%% sans serif font only.
+
+\usepackage[minionint,mathlf]{MinionPro}
 
 %\usepackage[default]{gillius}
 \usepackage{mhchem}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
-\usepackage{CronosPro}
-\usepackage[T1]{fontenc}
 
-%\usepackage[minionint,mathlf]{MinionPro}
+\usepackage[T1]{fontenc}
+\usepackage{mathastext}
+
+%\usepackage{sansmath}
+%\sansmath
+
+\usepackage[minionint,mathlf]{MinionPro}
 %\renewcommand{\sfdefault}{Myriad-LF}
 %units
 %--------------------------------------
@@ -70,9 +74,8 @@
 
 \noindent
 \section{Ziel des Versuches}
-Der Versuch soll den Studenten an das Prinzip der Wärmeübertragung heranführen, indem
-Wasser durch eine Rohrspirale geleitet und dabei über ein Wasserbad temperiert wird.
-Davon ausgehend sollen der Wärmeübergangskoeffizient $\alpha _2$ sowie die Konstante $K$ und die
+Der Versuch befasst sich mit Wärmeübertragung.
+Es sollen die Wärmeübergangskoeffizient $\alpha _2$ sowie die Konstante $K$ und die
 Exponenten m und n einer definierten Kriteriengleichung ermittelt werden.
 \section{Versuchsdurchführung}
 Das Wasserbad des Thermostaten wurde auf 40 \si{\celsius} geregelt. Die Durchflussrate des
@@ -86,21 +89,95 @@ Fluidstrom von 120 – 420 \si{\liter\per\hour} in 50 \si{\liter\per\hour} Schri
  \begin{tabularx}{\textwidth}{XXXX}
 \ce{\.{V}} / \si{\liter\per\hour} & \ce{T_{Ein}} / \si{\celsius}  & \ce{T_{Aus}} / \si{\celsius} & \ce{T_{Bad}} / \si{\celsius}  \\
 \hline
-\rowcolor{LightCyan}
 120  & 20.2 & 32.1 & 40.0\\
 170  & 19.8 & 30.6 & 40.1\\
-\rowcolor{LightCyan}
 220 & 19.6 & 29.2 & 40.1\\
 270 & 19.5 & 27.9 & 40.1\\
-\rowcolor{LightCyan}
 320 & 19.4 & 26.9 & 39.8\\
 370 & 19.4 & 25.8 & 38.9\\
-\rowcolor{LightCyan}
 420 & 19.4 & 25.1 & 38.3\\
 \end{tabularx}
   \caption{Messergebnisse}
 \end{table}
 \section{Auswertung}
+
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XX}
+ Gesucht &  Gleichung     \\
+\hline
+\ce{\alpha _2} & $ Nu_2 = \frac{\alpha_2 \cdot d}{\lambda}$  \\
+\ce{Nu_2} &  $Nu _2 = K  \cdot Re_2^m \cdot Pr_2^n$ \\
+\ce{Re_2} & $\frac{w \cdot d}{ v }$\\
+\ce{Pr_2} & $\frac{\nu }{ a }$\\
+
+\ce{\alpha _1} & $ Nu_1 = \frac{\alpha_1 \cdot d}{\lambda}$  \\
+\ce{Nu_1} &  $Nu _1 = K  \cdot Re_1^m \cdot Pr_1^n$ \\
+\ce{Re_1} & $\frac{w \cdot d}{ v }$\\
+\ce{Pr_1} & $\frac{\eta \cdot c _p}{\lambda _{H_2O}}$\\
+
+
+\end{tabularx}
+  \caption{Die Gleichungen und Parametern}
+\end{table}
+
+\subsection{Bestimmung von aufgenommene Wärmemenge $\ce{\dot{Q}}$ }
+Zuerst werden die aufgenommene Wärmemenge $\ce{\dot{Q}}$ anhand der Messwerten berechnet.
+\begin{equation}
+  \dot Q = \dot V \cdot \rho \cdot c _p \cdot (T_2^{Aus}-T_2^{Ein})
+\end{equation}
+Hierbei sind die Dichte $\ce{\rho}$ \cite{crc1} und die spezifische
+Wärmekapazität $\ce{c_p}$ \cite{nist} des Wassers temperaturabhängig.
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXX}
+ $\dot V$ [\si{\milli\liter\per\second}] & $T _{Aus}$ [\si{\celsius}] &  $T _{Ein}$ [\si{\celsius}] & $c _p$ [\si{\joule\per\gram\per\kelvin}]
+ & $\rho$ [\si{\gram\per\mol}] & $\dot Q [\si{\joule\second}] $\\
+\hline
+33.33  & 20.2 & 32.1 & 4.1605 & 0.99222 &1637.5025 \\
+47.22  & 19.8 & 30.6 & 4.1604 & 0.99218 &2105.1964 \\
+61.11  & 19.6 & 29.2 & 4.1604 & 0.99218 &2421.6638 \\
+75.00  & 19.5 & 27.9 & 4.1604 & 0.99218 &2600.5367 \\
+88.89  & 19.4 & 26.9 & 4.1608 & 0.99229 &2752.5007 \\
+102.78 & 19.4 & 25.8 & 4.1622 & 0.99263 &2717.5979 \\
+116.67 & 19.4 & 25.1 & 4.1630 & 0.99286 &2748.6284 \\
+\end{tabularx}
+  \caption{Bestimmung von $\dot Q$}
+\end{table}
+Aus der aufgenommen Wärmemenge $\ce{\dot{Q}}$ lässt sich $K _w$ bestimmen über:
+\begin{equation}
+  \dot Q = k _w \cdot A \cdot \overline{\Delta T}
+\end{equation}
+wobei A = Außenfläche der Rohrspirale
+ \begin{equation}
+   A = \pi \cdot d \cdot l = \pi \cdot 8 \cdot 10^{-3} \si{\meter} \cdot 2.75 \si{\meter} = 6.9 \cdot 10^{-2} \si{\square\meter}
+ \end{equation}
+ $ \overline{\Delta T}$ = logarithmisches Mittel der Temperaturdifferenz
+ \begin{equation}
+   \overline{\Delta T} = \frac{\Delta T^{ein}-\Delta T^{aus}}{ln(\Delta T^{ein}/\Delta T^{aus})}
+ \end{equation}
+ Es erstellt sich folgende Tabelle:
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXX}
+ $\Delta T _{Aus}$ [\si{\celsius}] &  $ \Delta T _{Ein}$ [\si{\celsius}] & $\overline{\Delta T}$ [\si{\kelvin}]
+ & $\dot Q [\si{\joule\second}] $ & $ K _w$ [\si{\watt\per\square\meter\per\kelvin}] \\
+\hline
+
+ 7.9  & 19.8 & 286.96 & 1637.5025 & 82.7015  \\
+ 9.5  & 20.3 & 288.02 & 2105.1964 & 105.9318 \\
+
+ 10.9 & 20.5 & 288.82 & 2421.6638 & 121.5157 \\
+ 12.2 & 20.6 & 289.53 & 2600.5367 & 130.1730 \\
+
+ 12.9 & 20.4 & 289.78 & 2752.5007 & 137.6589 \\
+ 13.1 & 19.5 & 289.44 & 2717.5979 & 136.0756 \\
+
+ 13.2 & 18.9 & 289.19 & 2748.6284 & 137.7472 \\
+\end{tabularx}
+  \caption{Bestimmung von $K _w$}
+\end{table}
+
 Damit der Wärmeübergangskoeffizient $\alpha _2$  berechnet werden kann, müssen zunächst der
 Wärmeübergangskoeffizient $\alpha _1$ 1 sowie die Wärmedurchgangszahl $k _w$ bestimmt werden.
 Berechnung von $\alpha _1$ :
@@ -142,12 +219,12 @@ Daraus wurden folgende Funktionen erhalten:
 \begin{equation}
  \eta (T) = -2.597 \cdot 10^{-6} T ^ 3 + 5.939 \cdot 10^{-4} T ^ 2 - 4.853 \cdot 10^{-2} T + 1.789
 \end{equation}
-\subsection{Wärmeleitzahl $\lambda _{H_2O}$}
+\subsection{Wärmeleitzahl $\ce{\lambda _{H_2O}}$}
 Die Wärmeleitzahl wird über die Formel aus dem Skript berechnet.\cite{skript1}
 \begin{equation}
   \lambda _{H_2O} = 0.100 + 1.66 \cdot 10 ^{-3} \cdot T
 \end{equation}
-Aus der Prandtlzahl $Pr$ lässt sich nun mithilfe der Reynoldszahl $R _{e_1} $, die für einen Rührkessel 850
+Aus der Prandtlzahl $Pr$ lässt sich nun mithilfe der Reynoldszahl $Re{_1} $, die für einen Rührkessel 850
 beträgt, die Nusseltzahl $Nu$ berechnen:
 \begin{equation}
   Nu = 3.6 \cdot Re ^{\frac{2}{3}} \cdot Pr ^{\frac{1}{3}}
@@ -163,7 +240,7 @@ Es ergibt sich folgende Tabelle:
 \ce{T_{Bad}} / \si{\kelvin} & \ce{c_p} [\si{\joule\per\gram\per\kelvin}]  & \ce{\eta} [\si{\meter\pascal\second}] &  $\lambda _{H_2O}$ [\si{\watt\per\meter\kelvin}]
 & $Pr_1$ & $Nu _1$ & $\alpha _1$ [\si{\watt\per\square\meter\per\kelvin}] \\
 \hline
-\rowcolor{LightCyan}
+
 313.15 & 4.160525 & 0.63183 & 0.6198 & 4.2411 & 522.8866 & 2700.84\\
 313.25 & 4.160370 & 0.63049 & 0.6200 & 4.2308 & 522.4620 & 2699.37\\
 313.25 & 4.160370 & 0.63049 & 0.6200 & 4.2308 & 522.4620 & 2699.37\\
@@ -175,63 +252,7 @@ Es ergibt sich folgende Tabelle:
   \caption{Bestimmung von $Nu_1$ und $\alpha _1$}
 \end{table}
 
-\subsection{Bestimmung von $K _w$}
-Um $K _w$ bestimmen zu können muss zunächst die aufgenommene Wärmemenge $\dot Q$ berechnet werden.
-\begin{equation}
-  \dot Q = \dot V \cdot \rho \cdot c _p \cdot (T^{Aus}-T^{Ein})
-\end{equation}
-Hierbei ist die Dichte $\rho$ des Wassers ebenfalls temperaturabhängig und sie lässt sich aus der Tabellenwerk \cite{crc3} entnehmen.
-Damit kann die $\dot Q$ berrechnet werden:
-\begin{table}[ht!]
-  \centering
- \begin{tabularx}{\textwidth}{XXXXXX}
- $\dot V$ [\si{\milli\liter\per\second}] & $T _{Aus}$ [\si{\celsius}] &  $T _{Ein}$ [\si{\celsius}] & $c _p$ [\si{\joule\per\gram\per\kelvin}]
- & $\rho$ [\si{\gram\per\mol}] & $\dot Q [\si{\joule\second}] $\\
-\hline
-\rowcolor{LightCyan}
-33.33  & 20.2 & 32.1 & 4.1605 & 0.99222 &1637.5025 \\
-47.22  & 19.8 & 30.6 & 4.1604 & 0.99218 &2105.1964 \\
-61.11  & 19.6 & 29.2 & 4.1604 & 0.99218 &2421.6638 \\
-75.00  & 19.5 & 27.9 & 4.1604 & 0.99218 &2600.5367 \\
-88.89  & 19.4 & 26.9 & 4.1608 & 0.99229 &2752.5007 \\
-102.78 & 19.4 & 25.8 & 4.1622 & 0.99263 &2717.5979 \\
-116.67 & 19.4 & 25.1 & 4.1630 & 0.99286 &2748.6284 \\
-\end{tabularx}
-  \caption{Bestimmung von $\dot Q$}
-\end{table}
-Aus der aufgenommen Wärmemenge $\dot Q$ lässt sich $K _w$ bestimmen über:
-\begin{equation}
-  \dot Q = k _w \cdot A \cdot \overline{\Delta T}
-\end{equation}
-wobei A = Außenfläche der Rohrspirale
- \begin{equation}
-   A = \pi \cdot d \cdot l = \pi \cdot 8 \cdot 10^{-3} \si{\meter} \cdot 2.75 \si{\meter} = 6.9 \cdot 10^{-2} \si{\square\meter}
- \end{equation}
- $ \overline{\Delta T}$ = logarithmisches Mittel der Temperaturdifferenz
- \begin{equation}
-   \overline{\Delta T} = \frac{\Delta T^{ein}-\Delta T^{aus}}{ln(\Delta T^{ein}/\Delta T^{aus})}
- \end{equation}
- Es erstellt sich folgende Tabelle:
- \begin{table}[ht!]
-  \centering
- \begin{tabularx}{\textwidth}{XXXXX}
- $\Delta T _{Aus}$ [\si{\celsius}] &  $ \Delta T _{Ein}$ [\si{\celsius}] & $\overline{\Delta T}$ [\si{\kelvin}]
- & $\dot Q [\si{\joule\second}] $ & $ K _w$ [\si{\watt\per\square\meter\per\kelvin}] \\
-\hline
-\rowcolor{LightCyan}
- 7.9  & 19.8 & 286.96 & 1637.5025 & 82.7015  \\
- 9.5  & 20.3 & 288.02 & 2105.1964 & 105.9318 \\
- \rowcolor{LightCyan}
- 10.9 & 20.5 & 288.82 & 2421.6638 & 121.5157 \\
- 12.2 & 20.6 & 289.53 & 2600.5367 & 130.1730 \\
- \rowcolor{LightCyan}
- 12.9 & 20.4 & 289.78 & 2752.5007 & 137.6589 \\
- 13.1 & 19.5 & 289.44 & 2717.5979 & 136.0756 \\
- \rowcolor{LightCyan}
- 13.2 & 18.9 & 289.19 & 2748.6284 & 137.7472 \\
-\end{tabularx}
-  \caption{Bestimmung von $K _w$}
-\end{table}
+
 
 \subsection{Bestimmung von $\alpha _2$}
 Mittels $K _w$ und $\alpha _1$ lässt sich nun $\alpha _2$ und $Nu_2$ bestimmen.
@@ -244,7 +265,7 @@ Mittels $K _w$ und $\alpha _1$ lässt sich nun $\alpha _2$ und $Nu_2$ bestimmen.
  \begin{tabularx}{\textwidth}{XXXX}
  $\alpha$ &  $K _w$ [\si{\watt\per\square\meter\per\kelvin}] & $ \alpha _2$ & $Nu _2 $  \\
 \hline
-\rowcolor{LightCyan}
+
 2700.84 & 82.7015  & 98.93  & 522.89 \\
 2699.37 & 105.9318 & 134.11 & 522.46 \\
 2699.37 & 121.5157 & 160.10 & 522.46 \\
@@ -276,16 +297,16 @@ Für die $Re_2$ gilt:
  $\overline u$ [\si{\meter\per\second}]  &  $\rho$ [\si{\kilo\gram\per\cubic\meter}] &
  $ \eta [\si{\kilo\gram\per\meter\per\second}] $ & $Re _2 $  \\
 \hline
-\rowcolor{LightCyan}
+
 1.179751 & 0.9922 & 0.000632 &5094.8294 \\
 1.671314 & 0.9922 & 0.000630 &7232.7840 \\
-\rowcolor{LightCyan}
+
 2.162877 & 0.9922 & 0.000630 &9360.0734 \\
 2.654440 & 0.9922 & 0.000630 &11487.3628\\
-\rowcolor{LightCyan}
+
 3.146003 & 0.9923 & 0.000635 &13529.1788\\
 3.637566 & 0.9926 & 0.000647 &15346.9013\\
-\rowcolor{LightCyan}
+
 4.129129 & 0.9929 & 0.000656 &17196.9626\\
 \end{tabularx}
   \caption{Bestimmung von $Re _2$}
@@ -304,7 +325,7 @@ Die Gleichung wird durch Logaritmieren linearisiert. Somit :
  \begin{tabularx}{\textwidth}{XXX}
  $ln Nu_2 $& $ln Re_2$ & $ln Pr _1 $  \\
 \hline
-\rowcolor{LightCyan}
+
 -0.043 & 8.54 & 1.44\\
  0.261 & 8.89 & 1.44\\
  0.438 & 9.14 & 1.44\\
@@ -340,7 +361,7 @@ summary(fitcp)
 D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 888.
 \bibitem{crc2}
 D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 1069.
-\bibitem{crc3}
+\bibitem{nist}
 \url{http://webbook.nist.gov/chemistry/fluid/}
 \bibitem{skript1}
 A. Brehm, \textit{Praktikumskript Wärmeübertragung}, Oldenburg, \textbf{2014},  S. 14.
