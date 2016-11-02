@@ -1,0 +1,27 @@
+\documentclass{report}
+\usepackage{pgf}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\begin{document}
+\begin{tikzpicture}
+\begin{axis}[%
+axis lines*=middle,
+width=10cm,
+height=10cm,
+scale only axis,
+xmin=-5,
+xmax=5,
+xtick={2,  4},
+xticklabels={$2\pi$, $4\pi$},
+extra x ticks={-4, -2},
+extra x tick labels={$-2\pi$, $-4\pi$},
+extra x tick style={
+    xticklabel style={yshift=0.5ex, anchor=south}
+},
+ymin=-1.4,
+ymax=1.4,
+ytick={-1,  0,  1}]
+\end{axis}
+\end{tikzpicture}%
+\end{document}
