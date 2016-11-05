@@ -8,7 +8,6 @@ function fs.readcsv( file )
     table.insert(lines, line)
 
   end
-
     for i, line in ipairs(lines) do
 
       if i>1 then
@@ -50,7 +49,7 @@ function fs.readvektordata( file )
       table.insert(vektors[1],values[1])
       table.insert(vektors[2],values[2])
       table.insert(vektors[3],values[3])
-    end  
+    end
   end
 
   return vektors

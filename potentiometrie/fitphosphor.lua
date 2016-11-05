@@ -6,7 +6,7 @@ local pl = require 'pl.pretty'
 --  return math.pow(10,(vc-0.141)/0.05916)
 --end
 
-a,b=fs.readcsv("fallung.csv")
+a,b=fs.readcsv("phospor.csv")
 --a1,summe1=stat.mean(a[1])
 --a2,summe2=stat.mean(a[2])
 --a3,summe3=stat.mean(a[3])
@@ -40,11 +40,6 @@ for i=1,#erste_ableitung do
   print(erste_ableitung[i][1],erste_ableitung[i][2])
 end
 
---for i=1,#zweite_ableitung do
---  print(zweite_ableitung[i][1],zweite_ableitung[i][2])
---end
-
---print(pl.dump(zweite_ableitung))
-
---pl.dump(a[1])
---print(findmittel("dortmund.txt") )
+for i=1,#zweite_ableitung do
+ -- print(zweite_ableitung[i][1],zweite_ableitung[i][2])
+end
