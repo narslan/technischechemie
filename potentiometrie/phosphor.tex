@@ -64,7 +64,7 @@
 
 \noindent
 
-\tikzset{every mark/.append style={scale=0.4}}
+\tikzset{every mark/.append style={scale=0.9}}
 
 \begin{figure}[!t]
 \centering
@@ -74,7 +74,7 @@ axis equal=false,
 axis x line=bottom,
 axis y line=middle,
 legend style={draw=none,legend pos=outer north east},
-xlabel= \ce{V_{\ce{NaOH3}}} / \si{\milli\liter},
+xlabel= \ce{V_{\ce{NaOH}}} / \si{\milli\liter},
 ylabel= pH,
 y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}]
 \addplot table {
@@ -190,7 +190,7 @@ y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}]
 70  0.0
 };
 \addlegendentry{ $\frac{\partial pH}{\partial V}$ }
-\addplot table {
+\addplot[mark=star] table {
   X Y
 4 0.033310277
 8 0.041637845
@@ -212,17 +212,25 @@ y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}]
 };
 \addlegendentry{ $\partial \frac{(\partial pH)}{(\partial V)^2}$}
 
-\node[coordinate,pin=right:{\scriptsize ÄP bei pH=5.56}]
+\node[coordinate,pin=above:{\scriptsize ÄP bei pH=5.56}]
 at (axis cs:16,5.56) {};
 \node[coordinate,pin=left:{\scriptsize ÄP bei pH=9.80}]
-at (axis cs:40,9.8) {};
+at (axis cs:38,9.8) {};
+\node (A) at (axis cs:16,0) {};
+\node (B) at (axis cs:16,5.70) {};
+\node (C) at (axis cs:40,0) {};
+\node (D) at (axis cs:40,9.80) {};
+\draw[thick] (A) -- (B) node [midway] {};
+\draw[thick] (C) -- (D) node [midway] {};
+
 \end{axis}
 \end{tikzpicture}
 \caption{schwache Säure - Starke Base - Titration }
 \end{figure}
-\ce{H3PO4 + H2O -> H3O^+ + H2PO4^-} \\
-\ce{H2PO4^- + H2O  -> H3O^+ + HPO4^2-}  \\
-\ce{HPO4^2- + H2O -> H3O^+ + PO4^3-}
+\noindent
+%\ce{H3PO4 + H2O -> H3O^+ + H2PO4^-} \\
+%\ce{H2PO4^- + H2O  -> H3O^+ + HPO4^2-}  \\
+%\ce{HPO4^2- + H2O -> H3O^+ + PO4^3-}
 %\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
 
 \end{document}

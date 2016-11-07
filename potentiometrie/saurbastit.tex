@@ -64,7 +64,7 @@
 \begin{document}
 %\input{lua_functions}
 %\input{tikz_plot}
-\tikzset{every mark/.append style={scale=0.7}}
+\tikzset{every mark/.append style={scale=0.6}}
 \begin{figure}
 \begin{tikzpicture}
 \begin{axis}[
@@ -76,7 +76,7 @@ xlabel= \ce{V} / \si{\milli\liter},
 ylabel= pH,
 y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}
 ]
-\addplot[mark=diamond] table{
+\addplot[mark=halfcircle] table{
 X Y
 1 1.3273589343863
 2 1.3542755076172
@@ -188,7 +188,7 @@ at (axis cs:27,5.41) {};
 51 10.5461576	5
 };
 \addlegendentry{$\,$Experimentelle Werte}
-\addplot[mark=pentagon*] table {
+\addplot[mark=star] table {
 X Y
 2 0.0269165732309
 4 0.0283212763104
@@ -216,7 +216,7 @@ X Y
 48  0.014850813769
 };
 \addlegendentry{ $\frac{\partial pH}{\partial V}$ }
-\addplot[mark=otimes*] table {
+\addplot[mark=halfdiamond*] table {
 X Y
 4 0.0014047030794999
 8 0.0022749893923999
@@ -238,7 +238,7 @@ X Y
 \end{tikzpicture}
 \caption{Säure-Base-Titration }
 \end{figure}
-\ce{H2SO4 + 2NaOH -> Na2SO4 + 2H2O}
+%\ce{H2SO4 + 2NaOH -> Na2SO4 + 2H2O}
 \end{document}
 
 %%\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
