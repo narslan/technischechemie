@@ -31,7 +31,7 @@ zweite_ableitung = {}
 for i=1,#erste_ableitung do
    if i%2 == 0 then
    dif = (erste_ableitung[i][2]-erste_ableitung[i-1][2])/(a[2*i]-a[2*i-1])
-  table.insert(zweite_ableitung,{a[i],dif})
+  table.insert(zweite_ableitung,{a[2*i],dif})
   end
 end
 
@@ -41,5 +41,5 @@ for i=1,#erste_ableitung do
 end
 
 for i=1,#zweite_ableitung do
- -- print(zweite_ableitung[i][1],zweite_ableitung[i][2])
+  print(zweite_ableitung[i][1],zweite_ableitung[i][2])
 end

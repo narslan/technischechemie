@@ -64,7 +64,7 @@
 \begin{document}
 %\input{lua_functions}
 %\input{tikz_plot}
-
+\tikzset{every mark/.append style={scale=0.7}}
 \begin{figure}
 \begin{tikzpicture}
 \begin{axis}[
@@ -76,7 +76,7 @@ xlabel= \ce{V} / \si{\milli\liter},
 ylabel= pH,
 y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}
 ]
-\addplot table{
+\addplot[mark=diamond] table{
 X Y
 1 1.3273589343863
 2 1.3542755076172
@@ -128,10 +128,12 @@ X Y
 48  12.370501760325
 49  12.384576047114
 };
-\node[coordinate,pin=left:{pH=7}]
+\node[coordinate,pin=left:{\scriptsize ÄP bei pH=7}]
 at (axis cs:25,7) {};
-\addlegendentry{Theoretisches Diagramm}
-\addplot[only marks] table {
+\node[coordinate,pin=right:{\scriptsize ÄP bei pH=5.41}]
+at (axis cs:27,5.41) {};
+\addlegendentry{Theoretische Werte}
+\addplot[mark=halfcircle*] table {
   X Y c
   1 1.891272523 0
 2 1.898857874	0.1
@@ -185,12 +187,58 @@ at (axis cs:25,7) {};
 50 10.5309869	4.9
 51 10.5461576	5
 };
-\addlegendentry{Experimentelle Werte}
+\addlegendentry{$\,$Experimentelle Werte}
+\addplot[mark=pentagon*] table {
+X Y
+2 0.0269165732309
+4 0.0283212763104
+6 0.0301017322231
+8 0.0323767216155
+10  0.0353279623418
+12  0.0392465378589
+14  0.0446279854197
+16  0.0523880694596
+18  0.0644260569831
+20  0.0854301953246
+22  0.1310128843205
+24  0.3069388552745
+26  4.119186407719
+28  0.170487381538
+30  0.091447117306
+32  0.061617956126
+34  0.045951328761001
+36  0.036313159629
+38  0.029798686728
+40  0.025110720583001
+42  0.021582503697999
+44  0.018836190804
+46  0.016641671319
+48  0.014850813769
+};
+\addlegendentry{ $\frac{\partial pH}{\partial V}$ }
+\addplot[mark=otimes*] table {
+X Y
+4 0.0014047030794999
+8 0.0022749893923999
+12  0.0039185755170998
+16  0.0077600840399001
+20  0.0210041383415
+24  0.175925970954
+28  -3.948699026181
+32  -0.02982916118
+36  -0.0096381691320016
+40  -0.0046879661449992
+44  -0.0027463128939988
+48  -0.0017908575500005
+};
+\addlegendentry{ $\partial \frac{(\partial pH)}{(\partial V)^2}$}
 
 \end{axis}
+
 \end{tikzpicture}
-\caption{Diagramm der theoretischen Säure-Base-Titration }
+\caption{Säure-Base-Titration }
 \end{figure}
+\ce{H2SO4 + 2NaOH -> Na2SO4 + 2H2O}
 \end{document}
 
 %%\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
