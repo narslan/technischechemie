@@ -32,5 +32,5 @@ for i,v in ipairs(table) do
  -- print(v, nmtowz(v), nmtofr(v),nmtoe(v),nmtoev(v))
 end
 for i=1,#a do
-  print(a[i],b[i],wztonm(a[i]),nmtoev(wztonm(a[i])),nmtofr(wztonm(a[i])))
+  print(string.format("%.f %.g %.2f %.2f %.g",a[i],b[i],wztonm(a[i]),nmtoev(wztonm(a[i])),nmtofr(wztonm(a[i]))))
 end

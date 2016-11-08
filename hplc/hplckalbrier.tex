@@ -1,23 +1,21 @@
-% !TEX encoding   = UTF-8
-% !TEX program    = LuaLaTeX
-% !TEX spellcheck = de_DE
-\documentclass[a4paper]{report}
-\usepackage{MinionPro}
-\usepackage{MnSymbol}
-\usepackage{fontspec}
+\documentclass{article}
+%\usepackage{fontspec}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.8}
+\pgfplotsset{compat=1.11}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
-
-
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
 \definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
-\setmainfont{Open Sans}
+%\setmainfont{Ubuntu Mono}
+\usepackage[utopia]{mathdesign}
+\usepackage{siunitx}
+
+
+\usepgfplotslibrary{units}
 \begin{luacode*}
 unpack=table.unpack
 -- Code to write PGFplots data as coordinates
@@ -196,22 +194,7 @@ function tabelle()
     vz=b
   end
 
-\begin{table}[ht!]
-  \centering
- \begin{tabularx}{\textwidth}{XXXXXX}
- $\dot V$ [\si{\milli\liter\per\second}] & $T _{Aus}$ [\si{\celsius}] &  $T _{Ein}$ [\si{\celsius}] & $c _p$ [\si{\joule\per\gram\per\kelvin}]
- & $\rho$ [\si{\gram\per\mol}] & $\dot Q [\si{\joule\second}] $\\
-\hline
-33.33  & 20.2 & 32.1 & 4.1605 & 0.99222 &1637.5025 \\
-47.22  & 19.8 & 30.6 & 4.1604 & 0.99218 &2105.1964 \\
-61.11  & 19.6 & 29.2 & 4.1604 & 0.99218 &2421.6638 \\
-75.00  & 19.5 & 27.9 & 4.1604 & 0.99218 &2600.5367 \\
-88.89  & 19.4 & 26.9 & 4.1608 & 0.99229 &2752.5007 \\
-102.78 & 19.4 & 25.8 & 4.1622 & 0.99263 &2717.5979 \\
-116.67 & 19.4 & 25.1 & 4.1630 & 0.99286 &2748.6284 \\
-\end{tabularx}
-  \caption{Bestimmung von $\dot Q$}
-\end{table}
+
 
   tex.print('\\Large {\\textbf{y='..string.format('%.4f',m)..'*x'..string.format('%.4f',vz)..'}}')
   tex.print('\\par')
