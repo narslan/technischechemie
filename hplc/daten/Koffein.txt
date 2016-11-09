@@ -1,0 +1,35 @@
+Messung1 0
+1
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,953	458,537	11,199	100,0	100,0	0,59	
+	Gesamt	458,537	11,199	100,0	100,0		
+
+2
+
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,911	1859,115	46,364	100,0	100,0	0,60	
+	Gesamt	1859,115	46,364	100,0	100,0		
+3
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,875	4196,752	107,559	100,0	100,0	0,59	
+	Gesamt	4196,752	107,559	100,0	100,0		
+4
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,835	6710,205	171,168	100,0	100,0	0,60	
+	Gesamt	6710,205	171,168	100,0	100,0		
+
+5
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,803	8742,891	221,596	100,0	100,0	0,60	
+	Gesamt	8742,891	221,596	100,0	100,0		
+
+6
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,787	11323,003	284,931	100,0	100,0	0,60	
+	Gesamt	11323,003	284,931	100,0	100,0		
+
+
+Kaffee
+	Retentionszeit [min]	Fläche [mV.s]	Höhe [mV]	Fläche [%]	Höhe [%]	W05 [min]	Verbindungsname
+	4,847	7781,223	194,771	100,0	100,0	0,61	
+	Gesamt	7781,223	194,771	100,0	100,0		
