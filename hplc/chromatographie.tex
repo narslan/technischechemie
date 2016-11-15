@@ -1,0 +1,63 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.13}
+\usepgfplotslibrary{units}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+\usepackage{libertine}
+\usepackage{beramono}
+%\setmainfont{Ubuntu Mono}
+\begin{luacode*}
+
+local fs = dofile( "fs.lua" )
+
+function print_chiPF(file,option)
+  a,b=fs.readcsv(file)
+    if option~=[[]] then
+        tex.sprint("\\addplot["..option.."] coordinates{")
+    else
+        tex.sprint("\\addplot coordinates{")
+    end
+    for i=1,#a do
+        tex.sprint("("..a[i]..","..b[i]..")")
+    end
+    tex.sprint("};")
+
+end
+
+\end{luacode*}
+\newcommand\addplotCHIpf[2][]{\directlua{print_chiPF(#2,[[#1]])}}
+%\newcommand\tabellenwerte{\directlua{tabelle()}}
+\pgfplotsset{
+  standard/.style={
+    xlabel= Zeit, % Set the labels
+    ylabel= Potential ,
+    y unit= \si{\milli\volt} , % Set the respective units
+    x unit= \si{\minute},
+    legend style={at={(0.5,-0.2)},anchor=north},
+    x tick label style={rotate=90,anchor=east}
+      }
+}
+\begin{document}
+\lhead{HPLC - Aufgabe 2 Gruppe 24  \footnotesize{Nevroz Arslan}}
+\begin{tikzpicture}[font=\sffamily]
+  \begin{axis}[no marks,
+             xmin = 0,
+             xmax = 6,
+             ymin = 0,
+             ymax = 1]
+    \addplotCHIpf{daten/1.txt};
+  \end{axis}
+\end{tikzpicture}
+\par
+\tabellenwerte
+\par
+\end{document}

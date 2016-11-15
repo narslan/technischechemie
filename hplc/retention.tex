@@ -1,0 +1,119 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+%\usepackage{fourier}
+\usepackage{helvet}
+\usepackage{arevtext,arevmath}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{mathastext}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{graphicx}
+
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{mhchem}
+\usepackage{fancyhdr}
+\usepackage[landscape]{geometry}
+
+\pagestyle{fancy}
+
+\cfoot{\thepage}
+
+\rhead{\footnotesize Gruppe 24}
+\lhead{\footnotesize HPLC - Coffein-Bestimmung}
+\setlength{\headheight}{15pt}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+\captionsetup{font=footnotesize}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+%\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\begin{document}
+%\input{lua_functions}
+%\input{tikz_plot}
+
+\noindent
+\pagenumbering{gobble}
+
+\begin{figure}[!t]
+\centering
+\caption{Coffein-Bestimmung}
+
+\begin{tikzpicture}[scale=1.5,transform shape]
+\begin{axis}[
+axis x line=bottom,
+axis y line=middle,
+xlabel= Konzentration,
+ylabel= Peakfläche,
+x unit= \si{\milli\gram\per\liter} ,
+y unit= \si{\milli\volt\per\sec},
+legend style={draw=none,legend pos=outer north east},
+y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
+  legend style={legend pos=north west,font=\scriptsize},
+  legend cell align=left,
+ scaled ticks=false,
+  tick label style={/pgf/number format/fixed}
+]
+\addplot[only marks] table {
+  X Y
+ 0 458.537
+ 50 1859.115
+ 100 4196.752
+ 150 6710.205
+ 200 8742.891
+ 250 11323.003
+  };
+  \node[coordinate,pin={[pin distance=1.5cm]-90:{\tiny $[Koffein]_{verd\ddot{u}nnt}$ }}] at (axis cs:175.428,7781.223) {};
+\node[below] at (axis cs:175.428,4281.223) {\tiny 175.428 \si{\milli\gram\per\liter}};
+  \addlegendentry{Messwerte }
+  \addplot[dashed,domain=0:250] { 44.278*x + 13.624};
+\addlegendentry{$y = 44.278 \cdot x + 13.624$}
+\addplot[draw=none,white] coordinates {(1,1)};
+\addlegendentry{ $R^2=0.9945$}
+\addplot[only marks,mark=diamond*] coordinates {(175.428,7781.223)};
+
+\end{axis}
+\end{tikzpicture}
+\end{figure}
+
+
+\end{document}
+
+
+%\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
+
+
