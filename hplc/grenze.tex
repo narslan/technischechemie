@@ -1,23 +1,41 @@
 % !TEX encoding   = UTF-8
 % !TEX program    = LuaLaTeX
 % !TEX spellcheck = de_DE
-\documentclass[a4paper]{report}
+\documentclass{article}
 \usepackage{fontspec}
+
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=1.13}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
+
 \usepackage{tabularx}
-\setmainfont{Ubuntu}
+\usepackage{amsmath}
+\usepackage{ngerman}
 
+\usepackage{unicode-math}
 
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\setmainfont{TeX Gyre Heros}
+
+\setmathfont{TeX Gyre Heros}
+%\setmainfont{Ubuntu}
+\usepackage{siunitx}
+
+\rhead{\footnotesize Gruppe 24}
+\lhead{\footnotesize HPLC - Coffein-Bestimmung}
 \usepackage{luacode}
+
+
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
 \definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
-\setmainfont{Open Sans}
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+
+
 \begin{luacode*}
 unpack=table.unpack
 -- Code to write PGFplots data as coordinates
@@ -56,13 +74,12 @@ local ymaly={}      --x*y
 local summexy=0    --Σx*y
 local summexx=0    --Σx*x
 local summeyy=0    --Σy*y
-local tsummeyy= {}
+--local tsummeyy= {}
 local bmaly= {}
 local summexy=0
 local summexxx=0
 local summexxxx=0
 local summeyxx=0
-
 
 for i, line in ipairs(lines) do
   if i>1 then
@@ -71,7 +88,6 @@ for i, line in ipairs(lines) do
      local x=tonumber(line:sub(1,e))
      summex=summex+x
      summey=summey+y
-     table.insert(tsummeyy,summey)
      table.insert(xwerte,x)
      table.insert(ywerte,y)
      table.insert(xmalx,x^2)
@@ -95,6 +111,14 @@ local b= (summexx*summey-summex*summexy)/(n*summexx-xsumme2)
 local syx=math.sqrt((summeyy-b*summey-m*summexy)/(n-2))
 local xmean=summex/n
 local ymean=summey/n
+
+local xminmit = {}
+local sumxminmit = 0
+for j=1,n do
+  table.insert(xminmit,(xwerte[j] - xmean)^2)
+  sumxminmit = sumxminmit + (xwerte[j] - xmean)^2
+end
+
 -------
 --Σ(x-x)^2
 local xminxmean=0
@@ -132,7 +156,7 @@ end
 --
 
 local twert_ein_seitig=2.13  --- tabellierter t-Wert
-local npm=5 ---- n parallel Messung
+local npm=6 ---- n parallel Messung
 local quadratsumme=summexx-(summex^2/n)
 local nwg = (twert_ein_seitig*syx/m)*math.sqrt((1/npm)+(1/n)+(xmean^2/quadratsumme)) ---
 --local nwg = 0.69
@@ -180,7 +204,7 @@ function drawD()
     end
     tex.sprint("};")
  --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
-    tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
 --   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
 
 --   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
@@ -196,27 +220,38 @@ function tabelle()
     else
     vz='+'..b
   end
-  tex.print("\\begin{table}[ht!]\\centering \\begin{tabularx}{\\textwidth}{lll}")
-  tex.print("$y$ & $\\hat{y}$ & $\\sum y^2$ \\\\ \\hline ")
+  tex.print("\\begin{table}[ht!]\\centering \\begin{tabularx}{\\textwidth}{lllll}")
+  tex.print(" $x$  & $y$ & $y^2$ & $x \\cdot y$ & $(x-\\overline{x})^2$ \\\\ ")
   for i = 1,#ywerte do
-    tex.print(ywerte[i]   .. " & " .. mess(xwerte[i]) .. " & " ..tsummeyy[i] .. "\\\\ \\hline ")
+    tex.print( xwerte[i]   .. " &" .. string.format("%.2f",ywerte[i]) .. " & " .. string.format("%.2f",ymaly[i]) .. " & " .. string.format("%.2f",xmaly[i]) ..
+" & " .. string.format("%.2f",xminmit[i]) .." \\\\ ")
   end
-  tex.print("\\end{tabularx}  \\caption{Bestimmung des Fehlers} \\end{table} ")
+    tex.print("\\hline ")
+      tex.print(" $\\sum$  & ~ & ~& ~ & ~ \\\\ ")
+    tex.print( string.format("%.2f",summex) .. " & " .. string.format("%.2f",summey) .. " & " .. string.format("%.2f",summeyy) .. " & " .. summexy .. " & " ..
+string.format("%.2f",sumxminmit)
+    .."   \\\\ ")
+
+  tex.print("\\end{tabularx}  \\caption{Die Messwerte und die Terme zur Ermittlung von $s_{y,x}$} \\end{table} ")
+
+local vbrr = (2.45 * 342.801 /44.278) * math.sqrt(1+(1/6)+((7781.223 - 5548.417)^2/((44.278^2)*43750)))
+ tex.print(" $x$   $y$  $y^2$  $x \\cdot y$  $(x-\\overline{x})^2$ \\\\ ")
 
 
-
-  tex.print('\\Large {\\textbf{y='..string.format('%.4f',m)..'*x'..string.format('%.4f',vz)..'}}')
-  tex.print('\\par')
-
-tex.print('Standartabweichung:'..string.format('%.4f',sx0))
-tex.print('\\par')
+  --tex.print('\\Large {\\textbf{s='..math.sqrt((summeyy-b*summey - m * summexy)/4)..'}}')
+ -- tex.print('\\par')
+ --tex.print('\\Large {\\textbf{x='..xmean..'}}')
+ --tex.print('\\Large {\\textbf{x='..ymean..'}}')
+--tex.print('\\Large {\\textbf{x='..vbrr..'}}')
+--tex.print('Standartabweichung:'..string.format('%.4f',sx0))
+--tex.print('\\par')
 --tex.print('relative Standardabweichung des Verfahrens:'..string.format('%.4f',Vxo)..'\\%')
 --tex.print('\\par')
-tex.print('Nachweisgrenze:'..string.format('%.4f',nwg)..'mg/L')
-tex.print('\\par')
-tex.print('Bestimmungsgrenze:'..string.format('%.4f',xbg)..'mg/L')
-tex.print('\\par')
-tex.print('Probe1='..string.format('%.4f',probe1)..'mg/L')
+--tex.print('Nachweisgrenze:'..string.format('%.4f',nwg)..'mg/L')
+--tex.print('\\par')
+--tex.print('Bestimmungsgrenze:'..string.format('%.4f',xbg)..'mg/L')
+--tex.print('\\par')
+--tex.print('Probe1='..string.format('%.4f',probe1)..'mg/L')
 --tex.print('Probe2='..string.format('%.4f',probe2)..'mg/L')
 --tex.print('\\par')
 
@@ -250,8 +285,12 @@ end
   standard/.style={
 axis x line=bottom,
 axis y line=middle,
-    legend style={draw=none,legend pos=outer north east},
-y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+xlabel= Konzentration,
+ylabel= Peakfläche,
+x unit= \si{\milli\gram\per\liter} ,
+y unit= \si{\milli\volt\per\sec},
+legend style={draw=none,legend pos=outer north east},
+y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
   legend style={legend pos=north west,font=\scriptsize},
   legend cell align=left,
  scaled ticks=false,
@@ -260,20 +299,36 @@ y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
 }
 \begin{document}
 \lhead{HPLC Gruppe 24  Aufgabe 5.1}
-\begin{itemize}
-  \item \Large{Kalibrierlinie}
-
-\end{itemize}
-\begin{tikzpicture}[scale=1.4,font=\sffamily]
-  \tikzset{
-    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=chameleon1,circle,scale=0.3}
-  }
-  \begin{axis}[standard,xlabel=Konzentration/(mg/L),ylabel=Peakflache]
-    \addplotCHIpf
-  \end{axis}
-\end{tikzpicture}
-\par
+\section{Ermittlung des Standardfehlers $s_{y,x}$}
 \tabellenwerte
-
+\begin{flushleft}
+Der Standardfehler der Schätzung $s_{y,x}$ wird errechnet nach:
+\end{flushleft}
+\begin{align}
+ s_{y,x} &= \sqrt{\frac{\sum y^2 - b \cdot \sum y - m \cdot \sum xy}{(n-2)}}
+\end{align}
+mit m = 44.278, b = 13.624 und n = 6
+\begin{align*}
+  s_{y,x} &=\sqrt{ \frac{270954683.23 - 13.624 \cdot 33290.50 -44.278 \cdot 6098490.65} {6-2}} \\
+  &= 342.801
+\end{align*}
+\section{Ermittlung des Vertrauensbereich $ VB(\hat{x}) $}
+\begin{equation}
+  VB(\hat{x}) = \hat{x} \pm \frac{t_{P,n-2} \cdot s _{y,x}}{m} \cdot \sqrt{1+\frac{1}{n}+\frac{(y-\overline{y})^2}{m^2 \cdot \sum (x -\overline{x})^2}}
+\end{equation}
+mit:
+\begin{align*}
+   y &= 7781.223 \\
+   \hat{x} & = 175.428 \\
+   n &= 6 \\
+   s_{y,x} &= 342.81 \\
+   \overline{y} & = 5548.417 \\
+   t_{p,n-2} &= 2.45 \\
+   m &= 44.278\\
+   \sum (x -\overline{x})^2&= 43750.00
+ \end{align*}
+\begin{align*}
+   VB(\hat{x}) &= 175.428 \pm \frac{2.45 \cdot 342.801}{44.278} \cdot  \sqrt{1+\frac{1}{6}+\frac{(7781.223-5548.417)^2}{(44.278)^2 \cdot 43750.00 }}\\
+    &=20.992 \, \si{\milli\gram\per\liter}
+ \end{align*}
 \end{document}

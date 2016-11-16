@@ -5,22 +5,39 @@
 \usepackage{fontspec}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{siunitx}
+\usepackage[german]{babel}
+
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=1.13}
 \usepgfplotslibrary{units}
-\usepackage{fancyhdr}
-\pagestyle{fancy}
+
+
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
 \definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
 %\usepackage{helvet}
 \usepackage[landscape]{geometry}
+\usepackage{unicode-math}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\setmainfont{TeX Gyre Heros}
+
+\setmathfont{TeX Gyre Heros}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\rhead{ Gruppe 24}
+\lhead{\textbf{HPLC - Charakterisierung eines Chromatographie-Sytems} Chromatogramme}
+\setlength{\headheight}{15pt}
+\pagenumbering{gobble}
 
 %\usepackage{libertine}
 %\usepackage{beramono}
-\setmainfont{Ubuntu}
+%\setmainfont{Ubuntu}
 \begin{luacode*}
 
 function drawD()
@@ -217,19 +234,17 @@ end
   }
 }
 \begin{document}
-\lhead{HPLC - Aufgabe 2 Gruppe 24  \footnotesize{Nevroz Arslan}}
+\setcounter{figure}{5}
 
 \begin{figure}
-\begin{tikzpicture}[scale=2,transform shape]
+\begin{tikzpicture}[scale=1.8,transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
   \begin{axis}[standard,
   xtick={0,  2.991 ,   5.607 ,   6.637 ,   8.316 ,   10.917},
-    xticklabels={$0$,$t_m = 2.991$, $t_r = 5.607$, $t_r =  6.637 $, $t_r =  8.316 $, $t_r =  10.917$},
-  ticklabel style={scale=0.5}
-  ]
+    xticklabels={$0$,$t_m = 2.991$, $t_r = 5.607$, $t_r =  6.637 $, $t_r =  8.316 $, $t_r =  10.917$}  ]
     \addplotCHIpf
     %\node[coordinate,pin=right:{\scriptsize 5.748}] at (axis cs:5.748, 326.559) {};
     %\node[coordinate,pin=right:{\scriptsize 6.777}] at (axis cs:6.777,260.202) {};
@@ -237,63 +252,60 @@ end
     %\node[coordinate,pin=right:{\scriptsize 11.045}] at (axis cs:11.045,164.937) {};
   \end{axis}
 \end{tikzpicture}
-\caption{Chromatogramm der 4 Benzoesäureester bei 2 \si{\milli\liter\per\minute}}
+\caption{Chromatogramm der 4 Benzoesäureester bei Flow =  2 \si{\milli\liter\per\minute}}
 \end{figure}
 
 \begin{figure}
 
-\begin{tikzpicture}[scale=2,transform shape]
+\begin{tikzpicture}[scale=1.8,transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
 \begin{axis}[standard, xtick={0, 3.108,5.748,6.777,8.448,11.045 },
-  xticklabels={$0$,$t_m = 3.108$, $t_r = 5.748$, $t_r = 6.777$, $t_r = 8.448$, $t_r = 11.045$},
-  ticklabel style={scale=0.5}
+  xticklabels={$0$,$t_m = 3.108$, $t_r = 5.748$, $t_r = 6.777$, $t_r = 8.448$, $t_r = 11.045$}
 ]
     \addploty
   \end{axis}
 
 \end{tikzpicture}
-  \caption{Chromatogramm der 4 Benzoesäureester bei 2 \si{\milli\liter\per\minute}}
+  \caption{Chromatogramm der 4 Benzoesäureester bei Flow = 2 \si{\milli\liter\per\minute}}
 
 \end{figure}
 
 
 \begin{figure}
 
-\begin{tikzpicture}[scale=2,transform shape]
+\begin{tikzpicture}[scale=1.8,transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
 \begin{axis}[standard,
  xtick={0, 3.981 , 7.516 , 8.893 , 11.128,14.591},
-  xticklabels={$0$,$t_m = 3.981 $, $t_r = 7.516$, $t_r =  8.893$, $t_r = 11.128$, $t_r = 14.591$},
-  ticklabel style={scale=0.5}]
+  xticklabels={$0$,$t_m = 3.981 $, $t_r = 7.516$, $t_r =  8.893$, $t_r = 11.128$, $t_r = 14.591$}]
     \addplotxx
   \end{axis}
 \end{tikzpicture}
-\caption{Chromatogramm der 4 Benzoesäureester bei 1.5 \si{\milli\liter\per\minute}}
+\caption{Chromatogramm der 4 Benzoesäureester bei Flow =  1.5 \si{\milli\liter\per\minute}}
 
 \end{figure}
 
 \begin{figure}
 
-\begin{tikzpicture}[scale=2,transform shape]
+\begin{tikzpicture}[scale=1.8,transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
 
 \begin{axis}[standard, xtick={0,  4.004 ,7.516 , 8.892 , 11.128, 14.601},
-  xticklabels={$0$,$t_m =  4.004$, $t_r =  7.516 $, $t_r = 8.892$, $t_r = 11.128$, $t_r = 14.601$},
-  ticklabel style={scale=0.5}
+  xticklabels={$0$,$t_m =  4.004$, $t_r =  7.516 $, $t_r = 8.892$, $t_r = 11.128$, $t_r = 14.601$}
   ]
     \addplotzz
   \end{axis}
 \end{tikzpicture}
-\caption{Chromatogramm der 4 Benzoesäureester bei 1.5 \si{\milli\liter\per\minute}}
+\caption{Chromatogramm der 4 Benzoesäureester bei Flow = 1.5 \si{\milli\liter\per\minute}}
 
 \end{figure}
 

@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 \usepackage{amsmath}
 
 
@@ -7,8 +7,8 @@
 
 %----------------------------
 \usepackage{microtype}
-\usepackage{helvet}
-\usepackage{arevtext,arevmath}
+%\usepackage{helvet}
+%\usepackage{arevtext,arevmath}
 
 %\usepackage{fourier}
 %\usepackage{mathpazo} % add possibly `sc` and `osf` options
@@ -23,8 +23,12 @@
 \usepackage{mhchem}
 \usepackage{listings}
 \usepackage[utf8]{inputenc}
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
 
 \usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
 \usepackage{mathastext}
 
 %\usepackage{sansmath}
@@ -44,7 +48,23 @@
 \usepackage{caption}
 \usepackage{color, colortbl}
 \usepackage{tabularx}
+%\usepackage[landscape]{geometry}
+\usepackage{fancyhdr}
 \usepackage[landscape]{geometry}
+\usepackage{subcaption}
+
+\pagestyle{fancy}
+
+\cfoot{\thepage}
+
+\rhead{Gruppe 24}
+\lhead{\textbf{Charakterisierung eines Chromatographie System} Bestimmung von $\sigma_{\text{außerhalb Säule}}^2$}
+\setlength{\headheight}{15pt}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+
 
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \usetikzlibrary{datavisualization}
@@ -71,7 +91,7 @@
     x tick label style={rotate=90,anchor=east},
     legend style={draw=none,legend pos=outer north east},
 y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
-  legend style={legend pos=north west,font=\scriptsize},
+  legend style={legend pos=north west,font=\small},
   legend cell align=left,
  scaled ticks=false,
   tick label style={/pgf/number format/fixed}
@@ -81,12 +101,11 @@ y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
 
 \begin{document}
 \pagenumbering{gobble}
+\setcounter{figure}{1}
 
-\begin{figure}[!t]
-\centering
-\caption{Bestimmung von $\sigma_{\text{außerhalb Säule}}^2$}
-
-\begin{tikzpicture}[scale=1.5,transform shape]
+\begin{figure}[!thbp]
+\begin{subfigure}[t]{0.48\textwidth}
+\begin{tikzpicture}
 \begin{axis}[standard]
 \addplot[only marks] table {% plot X versus Y. This is original data.
 X Y
@@ -95,17 +114,91 @@ X Y
 1.780 0.384
 2.650 0.480
 };
-
-
 \addlegendentry{Messwerte}
-\addplot[domain=0:3] {0.173*x + 0.117};
+\addplot[domain=0:3] {0.17276*x + 0.11679};
 \addlegendentry{$b _{0.5} = 0.173k' + 0.117$}
 \addplot[draw=none,white] coordinates {(1,1)};
 \addlegendentry{ $R^2=0.9984$}
 
 \end{axis}
 \end{tikzpicture}
+    \caption{Erste Messung }
+    \end{subfigure}
+\begin{subfigure}[t]{0.48\textwidth}
+
+\begin{tikzpicture}
+\begin{axis}[standard]
+\addplot[only marks] table {% plot X versus Y. This is original data.
+X Y
+ 0.850  0.222
+ 1.181  0.290
+ 1.718  0.352
+ 2.554  0.451
+};
+\addlegendentry{Messwerte}
+\addplot[domain=0:3] {0.130*x + 0.124};
+\addlegendentry{$b _{0.5} = 0.130k' + 0.124$}
+\addplot[draw=none,white] coordinates {(1,1)};
+\addlegendentry{ $R^2=0.9874$}
+
+\end{axis}
+\end{tikzpicture}
+    \caption{Zweite Messung }
+
+    \end{subfigure}
+\caption{Regressionsanalysen zwischen Kapazitätsfaktoren und Breiten in Halber Höhe beim Flow 2 \si{\milli\liter\per\minute}}
+
 \end{figure}
+
+
+\begin{figure}[!thbp]
+\begin{subfigure}[t]{0.48\textwidth}
+\begin{tikzpicture}
+\begin{axis}[standard]
+\addplot[only marks] table {% plot X versus Y. This is original data.
+X Y
+0.888 0.357
+1.234 0.425
+1.780 0.506
+2.668 0.632
+};
+
+\addlegendentry{Messwerte}
+\addplot[domain=0:3] {0.152*x + 0.230};
+\addlegendentry{$b _{0.5} = 0.152k' + 0.230$}
+\addplot[draw=none,white] coordinates {(1,1)};
+\addlegendentry{ $R^2=0.9962$}
+\end{axis}
+\end{tikzpicture}
+    \caption{Erste Messung}
+    \end{subfigure}
+\begin{subfigure}[t]{0.48\textwidth}
+
+\begin{tikzpicture}
+\begin{axis}[standard]
+\addplot[only marks] table {% plot X versus Y. This is original data.
+X Y
+ 0.877 0.338
+ 1.221 0.389
+ 1.780 0.466
+ 2.646 0.575
+};
+
+\addlegendentry{Messwerte}
+\addplot[domain=0:3] {0.173*x + 0.117};
+\addlegendentry{$b _{0.5} = 0.133k' + 0.224$}
+\addplot[draw=none,white] coordinates {(1,1)};
+\addlegendentry{ $R^2=0.9988$}
+
+
+\end{axis}
+\end{tikzpicture}
+    \caption{Zweite Messung }
+
+    \end{subfigure}
+\caption{Regressionsanalysen zwischen Kapazitätsfaktoren und Breiten in Halber Höhe beim Flow 1.5 \si{\milli\liter\per\minute}}
+\end{figure}
+
 
 
 \end{document}

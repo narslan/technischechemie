@@ -1,0 +1,157 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+%\usepackage{fourier}
+%\usepackage{mathpazo} % add possibly `sc` and `osf` options
+
+%\usepackage[default,osfigures,scale=0.85]{opensans} %% Alternatively
+%% use the option 'defaultsans' instead of 'default' to replace the
+%% sans serif font only.
+
+%\usepackage[default]{gillius}
+\usepackage{mhchem}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\usepackage{mathastext}
+
+%\usepackage{sansmath}
+%\sansmath
+
+%\renewcommand{\sfdefault}{Myriad-LF}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+\usepackage{verbatim}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage[landscape]{geometry}
+\usepackage{fancyhdr}
+
+
+\pagestyle{fancy}
+
+\cfoot{\thepage}
+
+\rhead{Gruppe 24}
+\lhead{\textbf{Coffein-Bestimmung} Ermittlung des Standardfehlers und des Vertrauensbereichs}
+\setlength{\headheight}{15pt}
+
+
+\renewcommand{\familydefault}{\sfdefault}
+
+\pagenumbering{gobble}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+
+
+
+
+\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+  }
+}
+\usepackage{url}
+
+\begin{document}
+
+\section{Ermittlung des Standardfehlers $s_{y,x}$}
+
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXX}
+ $x$  & $y$ & $y^2$ & $x \cdot y$ & $(x-\overline{x})^2$\\
+\hline
+0   & 458.54  & 210256.18    &0.00       & 15625.00 \\
+50  &1859.12  & 3456308.58   &92955.75   & 5625.00 \\
+100 &4196.75  & 17612727.35  &419675.20  & 625.00 \\
+150 &6710.20  & 45026851.14  &1006530.75 & 625.00 \\
+200 &8742.89  & 76438143.04  &1748578.20 & 5625.00 \\
+250 &11323.00 & 128210396.94 &2830750.75 & 15625.00 \\
+\hline
+$\sum$ &  & & & \\
+750.00 & 33290.50 & 270954683.23 & 6098490.65 & 43750.00 \\
+\hline
+\end{tabularx}
+ \caption{Die Messwerte und die Summen zur Ermittlung von $s_{y,x}$}
+\end{table}
+\begin{flushleft}
+  Der Standardfehler der Schätzung $s_{y,x}$ wird errechnet nach:
+
+\end{flushleft}
+\begin{align}
+ s_{y,x} &= \sqrt{\frac{\sum y^2 - b \cdot \sum y - m \cdot \sum xy}{(n-2)}}
+\end{align}
+mit m = 44.278, b = 13.624 und n = 6
+\begin{align*}
+  s_{y,x} &=\sqrt{ \frac{270954683.23 - 13.624 \cdot 33290.50 -44.278 \cdot 6098490.65} {6-2}} \\
+  &= 342.801
+\end{align*}
+\newpage
+\section{Ermittlung des Vertrauensbereich $ VB(\hat{x}) $}
+\begin{flushleft}
+  Der Vertrauensbereich $VB(\hat{x})$ wird errechnet nach:
+\end{flushleft}
+\begin{equation}
+  VB(\hat{x}) = \hat{x} \pm \frac{t_{P,n-2} \cdot s _{y,x}}{m} \cdot \sqrt{1+\frac{1}{n}+\frac{(y-\overline{y})^2}{m^2 \cdot \sum (x -\overline{x})^2}}
+\end{equation}
+mit:
+\begin{align*}
+   y &= 7781.223 \\
+   \hat{x} & = 175.428 \\
+   n &= 6 \\
+   s_{y,x} &= 342.81 \\
+   \overline{y} & = 5548.417 \\
+   t_{p,n-2} &= 2.45 \\
+   m &= 44.278\\
+   \sum (x -\overline{x})^2&= 43750.00
+ \end{align*}
+ daraus folgt:
+\begin{align*}
+   VB(\hat{x}) &= 175.428 \pm \frac{2.45 \cdot 342.801}{44.278} \cdot  \sqrt{1+\frac{1}{6}+\frac{(7781.223-5548.417)^2}{(44.278)^2 \cdot 43750.00 }}\\
+    &=20.992 \, \si{\milli\gram\per\liter}
+ \end{align*}
+
+
+% \begin{thebibliography}{}
+% \bibitem{crc1}
+% D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 888.
+% \bibitem{crc2}
+% D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 1069.
+% \bibitem{nist}
+% \url{http://webbook.nist.gov/chemistry/fluid/}
+% \bibitem{skript1}
+% A. Brehm, \textit{Praktikumskript Wärmeübertragung}, Oldenburg, \textbf{2014},  S. 14.
+% \end{thebibliography}
+\end{document}

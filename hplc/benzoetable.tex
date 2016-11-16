@@ -1,0 +1,165 @@
+\documentclass{article}
+\usepackage{amsmath}
+
+
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+%\usepackage{fourier}
+%\usepackage{mathpazo} % add possibly `sc` and `osf` options
+
+%\usepackage[default,osfigures,scale=0.85]{opensans} %% Alternatively
+%% use the option 'defaultsans' instead of 'default' to replace the
+%% sans serif font only.
+
+%\usepackage[default]{gillius}
+\usepackage{mhchem}
+\usepackage{listings}
+\usepackage[utf8]{inputenc}
+\usepackage{tgheros}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+
+\usepackage{mathastext}
+
+%\usepackage{sansmath}
+%\sansmath
+
+
+%\renewcommand{\sfdefault}{Myriad-LF}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+\usepackage{verbatim}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{caption}
+\usepackage{tabularx}
+\usepackage[landscape]{geometry}
+\usepackage{setspace}
+\usepackage{mhchem}
+\usepackage{fancyhdr}
+\usepackage[landscape]{geometry}
+
+\pagestyle{fancy}
+
+\cfoot{\thepage}
+
+\rhead{ Gruppe 24}
+\lhead{\textbf{HPLC - Charakterisierung eines Chromatographie-Sytems} Angabe der $t_r$, $b_{0,5}$ , $t_m$, $\sigma$, $k'$}
+\setlength{\headheight}{15pt}
+\pagenumbering{gobble}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+
+
+
+
+\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+  }
+}
+\usepackage{url}
+
+\begin{document}
+
+
+
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXXXXX}
+ $t_m $ [\si{\minute}] & $t_r$ [\si{\minute}] & $A$ [\si{\milli\volt\per\second}] & $A/2$ [\si{\milli\volt\per\second}] & $t_{A/2}^1$ [ \si{\minute}] & $t_{A/2}^2$  [\si{\minute}] &
+ $b_{0.5}$ & $\sigma$ & $k'$\\
+\hline
+2.991 &&&&&&&& \\
+ ~ & 5.607 & 415.114 & 207.555 & 5.489 & 5.760 & 0.271 & 0.115 & 0.875\\
+ & 6.637  & 344.317 & 172.159 & 6.495 & 6.813 & 0.318  & 0.135 & 1.219\\
+ & 8.316  & 291.154 & 145.577 & 8.140 & 8.524  & 0.384 & 0.163 & 1.780\\
+ & 10.917 & 242.777 & 121.389 & 10.694 &11.174 & 0.480 & 0.204 & 2.650\\
+\end{tabularx}
+   \renewcommand\thetable{2}
+  \caption{Auswertung des Chromatogramms der 4 Benzoesäureester bei 2 \si{\milli\liter\per\minute} Flow - Erste Durchführung}
+\end{table}
+
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXXXXX}
+ $t_m $ [\si{\minute}] & $t_r$ [\si{\minute}] & $A$ [\si{\milli\volt\per\second}] & $A/2$ [\si{\milli\volt\per\second}] & $t_{A/2}^1$ [ \si{\minute}] & $t_{A/2}^2$  [\si{\minute}] &
+ $b_{0.5}$ & $\sigma$ & $k'$\\
+\hline
+3.108 &&&&&&&& \\
+ & 5.748 & 382.943 &191.470 &5.664&5.886 &    0.222  & 0.094 & 0.850 \\
+ &6.777 & 315.957  &157.978 & 6.645 &6.935  & 0.290  & 0.123 & 1.181\\
+  &8.448 & 264.972 &132.486 & 8.288 & 8.640 & 0.352& 0.150&    1.718\\
+  &10.045& 218.245 &109.123 &10.838 &11.289 & 0.451& 0.192 &   2.554
+\end{tabularx}
+   \renewcommand\thetable{3}
+  \caption{Auswertung des Chromatogramms der 4 Benzoesäureester bei 2 \si{\milli\liter\per\minute} Flow - Zweite Durchführung}
+\end{table}
+\newpage
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXXXXX}
+ $t_m $ [\si{\minute}] & $t_r$ [\si{\minute}] & $A$ [\si{\milli\volt\per\second}] & $A/2$ [\si{\milli\volt\per\second}] & $t_{A/2}^1$ [ \si{\minute}] & $t_{A/2}^2$  [\si{\minute}] &
+ $b_{0.5}$ & $\sigma$ & $k'$\\
+\hline
+3.981&&&&&&&& \\
+& 7.516 & 422.583  &211.292   & 7.356  &7.713   &0.357&0.152& 0.888\\
+& 8.893 & 349.583  & 174.792  & 8.696  &9.121   &0.425&0.181& 1.234\\
+& 11.128 & 295.628 &  147.814 & 10.890 & 11.396 &0.506&0.215& 1.780\\
+& 14.590 & 245.888 & 122.944  & 14.289 & 14.921 &0.632&0.268& 2.668 \\
+\end{tabularx}
+   \renewcommand\thetable{4}
+
+  \caption{Auswertung des Chromatogramms der 4 Benzoesäureester bei 1.5 \si{\milli\liter\per\minute} Flow - Erste Durchführung}
+\end{table}
+
+ \begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXXXXX}
+ $t_m $ [\si{\minute}] & $t_r$ [\si{\minute}] & $A$ [\si{\milli\volt\per\second}] & $A/2$ [\si{\milli\volt\per\second}] & $t_{A/2}^1$ [ \si{\minute}] & $t_{A/2}^2$  [\si{\minute}] &
+ $b_{0.5}$ & $\sigma$ & $k'$\\
+\hline
+4.004 &  &&&&&&& \\
+&7.516& 426.132 & 213.066  & 7.373 & 7.711&     0.338 & 0.144 & 0.877 \\
+&8.892 & 357.975 & 178.986 & 8.723 & 9.112 &    0.389 & 0.165 & 1.221\\
+&11.128 & 305.318 & 152.660 & 10.924 & 11.390 & 0.466 & 0.198 & 1.780 \\
+&14.601&256.129&128.066    & 14.346 & 14.921 &  0.575 & 0.244 & 2.646 \\
+\end{tabularx}
+   \renewcommand\thetable{5}
+
+  \caption{Auswertung des Chromatogramms der 4 Benzoesäureester bei 1.5 \si{\milli\liter\per\minute} Flow - Zweite Durchführung}
+\end{table}
+% \begin{thebibliography}{}
+% \bibitem{crc1}
+% D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 888.
+% \bibitem{crc2}
+% D. R. Lide, \textit{CRC Handbook of Chemistry and Physics}, 88. Aufl., CRC Press, New York \textbf{2007}, S. 1069.
+% \bibitem{nist}
+% \url{http://webbook.nist.gov/chemistry/fluid/}
+% \bibitem{skript1}
+% A. Brehm, \textit{Praktikumskript Wärmeübertragung}, Oldenburg, \textbf{2014},  S. 14.
+% \end{thebibliography}
+\end{document}

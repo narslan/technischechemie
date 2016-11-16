@@ -32,18 +32,19 @@
 \usepackage{mhchem}
 \usepackage{fancyhdr}
 \usepackage[landscape]{geometry}
+\usepackage{listings}
 
 \pagestyle{fancy}
 
 \cfoot{\thepage}
 
-\rhead{\footnotesize Gruppe 24}
-\lhead{\footnotesize HPLC - Coffein-Bestimmung}
+\rhead{Gruppe 24}
+\lhead{\textbf{HPLC - Coffein-Bestimmung} Messergebnisse und Kalibrierreihe}
 \setlength{\headheight}{15pt}
 
 
 \renewcommand{\familydefault}{\sfdefault}
-\captionsetup{font=footnotesize}
+
 
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \usetikzlibrary{datavisualization}
@@ -70,8 +71,8 @@
 \pagenumbering{gobble}
 
 \begin{figure}[!t]
-\centering
-\caption{Coffein-Bestimmung}
+
+
 
 \begin{tikzpicture}[scale=1.5,transform shape]
 \begin{axis}[
@@ -108,9 +109,17 @@ y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
 
 \end{axis}
 \end{tikzpicture}
+\caption{Peakflächen in Abhängigkeit der Konzentration}
 \end{figure}
-
-
+\begin{flushleft}
+  Das R-Code zur Erstellung der Regressionslinie:
+\end{flushleft}
+\begin{lstlisting}
+assign("c", c(0, 50, 100, 150, 200, 250 ))
+assign("p", c(458.537, 1859.115, 4196.752, 6710.205, 8742.891, 11323.003))
+fitpc<-lm(p ~ c )
+summary(fitpc)
+\end{lstlisting}
 \end{document}
 
 

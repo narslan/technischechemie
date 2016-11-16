@@ -9,4 +9,18 @@ fitbk<-lm(b ~ k )
 summary(fitbk)
 
 
+assign("k", c( 0.850 , 1.181 , 1.718 , 2.554 ))
+assign("b", c( 0.222, 0.290, 0.352, 0.451))
+fitbk<-lm(b ~ k )
+summary(fitbk)
+
+assign("k", c( 0.888 ,1.234 ,1.780 ,2.668 ))
+assign("b", c(0.357, 0.425, 0.506, 0.632))
+fitbk<-lm(b ~ k )
+summary(fitbk)
+
+assign("k", c( 0.877 , 1.221 , 1.780 , 2.646  ))
+assign("b", c(0.338, 0.389, 0.466, 0.575))
+fitbk<-lm(b ~ k )
+summary(fitbk)
 
