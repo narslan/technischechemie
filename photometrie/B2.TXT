@@ -1,0 +1,18 @@
+Wavelength program results
+
+File     : C:\GRUPPE24\B2.TXT
+Date     : 11/16/16
+Time     : 12:51:17
+Operator : GBC Instrument - 2246 1/13/99
+
+Testscan GBC DBUV Instrument
+
+IntegTime: 0.2
+SlitWidth: 2.0
+Factors: 1
+
+
+Value units [Abs]
+
+Pos.[nm]	    601.0
+Sample1	  +0.1537
