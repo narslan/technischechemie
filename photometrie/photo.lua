@@ -6,7 +6,9 @@
        --local files1 = {'451.TXT','451A.TXT','451B.TXT','451C.TXT'}
        --local files2 = {'452.TXT','452A.TXT','452B.TXT','452C.TXT'}
        --local files3 = {'453.TXT','453A.TXT','453B.TXT','453C.TXT'}
-
+       local files = {'M.TXT','M2.TXT','M3.TXT','M4.TXT'}
+--local files3 = {'453.TXT','453A.TXT','453B.TXT','453C.TXT'}
+--local files3 = {'453.TXT','453A.TXT','453B.TXT','453C.TXT'}
 function findmax( t )
   local tmp = {}
   for i=1,#t do
@@ -33,7 +35,7 @@ function findmin( t )
         min_val, key = v, k
     end
 end
-print(t[key][1], t[key][2])
+--print(t[key][1], t[key][2])
 
 end
 
@@ -46,12 +48,12 @@ for filei=1,#files do
           table.insert(werte,{400+x,line})
 
     if tostring(x) == tostring(202.3) then
-               print(files[filei],400+x,line)
+            --   print(files[filei],400+x,line)
      end
         x = x + 0.85
         end
     end
-    --print(findmax(werte))
+    print(findmax(werte))
   end
 
 

@@ -9,8 +9,9 @@
 
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.13}
+\pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
+\usepgfplotslibrary{colorbrewer}
 
 
 \usepackage{luacode}
@@ -29,11 +30,10 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 
-
 \rhead{ Gruppe 24}
 \setlength{\headheight}{15pt}
 \pagenumbering{gobble}
-\lhead{Absorptionsspektren von Kupferkonzentrationen 0 mg/L, 1 mg/L, 2 mg/L und 4 mg/L }
+\lhead{Absorptionsspektren von Kupferkonzentrationen 0 mg/L, 0.25, 0.5,  1 mg/L, 2 mg/L }
 
 \begin{luacode*}
 
@@ -42,12 +42,12 @@ local unpack=table.unpack
 function drawD()
   local files={}
   local colors={}
-  local files = {'1.TXT','2.TXT','3.TXT','H2OA.TXT','MAX.TXT','BASELINE.TXT'}
+  --local files = {'1.TXT','2.TXT','3.TXT','H2OA.TXT','MAX.TXT','BASELINE.TXT'}
   --  local files = {'450.TXT','451.TXT','452.TXT','453.TXT','BASELINE.TXT','BASELINE.TXT'}
-    local colors = {'blue','orange','red','teal','black','green'}
+    local colors = {'blue','orange','red','teal','black','green','violet','pink','green'}
    -- local shifty = {-0.176238 ,  -0.217737 , -0.211587 ,  -0.182053 , -0.223418,0}
  --local files = {'MAX.TXT'}
-
+local files = {'450.TXT','451.TXT','452.TXT','453.TXT','M.TXT'}
 for filei=1,#files do
 
     local wavec = 400
@@ -73,6 +73,8 @@ end
 
 \end{luacode*}
 \newcommand\addplotCHIpf{\directlua{drawD()}}
+\pgfplotscreateplotcyclelist{color list}{%
+red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray}
 \pgfplotsset{
     standard/.style={
         axis x line=middle,

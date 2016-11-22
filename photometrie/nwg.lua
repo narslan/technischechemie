@@ -1,8 +1,10 @@
-y1 = {-0.075126,-0.040223,0.015565,0.075279}
-y2 = {-0.075132, 0.040661, 0.015389, 0.075220}
-y3 = {-0.075398, -0.040852, 0.015438, 0.074893}
-y4 = {-0.075585,-0.040569,0.016336,0.074960}
-x={0,0.25,0.5,1}
+y1 = {-0.075126,-0.040223,0.015565,0.075279,0.153527 }
+y2 = {-0.075132, 0.040661, 0.015389, 0.075220,0.153527 }
+y3 = {-0.075398, -0.040852, 0.015438, 0.074893,0.153389}
+y4 = {-0.075585,-0.040569,0.016336,0.074960,0.153601}
+
+
+x={0,0.25,0.5,1,2}
   print(string.format("%s %s %s %s %s %s %s %s %s %s %s %s %s",'y1^2','y2^2','y3^2','y4^2','x^2','xy_1','xy_2','xy_3','xy_4','x*y_1','x*y_2','x*y_3','x*y_4'))
 
 summex = 0
@@ -11,7 +13,7 @@ summexx = 0
 summeyy = 0
 summexy = 0
 
-for i=1,4 do
+for i=1,5 do
   print(string.format("%.6f %.6f %.6f %.6f %.6f %.6f %.6f %.6f %.6f",y1[i]^2,y2[i]^2,y3[i]^2,y4[i]^2,x[i]^2,x[i]*y1[i],x[i]*y2[i],x[i]*y3[i],x[i]*y4[i]))
   summex =  summex + x[i]
   summey = summey + y1[i] +y2[i]+y3[i]+y4[i]
@@ -22,9 +24,9 @@ end
 
 
 print(string.format("sumx:%.6f summey:%.6f  summexx: %.6f summeyy: %.6f summexy:%.6f",summex,summey,summexx,summeyy,summexy))
-n = 16
+n = 20
 ndach= 4
-nodach=4
+nodach=5
 m = ((n*summexy) - (summex * summey))/((n* summexx) - summex^2)
 b = ((summexx*summey)-(summex*summexy))/((n* summexx) - summex^2)
 
