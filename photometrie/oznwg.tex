@@ -1,0 +1,110 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath}
+%encoding
+%--------------------------------------
+
+%----------------------------
+\usepackage{microtype}
+%\usepackage{fourier}
+\usepackage{helvet}
+\usepackage{arevtext,arevmath}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[german]{babel}
+\usepackage{mathastext}
+%units
+%--------------------------------------
+\usepackage{siunitx}
+%drawing
+%------------------------------------
+\usepackage{tikz} % To generate the plot from csv
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{graphicx}
+
+\usepackage{caption}
+\usepackage{color, colortbl}
+\usepackage{tabularx}
+\usepackage{setspace}
+\usepackage{mhchem}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{ Gruppe 24}
+\lhead{\textbf{Photometrie - Berechnung der NWG}}
+\pagenumbering{gobble}
+
+\makeatletter
+\setlength{\@fptop}{0pt}
+\makeatother
+
+\renewcommand{\familydefault}{\sfdefault}
+\captionsetup{font=footnotesize}
+
+\definecolor{LightCyan}{rgb}{0.88,1,1}
+\usetikzlibrary{datavisualization}
+\pgfplotsset{compat=newest} % Allows to place the legend below plot
+\usepgfplotslibrary{units} % Allows to enter the units nicely
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+\usepackage[landscape]{geometry}
+
+%\usetikzlibrary{arrows, positioning, calc, datavisualization}
+
+
+\usepackage{url}
+
+\begin{document}
+
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{lllllllll}
+$x$ & $y_1$ & $y_2$ &$y_3$ & $y_4$ & $y_1^2$ & $y_2^2$ & $y_3^2$ &$y_4^2$  \\
+\hline
+0.00 &-0.075126 & -0.075132 &  -0.075398 & -0.075585 &0.005644 &0.005645 &0.005685 & 0.005713 \\
+0.25 &-0.040223 & -0.040661 &  -0.040852 & -0.040569 &0.001618 &0.001653 &0.001669 & 0.001646 \\
+0.50 &0.015565  & 0.015389  &  0.015438  &  0.016336 &0.000242 &0.000237 &0.000238 & 0.000267 \\
+1.00 &0.075279  & 0.075220  &  0.074893  &  0.074960 &0.005667 &0.005658 &0.005609 & 0.005619 \\
+2.00 &0.153527  & 0.153527  &  0.153389  &  0.153601 &0.023571 &0.023571 &0.023528 & 0.023593 \\
+\end{tabularx}
+   \renewcommand\thetable{2}
+\end{table}
+
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXX}
+$x^2$ & $xy_1$ & $xy_2$ &$xy_3$ &$xy_4$\\
+\hline
+  0.0000& -0.000000 & -0.000000& -0.000000 &-0.000000\\
+  0.0625& -0.010056 & -0.010165& -0.010213 &-0.010142\\
+  0.2500& 0.007783  & 0.007694  &  0.007719 &0.008168 \\
+  1.0000& 0.075279  & 0.075220  &  0.074893 &0.074960 \\
+  4.0000& 0.307054  & 0.307054  &  0.306778 &0.307202 \\
+\end{tabularx}
+   \renewcommand\thetable{2}
+\end{table}
+\begin{table}[ht!]
+  \centering
+ \begin{tabularx}{\textwidth}{XXXXXXXX}
+Anzahl & $\sum(x)$ & $\sum(y)$ &$\sum(x^2)$ & $\sum(y^2)$ & $\sum(xy)$ &   $\overline x$ & $\overline y$ \\
+ 5 & 3.75 & 0.513578 & 5.3125 & 0.607841 & 1.519228 &  0.1875 & 0.025679 \\
+\hline
+  & $Q_{xx}$&  & m & b & $s_{y,x}$ & $s_{x0}$&  \\
+ & 4.609375 & & 0.308704 & -0.032203 & 0.092912 & 0.3&  \\
+
+\end{tabularx}
+   \renewcommand\thetable{2}
+\end{table}
+
+
+\end{document}
+
+%%\addplot[domain=0:1200]{-1.42e-5*x^(2)+2.836e-2*x+45.47};
+

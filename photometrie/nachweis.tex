@@ -48,6 +48,8 @@ function drawD()
    -- local shifty = {-0.176238 ,  -0.217737 , -0.211587 ,  -0.182053 , -0.223418,0}
  --local files = {'MAX.TXT'}
 local files = {'450.TXT','451.TXT','452.TXT','453.TXT','M.TXT'}
+local filesc = {'0 mg/L','0.25 mg/L','0.5 mg/L','1 mg/L','2 mg/L'}
+
 for filei=1,#files do
 
     local wavec = 400
@@ -64,7 +66,7 @@ for filei=1,#files do
    end
 
      tex.sprint("};")
-              tex.sprint("\\addlegendentry{"..files[filei].."}")
+              tex.sprint("\\addlegendentry{"..filesc[filei].."}")
 
      end
 
@@ -88,7 +90,7 @@ red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray}
     legend style={draw=none,legend pos=outer north east,legend cell align=left},
      minor x tick num={10},
      minor y tick num={10},
-     ymax = 0.3
+     ymax = 0.6
         }
 }
 \begin{document}
@@ -98,23 +100,7 @@ red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray}
   \addplotCHIpf
 \end{axis}
 \end{tikzpicture}
-\par
-\begin{table}[ht!]
-  \centering
- \begin{tabularx}{\textwidth}{XXXXXXXXX}
-$y_1^2$ & $y_2^2$ & $y_3^2$ &$y_4^2$ & $x^2$ & $xy_1$ & $xy_2$ &$xy_3$ &$xy_4$\\
-\hline
-0.005644& 0.005645 &0.005685 &0.005713 &0.000000 &-0.000000& -0.000000 &-0.000000 & -0.000000\\
-0.001618& 0.001653 &0.001669 &0.001646 &0.062500 &-0.010056& 0.010165  &-0.010213 & -0.010142\\
-0.000242& 0.000237 &0.000238 &0.000267 &0.250000 &0.007783 &0.007694   &0.007719  & 0.008168 \\
-0.005667& 0.005658 &0.005609 &0.005619 &1.000000 &0.075279 &0.075220   &0.074893  & 0.074960 \\
-0.023571& 0.023571 &0.023528 &0.023593 &4.000000 &0.307054 &0.307054   &0.306778  & 0.307202 \\
-$\sum x:$3.750000& $\sum y$:0.594900& &summexx:&5.312500&summeyy:&0.689163&summexy:1.539558 & \\
-m:0.309807 & b:-0.028344 &&&&&&&
-\end{tabularx}
-   \renewcommand\thetable{2}
-  \caption{}
-\end{table}
+
 
 
 %\tabellenwerte

@@ -1,6 +1,5 @@
  --local files = {'H2O.TXT','1.TXT','2.TXT','3.TXT','MAX.TXT','H2OA.TXT','1A.TXT','2A.TXT','3A.TXT'}
 
- --local files = {'H2O.TXT','H2OA.TXT'}
  --local files = {'1.TXT'}
        --local files = {'450.TXT', '450A.TXT','450B.TXT','450C.TXT'}
        --local files1 = {'451.TXT','451A.TXT','451B.TXT','451C.TXT'}
@@ -9,6 +8,10 @@
        local files = {'M.TXT','M2.TXT','M3.TXT','M4.TXT'}
 --local files3 = {'453.TXT','453A.TXT','453B.TXT','453C.TXT'}
 --local files3 = {'453.TXT','453A.TXT','453B.TXT','453C.TXT'}
+local files = {'MAX.TXT'}
+local files1 = {'1A.TXT','2A.TXT','3A.TXT','MAX.TXT'}
+ local files3 = {'H2O.TXT','H2OA.TXT'}
+
 function findmax( t )
   local tmp = {}
   for i=1,#t do
@@ -39,21 +42,21 @@ end
 
 end
 
-for filei=1,#files do
+for filei=1,#files3 do
     local werte={}
     local x = 0
-    for line in io.lines(files[filei]) do
+    for line in io.lines(files3[filei]) do
         if type(line)  then
 
           table.insert(werte,{400+x,line})
-
-    if tostring(x) == tostring(202.3) then
-            --   print(files[filei],400+x,line)
+           --print(files1[filei],400+x,line)
+    if tostring(x) == tostring(203.014) then
+               print(files3[filei],400+x,line)
      end
-        x = x + 0.85
+        x = x + 0.853
         end
     end
-    print(findmax(werte))
+    --print(findmax(werte))
   end
 
 

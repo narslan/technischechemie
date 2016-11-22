@@ -58,7 +58,7 @@
 \cfoot{\thepage}
 
 \rhead{Gruppe 24}
-\lhead{\textbf{Charakterisierung eines Chromatographie System} Bestimmung von $\sigma_{\text{außerhalb Säule}}^2$}
+\lhead{\textbf{Photometrie - Kalibrierreihe}}
 \setlength{\headheight}{15pt}
 
 
@@ -79,24 +79,6 @@
   inter-unit-product =\ensuremath{{}\cdot{}}
 }
 
-\pgfplotsset{
-  standard/.style={
-    axis x line=bottom,
-    axis y line=middle,
-     xlabel=$k'$, % Set the labels
-    ylabel=  $b_{0.5}$ ,
-    xmin=0,
-    ymin=0,
-    legend style={at={(0.5,-0.2)},anchor=north},
-    x tick label style={rotate=90,anchor=east},
-    legend style={draw=none,legend pos=outer north east},
-y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
-  legend style={legend pos=north west,font=\small},
-  legend cell align=left,
- scaled ticks=false,
-  tick label style={/pgf/number format/fixed}
-  }
-}
 
 
 \begin{document}
@@ -110,44 +92,25 @@ y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
 
 \begin{figure}[!t]
 
-\caption{ pH vs $\ce{V_{NaOH}}$ Titrationskurve einer 0.1 M \ce{H2S04}-Lösung mit 0.1 M \ce{NaOH} in 0.1 \si{\milli\liter} Schritten}
+\caption{}
 \begin{tikzpicture}[scale=1.5,transform shape]
-\begin{axis}
+\begin{axis}[axis equal=false,
+axis x line=bottom,
+axis y line=middle,
+legend style={draw=none,legend pos=outer north east},
+xlabel= Konzentration / \si{\milli\gram\per\liter},
+ylabel= Extinktion,
+y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south}]
 \addplot[only marks] table {% plot X versus Y. This is original data.
 X Y
- 0 -0.075126
- 0.25 -0.040223
- 0.5 0.015565
- 1 0.075279
- 2 0.153527
+0 0.062135
+1 0.067407
+2 0.070261
+4 0.072923
 };
-\addplot[only marks] table {% plot X versus Y. This is original data.
-X Y
--0.075132
-0.040661
-0.015389
-0.075220
-0.153527
-};
-\addplot[only marks] table {% plot X versus Y. This is original data.
-X Y
- 0 -0.075126
- 0.25 -0.040223
- 0.5 0.015565
- 1 0.075279
- 2 0.153527
-};
-\addplot[only marks] table {% plot X versus Y. This is original data.
-X Y
- 0 -0.075126
- 0.25 -0.040223
- 0.5 0.015565
- 1 0.075279
- 2 0.153527
-};
-
-
-\addplot[domain=0:2] {0.309807*x-0.028344};
+\addlegendentry{Messwerte}
+\addplot[domain=0:4] {0.002551*x+0.06390};
+\addlegendentry{y=0.002551x+0.06390}
 \end{axis}
 
 \end{tikzpicture}
