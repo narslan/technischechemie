@@ -66,11 +66,12 @@
 \renewcommand\citeform[1]{[#1]}
 
 \sisetup{
-  round-mode          = places,
-  round-precision     = 2,
-  inter-unit-product =\ensuremath{{}\cdot{}}
+  round-mode          = figures,
+  round-precision     = 3,
+  inter-unit-product =\cdot,
+   group-digits=true,          %% Zifferngruppierung an/aus
+        scientific-notation = true,
 }
-
 
 
 
@@ -86,39 +87,61 @@
 
 \begin{document}
 
+% section section_name (end)
+
 \section{Ermittlung des Standardfehlers $s_{y,x}$}
 
  \begin{table}[ht!]
   \centering
- \begin{tabularx}{\textwidth}{XXXXX}
- $x$  & $y$ & $y^2$ & $x \cdot y$ & $(x-\overline{x})^2$\\
+ \begin{tabular}{llllll}
+ $x$ [\si{\milli\gram\per\liter}] & $y$ [\si{\milli\volt.\sec}]  & $y^2$ [\si{\milli\volt\square.\sec\square}] & $x \cdot y$ [\si{\milli\gram\per\liter.\milli\volt.\sec} ] &
+ $(x-\overline{x})^2$ [\si{\square\milli\gram\per\square\liter}] & $x^2$ [\si{\square\milli\gram\per\square\liter}]\\
 \hline
-0   & 458.54  & 210256.18    &0.00       & 15625.00 \\
-50  &1859.12  & 3456308.58   &92955.75   & 5625.00 \\
-100 &4196.75  & 17612727.35  &419675.20  & 625.00 \\
-150 &6710.20  & 45026851.14  &1006530.75 & 625.00 \\
-200 &8742.89  & 76438143.04  &1748578.20 & 5625.00 \\
-250 &11323.00 & 128210396.94 &2830750.75 & 15625.00 \\
+0  & \num{458.54}  & \num{210256.18 }   &\num{0}      & \num{15625}& 0\\
+50  & \num{1859.12 } & \num{3456308.58}   &\num{92955.75}   &\num{ 5625} &\num{2500}\\
+100 & \num{4196.75}  & \num{17612727.35}  &\num{419675.20}  &\num{ 625} &\num{10000}\\
+150 &\num{6710.20}  & \num{45026851.14}  &\num{1006530.75} & \num{625} & \num{22500}\\
+200 & \num{8742.89}  & \num{76438143.04}  &\num{1748578.20} &\num{ 5625}& \num{40000}\\
+250 &\num{11323.00} & \num{128210396.94} &\num{2830750.75} & \num{15625}& \num{62500}\\
 \hline
-$\sum$ &  & & & \\
-750.00 & 33290.50 & 270954683.23 & 6098490.65 & 43750.00 \\
+$\sum$ &  & & & &\\
+\num{750.00} & \num{33290.50} & \num{270954683.23} & \num{6098490.65} & \num{43750.00} & \num{137500}\\
+n = 6&   & & & &\\
 \hline
-\end{tabularx}
- \caption{Die Messwerte und die Summen zur Ermittlung von $s_{y,x}$}
+\end{tabular}
+ \caption{Die Messwerte und die Summen zur Ermittlung der Regressionskoeffizienten $m$, $b$ und des Standartfehlers der Schätzung $s_{y,x}$}
+  \label{tab:mess}
 \end{table}
-\begin{flushleft}
+
+  m wird wie folgt berechnet:
+  \begin{align*}
+    m &= \frac{n \cdot \sum xy - \sum x \cdot \sum y}{n \cdot \sum x^2 - (\sum x )^2} \\
+      &= \frac{6 \cdot  \num{6098490.65} \, \si{\milli\gram\per\liter} \si{\milli\volt.\sec} - 750 \, \si{\milli\gram\per\liter} \times \num{33290.50} \,  \si{\milli\volt.\sec}}
+      {6  \cdot \num{137500} \, \si{\square\milli\gram\per\square\liter}  - \num{562500} \, \si{\square\milli\gram\per\square\liter}}\\
+      &= 44.3 \, \si{\liter.\milli\volt\sec\per\milli\gram}
+  \end{align*}
+
+  b wird wie folgt berechnet:
+
+\begin{align}
+  b &= \frac{\sum x^2 \cdot \sum y - \sum x \cdot \sum x y}{n \cdot \sum x^2 - (\sum x )^2}\\
+    & = \frac{\num{137500} \, \si{\square\milli\gram\per\square\liter} \cdot  \num{33290.50} \,  \si{\milli\volt.\sec} -   750 \, \si{\milli\gram\per\liter} \cdot  \num{6098490.65} \, \si{\milli\gram\per\liter} \si{\milli\volt.\sec}}{6  \cdot \num{137500} \, \si{\square\milli\gram\per\square\liter}  - \num{562500} \, \si{\square\milli\gram\per\square\liter}}\\
+    &  = 13.6 \, \si{\milli\volt.\sec}
+\end{align}
+
+
+
   Der Standardfehler der Schätzung $s_{y,x}$ wird errechnet nach:
 
-\end{flushleft}
 \begin{align}
  s_{y,x} &= \sqrt{\frac{\sum y^2 - b \cdot \sum y - m \cdot \sum xy}{(n-2)}}
 \end{align}
-mit m = 44.278, b = 13.624 und n = 6
+mit m = 44.3 \, \si{\liter.\milli\volt\sec\per\milli\gram} , b = 13.6 und n = 6
 \begin{align*}
-  s_{y,x} &=\sqrt{ \frac{270954683.23 - 13.624 \cdot 33290.50 -44.278 \cdot 6098490.65} {6-2}} \\
-  &= 342.801
+  s_{y,x} &=\sqrt{ \frac{ \num{270954683.23} \, \si{\square\milli\volt} \si{\square\sec} - 13.6 \, \si{\milli\volt.\sec} \times \num{33290.50} \, \si{\milli\volt.\sec}
+   -  44.3 \, \si{\liter.\milli\volt\sec\per\milli\gram} \times \num{6098490.65} \si{\milli\gram\per\liter.\milli\volt.\sec} } {6-2}} \\
+  &= 343 \, \si{\milli\volt.\sec}
 \end{align*}
-\newpage
 \section{Ermittlung des Vertrauensbereich $ VB(\hat{x}) $}
 \begin{flushleft}
   Der Vertrauensbereich $VB(\hat{x})$ wird errechnet nach:
@@ -134,13 +157,13 @@ mit:
    s_{y,x} &= 342.81 \\
    \overline{y} & = 5548.417 \\
    t_{p,n-2} &= 2.45 \\
-   m &= 44.278\\
-   \sum (x -\overline{x})^2&= 43750.00
+   m &= 44.3\\
+   \sum (x -\overline{x})^2&= \num{43750.00}
  \end{align*}
  daraus folgt:
 \begin{align*}
-   VB(\hat{x}) &= 175.428 \pm \frac{2.45 \cdot 342.801}{44.278} \cdot  \sqrt{1+\frac{1}{6}+\frac{(7781.223-5548.417)^2}{(44.278)^2 \cdot 43750.00 }}\\
-    &=20.992 \, \si{\milli\gram\per\liter}
+   VB(\hat{x}) &= 175.428 \pm \frac{2.45 \cdot 342.801}{44.278} \cdot  \sqrt{1+\frac{1}{6}+\frac{(\num{7781.223}-\num{5548.417})^2}{(44.278)^2 \cdot 43750.00 }}\\
+    &=175.428 \pm 20.992 \, \si{\milli\gram\per\liter}
  \end{align*}
 
 

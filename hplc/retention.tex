@@ -45,6 +45,11 @@
 
 \renewcommand{\familydefault}{\sfdefault}
 
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
 
 \definecolor{LightCyan}{rgb}{0.88,1,1}
 \usetikzlibrary{datavisualization}
@@ -53,11 +58,6 @@
 \usepackage{overcite}
 \renewcommand\citeform[1]{[#1]}
 
-\sisetup{
-  round-mode          = places,
-  round-precision     = 2,
-  inter-unit-product =\ensuremath{{}\cdot{}}
-}
 \makeatletter
 \setlength{\@fptop}{0pt}
 \makeatother
@@ -81,7 +81,7 @@ axis y line=middle,
 xlabel= Konzentration,
 ylabel= Peakfläche,
 x unit= \si{\milli\gram\per\liter} ,
-y unit= \si{\milli\volt\per\sec},
+y unit= \si{\milli\volt.\sec},
 legend style={draw=none,legend pos=outer north east},
 y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
   legend style={legend pos=north west,font=\scriptsize},
@@ -102,7 +102,7 @@ y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
 \node[below] at (axis cs:175.428,4281.223) {\tiny 175.428 \si{\milli\gram\per\liter}};
   \addlegendentry{Messwerte }
   \addplot[dashed,domain=0:250] { 44.278*x + 13.624};
-\addlegendentry{$y = 44.278 \cdot x + 13.624$}
+\addlegendentry{$y = 44.3  \frac{\si{\liter.\milli\volt.\sec}}{\si{\milli\gram}} \cdot x + 13.6 \si{\milli\volt.\sec}$}
 \addplot[draw=none,white] coordinates {(1,1)};
 \addlegendentry{ $R^2=0.9945$}
 \addplot[only marks,mark=diamond*] coordinates {(175.428,7781.223)};

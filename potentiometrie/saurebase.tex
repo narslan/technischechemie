@@ -48,7 +48,7 @@
 \cfoot{\thepage}
 
 \rhead{\footnotesize Gruppe 24}
-\lhead{\footnotesize Potentiometrische Titration - Auswertung}
+\lhead{\footnotesize Potentiometrische Titration - Anhang}
 \setlength{\headheight}{15pt}
 
 
@@ -102,11 +102,14 @@
 \addplot[black,thick,smooth] file[skip first]{ag.txt};
 \node[coordinate,pin=right:{\scriptsize ÄP bei $V_{\ce{AgNO3}}$ = \SI{1.85}{\milli\liter}}]
 at (axis cs:1.87,-142) {};
-\addlegendentry{\scriptsize $\Delta E = E_{IE}-E_{RE}$ }
+\addlegendentry{$\Delta E = E_{IE}-E_{RE}$ }
 \nextgroupplot[ylabel=$\ce{\frac{\partial pH}{\partial V}}$,xtick={1,2,3,4,5,6,7,8,9},xticklabels={1,2,3,4,5,6,7,8,9}]
 \addplot[mark=diamond] file[skip first] {agd.txt};
+\addlegendentry{ $\frac{(\partial \Delta E)}{\partial V_{\ce{AgNO3}}}$ }
 \nextgroupplot[ylabel=$\ce{\partial \frac{(\partial pH)}{(\partial V)^2}}$]
 \addplot[mark=square] file[skip first] {agdd.txt };
+\addlegendentry{$\frac{(\partial ^2 \Delta E)}{\partial (V_{\ce{AgNO3}})^2}$ }
+
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
@@ -134,19 +137,21 @@ at (axis cs:1.87,-142) {};
     legend style={draw=none,legend pos=outer north east},
 ]
 \nextgroupplot[ymax=14,ylabel=pH,xtick={1,2,3,4,5},xticklabels={1,2,3,4,5}]
-\addplot[mark=o.thick] file[skip first] {naohp.txt};
+\addplot[mark=diamond] file[skip first] {naohp.txt};
 \node[coordinate,pin=right:{\scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$  = 2.75 \si{\milli\liter}}] at (axis cs:2.75,7) {};
-\addlegendentry{\scriptsize $\,$Experimentelle Werte}
+\addlegendentry{ $\,$Experimentelle Werte}
 \nextgroupplot[ylabel=$\ce{\frac{\partial pH}{\partial V}}$,xtick={1,2,3,4,5},xticklabels={1,2,3,4,5}]
 \addplot[mark=diamond] file[skip first] {naohpd.txt};
+\addlegendentry{$\frac{\partial pH}{\partial V}$ }
 \nextgroupplot[ylabel=$\ce{\partial \frac{(\partial pH)}{(\partial V)^2}}$]
 \addplot[mark=square] file[skip first] {naohpdd.txt };
+\addlegendentry{$\partial \frac{(\partial pH)}{(\partial V)^2}$}
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
 
 \begin{figure}[!t]
-\caption{ Der Vergleich einer theoretischen Titrationskurve (50 \si{\milli\liter} einer 0.025 M \ce{H2SO4}-Lösung mit 0.1 M \ce{NaOH} in 0.1 \si{\milli\liter} Schritten)
+\caption{ Der Vergleich einer theoretischen Titrationskurve (50 \si{\milli\liter} einer 0.025 M \ce{H2SO4}-Lösung mit 0.1 M \ce{NaOH} in 1 \si{\milli\liter} Schritten)
 mit der experimentellen Titrationskurve (50 \si{\milli\liter} einer 0.005 M \ce{H2SO4}-Lösung mit 0.1 M \ce{NaOH} in 0.1 \si{\milli\liter} Schritten)}
 
 \begin{tikzpicture}
@@ -167,14 +172,14 @@ mit der experimentellen Titrationskurve (50 \si{\milli\liter} einer 0.005 M \ce{
     xtick align=inside,
     legend style={draw=none,legend pos=outer north east},
 ]
-\nextgroupplot[ymax=14,ylabel=pH,xtick={1,5,10,15,20,25,30},xticklabels={1,5,10,15,20,25,30},xlabel=$\ce{V_{NaOH}}$, x unit =\si{\milli\liter}]
+\nextgroupplot[ymax=14,ylabel=pH,xtick={0,5,10,15,20,25,30,35},xticklabels={0,5,10,15,20,25,30,35},xlabel=$\ce{V_{NaOH}}$, x unit =\si{\milli\liter}]
 \addplot[mark=triangle] file[skip first]{naoht.txt};
-\node[coordinate,pin=left:{\scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$ = 25 \si{\milli\liter}}] at (axis cs:25,7) {};
-\addlegendentry{\scriptsize Theoretische Werte}
+\node[coordinate,pin=left:{ \scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$ = 2.5 \si{\milli\liter}}] at (axis cs:2.5,7) {};
+\addlegendentry{ Theoretische Werte}
 \nextgroupplot[ymax=14,ylabel=pH,xtick={1,2,3,4,5},xticklabels={1,2,3,4,5}]
-\addplot[mark=o.thick] file[skip first] {naohp.txt};
+\addplot[mark=diamond] file[skip first] {naohp.txt};
 \node[coordinate,pin=right:{\scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$ = 2.75 \si{\milli\liter}}] at (axis cs:2.75,7) {};
-\addlegendentry{\scriptsize Experimentelle Werte}
+\addlegendentry{ Experimentelle Werte}
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
@@ -198,18 +203,23 @@ mit der experimentellen Titrationskurve (50 \si{\milli\liter} einer 0.005 M \ce{
     xmin=0, xmax=8,
     tickpos=left,
     ytick align=outside,
-    xtick align=outside
+    xtick align=outside,
+    legend style={draw=none,legend pos=outer north east},
 ]
 \nextgroupplot[ymax=12,ylabel=pH,xtick={1,2,3,4,5,6,7},xticklabels={1,2,3,4,5,6,7}]
 \addplot file[skip first] {phosphor.txt};
-\node[coordinate,pin=right:{\tiny ÄP bei pH=4.45}]
+\addlegendentry{ Messwerte}
+\node[coordinate,pin=right:{\scriptsize ÄP bei pH=4.45}]
 at (axis cs:1.45, 4.45) {};
-\node[coordinate,pin=right:{\tiny ÄP bei pH=9.04}]
+\node[coordinate,pin=right:{\scriptsize ÄP bei pH=9.04}]
 at (axis cs:3.85, 9.04) {};
 \nextgroupplot[ylabel=$\ce{\frac{\partial pH}{\partial V}}$,xtick={1,2,3,4,5,6,7},xticklabels={1,2,3,4,5,6,7}]
 \addplot  file[skip first] {phosphord.txt};
+\addlegendentry{ $\frac{\partial pH}{\partial V}$ }
 \nextgroupplot[ylabel=$\ce{\partial \frac{(\partial pH)}{(\partial V)^2}}$]
 \addplot  file[skip first] {phosphordd.txt};
+\addlegendentry{ $\partial \frac{(\partial pH)}{(\partial V)^2}$}
+
 \end{groupplot}
 \end{tikzpicture}
 \end{figure}
