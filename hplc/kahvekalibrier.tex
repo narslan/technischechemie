@@ -44,7 +44,7 @@ function drawD()
 local string = string
 local lines = {}
 
-for line in io.lines("daten/kahve_kal1.txt") do
+for line in io.lines("daten/kahve.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -89,7 +89,7 @@ function drawD2()
 local string = string
 local lines = {}
 
-for line in io.lines("daten/kahve_kal2.txt") do
+for line in io.lines("daten/kahve_kal1.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -132,7 +132,7 @@ function drawD3()
 local string = string
 local lines = {}
 
-for line in io.lines("daten/kahve_kal3.txt") do
+for line in io.lines("daten/kahve_kal2.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -175,7 +175,7 @@ function drawD4()
 local string = string
 local lines = {}
 
-for line in io.lines("daten/kahve.txt") do
+for line in io.lines("daten/kahve_kal3.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -214,12 +214,146 @@ local n = #lines-1
 
 end
 
-\end{luacode*}
-\newcommand\addplotCHIpf{\directlua{drawD()}}
-\newcommand\addploty{\directlua{drawD2()}}
-\newcommand\addplotxx{\directlua{drawD3()}}
-\newcommand\addplotzz{\directlua{drawD4()}}
 
+function drawD5()
+local string = string
+local lines = {}
+
+for line in io.lines("daten/kahve_kal4.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>1 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+----m
+local n = #lines-1
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+    -- tex.sprint("\\addplot coordinates{")
+    for i=1,n do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
+--   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
+
+--   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
+
+   -- tex.sprint("\\addplot[only marks] coordinates {("..nwg..","..mess(nwg)..")};")
+
+end
+
+
+function drawD6()
+local string = string
+local lines = {}
+
+for line in io.lines("daten/kahve_kal5.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>1 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+----m
+local n = #lines-1
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+    -- tex.sprint("\\addplot coordinates{")
+    for i=1,n do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
+--   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
+
+--   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
+
+   -- tex.sprint("\\addplot[only marks] coordinates {("..nwg..","..mess(nwg)..")};")
+
+end
+
+function drawD7()
+local string = string
+local lines = {}
+
+for line in io.lines("daten/kahve_kal6.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>1 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+----m
+local n = #lines-1
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+    -- tex.sprint("\\addplot coordinates{")
+    for i=1,n do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
+ --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
+--   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
+
+--   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
+
+   -- tex.sprint("\\addplot[only marks] coordinates {("..nwg..","..mess(nwg)..")};")
+
+end
+
+
+\end{luacode*}
+\newcommand\addplota{\directlua{drawD()}}
+\newcommand\addplotb{\directlua{drawD2()}}
+\newcommand\addplotc{\directlua{drawD3()}}
+\newcommand\addplotd{\directlua{drawD4()}}
+\newcommand\addplote{\directlua{drawD5()}}
+\newcommand\addplotf{\directlua{drawD6()}}
+\newcommand\addplotg{\directlua{drawD7()}}
 \pgfplotsset{
   standard/.style={
     axis x line=bottom,
@@ -243,11 +377,101 @@ end
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
 
-\begin{axis}[standard,minor x tick num=20, grid=minor]
-    \addplotzz
+\begin{axis}[standard]
+    \addplota
   \end{axis}
 \end{tikzpicture}
 \caption{Chromatogramm vom Kaffe}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}[standard]
+    \addplotb
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}[standard]
+    \addplotc
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}[standard]
+    \addplotd
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
+
+\end{figure}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+\begin{axis}[standard]
+    \addplote
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
+
+\end{figure}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+\begin{axis}[standard]
+    \addplotf
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
+
+\end{figure}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+\begin{axis}[standard]
+    \addplotg
+  \end{axis}
+\end{tikzpicture}
+\caption{Chromatogramm vom Koffein 0 \si{\milli\gram\per\liter}}
 
 \end{figure}
 

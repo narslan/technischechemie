@@ -22,7 +22,7 @@ end
 
 
 --- SMDE,
-for line in io.lines("coffein.csv") do
+for line in io.lines("gc.csv") do
   table.insert(lines, line)
 end
 local summex=0
@@ -89,6 +89,9 @@ local sb=syx*math.sqrt((1/n)+(xmean^2/xminxmean))
 local sm=math.sqrt(syx^2/xminxmean)
 local sx0=syx/m  --- Verfahrungsstandartabweichung
 local Vxo=sx0*100/xmean ---die relative Verfahrungsstandartabweichung
+print(sb)
+print(Vxo)
+
 
 ---
 function mess(messwert)

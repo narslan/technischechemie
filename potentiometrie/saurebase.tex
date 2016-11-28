@@ -172,11 +172,11 @@ mit der experimentellen Titrationskurve (50 \si{\milli\liter} einer 0.005 M \ce{
     xtick align=inside,
     legend style={draw=none,legend pos=outer north east},
 ]
-\nextgroupplot[ymax=14,ylabel=pH,xtick={0,5,10,15,20,25,30,35},xticklabels={0,5,10,15,20,25,30,35},xlabel=$\ce{V_{NaOH}}$, x unit =\si{\milli\liter}]
+\nextgroupplot[ymax=14,ylabel=pH,xtick={0,5,10,15,20,25,30,35,40,45,50},xticklabels={0,5,10,15,20,25,30,35,40,45,50},xlabel=$\ce{V_{NaOH}}$, x unit =\si{\milli\liter}]
 \addplot[mark=triangle] file[skip first]{naoht.txt};
 \node[coordinate,pin=left:{ \scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$ = 2.5 \si{\milli\liter}}] at (axis cs:2.5,7) {};
 \addlegendentry{ Theoretische Werte}
-\nextgroupplot[ymax=14,ylabel=pH,xtick={1,2,3,4,5},xticklabels={1,2,3,4,5}]
+\nextgroupplot[ymax=14,ylabel=pH,xtick={1,2,3,4,5},xticklabels={1,2,3,4,5},xlabel=$\ce{V_{NaOH}}$, x unit =\si{\milli\liter}]
 \addplot[mark=diamond] file[skip first] {naohp.txt};
 \node[coordinate,pin=right:{\scriptsize ÄP bei pH = 7 und $\ce{V_{NaOH}}$ = 2.75 \si{\milli\liter}}] at (axis cs:2.75,7) {};
 \addlegendentry{ Experimentelle Werte}
