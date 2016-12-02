@@ -13,23 +13,31 @@
 \usepackage{nicefrac}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows,chains,matrix,positioning,scopes,patterns,decorations.pathmorphing,shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage[version=4]{mhchem}
+\usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
+
 \floatstyle{plaintop}
 \restylefloat{table}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
 % header
 \usepackage{fancyhdr}
 \fancyhf{}
-\rhead{27.11.2015}
-\lhead{Nevroz Arslan, Justin König Gruppe 19}
+\rhead{02.12.2016}
+\lhead{Nevroz Arslan, Justin König Gruppe 6}
 \setlength{\headheight}{15pt}
 \rfoot{\thepage }
-\lfoot{Versuch 1: IR-Spektroskopie}
+\lfoot{Versuch 1: Fluoreszenzspektroskopie}
 \pagestyle{fancy}
 %\renewcommand{\thesection}{\arabic{section}}% Remove section references...
 %\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
 %\usepackage[backend=biber,sorting=none]{biblatex} \addbibresource{books.bib}
 
-\usepackage{url} \usepackage{csquotes}
+\usepackage{url}
+\usepackage{csquotes}
 \sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
 \renewcommand{\arraystretch}{1.5}
 \definecolor{skyblue1}{RGB}{135, 206, 250}
@@ -41,11 +49,100 @@
 \begin{document}
 
 \section{Ziel des Versuches}
-Der Versuch befasst sich mit dem Abkühlungsphänomen und den Wärmekapazitäten.
-Dazu werden die Wärmekapazitäten von Graphit und einem Metall anhand der kalorimetrischen Messungen bestimmt.
+Der Versuch befasst sich mit spektralen Untersuchungen im UV-Bereich. Dafür werden die Fluoreszenzspektren und Anregungsspektren von 2-Naphthol und 2-Naphtolat in Wasser aufgenommen.
 \section {Theorie}
-\subsection{Fluoressenz}
+\subsection{Absorption und Emission\supercite{og}}
+Eine chemische Verbindung erscheint dann farbig, wenn sie aus dem sichtbaren Teil des Spektrums einen Wellenlängenbereich selektiv absorbiert.
+Im Allgemeinen sind gesättigte organische Verbindungen für unser Auge farblos, da sich ihr Absorptionsbereich außerhalb der Sichtbaren im fernen Ultraviolett
+befindet. Durch Einführung von $\pi$-Bindungssystemen wie \ce{C=O}, \ce{C=N}, \ce{N=O} u.a., besonders wenn diese miteinander in Konjugation stehen, verschieben sich
+die Absorptionsbanden immer mehr zum langwelligeren, sichtbaren Teil des Spektrums.
+Für die Farbigkeit ist vor allem die energetisch hochliegenden und damit leichter anregbaren $\pi$ Elektronen verantwortlich.
+Je stärker die $\pi$-Elektronen delokasiert sind, umso langwelliger ist das Licht, welches die Verbindung absorbiert. S. 42
+Man bezeichnet eine Gruppierung in einem Molekül, die Strahlung im UV/Vis Bereich absorbiert, als Chromophore (gr. \textit{phoron} = Träger). Die Anhäufung von Chromophoren,
+besonders in konjugierten Systemen, ruft eine Farbvertiefung (Bathochromie, Rotverschiebung) hervor, d.h. eine Verschiebung der Absorptionsmaxima nach längeren Wellen.
+Die auxochromen (gr. \textit{auxesis}= Zunahme) Gruppen verschieben die Absorptionsmaxima noch längeren Wellen. Eine typische, auxochrome Gruppe ist die Hydroxgruppe, \ce{-OH}.
+\subsection{Physikalische Vorgänge der Fluoreszenz\supercite{harris}}
+Wir nehmen an, dass das Molekül M Licht absorbiert und in den angeregten Zustand \ce{M^*}
+überführt wird:
+\begin{align*}
+ \text{Absorption:} &= \ce{M + h \cdot v -> M^*}\\
+ \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Abs.} [M]
+\end{align*}
+Die Geschwindigkeitskonstante, $k_{Abs.}$ , hängt von der Intensität der Bestrahlung und
+dem Extinktionskoeffizienten ($\epsilon$) von $M$ ab. Je intensiver die Einstrahlung und je besser es
+absorbiert wird, desto schneller wird $M^*$ gebildet.
+
+Nach der Absorption kann $M^*$ ein Photon emittieren und in den Grundzustand zu-
+rückkehren:
+\begin{align*}
+ \text{Emmision:} &= \ce{M^* + -> M +  h \cdot v}\\
+ \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{E} [M^*]
+\end{align*}
+
+Alternativ kann das angeregte Molekül die Energie durch Wärme verlieren:
+\begin{align*}
+ \text{Desaktivierung:} &= \ce{M^* -> M +  W\ddot{a}rme}\\
+ \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{D} [M^*]
+\end{align*}
 
 
+Eine weitere Möglichkeit ist die Übertragung der Energie des angeregten Moleküls auf ein
+anderes Molekül (Quencher, Q) durch Fluoreszenzlöschung ( Quenching ). Dabei wird
+der Quencher angeregt:
+\begin{align*}
+ \text{Quenching:} &= \ce{M^* + Q -> M +  Q^*}\\
+ \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Q} [M^*] [Q]
+\end{align*}
+
+Aus den beschriebenen Einzelprozessen resultiert, dass sich die Geschwindigkeit der De-
+aktivierung von $M^*$ aus der Summe der Geschwindigkeiten von Emission, Deaktivierung
+und Löschung ergibt:
+Geschwindigkeit des Verschwindens von
+\begin{align*}
+ \text{Geschwindigkeit des Verschwindens von } M^* &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
+\end{align*}
+Setzt man Bildungs- und Abbaugeschwindigkeit von M* gleich, erhält man:
+\begin{align*}
+ k_{Abs} [M] &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
+\end{align*}
+\subsection{Quantenausbeute\supercite{harris}} % (fold)
+\label{ssub:quantenausbeute}
+
+% subsubsection quantenausbeute (end)
+\grqq Die Quantenausbeute für einen photophysikalischen Prozess ist der Anteil der absor-
+bierten Photonen, der die gewünschten Emissionsprozesse hervorruft. Wenn das für jedes
+absorbierte Photon zutrifft, wäre die Quantenausbeute Eins.\grqq
+Die Quantenausbeute für die Emission von $M^*$ ist die Geschwindigkeit der Emission
+dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quenchers :
+\begin{align*}
+  \Phi _0 = \frac{\text{pro Sekunde Emittierte Photonen}}{\text{pro Sekunde absorbierte Photonen}} = \frac{k_{E} [M^*]}{k_{Abs.} [M]}
+\end{align*}
+\subsection{Aufbau des Geräts\supercite{skript}}
+\begin{figure}[h]
+
+\centering
+\begin{tikzpicture}[
+  triangle/.style={isosceles triangle,draw=,thick,shape border rotate=90, minimum height=15mm,minimum width=15mm,inner sep=0},
+  ]{
+\node[triangle]{X};
+\node at (0,-0.7) {Licht quelle};
+\draw[->,ultra thick] (1,0.25)  -- (2,0.25);
+ % \draw (0,0) rectangle (1,0.5) node[pos=.5] (a) {Licht quelle};
+\draw[->,ultra thick] (1,0.25)  -- (2,0.25);
+\draw (2,0) rectangle (5,0.5) node[pos=.5] (b) {Monochromator};
+\draw[->,ultra thick] (5,0.25)  -- (6,0.25);
+\draw (6,0) rectangle (8,0.5) node[pos=.5] (c) {Probe};
+\draw[->,ultra thick] (8,0.25)  -- (9,0.25);
+\draw (9,0) rectangle (11,0.5) node[pos=.5] (d) {Detektor};
+\draw[->,ultra thick] (11,0.25)  -- (12,0.25);
+\draw (12,0) rectangle (14,0.5) node[pos=.5] (e) {Rechner};
+
+}
+\end{tikzpicture}
+
+\end{figure}
+\section{Auswertung}
+\section{Diskussion}
+\printbibliography
 
 \end{document}

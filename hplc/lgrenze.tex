@@ -119,7 +119,7 @@ n = 6&   & & & &\\
     m &= \frac{n \cdot \sum xy - \sum x \cdot \sum y}{n \cdot \sum x^2 - (\sum x )^2} \\
       &= \frac{6 \cdot  \num{6098490.65} \, \si{\milli\gram\per\liter} \si{\milli\volt.\second} - 750 \, \si{\milli\gram\per\liter} \times \num{33290.50} \,  \si{\milli\volt.\second}}
       {6  \cdot \num{137500} \, \si{\square\milli\gram\per\square\liter}  - \num{562500} \, \si{\square\milli\gram\per\square\liter}}\\
-      &= 44.3 \, \si{\liter.\milli\volt\second\per\milli\gram}
+      &= 44.3 \, \si{\liter.\milli\volt.\second\per\milli\gram}
   \end{align*}
 
   b wird wie folgt berechnet:
@@ -137,10 +137,10 @@ n = 6&   & & & &\\
 \begin{align}
  s_{y,x} &= \sqrt{\frac{\sum y^2 - b \cdot \sum y - m \cdot \sum xy}{(n-2)}}
 \end{align}
-mit m = 44.3 \, \si{\liter.\milli\volt\second\per\milli\gram} , b = 13.6 und n = 6
+mit m = 44.3 \, \si{\liter.\milli\volt\second\per\milli\gram} , b = 13.6 \si{\milli\volt.\second} und n = 6
 \begin{align*}
   s_{y,x} &=\sqrt{ \frac{ \num{270954683.23} \, \si{\square\milli\volt} \si{\square\second} - 13.6 \, \si{\milli\volt.\second} \times \num{33290.50} \, \si{\milli\volt.\second}
-   -  44.3 \, \si{\liter.\milli\volt\second\per\milli\gram} \times \num{6098490.65} \si{\milli\gram\per\liter.\milli\volt.\second} } {6-2}} \\
+   -  44.3 \, \si{\liter.\milli\volt.\second\per\milli\gram} \times \num{6098490.65} \si{\milli\gram\per\liter.\milli\volt.\second} } {6-2}} \\
   &= 343 \, \si{\milli\volt.\second}
 \end{align*}
 \section{Ermittlung des Vertrauensbereich $ VB(\hat{x}) $}
@@ -151,23 +151,22 @@ mit m = 44.3 \, \si{\liter.\milli\volt\second\per\milli\gram} , b = 13.6 und n =
   VB(\hat{x}) = \hat{x} \pm \frac{t_{P,n-2} \cdot s _{y,x}}{m} \cdot \sqrt{1+\frac{1}{n}+\frac{(y-\overline{y})^2}{m^2 \cdot \sum (x -\overline{x})^2}}
 \end{equation}
 mit:\par\noindent
-\begin{align*}
-   y =  \num{7781.223} \, \si{\milli\volt.\second} ,
-   \hat{x}  = 175.43 \, \si{\milli\gram\per\liter} ,
-   s_{y,x} = 343 \, \si{\milli\volt.\second} \\
-    \overline{y} = \num{5548.417} \, \si{\milli\volt.\second} ,
-   \, m = 44.3 \, \si{\liter.\milli\volt.\second\per\milli\gram},
-    \, n = 6 ,
-    \, t_{p,n-2}= 2.45 \\
-   \sum (x -\overline{x})^2= \num{43750.00} \, \si{\square\milli\gram\square\per\liter}
- \end{align*}
+\begin{flalign*}
+   y &=  \num{7781.223} \, \si{\milli\volt.\second},&\\
+   \hat{x} & = 175 \, \si{\milli\gram\per\liter} ,\\
+   s_{y,x} & = 343 \, \si{\milli\volt.\second} \\
+    \overline{y} &= \num{5548.417} \, \si{\milli\volt.\second} ,
+   \, m = 44.3 \, \si{\liter.\milli\volt.\second\per\milli\gram},\\
+    \, n &= 6 ,    \, t_{p,n-2}= 2.78 \, \text{für f=4 Freiheitsgrade} \\
+   \sum (x -\overline{x})^2 &= \num{43750.00} \, \si{\square\milli\gram\square\per\liter}
+ \end{flalign*}
  daraus folgt:
-\begin{align*}
-   VB(\hat{x}) &= 175.43 \, \si{\milli\gram\per\liter} \pm \frac{2.45 \times 343 \, \si{\milli\volt.\second}}{44.3 \, \si{\liter.\milli\volt\second\per\milli\gram}}
+\begin{flalign*}
+   VB(\hat{x}) &= 175 \, \si{\milli\gram\per\liter} \pm \frac{2.78 \times 343 \, \si{\milli\volt.\second}}{44.3 \, \si{\liter.\milli\volt.\second\per\milli\gram}}
       \sqrt{1+\frac{1}{6}+\frac{(\num{7781.223}-\num{5548.417})^2 \si{\milli\volt^2\square\second}  }{44.3^2 \si{\square\liter.\milli\volt^2\square\second\per\milli\gram^2}
-   \times \num{43750.00}  \si{\square\milli\gram\square\per\liter}}}\\
-    &=175.43 \, \si{\milli\gram\per\liter} \pm 20.99  \, \si{\milli\gram\per\liter}
- \end{align*}
+   \times \num{43750.00}  \si{\square\milli\gram\square\per\liter}}}&\\
+    &=175 \, \si{\milli\gram\per\liter} \pm 23.8  \, \si{\milli\gram\per\liter}&
+ \end{flalign*}
 
 
 % \begin{thebibliography}{}

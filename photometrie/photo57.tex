@@ -42,24 +42,23 @@ local unpack=table.unpack
 function drawD()
   local files={}
   local colors={}
-  local files = {'1.TXT','2.TXT','3.TXT','H2OA.TXT','MAX.TXT'}
-  --  local files = {'450.TXT','451.TXT','452.TXT','453.TXT','BASELINE.TXT','BASELINE.TXT'}
+  local files = {'iso.csv','iso2.csv','iso3.csv','iso4.csv'}
     local colors = {'blue','orange','red','teal','black','green'}
-   -- local shifty = {-0.176238 ,  -0.217737 , -0.211587 ,  -0.182053 , -0.223418,0}
- --local files = {'MAX.TXT'}
 
 for filei=1,#files do
 
-    local wavec = 400
+
     tex.sprint("\\addplot[".."no markers,"..colors[filei].."] coordinates{")
 
 
     for line in io.lines(files[filei]) do
-        if type(line)  then
-        local coord= 2-math.exp(line)
-        --table.insert(lines,line)
-        tex.sprint("("..wavec..","..coord..")")
-        wavec=wavec+0.853
+           local s, e = line:find("%s+", 1)
+            local y=tonumber(line:sub(e))
+           local x=tonumber(line:sub(1,e))
+        if type(x)  then
+
+        tex.sprint("("..x..","..y..")")
+
         end
    end
 
