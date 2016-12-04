@@ -33,7 +33,7 @@
 \rhead{ Gruppe 24}
 \setlength{\headheight}{15pt}
 \pagenumbering{gobble}
-\lhead{Absorptionsspektren von Kupferkonzentrationen 0 mg/L, 0.25, 0.5,  1 mg/L, 2 mg/L }
+\lhead{Photometrie - Extinktionsspektren von Kupferkonzentrationen 0 mg/L, 0.25, 0.5,  1 mg/L, 2 mg/L - Anhang 2}
 
 \begin{luacode*}
 
@@ -58,8 +58,8 @@ for filei=1,#files do
 
     for line in io.lines(files[filei]) do
         if type(line)  then
-        local coord= math.pow(10,line) -1
-        --table.insert(lines,line)
+        local coord=line
+                --table.insert(lines,line)
         tex.sprint("("..wavec..","..coord..")")
         wavec=wavec+0.85
         end
@@ -82,7 +82,7 @@ red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray}
         axis x line=middle,
     axis y line=middle,
      xlabel= Wellenlänge, % Set the labels
-    ylabel= Absorption ,
+    ylabel= Extinktion ,
     x unit= \si{\nano\meter} , % Set the respective units
     y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
     x tick label style={rotate=90,anchor=east},

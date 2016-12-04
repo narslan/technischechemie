@@ -33,7 +33,7 @@
 \rhead{ Gruppe 24}
 \setlength{\headheight}{15pt}
 \pagenumbering{gobble}
-\lhead{Absorptionsspektren von Kupferkonzentrationen 0 mg/L, 1 mg/L, 2 mg/L und 4 mg/L }
+\lhead{Extinktionsspektren von Kupferkonzentrationen 0 mg/L, 1 mg/L, 2 mg/L und 4 mg/L - Anhang 1}
 
 \begin{luacode*}
 
@@ -45,6 +45,8 @@ function drawD()
   local files = {'1.TXT','2.TXT','3.TXT','H2OA.TXT','MAX.TXT'}
   --  local files = {'450.TXT','451.TXT','452.TXT','453.TXT','BASELINE.TXT','BASELINE.TXT'}
     local colors = {'blue','orange','red','teal','black','green'}
+       local names = {'0 mg/L','1 mg/L','2 mg/L','Wasser Probe','4 mg/l'}
+
    -- local shifty = {-0.176238 ,  -0.217737 , -0.211587 ,  -0.182053 , -0.223418,0}
  --local files = {'MAX.TXT'}
 
@@ -56,7 +58,7 @@ for filei=1,#files do
 
     for line in io.lines(files[filei]) do
         if type(line)  then
-        local coord= 2-math.exp(line)
+        local coord= line
         --table.insert(lines,line)
         tex.sprint("("..wavec..","..coord..")")
         wavec=wavec+0.853
@@ -64,7 +66,7 @@ for filei=1,#files do
    end
 
      tex.sprint("};")
-              tex.sprint("\\addlegendentry{"..files[filei].."}")
+              tex.sprint("\\addlegendentry{"..names[filei].."}")
 
      end
 
@@ -76,7 +78,7 @@ end
 \pgfplotsset{
     standard/.style={
      xlabel= Wellenlänge, % Set the labels
-    ylabel= Absorption ,
+    ylabel= Extinktion ,
     x unit= \si{\nano\meter} , % Set the respective units
     y label style={at={(axis description cs:-0.2,.5)},anchor=south},
     x tick label style={rotate=90,anchor=east},
