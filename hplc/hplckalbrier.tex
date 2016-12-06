@@ -9,7 +9,7 @@
 
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.13}
+\pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
 
 
@@ -204,13 +204,7 @@ local n = #lines-1
       tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
- --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
- --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
---   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
 
---   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
-
-   -- tex.sprint("\\addplot[only marks] coordinates {("..nwg..","..mess(nwg)..")};")
 
 end
 

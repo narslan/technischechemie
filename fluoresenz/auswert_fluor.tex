@@ -1,0 +1,256 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=1.13}
+\usepgfplotslibrary{units}
+
+
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+%\usepackage{helvet}
+\usepackage[landscape]{geometry}
+\usepackage{unicode-math}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\setmainfont{TeX Gyre Heros}
+
+\setmathfont{TeX Gyre Heros}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Fluoreszenz} Naphtol-Naphtolat Gleichgewichtspektren}
+\setlength{\headheight}{15pt}
+\pagenumbering{gobble}
+
+%\usepackage{libertine}
+%\usepackage{beramono}
+%\setmainfont{Ubuntu}
+\begin{luacode*}
+
+
+function tabled()
+local lines = {}
+
+for line in io.lines("data/ph02anregung350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+
+    for i=1,#xwerte do
+      tex.sprint(string.format("%d & %g \\\\",xwerte[i],ywerte[i]))
+    end
+
+
+
+end
+
+function drawB()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+function drawC()
+local lines = {}
+
+for line in io.lines("data/ph06anregung350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawD()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+\end{luacode*}
+
+\newcommand\tabled{\directlua{tabled()}}
+\newcommand\addplotb{\directlua{drawB()}}
+\newcommand\addplotc{\directlua{drawC()}}
+\newcommand\addplotd{\directlua{drawD()}}
+
+
+\begin{document}
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+     xlabel= $\lambda$, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+    legend style={at={(0.5,-0.2)},anchor=north},
+    y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east}
+  }
+}
+
+% \begin{tabular}{rc}
+% \hline
+% $x$ & $\sin(x)$  \\
+% \hline
+% %\tabled
+% \hline
+% \end{tabular}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}
+    \addplotb
+  \end{axis}
+\end{tikzpicture}
+\caption{ph02anregung350/340}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}
+    \addplotc
+  \end{axis}
+\end{tikzpicture}
+\caption{ph02emmissions/360/370}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{axis}
+    \addplotd
+  \end{axis}
+\end{tikzpicture}
+\caption{ph06emmissions/360/370}
+
+\end{figure}
+
+
+
+
+\end{document}
