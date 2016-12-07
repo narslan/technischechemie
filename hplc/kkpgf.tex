@@ -73,13 +73,22 @@ local n = #lines-1
       tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
-     tex.sprint("\\node[small dot,pin=-90:{\\texttt{3.108}}] at  (axis description cs:3.108,0){};")
+    --\draw (0,0) rectangle (2,2) node[pos=.5] {Test};
+    -- tex.sprint("\\node[small dot,pin=-90:{\\texttt{3.108}}] at  (axis description cs:3.108,0){};")
 
 
 end
 
 
 \end{luacode*}
+\begin{filecontents}{sdata.csv}
+System,Data
+Säule:,RP18/250
+Eluent:,5 20/80 MethanolWasser
+Fluss:, 1.5 ml/min
+Detektion:, UV 280 nm
+\end{filecontents}
+
 \newcommand\addplota{\directlua{drawD()}}
 
 \pgfplotsset{
@@ -97,19 +106,26 @@ end
 }
 \begin{document}
 
-\begin{figure}
 
+\begin{minipage}{0.8\textwidth}
 \begin{tikzpicture}[scale=1.8,transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
 
-\begin{axis}[standard, xtick={1.27, 4.85 }, xticklabels={ \small{$t_m$= 1.27}, \small{$t_r$ = 4.85}}]
+\begin{axis}[standard, xtick={0,  4.004 ,7.516 , 8.892 , 11.128, 14.601},
+  xticklabels={$0$,$t_m =  4.004$, $t_r =  7.516 $, $t_r = 8.892$, $t_r = 11.128$, $t_r = 14.601$}
+  ]
     \addplota
   \end{axis}
 \end{tikzpicture}
-\caption{Das Chromatogramm der Kaffee-Probe}
-\end{figure}
+\end{minipage}\quad
+\begin{minipage}[t]{0.2\textwidth}
+\pgfplotstabletypeset[every head row/.style={output empty row},col sep=comma, columns/distance/.style={column
+  name={System}, column type={r}}, columns/loss/.style={column name =
+  {Data},column type={l}}, every head row/.style={after row=\hline},
+  string type ]{sdata.csv}
+\end{minipage}
 
 \end{document}

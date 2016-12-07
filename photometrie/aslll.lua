@@ -5,7 +5,7 @@
 
 
 x={0,1,2,4}
-y = {0.062135, 0.067407, 0.070154, 0.072923}
+y = {0.0122, 0.1284, 0.23679, 0.38613}
 
 
 summex = 0
@@ -27,7 +27,7 @@ end
 print(string.format("sumx:%.6f summey:%.6f  summexx: %.6f summeyy: %.6f summexy:%.6f",summex,summey,summexx,summeyy,summexy))
 n = 4
 ndach= 4
-nodach=5
+nodach=1
 m = ((n*summexy) - (summex * summey))/((n* summexx) - summex^2)
 b = ((summexx*summey)-(summex*summexy))/((n* summexx) - summex^2)
 
