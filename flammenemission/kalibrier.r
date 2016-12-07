@@ -1,5 +1,5 @@
 
  assign("t2", c(0 , 0.2 , 0.5 , 1.0 , 1.5 , 2.0 , 2.5 ))
 assign("vis", c( 0, 2400.73, 6098.63, 11254.6 ,16435.87 ,21126.87 ,25335.13))
-fitvis<-lm(vis ~ t2 )
+fitvis<-lm(vis ~ t2 +I(t2^2))
 summary(fitvis)

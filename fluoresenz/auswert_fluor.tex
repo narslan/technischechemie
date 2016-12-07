@@ -35,6 +35,9 @@
 \setlength{\headheight}{15pt}
 \pagenumbering{gobble}
 
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
 %\usepackage{libertine}
 %\usepackage{beramono}
 %\setmainfont{Ubuntu}
@@ -44,7 +47,7 @@
 function tabled()
 local lines = {}
 
-for line in io.lines("data/ph02anregung350_340.txt") do
+for line in io.lines("data/ph02emmissions_360_370.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -109,6 +112,572 @@ end
 
 
 function drawC()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+function drawD()
+
+
+local lines = {}
+
+
+for line in io.lines("data/ph04emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawE()
+local lines = {}
+
+for line in io.lines("data/ph04emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawF()
+
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawG()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+function drawF()
+
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawG()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+function drawF()
+
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawG()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawH()
+
+local lines = {}
+
+for line in io.lines("data/ph08emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawJ()
+local lines = {}
+
+for line in io.lines("data/ph08emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawK()
+
+local lines = {}
+
+for line in io.lines("data/ph10emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawL()
+local lines = {}
+
+for line in io.lines("data/ph10emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawM()
+local lines = {}
+
+for line in io.lines("data/ph12emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawN()
+local lines = {}
+
+for line in io.lines("data/ph12emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+----- Anregung
+
+function drawO()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02anregung350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+function drawP()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02anregung420_410.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawR()
+
+
 local lines = {}
 
 for line in io.lines("data/ph06anregung350_340.txt") do
@@ -139,10 +708,78 @@ end
     tex.sprint("};")
 end
 
-function drawD()
+function drawS()
+
+
 local lines = {}
 
-for line in io.lines("data/ph06emmissions_360_370.txt") do
+for line in io.lines("data/ph06anregung420_410.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawT()
+
+
+local lines = {}
+
+for line in io.lines("data/ph12anregung_350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawU()
+
+
+local lines = {}
+
+for line in io.lines("data/ph12anregung420_410.txt") do
   table.insert(lines, line)
 end
 local summex=0
@@ -179,21 +816,38 @@ end
 \newcommand\addplotb{\directlua{drawB()}}
 \newcommand\addplotc{\directlua{drawC()}}
 \newcommand\addplotd{\directlua{drawD()}}
-
-
+\newcommand\addplote{\directlua{drawE()}}
+\newcommand\addplotf{\directlua{drawF()}}
+\newcommand\addplotg{\directlua{drawG()}}
+ \newcommand\addploth{\directlua{drawH()}}
+ \newcommand\addplotj{\directlua{drawJ()}}
+\newcommand\addplotk{\directlua{drawK()}}
+ \newcommand\addplotl{\directlua{drawL()}}
+ \newcommand\addplotm{\directlua{drawM()}}
+ \newcommand\addplotn{\directlua{drawN()}}
+ \newcommand\addploto{\directlua{drawO()}}
+ \newcommand\addplotp{\directlua{drawP()}}
+\newcommand\addplotr{\directlua{drawR()}}
+ \newcommand\addplots{\directlua{drawS()}}
+ \newcommand\addplott{\directlua{drawT()}}
+ \newcommand\addplotu{\directlua{drawU()}}
 \begin{document}
 \pgfplotsset{
   standard/.style={
     axis x line=bottom,
     axis y line=middle,
-     xlabel= $\lambda$, % Set the labels
-    ylabel= Intensität ,
+     xlabel= Wellenlänge, % Set the labels
+    ylabel= Fluoreszenzintensität ,
     x unit= \si{\nano\meter},
-    legend style={at={(0.5,-0.2)},anchor=north},
-    y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+    legend style={at={(0.1,-0.2)},anchor=north},
+    y label style={at={(axis description cs:-0.2,.5)},rotate=90,anchor=south},
     x tick label style={rotate=90,anchor=east}
   }
 }
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
 
 % \begin{tabular}{rc}
 % \hline
@@ -205,52 +859,224 @@ end
 \begin{figure}
 
 \begin{tikzpicture}[scale=1.8,transform shape]
-  \tikzset{
-    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=chameleon1,circle,scale=0.3}
-  }
 
-\begin{axis}
+\begin{axis}[standard]
     \addplotb
   \end{axis}
 \end{tikzpicture}
-\caption{ph02anregung350/340}
+\caption{\large  Emissionsspektrum ph 2 360-370 \si{\nano\meter}}
 
 \end{figure}
 
 \begin{figure}
 
 \begin{tikzpicture}[scale=1.8,transform shape]
-  \tikzset{
-    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=chameleon1,circle,scale=0.3}
-  }
 
-\begin{axis}
+\begin{axis}[standard]
     \addplotc
   \end{axis}
 \end{tikzpicture}
-\caption{ph02emmissions/360/370}
+\caption{\large  Emissionsspektrum ph 2 320-330 \si{\nano\meter}}
+
 
 \end{figure}
 
 \begin{figure}
 
 \begin{tikzpicture}[scale=1.8,transform shape]
-  \tikzset{
-    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=chameleon1,circle,scale=0.3}
-  }
 
-\begin{axis}
+\begin{axis}[standard]
     \addplotd
   \end{axis}
 \end{tikzpicture}
-\caption{ph06emmissions/360/370}
+\caption{\large  Emissionsspektrum ph 4 360-370 \si{\nano\meter}}
+
+\end{figure}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplote
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 4 320-330 \si{\nano\meter}}
+
+\end{figure}
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotf
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 6 360-370 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotg
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 6 320-330 \si{\nano\meter}}
 
 \end{figure}
 
 
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addploth
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 8 360-370 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotj
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 8 320-330 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotk
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 10 360-370 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotl
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 10 320-330 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotm
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 12 360-370 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotn
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Emissionsspektrum ph 12 320-330 \si{\nano\meter}}
+
+\end{figure}
+
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addploto
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Anregungsspektrum ph 2 350-340 \si{\nano\meter}}
+
+\end{figure}
+
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotp
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Anregungsspektrum ph 2 420-410 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotr
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Anregungsspektrum ph 6 350-340 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplots
+  \end{axis}
+\end{tikzpicture}
+\caption{ph06emmissions/360/370}
+\caption{\large  Anregungsspektrum ph 6 420-410 \si{\nano\meter}}
+
+\end{figure}
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+
+\begin{axis}[standard]
+    \addplott
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Anregungsspektrum ph 12 350-340 \si{\nano\meter}}
+
+\end{figure}
+
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+
+\begin{axis}[standard]
+    \addplotu
+  \end{axis}
+\end{tikzpicture}
+\caption{\large  Anregungsspektrum ph 12 420-410 \si{\nano\meter}}
+
+\end{figure}
 
 
 \end{document}

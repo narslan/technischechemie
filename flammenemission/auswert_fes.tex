@@ -32,7 +32,6 @@
 \lhead{Flammen-Emissions-Spektroskopie}
 
 \pagenumbering{gobble}
-\usepackage[landscape]{geometry}
 
 %\usepackage{libertine}
 %\usepackage{beramono}
@@ -200,7 +199,7 @@ function drawD()
     end
     tex.sprint("};")
  --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
-    tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..m.."*x+"..b.."};")
+    tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", thick".."]{"..m.."*x+"..b.."};")
 --   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
 
 --   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
@@ -211,6 +210,8 @@ end
 
 local referenz=mess(16691.73)
 local trinkwasser=mess(14688.9)
+local evian=mess(6632.23)
+local jeden=mess(17689.73)
 
 function tabelle()
   if b>0 then
@@ -224,14 +225,18 @@ tex.print('Standartabweichung:'..string.format('%.4f',syx))
 tex.print('\\par')
 tex.print('relative Standardabweichung des Verfahrens:'..string.format('%.4f',Vxo)..'\\%')
 tex.print('\\par')
-tex.print('Nachweisgrenze:'..string.format('%.4f',nwg)..'mg/L')
+tex.print('Nachweisgrenze:'..string.format('%.2f',nwg)..'mg/L')
 tex.print('\\par')
-tex.print('Bestimmungsgrenze:'..string.format('%.4f',xbg)..'mg/L')
+tex.print('Bestimmungsgrenze:'..string.format('%.2f',xbg)..'mg/L')
 tex.print('\\par')
-tex.print('Referenz ='..string.format('%.4f',referenz)..'mg/L')
-tex.print('Trinkwasser ='..string.format('%.4f',probe2)..'mg/L')
+tex.print('Referenz ='..string.format('%.2f',referenz)..'mg/L')
 tex.print('\\par')
-tex.print('Trinkwasser ='..string.format('%.4f',cn)..'mg/L')
+tex.print('Trinkwasser ='..string.format('%.2f',trinkwasser)..'mg/L')
+tex.print('\\par')
+tex.print('Evian ='..string.format('%.2f',evian)..'mg/L')
+tex.print('\\par')
+tex.print('Jeden Tag ='..string.format('%.2f',jeden)..'mg/L')
+
 
 --for i=1,n do
 --tex.sprint(operator(xwerte[i])..'\\par')
@@ -261,34 +266,37 @@ end
 \newcommand\tabellenwerte{\directlua{tabelle()}}
 \pgfplotsset{
   standard/.style={
-     xlabel= Zeit, % Set the labels
-    ylabel= Potential ,
-    y unit= \si{\milli\volt} , % Set the respective units
-    x unit= \si{\minute},
-    legend style={at={(0.5,-0.2)},anchor=north},
-    y label style={at={(axis description cs:-0.1,.5)},anchor=south},
-    x tick label style={rotate=90,anchor=east}
+    axis x line=middle,
+    axis y line=middle,
+    legend style={at={(1.2,0.9)},anchor=north},
+    y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+  x   label style={at={(axis description cs:0.6,-.1)},anchor=south},
+    x tick label style={at={(axis description cs:-0.1,-.5)},rotate=90,anchor=east},
   }
 }
 \begin{document}
 \lhead{Flammen-Emissions-Spektroskopie (FES)  Gruppe 24}
-\begin{itemize}
-  \item \Large{Kalibrierlinie}
-  \item \Large{$\sigma$ und $\sigma_{rel}$}
-  \item \Large{Die Angabe der gefundenen Konzentrationen}
-  \item \Large{Nachweis- und Bestimmungsgrenze}
-
-\end{itemize}
-\begin{tikzpicture}[scale=1.8,transform shape]
+\begin{figure}
+\begin{tikzpicture}[transform shape]
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
   }
-  \begin{axis}[standard,xlabel=Konzentration/(mg/L),ylabel=Messsignal]
+  \begin{axis}[standard,xlabel=Konzentration (mg/L),ylabel=Messsignal]
     \addplotCHIpf
-    \addplot[violet,thick,domain=0:5] {-820*x^2+12276.75*x+27.52 };
+    \addlegendentry{Messwerte}
+      \addlegendentry{$y = 10172x + 616$}
+    \addplot[white,thick,domain=0:2,draw=none]{x*0};
+    \addlegendentry{$R^2 = 0.997$}
+    \addplot[violet,ultra thick,domain=0:5] {-820*x^2+12155*x+27 };
+    \addlegendentry{$-820x^2+12155x+27$}
+      \addplot[white,thick,domain=0:2,draw=none]{x*0};
+    \addlegendentry{$R^2 = 0.999$}
+
   \end{axis}
 \end{tikzpicture}
+\caption{Kalibrierlinie}
+\end{figure}
 \par
 \tabellenwerte
 \par
