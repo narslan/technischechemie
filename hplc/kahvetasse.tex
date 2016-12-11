@@ -1,0 +1,128 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+\sisetup{detect-all}
+
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+%\usepackage{helvet}
+\usepackage[landscape]{geometry}
+\usepackage{unicode-math}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\setmainfont{TeX Gyre Heros}
+
+\setmathfont{TeX Gyre Heros}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+\rhead{ Gruppe 24}
+\lhead{ \textbf{HPLC - Coffein Bestimmung} die Chromatogramm der Kalibriermessungen}
+\setlength{\headheight}{20pt}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+%\usepackage{libertine}
+%\usepackage{beramono}
+%\setmainfont{Ubuntu}
+\begin{luacode*}
+
+function drawA()
+local string = string
+local lines = {}
+
+for line in io.lines("daten/kahve.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>1 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+----m
+local n = #lines-1
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+    -- tex.sprint("\\addplot coordinates{")
+    for i=1,n do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+    -- tex.sprint("\\node[small dot,pin=-90:{\\texttt{3.108}}] at  (axis description cs:3.108,0){};")
+
+
+end
+
+
+\end{luacode*}
+\newcommand\addplota{\directlua{drawA()}}
+
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=middle,
+    axis y line=middle,
+     xlabel= Zeit, % Set the labels
+    ylabel= Potential ,
+    y unit= \si{\milli\volt} , % Set the respective units
+    x unit= \si{\minute},
+    legend style={at={(0.5,-0.2)},anchor=north},
+    x label style={at={(axis description cs:0.5,-.18)},anchor=south},
+        y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
+    ymin = 29, xmin=0
+  }
+}
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+\begin{document}
+
+
+
+
+\begin{figure}
+
+\begin{tikzpicture}[scale=1.8,transform shape]
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+\begin{axis}[standard, xtick={1.27, 4.85 },
+  xticklabels={$t_m = 1.27$,$t_r = 4.85$, }
+]
+    \addplota
+  \end{axis}
+
+\end{tikzpicture}
+  \caption{Chromatogramm der verdünnten Kaffee-Probe}
+
+\end{figure}
+
+\end{document}

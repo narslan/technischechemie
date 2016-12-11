@@ -277,39 +277,6 @@ end
 end
 
 
-function drawF()
-
-local lines = {}
-
-for line in io.lines("data/ph06emmissions_360_370.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
-
-    tex.sprint("\\addplot[".."no marks".."] coordinates{")
-
-    for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
-    end
-    tex.sprint("};")
-end
-
-
 
 
 function drawG()
@@ -345,71 +312,7 @@ end
 
 
 
-function drawF()
 
-local lines = {}
-
-for line in io.lines("data/ph06emmissions_360_370.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
-
-    tex.sprint("\\addplot[".."no marks".."] coordinates{")
-
-    for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
-    end
-    tex.sprint("};")
-end
-
-
-
-
-function drawG()
-local lines = {}
-
-for line in io.lines("data/ph06emmissions_320_330.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
-
-    tex.sprint("\\addplot[".."no marks".."] coordinates{")
-
-    for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
-    end
-    tex.sprint("};")
-end
 
 function drawH()
 
