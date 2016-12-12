@@ -66,12 +66,12 @@
 
 \noindent
 \pagenumbering{gobble}
-Für die Bewertung der Qualität der Messung werden zuerst die experimentellen Fehler ermittelt.
+Für die Bewertung der Messung werden zuerst die experimentellen Fehler ermittelt.
 Die experimentellen Fehler werden in systematischen und zufälligen Fehler eingeteilt.
 Systematische Fehler sind solche, die sich im Verlaufe statisticher Berechnungen (Kalibrierung) zeigen.
 Sie werden in Form von Standardabweichung ausgedrückt, welche ein Maß für die Streuung der Messwerte ist.(s.120)
- Die ermittelte Standardabweichung ist $s_{y,x}$ = 343 \si{\milli\volt.\second} und entspricht einer kleinen Streuung .
-
+ Die ermittelte Standardabweichung ist $s_{y,x}$ = 343 \si{\milli\volt.\second} und entspricht einer kleinen Streuung
+auf der Ordinate.
  Es ist üblich, die Standardabweichung $s_{y,x}$ und die Empfindlichkeit (Steigung der
 Regressionsgeraden $m$) zu einem gütebestimmenden Kennwert, der Verfahrensstandardabweichung
 $s_{x0}$, zusammenzufassen nach:
@@ -82,31 +82,34 @@ s_{x0}=&\frac{343 \, \si{\milli\volt.\second}}{44.3 \, \si{\liter.\milli\volt.\s
   \end{align*}
   Daraus folgt, dass bei gleicher Standardabweichung das Verfahren die bessere
 Güte (die geringere Verfahrensstandardabweichung) liefert, dessen Empfindlichkeit $m$
-höher ist.
+höher ist.~\cite{statistik}
   Eine weitere abgeleitete statistische Kenngröße bei der Kalibrierungsbewertung ist
-die relative Verfahrensstandardabweichung $V_{x0}$.
+die relative Verfahrensstandardabweichung $V_{x0}$. Sie bezieht die Verfahrensstandard-
+abweichung $s_{x0}$ auf die Mitte des Konzentrationsbereiches $\overline{x}$
   \begin{align*}
  V_{x0}=&\frac{s_{x0}}{\overline{x}}\times 100 &\text{die relative Verfahrensstandartabweichung}\\
  = &\frac{7.74 \si{\milli\gram\per\liter}}{125 \si{\milli\gram\per\liter}}\times 100 & \\
  =& \%6.2 &\\
    \end{align*}
 
-
-
-Zufällige Fehler sind hingegen solche, die sich bei der Festlegung statistischer Maßzahlen (Messungen, Beobachtungen) ergeben.
+Zufällige Fehler sind hingegen solche, die sich bei der Festlegung statistischer Maßzahlen
+ (Messungen, Beobachtungen) ergeben.~\cite{estatistik}
 Hier werden sie in Form des Vertrauensbereichs ausgedrückt.
+Da die zufällige Fehler sich nicht beseitigen lassen, müssen angegeben werden.
+
+Zur Charakterisierung des Analyts gibt es weitere Kenngrößen, die sich auf die Trennung direkt beziehen.
+Die wichtigste Kenngröße ist Kapazitätsfaktor $k'$, welcher für eine erfolgreiche Trennung $k'$ zwischen 1 und 20 sein soll.~\cite{harris}
+Der ermittelte Kapazitätsfaktor der Kaffee-Messung beträgt $k'$ = 2.81, welcher in diesem Bereich liegt und eine gute Gleichgewichteinstellung andeutet.
+Eine andere Kerngröße ist die Standardabweichung $\sigma$. Sie entspricht der diffusionsbedingte Bandenverbreiterung des Signals~\cite{harris}.
+Die ermitellte Standardabweichung $\sigma$ der Koffein-Bande ist $\sigma = 0.3 \si{\minute} = 18 \si{\second}$.
+Sie stellt für unsere Messung einen größen Wert dar.
+
+
 Wenn das Messergebniss der unverdünnten Kaffee-Probe
 $\ce{c_{Kaffee}} = 875 \, \si{\milli\gram\per\liter} \pm 119  \, \si{\milli\gram\per\liter}$
  mit der \glqq offiziellen \grqq ~\cite{koffeincom} Konzentrationsangabe $\ce{c_{Kaffee}} = 800 \, \si{\milli\gram\per\liter}$ verglichen wird,
-  ergibt sich, dass es sich um einen gewöhnlichen Morgenkaffeee handelte.
+ es ist festzustellen, dass es sich bei der Kaffee-Probe um einen gewöhnlichen Morgenkaffeee handelt.
 
- Die Messung muss auch bewertet werden, ob die chromatografischen Trennung erfolgreich war.
- Für eine erfolgreiche Trennung muss $k'$ zwischen 1 und 20 sein.~\cite{harris}
- Der ermittelte Kapazitätsfaktor der Kaffee-Messung beträgt $k'$ = 2.81, welcher in diesem Bereich liegt.
-
-
-  Die ermitellte Standardabweichung $\sigma$ der Koffein-Bande ist $\sigma = 0.3 \si{\minute} = 18 \si{\second}$.
-  Sie entspricht der diffusionsbedingten Bandenverbreiterung des Signals~\cite{harris}
 
 \printbibliography
 
