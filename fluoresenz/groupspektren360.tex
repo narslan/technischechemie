@@ -1,0 +1,780 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+%\usepackage{helvet}
+\usepackage[landscape]{geometry}
+\usepackage{unicode-math}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\setmainfont{TeX Gyre Heros}
+
+\setmathfont{TeX Gyre Heros}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Fluoreszenz} Emissionsspektren bei der Anregungwellenlänge 360 \si{\nano\meter}  }
+\setlength{\headheight}{15pt}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
+\begin{luacode*}
+
+
+function tabled()
+local lines = {}
+
+for line in io.lines("data/ph02emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+
+    for i=1,#xwerte do
+      tex.sprint(string.format("%d & %g \\\\",xwerte[i],ywerte[i]))
+    end
+
+
+
+end
+
+function drawB()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+function drawC()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+function drawD()
+
+
+local lines = {}
+
+
+for line in io.lines("data/ph04emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawE()
+local lines = {}
+
+for line in io.lines("data/ph04emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawF()
+
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawG()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawG()
+local lines = {}
+
+for line in io.lines("data/ph06emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+
+function drawH()
+
+local lines = {}
+
+for line in io.lines("data/ph08emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawJ()
+local lines = {}
+
+for line in io.lines("data/ph08emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawK()
+
+local lines = {}
+
+for line in io.lines("data/ph10emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+function drawL()
+local lines = {}
+
+for line in io.lines("data/ph10emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawM()
+local lines = {}
+
+for line in io.lines("data/ph12emmissions_360_370.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawN()
+local lines = {}
+
+for line in io.lines("data/ph12emmissions_320_330.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+----- Anregung
+
+function drawO()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02anregung350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+function drawP()
+
+
+local lines = {}
+
+for line in io.lines("data/ph02anregung420_410.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawR()
+
+
+local lines = {}
+
+for line in io.lines("data/ph06anregung350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawS()
+
+
+local lines = {}
+
+for line in io.lines("data/ph06anregung420_410.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawT()
+
+
+local lines = {}
+
+for line in io.lines("data/ph12anregung_350_340.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+function drawU()
+
+
+local lines = {}
+
+for line in io.lines("data/ph12anregung420_410.txt") do
+  table.insert(lines, line)
+end
+local summex=0
+local summey=0
+local xwerte={}
+local ywerte={}
+
+
+
+for i, line in ipairs(lines) do
+  if i>23 then
+     local s, e = line:find("%s+", 1)
+     local y=tonumber(line:sub(e))
+     local x=tonumber(line:sub(1,e))
+     table.insert(xwerte,x)
+     table.insert(ywerte,y)
+   end
+end
+
+    tex.sprint("\\addplot[".."no marks".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+end
+
+
+
+
+\end{luacode*}
+
+\newcommand\tabled{\directlua{tabled()}}
+\newcommand\addplotb{\directlua{drawB()}}
+\newcommand\addplotc{\directlua{drawC()}}
+\newcommand\addplotd{\directlua{drawD()}}
+\newcommand\addplote{\directlua{drawE()}}
+\newcommand\addplotf{\directlua{drawF()}}
+\newcommand\addplotg{\directlua{drawG()}}
+ \newcommand\addploth{\directlua{drawH()}}
+ \newcommand\addplotj{\directlua{drawJ()}}
+\newcommand\addplotk{\directlua{drawK()}}
+ \newcommand\addplotl{\directlua{drawL()}}
+ \newcommand\addplotm{\directlua{drawM()}}
+ \newcommand\addplotn{\directlua{drawN()}}
+ \newcommand\addploto{\directlua{drawO()}}
+ \newcommand\addplotp{\directlua{drawP()}}
+\newcommand\addplotr{\directlua{drawR()}}
+ \newcommand\addplots{\directlua{drawS()}}
+ \newcommand\addplott{\directlua{drawT()}}
+ \newcommand\addplotu{\directlua{drawU()}}
+\begin{document}
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+     xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+    legend style={at={(0.1,-0.2)},anchor=north},
+    y label style={at={(axis description cs:-.17,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east},
+   yticklabel style={/pgf/number format/sci},
+scaled y ticks=false
+  }
+}
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=3 by 2,horizontal sep=15pt,vertical sep=50pt,xlabels at=edge bottom,
+ylabels at=edge left,}]
+\nextgroupplot[standard,title= \textbf{ph 2}]
+    \addplotb
+\nextgroupplot[standard,title= \textbf{ph 4}]
+    \addplotd
+ \nextgroupplot[standard,title=\textbf{ph 6}]
+    \addplotf
+  \nextgroupplot[standard,title= \textbf{ph 8} ]
+    \addploth
+        \pgfplotsset{title style={at={(0.5,-0.4)}}}
+  \nextgroupplot[standard,title=\textbf{ph 10} ]
+    \addplotk
+        \pgfplotsset{title style={at={(0.5,-0.4)}}}
+  \nextgroupplot[standard,title= \textbf{ph 12}]
+    \addplotm
+        \pgfplotsset{title style={at={(0.5,-0.4)}}}
+\end{groupplot}
+\end{tikzpicture}
+
+
+
+
+\end{document}

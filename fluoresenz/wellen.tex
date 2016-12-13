@@ -1,0 +1,144 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+%\usepackage{helvet}
+\usepackage{unicode-math}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+\setmainfont{Linux Libertine}
+\setsansfont{Linux Biolinum}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Fluoreszenzspektroskopie} Die Anregungs- und Emissionsspektren von 2-Naphtholat (pH 12)}
+\setlength{\headheight}{23pt}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
+\usepackage{caption}
+\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+
+%\usepackage{libertine}
+%\usepackage{beramono}
+%\setmainfont{Ubuntu}
+\begin{luacode*}
+
+fs = dofile("fs.lua")
+
+function drawPU()
+
+xwerte, ywerte = fs.readcsv("data/ph02emmissions_320_330.txt",23)
+xa1, xb1= fs.readcsv("data/ph04emmissions_320_330.txt",23)
+xa2, xb2= fs.readcsv("data/ph06emmissions_320_330.txt",23)
+xa3, xb3= fs.readcsv("data/ph08emmissions_320_330.txt",23)
+xa4, xb4= fs.readcsv("data/ph10emmissions_320_330.txt",23)
+xa5, xb5= fs.readcsv("data/ph12emmissions_320_330.txt",23)
+    tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 2}")
+
+ tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+    for i=1,#xa1 do
+      tex.sprint("("..xa1[i]..","..xb1[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 4}")
+
+ tex.sprint("\\addplot[".."no marks,orange".."] coordinates{")
+    for i=1,#xa2 do
+      tex.sprint("("..xa2[i]..","..xb2[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 6}")
+
+
+     tex.sprint("\\addplot[".."no marks,green".."] coordinates{")
+    for i=1,#xa3 do
+      tex.sprint("("..xa3[i]..","..xb3[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 8}")
+
+
+     tex.sprint("\\addplot[".."no marks,teal".."] coordinates{")
+    for i=1,#xa4 do
+      tex.sprint("("..xa4[i]..","..xb4[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 10}")
+
+ tex.sprint("\\addplot[".."no marks,black".."] coordinates{")
+    for i=1,#xa5 do
+      tex.sprint("("..xa5[i]..","..xb5[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 12}")
+
+end
+
+
+\end{luacode*}
+
+
+ \newcommand\addplotzz{\directlua{drawPU()}}
+
+
+\begin{document}
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+     xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+    legend style={at={(1.2,1)},anchor=north},
+    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east},
+   yticklabel style={/pgf/number format/sci},
+scaled y ticks=false, thick,
+  }
+}
+  \tikzset{
+    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+    small dot/.style={fill=chameleon1,circle,scale=0.3}
+  }
+
+\begin{figure}
+\begin{tikzpicture}
+
+\begin{axis}[standard]
+    \addplotzz
+  \end{axis}
+\end{tikzpicture}
+\caption{ Emissionsspektren von $\beta$-Naphtol bei Anregung  $\lambda_{Anregung}=$ 320 \si{\nano\meter} }
+
+\end{figure}
+\end{document}

@@ -15,8 +15,9 @@ function fs.readcsv( file , strip)
            local s, e = line:find("%s+", 1)
            local y=tonumber(line:sub(e))
            local x=tonumber(line:sub(1,e))
-           xvalues[i]=x
-           yvalues[i]=y
+           table.insert(xvalues,x)
+                     table.insert(yvalues,y)
+
 
       end
 

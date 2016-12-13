@@ -69,9 +69,8 @@
 Für die Bewertung der Messung werden zuerst die experimentellen Fehler ermittelt.
 Die experimentellen Fehler werden in systematischen und zufälligen Fehler eingeteilt.
 Systematische Fehler sind solche, die sich im Verlaufe statisticher Berechnungen (Kalibrierung) zeigen.
-Sie werden in Form von Standardabweichung ausgedrückt, welche ein Maß für die Streuung der Messwerte ist.(s.120)
- Die ermittelte Standardabweichung ist $s_{y,x}$ = 343 \si{\milli\volt.\second} und entspricht einer kleinen Streuung
-auf der Ordinate.
+Sie werden in Form von Standardabweichung ausgedrückt, welche ein Maß für die Streuung bzw Genaugkeit der Messwerte ist.~\supercite{estatistik}
+ Die ermittelte Standardabweichung ist $s_{y,x}$ = 343 \si{\milli\volt.\second}.
  Es ist üblich, die Standardabweichung $s_{y,x}$ und die Empfindlichkeit (Steigung der
 Regressionsgeraden $m$) zu einem gütebestimmenden Kennwert, der Verfahrensstandardabweichung
 $s_{x0}$, zusammenzufassen nach:
@@ -82,10 +81,12 @@ s_{x0}=&\frac{343 \, \si{\milli\volt.\second}}{44.3 \, \si{\liter.\milli\volt.\s
   \end{align*}
   Daraus folgt, dass bei gleicher Standardabweichung das Verfahren die bessere
 Güte (die geringere Verfahrensstandardabweichung) liefert, dessen Empfindlichkeit $m$
-höher ist.~\cite{statistik}
-  Eine weitere abgeleitete statistische Kenngröße bei der Kalibrierungsbewertung ist
+höher ist.~\supercite{statistik}
+  Eine weitere statistische Kenngröße bei der Kalibrierungsbewertung ist
 die relative Verfahrensstandardabweichung $V_{x0}$. Sie bezieht die Verfahrensstandard-
-abweichung $s_{x0}$ auf die Mitte des Konzentrationsbereiches $\overline{x}$
+abweichung $s_{x0}$ auf die Mitte des Konzentrationsbereiches $\overline{x}$.
+Aus der ermittelten relativen Verfahrensstandardabweichung lässt sich über die Genaugkeit des Messverfahrens Aussagen treffen.
+
   \begin{align*}
  V_{x0}=&\frac{s_{x0}}{\overline{x}}\times 100 &\text{die relative Verfahrensstandartabweichung}\\
  = &\frac{7.74 \si{\milli\gram\per\liter}}{125 \si{\milli\gram\per\liter}}\times 100 & \\
@@ -93,21 +94,24 @@ abweichung $s_{x0}$ auf die Mitte des Konzentrationsbereiches $\overline{x}$
    \end{align*}
 
 Zufällige Fehler sind hingegen solche, die sich bei der Festlegung statistischer Maßzahlen
- (Messungen, Beobachtungen) ergeben.~\cite{estatistik}
-Hier werden sie in Form des Vertrauensbereichs ausgedrückt.
-Da die zufällige Fehler sich nicht beseitigen lassen, müssen angegeben werden.
+(Messungen, Beobachtungen) ergeben.~\supercite{estatistik}
+Bei der statistischen Auswertung wird sie in Form des Vertrauensbereichs ausgedrückt.
 
-Zur Charakterisierung des Analyts gibt es weitere Kenngrößen, die sich auf die Trennung direkt beziehen.
-Die wichtigste Kenngröße ist Kapazitätsfaktor $k'$, welcher für eine erfolgreiche Trennung $k'$ zwischen 1 und 20 sein soll.~\cite{harris}
-Der ermittelte Kapazitätsfaktor der Kaffee-Messung beträgt $k'$ = 2.81, welcher in diesem Bereich liegt und eine gute Gleichgewichteinstellung andeutet.
-Eine andere Kerngröße ist die Standardabweichung $\sigma$. Sie entspricht der diffusionsbedingte Bandenverbreiterung des Signals~\cite{harris}.
+Zur Charakterisierung des Analyts gibt es weitere Kenngrößen, die sich auf die chromatographische Trennung beziehen.
+Die wichtigste Kenngröße ist Kapazitätsfaktor $k'$, welcher für eine erfolgreiche Trennung $k'$ zwischen 1 und 20 sein soll.~\supercite{harris}
+Der ermittelte Kapazitätsfaktor der Kaffee-Messung beträgt $k'$ = 2.81, welcher in diesem Bereich liegt
+und auf eine gute Gleichgewichteinstellung hindeutet.
+Eine andere Kerngröße ist die Standardabweichung $\sigma$. Sie entspricht der diffusionsbedingte Bandenverbreiterung des Signals~\supercite{harris}.
 Die ermitellte Standardabweichung $\sigma$ der Koffein-Bande ist $\sigma = 0.3 \si{\minute} = 18 \si{\second}$.
-Sie stellt für unsere Messung einen größen Wert dar.
+Sie stellt für die bewertete Messung einen größen Wert dar. Um die Standardabweichung des Analyten-Peaks zu veringern, kann der Analyt
+vor der HPLC-Messung säulen-chromatographisch aufgereingt werden. Da die Kaffe-Probe Verbindungen außer Koffein enthält,
+die um die Oberfläche der stationären Phase konkurrieren, wird die Gleichgewichteinstellung vom Koffein in der
+Säule durch andere Teilchen erschwert. Dies führt zur einen größeren Standardabweichung.
 
 
 Wenn das Messergebniss der unverdünnten Kaffee-Probe
 $\ce{c_{Kaffee}} = 875 \, \si{\milli\gram\per\liter} \pm 119  \, \si{\milli\gram\per\liter}$
- mit der \glqq offiziellen \grqq ~\cite{koffeincom} Konzentrationsangabe $\ce{c_{Kaffee}} = 800 \, \si{\milli\gram\per\liter}$ verglichen wird,
+ mit der \glqq offiziellen \grqq ~\supercite{koffeincom} Konzentrationsangabe $\ce{c_{Kaffee}} = 800 \, \si{\milli\gram\per\liter}$ verglichen wird,
  es ist festzustellen, dass es sich bei der Kaffee-Probe um einen gewöhnlichen Morgenkaffeee handelt.
 
 

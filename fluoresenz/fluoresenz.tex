@@ -1,11 +1,16 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
 \documentclass[12pt]{article}
 \usepackage{amsmath,mathtools}
 \usepackage[usenames,dvipsnames]{xcolor}
-\usepackage[bitstream-charter]{mathdesign}
+%\usepackage[bitstream-charter]{mathdesign}
 \usepackage{microtype}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{libertine}
+\usepackage{fontspec}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage{libertine}
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage[german]{babel}
@@ -14,37 +19,142 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{tikz}
-\usetikzlibrary{arrows,chains,matrix,positioning,scopes,patterns,decorations.pathmorphing,shapes}
+\usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
 \usepackage[version=4]{mhchem}
 \usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
-
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{luacode}
 \floatstyle{plaintop}
 \restylefloat{table}
-\usepackage[justification=justified,singlelinecheck=false]{caption}
-% header
+%\usepackage[justification=justified,singlelinecheck=false]{caption}
+\usepgfplotslibrary{units}
+
 \usepackage{fancyhdr}
 \fancyhf{}
-\rhead{02.12.2016}
+\rhead{13.12.2016}
 \lhead{Nevroz Arslan, Justin König Gruppe 6}
 \setlength{\headheight}{15pt}
 \rfoot{\thepage }
 \lfoot{Versuch 1: Fluoreszenzspektroskopie}
 \pagestyle{fancy}
-%\renewcommand{\thesection}{\arabic{section}}% Remove section references...
-%\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
-%\usepackage[backend=biber,sorting=none]{biblatex} \addbibresource{books.bib}
 
 \usepackage{url}
 \usepackage{csquotes}
-\sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
+\sisetup{
+  round-mode          = figures,
+  round-precision     = 2,
+  inter-unit-product =\cdot,
+   group-digits=true,          %% Zifferngruppierung an/aus
+        scientific-notation = true,
+}
 \renewcommand{\arraystretch}{1.5}
 \definecolor{skyblue1}{RGB}{135, 206, 250}
 \definecolor{flame}{RGB}{226, 88, 34}
 \definecolor{scarletred1}{RGB}{252, 40, 71}
 \definecolor{cyanblau}{RGB}{0, 158, 224}
 \definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+% header
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+\setmainfont{Linux Libertine}
+\setsansfont{Linux Biolinum}
+
+\begin{luacode*}
+
+fs = dofile("fs.lua")
+
+function drawPU()
+
+ xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
+xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
+
+
+    tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+     tex.sprint("\\addlegendentry{2-Naphtholat}")
+
+ tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#xa do
+      tex.sprint("("..xa[i]..","..xb[i]..")")
+    end
+    tex.sprint("};")
+     tex.sprint("\\addlegendentry{2-Naphthol}")
+
+
+
+end
+
+
+function drawISO()
+
+xwerte, ywerte = fs.readcsv("data/ph02emmissions_320_330.txt",23)
+xa1, xb1= fs.readcsv("data/ph04emmissions_320_330.txt",23)
+xa2, xb2= fs.readcsv("data/ph06emmissions_320_330.txt",23)
+xa3, xb3= fs.readcsv("data/ph08emmissions_320_330.txt",23)
+xa4, xb4= fs.readcsv("data/ph10emmissions_320_330.txt",23)
+xa5, xb5= fs.readcsv("data/ph12emmissions_320_330.txt",23)
+    tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#xwerte do
+      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 2}")
+
+ tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+    for i=1,#xa1 do
+      tex.sprint("("..xa1[i]..","..xb1[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 4}")
+
+ tex.sprint("\\addplot[".."no marks,orange".."] coordinates{")
+    for i=1,#xa2 do
+      tex.sprint("("..xa2[i]..","..xb2[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 6}")
+
+
+     tex.sprint("\\addplot[".."no marks,green".."] coordinates{")
+    for i=1,#xa3 do
+      tex.sprint("("..xa3[i]..","..xb3[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 8}")
+
+
+     tex.sprint("\\addplot[".."no marks,teal".."] coordinates{")
+    for i=1,#xa4 do
+      tex.sprint("("..xa4[i]..","..xb4[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 10}")
+
+ tex.sprint("\\addplot[".."no marks,black".."] coordinates{")
+    for i=1,#xa5 do
+      tex.sprint("("..xa5[i]..","..xb5[i]..")")
+    end
+    tex.sprint("};")
+   tex.sprint("\\addlegendentry{ph 12}")
+
+end
+
+
+\end{luacode*}
+
+
+ \newcommand\addplotzz{\directlua{drawPU()}}
+ \newcommand\addplotiso{\directlua{drawISO()}}
+
+
 
 \begin{document}
 
@@ -52,7 +162,7 @@
 Der Versuch befasst sich mit spektralen Untersuchungen im UV-Bereich. Dafür werden die Fluoreszenzspektren und Anregungsspektren von 2-Naphthol und 2-Naphtolat in Wasser aufgenommen.
 \section {Theorie}
 \subsection{Absorption und Emission\supercite{og}}
-\glqq Eine chemische Verbindung erscheint dann farbig, wenn sie aus dem sichtbaren Teil des Spektrums einen Wellenlängenbereich selektiv absorbiert.
+ Eine chemische Verbindung erscheint dann farbig, wenn sie aus dem sichtbaren Teil des Spektrums einen Wellenlängenbereich selektiv absorbiert.
 Im Allgemeinen sind gesättigte organische Verbindungen für unser Auge farblos, da sich ihr Absorptionsbereich außerhalb der Sichtbaren im fernen Ultraviolett
 befindet. Durch Einführung von $\pi$-Bindungssystemen wie \ce{C=O}, \ce{C=N}, \ce{N=O} u.a., besonders wenn diese miteinander in Konjugation stehen, verschieben sich
 die Absorptionsbanden immer mehr zum langwelligeren, sichtbaren Teil des Spektrums.
@@ -61,7 +171,7 @@ Je stärker die $\pi$-Elektronen delokasiert sind, umso langwelliger ist das Lic
 Man bezeichnet eine Gruppierung in einem Molekül, die Strahlung im UV/Vis Bereich absorbiert, als \textbf{Chromophore} (gr. \textit{phoron} = Träger). Die Anhäufung von Chromophoren,
 besonders in konjugierten Systemen, ruft eine Farbvertiefung (\textbf{Bathochromie}, Rotverschiebung) hervor, d.h. eine Verschiebung der Absorptionsmaxima nach längeren Wellen.
 Die auxochromen (gr. \textit{auxesis}= Zunahme) Gruppen verschieben die Absorptionsmaxima noch längeren Wellen. Eine typische, auxochrome Gruppe ist die Hydroxgruppe, \ce{-OH}.
-Demgegenüber können Substituenten, die über einen \ce{-I}-Effekt verfügen, einen hypsochromen Effekt (Blauverschiebung) (\textbf{Hypsochromie}) auslösen.\grqq
+Demgegenüber können Substituenten, die über einen \ce{-I}-Effekt verfügen, einen hypsochromen Effekt (Blauverschiebung) (\textbf{Hypsochromie}) auslösen.
 
 \subsection{Physikalische Vorgänge der Fluoreszenz\supercite{harris}}
 Wir nehmen an, dass das Molekül M Licht absorbiert und in den angeregten Zustand \ce{M^*}
@@ -140,8 +250,250 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
 \end{tikzpicture}
 
 \end{figure}
+
 \section{Auswertung}
+\subsection{Messergebnisse}
+\begin{table}[!ht]
+ \begin{tabular}{cc}
+ pH-Wert & Gemessener pH-Wert   \\
+\hline
+ 12 &    12.198    \\
+ 10 &  9.973 \\
+  8 & 8.158  \\
+   6 &  5.925 \\
+    4 & 3.986  \\
+     2 & 2.000  \\
+\end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{ Die Ergebnisse der pH-Messungen}
+\end{table}
+\subsection{Spektren}
+\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 1
+\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 12)}
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 2
+\subsection{Der isosbestische Punkt}
+Die Präzens eines isobestischen Punkt weis darauf hin, dass eine gute Gleichgewichtseinstellung im
+Naphtol-Naphtolat-System erfolgt hat.
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+     xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+       legend style={at={(1.2,1)},anchor=north},
+    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east},
+   yticklabel style={/pgf/number format/sci},
+scaled y ticks=false
+  }
+}
+\begin{figure}[!hbpt]
+\begin{tikzpicture}
+
+\begin{axis}[standard]
+    \addplotiso
+  \end{axis}
+\end{tikzpicture}
+\caption{ Der Verlauf des Naphtol-Naphtolat-Gleichgewichts bei $\lambda_{Anr} = 320$}
+
+\end{figure}
+
+\subsection{Bestimmung der Wellenlängemaxima aus den Spektren}
+Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgewichtes werden bestimmt und tabellerisch dargestellt.
+\begin{table}[!htbp]
+ \begin{tabular}{ccc}
+ pH-Wert & Anregungs-$\lambda$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
+\hline
+2& 420 & 284 ,328\\
+2& 350 & 284, 328\\
+6& 420 & 284 , 328\\
+6& 350 & 284 , 328\\
+12& 420 & 340\\
+12& 350 & 280, 297, 313\\
+\end{tabular}
+  % \renewcommand\thetable{3}
+ \end{table}
+
+\subsection{Stokes Verschiebung}
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+     xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+       legend style={at={(1.2,1)},anchor=north},
+    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east},
+   yticklabel style={/pgf/number format/sci},
+scaled y ticks=false
+  }
+}
+
+
+\begin{figure}[!h]
+\begin{subfigure}{.4\textwidth}
+\resizebox{\linewidth}{!}{
+  \includegraphics[width=1.5\textwidth]{naphthol.jpg}}
+  \caption{zur Verfügung gestellt}
+\end{subfigure}%
+\begin{subfigure}{.4\textwidth}
+\resizebox{\linewidth}{!}{
+ \begin{tikzpicture}
+\begin{axis}[standard]
+    \addplotzz
+  \end{axis}
+\end{tikzpicture}}
+\caption{experimentell}
+\end{subfigure}
+\caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
+
+\end{figure}
+
+
+
+
+\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3
+
+\subsection{$pK_s$ Werte}
+
+
+\begin{table}[!htp]
+ \begin{tabular}{lccccc}
+ pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
+\hline
+2.000& 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
+3.986& 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
+5.925& 320 & 355 & \num{1.2808172e5}& \num{1.12685039e5} & \num{4.9373e4}\\
+8.158& 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
+9.973& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
+12.198& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
+\end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
+\end{table}
+
+\begin{table}[!htp]
+ \begin{tabular}{lcccc}
+ pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
+\hline
+2.000& 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
+3.986& 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
+5.925& 360 &  411 & \num{2.316608e3}& \num{2.42999e2} \\
+8.158& 360 &  411& \num{1.08663e4}& \num{8.87501e3}\\
+9.973& 360 &  411 & \num{1.25291e5}& \num{1.2253e5}\\
+12.198& 360 & 411 & \num{1.89882531e5}& \num{1.86032e5}  \\
+\end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
+\end{table}
+
+
+Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert kann die Gleichgewichtskonstante K und der
+pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
+Experimentell wird ein pKs Wert für 2-Naphthol$^*$ 2.9 festgestellt und ein pKs Wert für 2-Naphthol 9.2.
+Der ermittelte pKs Wert 9.2 von 2-Naphthol weicht jedoch von der Literaturangabe
+2-Naphthol hat pKs Wert von 9.63 bei T=25 \si{\celsius}~\supercite{crc} ab. Durch Erhöhung der Anzahl der Messungen kann
+eine genaure Bestimmung des pKs-Werts gemacht werden.
+\begin{figure}[!htbp]
+\begin{tikzpicture}
+\begin{axis}[
+axis x line=bottom,
+axis y line=middle,
+xlabel= pH,
+ylabel= Intensität,
+legend style={draw=none,legend pos=outer north east,font=\scriptsize},
+y label style={at={(axis description cs:-0.3,.5)},rotate=90,anchor=south},
+  legend cell align=left,
+ scaled ticks=false,
+  y tick label style={/pgf/number format/sci},
+ minor x tick num=10
+]
+\addplot[no marks,smooth,blue] table {
+   X Y
+2.000 1.77969086e2
+3.986  1.91234894e2
+ 5.925 2.42990112e2
+8.158  8.8750166e3
+ 9.973 1.22534625e5
+ 12.198 1.86032375e5
+  };
+  \addlegendentry{$I_f$=(360 nm/420 nm)}
+\addplot[no marks,smooth,red] table {
+   X Y
+2.000 1.31233328e5
+3.986  1.11589625e5
+ 5.925 1.12685039e5
+8.158  1.11267211e5
+ 9.973 2.25562051e4
+ 12.198 8.50769043e2
+  };
+    \addlegendentry{$I_f$=(320 nm/350 nm)}
+
+  \addplot[no marks,smooth,green] table {
+   X Y
+2.000 1.71453184e4
+3.986  4.75454219e4
+ 5.925 4.93732383e4
+8.158  5.58971602e4
+ 9.973 1.12899375e5
+ 12.198 1.59646828e5
+  };
+    \addlegendentry{$I_f$=(320 nm/420 nm)}
+\node[coordinate,pin=right:{\tiny pH = pKs = 9.2}] at (axis cs:9.12,6.7e4) {};
+\node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
+
+\end{axis}
+\end{tikzpicture}
+\caption{Kurvenverlauf der pH-Werte gegen Fluoreszenzintänsitäten und Bestimmung der pKs-Werte}
+\end{figure}
+
+
 \section{Diskussion}
+
+Bei Messung der Spektren des pH Wertes 12 zeigt sich, dass sowohl bei einer Einschusswellenlänge von 320 nm (EM1) und
+360 nm (EM2) die Probe eine starke Emission mit Maximum bei 411 nm zeigt. Über die Anregungsspektren
+ ergeben sich Anregungsmaxima bei 280nm, 297 nm und 313 nm bei einer Emissionswellenlänge von 420 nm (AN1)
+ und bei einer Emissionswellenlänge von 350nm (AN2) ein Anregungsmaxima bei 340 nm.
+
+Es kann somit davon ausgegangen werden, dass an diesem pH Wert, das Naphthol komplett in dissoziierter Form, also dem Naphtholat vorliegt.
+Die gemessene emittierte Wellenlänge (Fluoreszenz) mit 420 nm zeigt den in der Theorie bereits angesprochenen „Stokes-Shift“.
+ Die Probe wird mit einer Wellenlänge von 360 nm angeregt, während das durch Fluoreszenz wieder abgegebene
+ Licht eine Wellenlänge von 420nm aufweist.
+
+% Hier Spektren einblenden, keine Ahnung wie das geht :P
+
+Bei Messungen eines pH-Wertes von 2 ist die bei pH 12 gemessene Fluoreszenz mit einem Emissionsmaximum bei 420 nm verschwunden,
+jedoch zeigt sich eine Emission bei 340 nm unter Einstrahlung von 320 nm (EM1), nicht aber bei 360 nm (EM2).
+ Des Weiteren zeigen sich zwei Anregungsmaxima bei 275 nm und 330 nm bei einer Emissionswellenlänge von 350 nm (AN2).
+Dies legt nahe, dass bei einem pH Wert von 2, das Naphthol in seiner undissoziierten Form vorliegt
+und somit kein Naphtholat in der Probe vorhanden ist. Bei der gemessenen Fluoreszenz von 355 nm handelt
+es sich um die Emission des Naphthols. Das Licht mit einer Wellenlänge von 360 nm ist nicht dazu in der Lage,
+ eine Fluoreszenz des Naphthols anzuregen.
+
+%wieder Spektren einfügen
+
+Die Betrachtung der Spektren bei einem pH Wert von 6 zeigt, dass lediglich eine Emission bei 350 nm
+ über eine Anregung mit 320 nm (EM1) gemessen werden kann. Bei 275 nm und 330 nm zeigen sich sowohl Absorptionsmaxima bei 420 nm (AN1),
+  als auch bei 350 nm (AN2) Emissionswellenlänge.
+Somit ergibt sich aus den Messungen der Spektren bei einem pH Wert von 6,
+dass die Naphtholat-Konzentration zu gering ist bzw. zu instabil ist,
+als dass eine Emission über 350 nm gemessen werden kann.
+Stattdessen kann lediglich die Fluoreszenz des Naphtholats
+über Anregung des Naphthols mit einer Wellenlänge von 320 nm gemessen werden.
+
+%Vergleich mit vorgegeben Spektrum
+
+Mittels eines Vergleiches der im Versuch gemessenen Absorptionsspektren mit den Vorgegeben Spektren wird ersichtlich,
+dass sich diese auf in mehrfachen Punkten decken. Zum einen kann in beiden die Verschiebung der Absorptionswellenlänge
+ vom Naphthol zum Naphtholat hin in den längeren Wellenlängenbereich beobachtet werden. Ausserdem zeigt sich,
+  dass die Maxima in beiden Fällen nur minimal voneinander abweiche.
+Der Vergleich zeigt, dass die gegebenen Spektren mit den gemessenen im übereinstimmen,
+jedoch weisen die gegebenen Spektren eine größere Genauigkeit auf.
+
 \printbibliography
 
 \end{document}

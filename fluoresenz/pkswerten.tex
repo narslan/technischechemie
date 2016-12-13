@@ -84,7 +84,8 @@ legend style={draw=none,legend pos=outer north east,font=\scriptsize},
 y label style={at={(axis description cs:-0.3,.5)},rotate=90,anchor=south},
   legend cell align=left,
  scaled ticks=false,
-  tick label style={/pgf/number format/fixed}
+  y tick label style={/pgf/number format/sci},
+ minor x tick num=10
 ]
 \addplot[no marks,smooth,blue] table {
    X Y
@@ -117,6 +118,8 @@ y label style={at={(axis description cs:-0.3,.5)},rotate=90,anchor=south},
  12.198 1.59646828e5
   };
     \addlegendentry{$I_f$=(320 nm/420 nm)}
+\node[coordinate,pin=right:{\tiny pH = pKs = 9.2}] at (axis cs:9.12,6.7e4) {};
+\node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
 
 \end{axis}
 \end{tikzpicture}

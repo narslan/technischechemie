@@ -21,18 +21,16 @@
 \usepackage[landscape]{geometry}
 \usepackage{unicode-math}
 
-%\usepackage[landscape]{geometry}
-%\setmainfont{Ubuntu}
-\setmainfont{TeX Gyre Heros}
-
-\setmathfont{TeX Gyre Heros}
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+\setmainfont{Linux Libertine}
+\setsansfont{Linux Biolinum}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{subcaption}
 
 
 \rhead{ Gruppe 6}
-\lhead{\textbf{Fluoreszenz} Vergleich der Anregungs- und Emissionsspektren bei pH 6}
+\lhead{\textbf{Fluoreszenz} Vergleich der Anregungs- und Emissionsspektren bei pH 6 - Anhang 3}
 \setlength{\headheight}{15pt}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
@@ -44,65 +42,13 @@
 %\usepackage{beramono}
 %\setmainfont{Ubuntu}
 \begin{luacode*}
-
-
-function tabled()
-local lines = {}
-
-for line in io.lines("data/ph02emmissions_360_370.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
-
-
-    for i=1,#xwerte do
-      tex.sprint(string.format("%d & %g \\\\",xwerte[i],ywerte[i]))
-    end
-
-
-
-end
-
+fs = dofile("fs.lua")
 
 
 function drawF()
 
-local lines = {}
 
-for line in io.lines("data/ph06emmissions_360_370.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
+ xwerte, ywerte = fs.readcsv("data/ph06emmissions_360_370.txt",23)
 
     tex.sprint("\\addplot[".."no marks".."] coordinates{")
 
@@ -116,27 +62,8 @@ end
 
 
 function drawG()
-local lines = {}
 
-for line in io.lines("data/ph06emmissions_320_330.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
+ xwerte, ywerte = fs.readcsv("data/ph06emmissions_320_330.txt",23)
 
     tex.sprint("\\addplot[".."no marks".."] coordinates{")
 
@@ -144,33 +71,12 @@ end
       tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
-end
 
+end
 
 function drawR()
 
-
-local lines = {}
-
-for line in io.lines("data/ph06anregung350_340.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
+ xwerte, ywerte = fs.readcsv("data/ph06anregung350_340.txt",23)
 
     tex.sprint("\\addplot[".."no marks".."] coordinates{")
 
@@ -182,28 +88,8 @@ end
 
 function drawS()
 
+ xwerte, ywerte = fs.readcsv("data/ph06anregung420_410.txt",23)
 
-local lines = {}
-
-for line in io.lines("data/ph06anregung420_410.txt") do
-  table.insert(lines, line)
-end
-local summex=0
-local summey=0
-local xwerte={}
-local ywerte={}
-
-
-
-for i, line in ipairs(lines) do
-  if i>23 then
-     local s, e = line:find("%s+", 1)
-     local y=tonumber(line:sub(e))
-     local x=tonumber(line:sub(1,e))
-     table.insert(xwerte,x)
-     table.insert(ywerte,y)
-   end
-end
 
     tex.sprint("\\addplot[".."no marks".."] coordinates{")
 
@@ -217,7 +103,6 @@ end
 
 \end{luacode*}
 
-\newcommand\tabled{\directlua{tabled()}}
 \newcommand\addplotf{\directlua{drawF()}}
 \newcommand\addplotg{\directlua{drawG()}}
 \newcommand\addplotr{\directlua{drawR()}}
@@ -244,85 +129,19 @@ scaled y ticks=false
   }
 
 
-% \begin{figure}
-
-% \begin{subfigure}[b]{0.5\linewidth}
-
-% \begin{tikzpicture}[transform shape]
-
-% \begin{axis}[standard]
-%     \addplotf
-%   \end{axis}
-% \end{tikzpicture}
-% \caption{\large  Emissionsspektrum ph 6 360-370 \si{\nano\meter}}
-
-% \end{subfigure}~
-
-
-
-% \begin{subfigure}[b]{0.5\linewidth}
-
-% \begin{tikzpicture}[transform shape]
-
-% \begin{axis}[standard]
-%     \addplotg
-%   \end{axis}
-% \end{tikzpicture}
-% \caption{\large  Emissionsspektrum ph 6 320-330 \si{\nano\meter}}
-
-% \end{subfigure}
-
-
-
-
-% \begin{subfigure}[b]{0.5\linewidth}
-
-% \begin{tikzpicture}[transform shape]
-
-% \begin{axis}[standard]
-%     \addplotr
-%   \end{axis}
-% \end{tikzpicture}
-% \caption{\large  Anregungsspektrum ph 6 350-340 \si{\nano\meter}}
-
-% \end{subfigure}~
-
-
-
-% \begin{subfigure}[b]{0.5\linewidth}
-
-% \begin{tikzpicture}[transform shape]
-
-% \begin{axis}[standard]
-%     \addplots
-%   \end{axis}
-% \end{tikzpicture}
-% %\caption{\large  Anregungsspektrum ph 6 420-410 \si{\nano\meter}}
-
-% \end{subfigure}
-
-
-
-% \end{figure}
 
 \begin{tikzpicture}
 \begin{groupplot}[group style={group size=2 by 2,horizontal sep=60pt,vertical sep=50pt}]
-\nextgroupplot[standard,title=Emissionsspektrum ph 6 360-370 \si{\nano\meter}]
+\nextgroupplot[standard,title=\textbf{Emissionsspektrum bei $\lambda$ =  360 \si{\nano\meter}}]
     \addplotf
-   % \addlegendentry{Emissionsspektrum ph 6 360-370 \si{\nano\meter}}
-\nextgroupplot[standard,title=Emissionsspektrum ph 6 320-330 \si{\nano\meter}]
+\nextgroupplot[standard,title=\textbf{Emissionsspektrum bei $\lambda$ =  320 \si{\nano\meter}}]
     \addplotg
-    %    \addlegendentry{Emissionsspektrum ph 6 320-330 \si{\nano\meter}}
-\nextgroupplot[standard,title=Anregungsspektrum ph 6 350-340 \si{\nano\meter}]
+\nextgroupplot[standard,title=\textbf{Anregungsspektrum bei $\lambda$ =  350 \si{\nano\meter}}]
     \addplotr
     \pgfplotsset{title style={at={(0.5,-0.4)}}}
-
-     %\addlegendentry{Anregungsspektrum ph 6 350-340 \si{\nano\meter}}
-    \nextgroupplot[standard,title=Anregungsspektrum ph 6 420-410 \si{\nano\meter}]
+    \nextgroupplot[standard,title=\textbf{Anregungsspektrum bei $\lambda$ =  420 \si{\nano\meter}}]
     \addplots
-        \pgfplotsset{title style={at={(0.5,-0.4)}}}
-
-      %       \addlegendentry{Anregungsspektrum ph 6 420-410 \si{\nano\meter}}
+    \pgfplotsset{title style={at={(0.5,-0.4)}}}
 \end{groupplot}
 \end{tikzpicture}
 
