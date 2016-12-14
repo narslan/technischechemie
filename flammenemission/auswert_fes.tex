@@ -136,6 +136,11 @@ local cn = 3 * sx0 / m
 function mess(messwert)
   return (messwert-b)/m
 end
+function messi(messwert)
+  return (messwert)/10517
+end
+
+
 function operator(t)
   return (m*t+b)
 end
@@ -199,7 +204,7 @@ function drawD()
     end
     tex.sprint("};")
  --   tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", no markers".."]{"..quad.a.."*x^2+"..quad.b.."*x+"..quad.c.."};")
-    tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", thick".."]{"..m.."*x+"..b.."};")
+  --  tex.sprint("\\addplot[".."domain="..minx..":"..maxx..", thick".."]{"..m.."*x+"..b.."};")
 --   tex.sprint("\\addplot[only marks,color=red] coordinates{(".."0"..","..(-b/m)..")};")
 
 --   tex.sprint("\\node[small dot,pin=90:{"..round(math.abs(-b/m),2).."}] at (axis description cs:0.182,0) {};")
@@ -208,10 +213,10 @@ function drawD()
 
 end
 
-local referenz=mess(16691.73)
-local trinkwasser=mess(14688.9)
-local evian=mess(6632.23)
-local jeden=mess(17689.73)
+local referenz=messi(16691.73)
+local trinkwasser=messi(14688.9)
+local evian=messi(6632.23)
+local jeden=messi(17689.73)
 
 function tabelle()
   if b>0 then
@@ -268,16 +273,16 @@ end
   standard/.style={
     axis x line=middle,
     axis y line=middle,
-    legend style={at={(1.2,0.9)},anchor=north},
+    legend style={at={(1.4,0.9)},anchor=north},
     y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},
-  x   label style={at={(axis description cs:0.6,-.1)},anchor=south},
+  x   label style={at={(axis description cs:0.6,-.3)},anchor=south},
     x tick label style={at={(axis description cs:-0.1,-.5)},rotate=90,anchor=east},
   }
 }
 \begin{document}
 \lhead{Flammen-Emissions-Spektroskopie (FES)  Gruppe 24}
 \begin{figure}
-\begin{tikzpicture}[transform shape]
+\begin{tikzpicture}
   \tikzset{
     every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
     small dot/.style={fill=chameleon1,circle,scale=0.3}
@@ -285,14 +290,13 @@ end
   \begin{axis}[standard,xlabel=Konzentration (mg/L),ylabel=Messsignal]
     \addplotCHIpf
     \addlegendentry{Messwerte}
-      \addlegendentry{$y = 10172x + 616$}
+    \addplot[domain=0:3] {10517*x };
+    \addlegendentry{$f(x)=10517x$}
+ \addplot[white,thick,domain=0:2,draw=none]{x*0};
+    \addlegendentry{Korrel.}
     \addplot[white,thick,domain=0:2,draw=none]{x*0};
-    \addlegendentry{$R^2 = 0.997$}
-    \addplot[violet,ultra thick,domain=0:5] {-820*x^2+12155*x+27 };
-    \addlegendentry{$-820x^2+12155x+27$}
-      \addplot[white,thick,domain=0:2,draw=none]{x*0};
-    \addlegendentry{$R^2 = 0.999$}
 
+    \addlegendentry{$ = 0.99846$}
   \end{axis}
 \end{tikzpicture}
 \caption{Kalibrierlinie}

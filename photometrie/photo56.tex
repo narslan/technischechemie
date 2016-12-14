@@ -9,9 +9,9 @@
 
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.13}
+\pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
-
+\usetikzlibrary{pgfplots.groupplots}
 
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
@@ -72,9 +72,41 @@ for filei=1,#files do
 
 end
 
+function drawE()
+  local files={}
+  local colors={}
+  local files = {'iso.csv','iso2.csv','iso3.csv','iso4.csv'}
+    local colors = {'blue','orange','red','teal','black','green'}
+    local names = {'0 mg/L','1 mg/L','2 mg/L','4 mg/L'}
+
+for filei=1,#files do
+
+
+    tex.sprint("\\addplot[".."no markers,"..colors[filei].."] coordinates{")
+
+
+    for line in io.lines(files[filei]) do
+           local s, e = line:find("%s+", 1)
+            local y=tonumber(line:sub(e))
+           local x=tonumber(line:sub(1,e))
+        if type(x)  then
+
+        tex.sprint("("..x..","..y..")")
+
+        end
+   end
+
+     tex.sprint("};")
+              tex.sprint("\\addlegendentry{"..names[filei].."}")
+
+     end
+
+end
 
 \end{luacode*}
-\newcommand\addplotCHIpf{\directlua{drawD()}}
+\newcommand\addplotb{\directlua{drawD()}}
+\newcommand\addplotc{\directlua{drawE()}}
+
 \pgfplotsset{
     standard/.style={
      xlabel= Wellenlänge, % Set the labels
@@ -89,11 +121,13 @@ end
         }
 }
 \begin{document}
-\begin{tikzpicture}[scale=1.4,font=\sffamily]
-
-\begin{axis}[standard]
-  \addplotCHIpf
-\end{axis}
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=100pt,vertical sep=50pt,xlabels at=edge bottom,ylabels at=edge left,}]
+\nextgroupplot[standard,title= \textbf{c=0 \si{\milli\gram\per\liter}},xtick={1.15, 4.95 },xticklabels={$t_m = 1.15$,$t_r = 4.95$ }]
+    \addplotb
+\nextgroupplot[standard,title= \textbf{c=50 \si{\milli\gram\per\liter}},xtick={1.0, 4.91 },xticklabels={$t_m = 1.0$,$t_r = 4.91$, }]
+    \addplotc
+ \end{groupplot}
 \end{tikzpicture}
 \par
 %\tabellenwerte
