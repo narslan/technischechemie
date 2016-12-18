@@ -1,0 +1,150 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[german]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+%\usepackage{libertine}
+%\usepackage{helvet}
+
+\usepackage{microtype}
+% Minion and Myriad fonts
+\usepackage[minionint,mathlf]{MinionPro}
+\renewcommand{\sfdefault}{Myriad-LF}
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{setspace}
+\usepackage{booktabs} % To thicken table lines
+\usepackage[version=4]{mhchem}
+\usepackage[draft]{graphicx}
+\usepackage[labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage{chemstyle}
+
+%\usepackage[compatibility=4.7,language=german]{chemmacros}
+\renewcommand{\familydefault}{\sfdefault}
+\sisetup{detect-all}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=20mm,
+ top=30mm,
+ right=20mm
+ }
+
+\begin{document}
+
+\begin{onehalfspace}
+
+\section{Berechnung der Hartree-Fock-Energie von Wasser}
+Ziel dieser Aufgabe ist es, die Hartree-Fock-Energie von Wasser für verschiedene Geometrien und Methoden zu berechnen.
+\subsection{Berechnung der Gesamtenergie einer Geometrie von Wasser}
+Im ersten Teil soll die Gesamtenergie einer Geometrie von Wasser berechnet werden. Hierfür wird wie im Skript erläutert ein Wassermolekül erstellt und die Geometrie wie im Datenblatt angegeben angepasst. Als Basissatz wird cc-pVTZ verwendet. \\
+\textbf{Auswertung 1} Fünf grundlegende Parameter einer quantenmechanischen Rechnung sind die Geometrie, die Ladung, die Multiplizität, die Basisparameter und die QC-Methode. \\
+\textbf{Auswertung 2} Die sich ergebene Gesamtenergie beträgt -76.05334 \si{\hartree}.
+Die Punktgruppe der verwendeten Geometrie ist $C _s$ .\\
+\subsection{Gesamtenergie in Abhängigkeit von der Geometrie}
+In dem zweiten Teil soll die Abhängigkeit der Gesamtenergie von der Geometrie gezeigt werden, wofür dies Geometrie optimiert wird.\\
+\textbf{Auswertung 1}:\\
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{data/h2Omolekul_teil1.png}
+  \caption{Optimierte Geometrie von Wasser (RHF/cc-pVTZ)}
+\end{figure}
+\noindent
+Die sich für die optimierte Geometrie ergebene Gesamtenergie beträgt -76.05776 \si{\hartree}. \\
+\begin{table}[htbp]
+\centering
+\caption{Die Partialladungen von Sauerstoffatom und Wasserstoffatom im Wassermolekül}
+\begin{tabular}{lr}
+\toprule
+Atom &  Partialladungen (in e)\\
+O & -0.475\\
+H & 0.238\\
+\midrule
+\bottomrule
+
+\end{tabular}
+\end{table}
+\noindent
+Summiert man alle Partialladungen auf ergibt sich 0, was für ein neutral geladenes Molekül spricht.
+Für das Dipolmoment ergibt sich ein Wert von + 1.987 Debye und für die Richtung des Dipols in negativer Z-Achsenrichtung (-z).
+Der Wechsel der Punktgruppe von Aufgaben Teil 1 zu Teil 2 ist auf die Geometrieoptimierung in Teil 2 zurückzuführen. Es wurde mit einer unsymmetrischen Geometrie gestartet, die als Punktgruppe $C _s$ ausgab. Bei der Geometrieoptimierung in Teil 2 wurde die Symmetrie erhöht und es wurde die Punktgruppe $C _{2v}$ ausgegeben, da eine Spiegelebene entlang der $C _2$ Achse existiert.\\
+\noindent
+\textbf{Auswertung 2}\\
+Als nächstes soll die Optimierung der Geometrie nachvollzogen werden, was durch die Auftragung der Hartree-Energie sichtbar wird.
+\begin{figure}[!htp]
+\centering
+  \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{data/h2Omolekuloptimiert_teil2.png}%
+  \caption{Auftragung der Gesamtenergie gegen die Optimierungsschritte (RHF/cc-pVTZ)}
+\end{figure}
+Es ist deutlich zu erkennen, dass die Energie ab dem 2. Optimierungsschritt deutlich langsamer sinkt als zuvor. Diese langsamere Verbesserung hat zur Folge, dass sich der Kosten/Nutzen-Faktor bei den späteren Schritten verschlechtert.\\
+\newpage
+\noindent
+\textbf{Auswertung 3}\\
+Die Terme des Hamilton-Operators, welche von der Änderung der Geometrie betroffen sind, sind die der potentiellen Energien
+$\hat{V} _{K,K}(\vec{R})$, $\hat{V} _{K,el}(\vec{r},\vec{R})$ und $\hat{V} _{el,el}(\vec{r})$.
+Diese hängen vom Abstand des Elektrons bzw. des Kerns ab, den sie zueinander haben. Das kann am Beispiel von Helium gezeigt werden \cite{atkins219}:\\
+\begin{align*}
+\hat{V} &= - \hat{V} _{K,el1}(\vec{r},\vec{R}) - \hat{V} _{K,el2}(\vec{r},\vec{R})  + \hat{V} _{el,el}(\vec{r}) \\
+  &= - \frac{2e^2}{4\pi \varepsilon _0 r _1} - \frac{2e^2}{4\pi \varepsilon _0 r _2} +  \frac{e^2}{4\pi \varepsilon _0 r _{12}}
+\end{align*}
+$\hat{V}$ wird mit abnehmendem Kern-Elektronenabstand $\vec{r}$ negativer (stabilisierend) und mit abnehmendem Elektron-Elektronenabstand $\vec{r} _{12}$ positiver (destabilisierend).
+
+\subsection{Gesamtenergie in Abhängigkeit von der quantenchemischen Methode}
+In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden. Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert. Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).
+\newpage
+\noindent
+\textbf{Auswertung 1}\\
+\begin{table}[!htpb]
+\centering
+\caption{Vergleich der Basissätze}
+\begin{tabular}{lrr}
+\toprule
+ &
+STO-3G &
+cc-pVDZ \\
+\midrule
+Punktgruppe & $C _{2v}$ & $C _{2v}$\\
+Energie \si{\hartree}    & -74.95929 & -76.02694  \\
+$S _O / \textit{e}$ & -0.385 & -0.288  \\
+$S _H / \textit{e}$ & +0.192 & +0.144  \\
+$\nu / \textit{Debye}$ & 1.7371 & 2.0175  \\
+\bottomrule
+\end{tabular}
+\end{table}\\
+\textbf{Auswertung 2}\\
+Anhand der in der Tabelle aufgelisteten Werte ist zu erkennen, dass im Vergleich mit den zuvor berechneten Werten, der cc-pVDZ Basissatz eine niedrigere Gesamtenergie ergibt als der STO-3G. Ebenso verhält es sich mit dem Dipolmoment ($\mu$ [Debye]). Bei den Partialladungen weisen beide Basissätze große Unterschiede nicht nur zueinander, sondern auch zu der optimierten Geometrie aus Teil 2 der ersten Aufgabe auf.
+\subsection{Gesamtenergie in Abhängigkeit von der quantenchemischen Methode}
+In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden. Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert. Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).\\
+\textbf{Auswertung 1}\\
+
+\begin{table}[!htpb]
+\centering
+\caption{ Vergleich der QM-Methoden}
+\begin{tabular}{ll}
+\toprule
+Methode &   Energie \si{\hartree} \\
+\midrule
+Hartree-Fock & -76.05776\\
+MP2 & -76.31791\\
+CCSD & -76.32396 \\
+CCSD(T) & -76.3314\\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent
+Es ist zu erkennen, dass die sich für die Gesamtenergie errechneten Werte relativ nah beieinander liegen, jedoch in den Nachkommastellen voneinander abweichen. Die CCSD(T) Methode ist die Komplexeste, welche zugleich die niedrigste der drei Energien aufweist.
+\end{onehalfspace}
+\end{document}

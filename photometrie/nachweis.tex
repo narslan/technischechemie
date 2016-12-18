@@ -47,7 +47,7 @@ function drawD()
     local colors = {'blue','orange','red','teal','black','green','violet','pink','green'}
    -- local shifty = {-0.176238 ,  -0.217737 , -0.211587 ,  -0.182053 , -0.223418,0}
  --local files = {'MAX.TXT'}
-local files = {'450.TXT','451.TXT','452.TXT','453.TXT','M.TXT'}
+local files = {'450A.TXT','451A.TXT','452A.TXT','453A.TXT','M2.TXT'}
 local filesc = {'0 mg/L','0.25 mg/L','0.5 mg/L','1 mg/L','2 mg/L'}
 
 for filei=1,#files do
@@ -88,13 +88,13 @@ red,blue,black,yellow,brown,teal,orange,violet,cyan,green!70!black,magenta,gray}
     x tick label style={rotate=90,anchor=east},
     x label style={at={(axis description cs:0.5,-.2)},anchor=south},
     legend style={draw=none,legend pos=outer north east,legend cell align=left},
-     minor x tick num={10},
-     minor y tick num={10},
-     ymax = 0.6
+     minor x tick num={1},
+     minor y tick num={1},
+     enlargelimits=true
         }
 }
 \begin{document}
-\begin{tikzpicture}[scale=1.4,font=\sffamily]
+\begin{tikzpicture}[font=\sffamily]
 
 \begin{axis}[standard]
   \addplotCHIpf

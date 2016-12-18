@@ -37,12 +37,14 @@ for i=1,4 do
 end
 syx = math.sqrt(math.abs((summeyy-(b*summey)-(m*summexy)))/(n-2))
 sxo = syx / m
+
 qxx= summexx - (summex^2/n)
 meanx = summex/n
 meany = summey/n
-xng = 2.92*(syx/m)*(math.sqrt((1/ndach)+(1/nodach)+((meanx^2)/qxx)))
+vxo = sxo / meanx
+xng = 2.015*(syx/m)*(math.sqrt((1/ndach)+(1/nodach)+((meanx^2)/qxx)))
 xbg = 3*4.3*(syx/m)*(math.sqrt((1/ndach)+(1/nodach)+((3*xng -meanx^2)/qxx)))
-print(string.format("syx: %.6f sxo: %.6f xmean: %.6f ymean: %.6f qxx: %.6f xng: %.6f xbg: %.6f",syx, sxo, meanx, meany, qxx,xng, xbg))
+print(string.format("syx: %.6f sxo: %.6f xmean: %.6f ymean: %.6f qxx: %.6f xng: %.6f xbg: %.6f vxo: %.6f",syx, sxo, meanx, meany, qxx,xng, xbg, vxo))
 
 --for i=1,4 do
  -- print(string.format("ydach: %.6f",m * x[i] + b))
