@@ -52,7 +52,7 @@ Ziel dieser Aufgabe ist es, die Hartree-Fock-Energie von Wasser für verschieden
 \subsection{Berechnung der Gesamtenergie einer Geometrie von Wasser}
 Im ersten Teil soll die Gesamtenergie einer Geometrie von Wasser berechnet werden. Hierfür wird wie im Skript erläutert ein Wassermolekül erstellt und die Geometrie wie im Datenblatt angegeben angepasst. Als Basissatz wird cc-pVTZ verwendet. \\
 \textbf{Auswertung 1} Fünf grundlegende Parameter einer quantenmechanischen Rechnung sind die Geometrie, die Ladung, die Multiplizität, die Basisparameter und die QC-Methode. \\
-\textbf{Auswertung 2} Die sich ergebene Gesamtenergie beträgt -76.05334 \si{\hartree}.
+\textbf{Auswertung 2} Die sich ergebene Gesamtenergie beträgt -76.06099515 \si{\hartree}.
 Die Punktgruppe der verwendeten Geometrie ist $C _s$ .\\
 \subsection{Gesamtenergie in Abhängigkeit von der Geometrie}
 In dem zweiten Teil soll die Abhängigkeit der Gesamtenergie von der Geometrie gezeigt werden, wofür dies Geometrie optimiert wird.\\
@@ -60,18 +60,18 @@ In dem zweiten Teil soll die Abhängigkeit der Gesamtenergie von der Geometrie g
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{data/h2Omolekul_teil1.png}
-  \caption{Optimierte Geometrie von Wasser (RHF/cc-pVTZ)}
+  \caption{Optimierte Geometrie von Wasser (HF/cc-pVQZ)}
 \end{figure}
 \noindent
-Die sich für die optimierte Geometrie ergebene Gesamtenergie beträgt -76.05776 \si{\hartree}. \\
+Die sich für die optimierte Geometrie ergebene Gesamtenergie beträgt -76.06551853 \si{\hartree}. \\
 \begin{table}[htbp]
 \centering
 \caption{Die Partialladungen von Sauerstoffatom und Wasserstoffatom im Wassermolekül}
 \begin{tabular}{lr}
 \toprule
 Atom &  Partialladungen (in e)\\
-O & -0.475\\
-H & 0.238\\
+O & -0.512\\
+H & 0.256\\
 \midrule
 \bottomrule
 
@@ -79,14 +79,17 @@ H & 0.238\\
 \end{table}
 \noindent
 Summiert man alle Partialladungen auf ergibt sich 0, was für ein neutral geladenes Molekül spricht.
-Für das Dipolmoment ergibt sich ein Wert von + 1.987 Debye und für die Richtung des Dipols in negativer Z-Achsenrichtung (-z).
-Der Wechsel der Punktgruppe von Aufgaben Teil 1 zu Teil 2 ist auf die Geometrieoptimierung in Teil 2 zurückzuführen. Es wurde mit einer unsymmetrischen Geometrie gestartet, die als Punktgruppe $C _s$ ausgab. Bei der Geometrieoptimierung in Teil 2 wurde die Symmetrie erhöht und es wurde die Punktgruppe $C _{2v}$ ausgegeben, da eine Spiegelebene entlang der $C _2$ Achse existiert.\\
+Für das Dipolmoment ergibt sich ein Wert von + 1.948 Debye und für die Richtung des Dipols in negativer Z-Achsenrichtung (-z).
+Der Wechsel der Punktgruppe von Aufgaben Teil 1 zu Teil 2 ist auf die Geometrieoptimierung in Teil 2 zurückzuführen.
+ Es wurde mit einer unsymmetrischen Geometrie gestartet, die als Punktgruppe $C _s$ ausgab.
+  Bei der Geometrieoptimierung in Teil 2 wurde die Symmetrie erhöht und es wurde die Punktgruppe $C _{2v}$ ausgegeben,
+  da eine Spiegelebene entlang der $C _2$ Achse existiert.\\
 \noindent
 \textbf{Auswertung 2}\\
 Als nächstes soll die Optimierung der Geometrie nachvollzogen werden, was durch die Auftragung der Hartree-Energie sichtbar wird.
 \begin{figure}[!htp]
 \centering
-  \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{data/h2Omolekuloptimiert_teil2.png}%
+  \includegraphics[width=.9\textwidth,height=.9\textheight,keepaspectratio]{data/water.png}%
   \caption{Auftragung der Gesamtenergie gegen die Optimierungsschritte (RHF/cc-pVTZ)}
 \end{figure}
 Es ist deutlich zu erkennen, dass die Energie ab dem 2. Optimierungsschritt deutlich langsamer sinkt als zuvor. Diese langsamere Verbesserung hat zur Folge, dass sich der Kosten/Nutzen-Faktor bei den späteren Schritten verschlechtert.\\
@@ -117,17 +120,22 @@ STO-3G &
 cc-pVDZ \\
 \midrule
 Punktgruppe & $C _{2v}$ & $C _{2v}$\\
-Energie \si{\hartree}    & -74.95929 & -76.02694  \\
-$S _O / \textit{e}$ & -0.385 & -0.288  \\
-$S _H / \textit{e}$ & +0.192 & +0.144  \\
-$\nu / \textit{Debye}$ & 1.7371 & 2.0175  \\
+Energie \si{\hartree}    & -74.95896952 & -76.02690370  \\
+$S _O / \textit{e}$ & -0.386 & -0.287  \\
+$S _H / \textit{e}$ & +0.193 & +0.144  \\
+$\nu / \textit{Debye}$ & 1.7368 & 2.0130  \\
 \bottomrule
 \end{tabular}
 \end{table}\\
 \textbf{Auswertung 2}\\
-Anhand der in der Tabelle aufgelisteten Werte ist zu erkennen, dass im Vergleich mit den zuvor berechneten Werten, der cc-pVDZ Basissatz eine niedrigere Gesamtenergie ergibt als der STO-3G. Ebenso verhält es sich mit dem Dipolmoment ($\mu$ [Debye]). Bei den Partialladungen weisen beide Basissätze große Unterschiede nicht nur zueinander, sondern auch zu der optimierten Geometrie aus Teil 2 der ersten Aufgabe auf.
+Anhand der in der Tabelle aufgelisteten Werte ist zu erkennen,
+ dass im Vergleich mit den zuvor berechneten Werten, der cc-pVDZ Basissatz eine niedrigere Gesamtenergie ergibt als der STO-3G.
+ Ebenso verhält es sich mit dem Dipolmoment ($\mu$ [Debye]). Bei den Partialladungen weisen beide Basissätze große Unterschiede
+ nicht nur zueinander, sondern auch zu der optimierten Geometrie aus Teil 2 der ersten Aufgabe auf.
 \subsection{Gesamtenergie in Abhängigkeit von der quantenchemischen Methode}
-In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden. Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert. Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).\\
+In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden.
+Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert.
+Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).\\
 \textbf{Auswertung 1}\\
 
 \begin{table}[!htpb]
@@ -137,10 +145,12 @@ In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanisc
 \toprule
 Methode &   Energie \si{\hartree} \\
 \midrule
-Hartree-Fock & -76.05776\\
-MP2 & -76.31791\\
-CCSD & -76.32396 \\
-CCSD(T) & -76.3314\\
+HF/STO-3G & -74.95896952 \\
+HF/CC-pVDZ& -76.0269037\\
+HF/CC-pVQZ& -76.06099515\\
+MP2 & -76.34694522\\
+CCSD & -76.35028785 \\
+CCSD(T) & -76.35909660\\
 \bottomrule
 \end{tabular}
 \end{table}
