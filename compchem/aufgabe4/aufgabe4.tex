@@ -22,6 +22,7 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage{subcaption}
 \usepackage{chemstyle}
+\usepackage{tabularx}
 
 %\usepackage[compatibility=4.7,language=german]{chemmacros}
 \renewcommand{\familydefault}{\sfdefault}
@@ -48,37 +49,42 @@
 \begin{onehalfspace}
 
 \section{Potentialkurve von \ce{N_2}}
-Ziel dieser Aufgabe ist es, die Potentialkurve des Stickstoffmoleküls zu berechnen und anschließend die Orbitale visualisiert und ein MO-Diagramm erstellt werden.
+Ziel dieser Aufgabe ist es, die Potentialkurve des Stickstoffmoleküls zu berechnen und anschließend die Orbitale
+ visualisiert und ein MO-Diagramm erstellt werden.
 \subsection{Berechnung der Potenzialkurve auf Hartree-Fock Niveau}
-\textbf{Auswertung 1 und 2 }\\
-\begin{figure}[!htpb]
-\centering
-  \includegraphics[width=0.8\textwidth]{data/potentialkurve.png}%
-  \caption{Potenzialkurve für Stickstoff auf RHF/cc-pVTZ-Niveau}
-\end{figure}
-
+\textbf{Auswertung 1 und 2}
 \begin{table}[!htpb]
 \centering
 \caption{}
-\begin{tabular}{lllclll}
+\begin{tabularx}{\textwidth}{lllclll}
 \toprule
 Molekül &
 Methode &
 Basissatz &
-\parbox[t]{2cm}{Gitter\\(Min, Max, Incr)} &
+\parbox[t]{2cm}{Gitter\\ \scriptsize{(Min, Max, Incr)}} &
 Symmetrie &
 GGW-Abstand &
 GGW-Energie $E _h$ \\
 \midrule
-\ce{N _2} & RHF & cc-pVTZ &0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.96801 \\
+\ce{N _2} & RHF & 6-311G(d,p) & 0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.96801 \\
 \bottomrule
-\end{tabular}
+\end{tabularx}
 \end{table}
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=\textwidth]{data/potentialkurve.png}%
+  \caption{Potenzialkurve für Stickstoff auf RHF/6-311G(d,p)-Niveau}
+\end{figure}
+
+
 
 \noindent
 \textbf{Auswertung 3}\\
- Bei der Vorgabe wird der Bindungsabstand in jedem Eingabeschritt 0.2 \si{\angstrom} erhöht, was in 20 Schritten einen Abstand von 4.6 \si{\angstrom} ausmacht. Die Dissoziation erfolgt in etwa 10 Schritten.\\
-Bei der Bindungsspaltung handelt es sich um eine homolytische Moleküldissoziation\cite{wiberg71} in der die Bindungselektronen gleichmäßig auf beide Molekülbruchstücke verteilt werden. Es entstehen dabei zwei \ce{N$\cdot$} Radikal-Fragmente\cite{wiberg384}. Der andere Dissoziationweg wäre heterolytisch, in dem
+ Bei der Vorgabe wird der Bindungsabstand in jedem Eingabeschritt 0.2 \si{\angstrom} erhöht,
+ was in 20 Schritten einen Abstand von 4.6 \si{\angstrom} ausmacht. Die Dissoziation erfolgt in etwa 2 Schritten.\\
+Bei der Bindungsspaltung handelt es sich um eine homolytische Moleküldissoziation
+ in der die Bindungselektronen gleichmäßig auf beide Molekülbruchstücke verteilt werden.
+ Es entstehen dabei zwei \ce{N$\cdot$} Radikal-Fragmente. Der andere Dissoziationweg wäre heterolytisch, in dem
 zwei Stickstoff-Fragmente mit entgegengesetzen Ladungen entstehen.\\
  \noindent
 \textbf{Auswertung 4 und 5}\\
@@ -89,15 +95,31 @@ zwei Stickstoff-Fragmente mit entgegengesetzen Ladungen entstehen.\\
 \end{figure}\\
 \noindent
 Die Singulett-Konfiguration (\ce{^4_{}S}) der Stickstoff-Fragmente hat die Multiplizität von $2 \cdot \frac{3}{2} + 1 = 4$ und die Dublett-Konfiguration (\ce{^4_{}S}) hat die Multiplizität von $2 \cdot \frac{1}{2} + 1 = 2$. Nach Hunds'chen Regel der Multiplizität, ist der Singulettzustand (\ce{^4_{}S}) energetisch günstiger als der Dublettzustand(\ce{^2_{}D}).\cite{wiberg98}
+
 \subsection{Geometrieoptimierung des Stickstoffmoleküls}
-\textbf{Auswertung 1}
-Die Gesamtenergie der optimierten Geometrie beträgt -108.98655 \si{\hartree} und der Gleichgewicht-Abstand 1.06711 \si{\angstrom}.\\
-\textbf{Auswertung 2}
+\textbf{Auswertung 1 und 2}
+\begin{table}[!htpb]
+\centering
+\caption{}
+\begin{tabularx}{\textwidth}{lllll}
+\toprule
+Molekül &
+Methode &
+Basissatz &
+Bindungslänge \si{\angstrom} &
+Gesamtenergie \si{\hartree}\\
+\midrule
+\ce{N _2} & RHF & 6-311G(d,p) & 1.07027 \si{\angstrom} & -108.98655 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 Im Vergleich zur Gesamtenergie aus dem ersten Aufgabenteil ist die Energie der optimierten Geometrie geringfügig niedriger.\\
+
 \textbf{Auswertung 3}\\
 \begin{table}[!htpb]
 \centering
-\caption{Der experimentelle Gasphasenabstand im \ce{N_2} Molekül \cite{wiberg653}}
+\caption{Der experimentelle Gasphasenabstand im \ce{N_2} Molekül }
 \begin{tabular}{ccc}
 \toprule
 Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand \\
@@ -107,100 +129,107 @@ Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand \\
 \end{tabular}
 \end{table}\\
 \noindent
-\textbf{Auswertung 4 und Auswertung 5}\\
+\textbf{Auswertung 4}\\
 \begin{figure}[!htpb]
    \centering
-\includegraphics[width=0.5\textwidth,height=11cm]{data/mohf.png}
-\caption{MO-Diagramm für ein Stickstoff-Molekül (RHF/cc-pVTZ-Niveau)}
+\includegraphics[width=0.5\textwidth,keepaspectratio]{data/mohf.png}
+\caption{MO-Diagramm für ein Stickstoff-Molekül auf RHF/6-311G(d,p)}
 \end{figure}
 
 \begin{table}[!htpb]
 \centering
 \caption{Die experimentellen und berechneten Orbital Energien des Stickstoffs}
-\begin{tabular}{lrr}
+\begin{tabular}{lll}
 \toprule
-Orbital & Orbitalenergien \cite{miessler} (eV) & Orbitalenergien(RHF/6-311G(d,p)) (eV)\\
+Orbital  && Orbitalenergien(RHF/6-311G(d,p)) (eV)\\
 \midrule
-$3\sigma _u$ & &    0.42837\\
-$1\pi _g$    & &    0.17721 \\
-$1\pi _g$    & &    0.17721 \\
-$1\pi _u$    & - 16.9 &  -0.62551 \\
-$1\pi _u$    & - 16.9 & -0.62551 \\
-$3\sigma _g$ &  - 15.5 & -0.63513 \\
-$2\sigma _u$ & - 18.7 & -0.76739 \\
-$2\sigma _g$ & -19.4  & -1.49206 \\
-$1\sigma _u$ &  &-15.66636 \\
-$1\sigma _g$ & &-15.67063 \\
+$3\sigma _u$ & &   0.32629\\
+$1\pi _g$    & &    -0.09957 \\
+$1\pi _g$    & &   -0.09957 \\
+$1\pi _u$    &  &  -0.435529 \\
+$1\pi _u$    & &  -0.48286 \\
+$3\sigma _g$ &  & -0.48286 \\
+$2\sigma _u$ && -0.52102 \\
+$2\sigma _g$ & & -1.12397 \\
+$1\sigma _u$ &  &-14.03231 \\
+$1\sigma _g$ & &-14.03375 \\
 \bottomrule
 \end{tabular}
 \end{table}
- Die HF-Energien von p-Orbitalen entsprechen den Photoelektronenspektren Werte \cite{miessler} nicht.
- Der Grund dafür ist, die RHF Methode beschreiben die Orbitale nicht gut, die weit weg vom Kern sind.
 
-\textbf{Auswertung 6}
+\textbf{Auswertung 5 und 6}
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/1.png}
+      \subcaption{$1 \sigma _g$  }
     \end{subfigure}
-    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
-      %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/2.png}
+         \subcaption{$1 \sigma _u$ }
     \end{subfigure}
-    \caption{$1 \sigma _g$  und $1 \sigma _u$ }
+
 \end{figure}
 
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/3.png}
+        \subcaption{$2 \sigma _g$ }
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/4.png}
+     \subcaption{$2 \sigma _u$}
     \end{subfigure}
-    \caption{$2 \sigma _g$ und $2 \sigma _u$ }
+
 \end{figure}
 
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/5.png}
+        \subcaption{$1 \pi _u^x$  }
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/6.png}
+        \subcaption{$1 \pi _u^y$}
     \end{subfigure}
-     \caption{$1 \pi _u^x$ und $1 \pi _u^y$ }
+
 \end{figure}
 \newpage
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/7.png}
+                \subcaption{$3 \sigma _g$}
+
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/8.png}
+               \subcaption{$1 \pi _g$}
+
     \end{subfigure}
-       \caption{$3 \sigma _g$ und $1 \pi _g$}
 \end{figure}
 
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/9.png}
+               \subcaption*{$1 \pi _g$}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
         \includegraphics[width=\textwidth]{data/orbitale/10.png}
+          \subcaption*{ $3 \sigma _u$}
     \end{subfigure}
-    \caption{$1 \pi _g^x$   und $3 \sigma _u$}
+
 \end{figure}
 
 \end{onehalfspace}

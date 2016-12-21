@@ -22,7 +22,7 @@
 \usepackage[labelfont=bf]{caption}
 \usepackage{subcaption}
 \usepackage{chemstyle}
-
+\usepackage{tabularx}
 %\usepackage[compatibility=4.7,language=german]{chemmacros}
 \renewcommand{\familydefault}{\sfdefault}
 \sisetup{detect-all}
@@ -50,69 +50,62 @@
 \section{Geometrieoptimierung und Berechnung der chemischen Verschiebung von Toluol}
 Ziel dieser Aufgabe ist es, nach einer durchgeführten Geometrieoptimierung, die \ce{^1_{}H-NMR}-Verschiebung
 von Toluol gegen Tetramethylsilan (TMS) als Standard zu berechnen.\\
-\textbf{Auswertung 1:}\\
+\textbf{Auswertung 1:}
 
 \begin{table}[!htpb]
-\centering
+
+
 \caption{ Parameter für die optimierte Geometrie von Toluol}
-\begin{tabular}{lrllc}
+\begin{tabularx}{\textwidth}{llllc}
 \toprule
-Molekül  & Methode & Basissatz & Energie \si{\hartree} & Geometrie \\
+Molekül  & Methode & Basissatz & Energie \si{\hartree} & Punktgruppe \\
 \midrule
- Toluol & MP2 & aug-cc-pVDZ & -270.75294794 &$C _S$\\
+ Toluol & MP2 & aug-cc-pVDZ & -270.75294 &$C _S$\\
 \midrule
  Bindung & Bindungslänge \si{\angstrom} & &  &\\
- C-C (Ring) & 1.3970 &&&\\
- C-C (Ipso) & 1.5072 &&&\\
- C-H (Ring) & 1.0862 &&&\\
- C-H (Alkyl)& 1.0933 &&&\\
+ C-C (Ring) $C_3 - C_4$ & 1.409800 &&&\\
+ C-C (Ring) $C_2 - C_3$ & 1.405891 &&&\\
+ C-C (Ring) $C_1 - C_2$ & 1.406102 &&&\\
+ C-C (Kette) & 1.511691 &&&\\
+ C-H (Orto)  & 1.094643 &&&\\
+ C-H (Meta)  & 1.093370 &&&\\
+ C-H (Para)  & 1.093007 &&&\\
+ C-H (Alkyl) & 1.100292 &&&\\
 \bottomrule
-\end{tabular}
+\end{tabularx}
+\label{tab:toluol}
 \end{table}
 
-\textbf{Auswertung 2:}\\
+\textbf{Auswertung 2:}
 
 \begin{figure}[!htpb]
-\centering
   \includegraphics[width=\textwidth]{data/toluol_bezzifert.png}%
-  \caption{Optimierte Geometrie Toluol}
+  \caption{Optimierte Geometrie von Toluol auf MP2/aug-cc-pVDZ Niveau für die Bindungslänge siehe ~\ref{tab:toluol}  }
 \end{figure}
 \begin{figure}[!htbp]
-\centering
   \includegraphics[width=\textwidth]{data/mp2fullaugccpvddz.png}%
-  \caption{Chemische Verschiebung und Intensitäten}
+  \caption{Chemische Verschiebung und Intensitäten auf MP2/aug-cc-pVDZ Niveau}
 \end{figure}
 
+
+\textbf{Auswertung 3 und 4:}
 \begin{table}[!htpb]
-\centering
 \caption{Chemische Verschiebung der Wasserstoffatome für die optimierten Geometrie von Toluol}
 \begin{tabular}{llll}
 \toprule
 H-Atom  & \parbox[t]{4cm}{$\delta$ Toluol/TMS \\ (MP2/aug-cc-pVDZ\\ ppm}  &  \parbox[t]{4cm}{$\delta$ Toluol\cite{zeeh} ppm} & Intensitäten\\
 \midrule
-H8 &   7.5621 & 7.17 & 1  \\
-H9 &   7.5621 & 7.17 & 2  \\
-H7 &   7.5411 & 7.21 & 3  \\
-H10 & 7.5411 & 7.21 & 4 \\
-H11 & 7.4855 & 7.17 & 1 \\
-H13 & 2.6352 & 2.32 & 1 \\
-H14 & 2.2977 & 2.32 & 1 \\
-H15 & 2.2977 & 2.32 & 2 \\
+H7  & 7.46 & 7.21 & 1 \\
+H8  & 7.51 & 7.17 & 2  \\
+H9  &  7.52 & 7.17 & 2  \\
+H10 & 7.52 & 7.21 & 2 \\
+H11 & 7.51 & 7.17 & 2 \\
+H13 & 2.63& 2.32 & 1 \\
+H14 & 2.30 & 2.32 & 1 \\
+H15 & 2.30 & 2.32 & 1 \\
 \bottomrule
 \end{tabular}
 \end{table}
-\noindent
-In der \ce{^1_{}H-NMR} Spektroskopie wird die Anzahl der Protonen
- mit der Fläche des Resonanzsignals ermittelt.
- Die berechnetten Intensitäten stellen keine Fläche dar.
- Sie lassen sich somit zur Deutung nicht verwenden.
- Die Summe der Intensitäten von 3 Alkylprotonen ergibt $1 + 1 + 2 = 4$
- und die Summe der Intensitäten von 5 Arylprotonen ergibt $1+2+3+4+1 = 11 $,
- welches anschließend ein (Alkyl-H/Aryl-H) Verhältnis von $\frac{4}{11}$ ergibt.
-  Ein Intensitätverhältnis von $\frac{4}{11}$ wiedergibt das tatsächliche Verhältnis von $\frac{3}{5}$ nicht.
-
-
-
 
 \end{onehalfspace}
 \end{document}
