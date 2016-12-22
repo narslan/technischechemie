@@ -23,6 +23,8 @@
 \usepackage{subcaption}
 \usepackage{chemstyle}
 \usepackage{tabularx}
+\usepackage{tikzorbital}
+\usepackage{chemfig}
 
 %\usepackage[compatibility=4.7,language=german]{chemmacros}
 \renewcommand{\familydefault}{\sfdefault}
@@ -32,7 +34,7 @@
 \counterwithin{figure}{section}
 
 \usepackage{titlesec}
-
+\renewcommand*\printatom[1]{\ensuremath{\mathsf{#1}}}
 \titleformat*{\section}{\large\bfseries}
 \titleformat*{\subsection}{\normalsize\bfseries}
 
@@ -66,13 +68,13 @@ Symmetrie &
 GGW-Abstand &
 GGW-Energie $E _h$ \\
 \midrule
-\ce{N _2} & RHF & 6-311G(d,p) & 0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.96801 \\
+\ce{N _2} & RHF & 6-311G(d,p) & 0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.95140449 \\
 \bottomrule
 \end{tabularx}
 \end{table}
 \begin{figure}[!htpb]
 \centering
-  \includegraphics[width=\textwidth]{data/potentialkurve.png}%
+  \fbox{\includegraphics[width=\textwidth]{data/potentialkurve.png}}
   \caption{Potenzialkurve für Stickstoff auf RHF/6-311G(d,p)-Niveau}
 \end{figure}
 
@@ -80,21 +82,103 @@ GGW-Energie $E _h$ \\
 
 \noindent
 \textbf{Auswertung 3}\\
- Bei der Vorgabe wird der Bindungsabstand in jedem Eingabeschritt 0.2 \si{\angstrom} erhöht,
- was in 20 Schritten einen Abstand von 4.6 \si{\angstrom} ausmacht. Die Dissoziation erfolgt in etwa 2 Schritten.\\
-Bei der Bindungsspaltung handelt es sich um eine homolytische Moleküldissoziation
- in der die Bindungselektronen gleichmäßig auf beide Molekülbruchstücke verteilt werden.
- Es entstehen dabei zwei \ce{N$\cdot$} Radikal-Fragmente. Der andere Dissoziationweg wäre heterolytisch, in dem
-zwei Stickstoff-Fragmente mit entgegengesetzen Ladungen entstehen.\\
- \noindent
-\textbf{Auswertung 4 und 5}\\
-\begin{figure}[!htpb]
-   \centering
-\includegraphics[width=0.8\textwidth]{data/hund.png}
+Die  Bindungsspaltung war eine heterolytische Bindungsspaltung. wird
+der Input der Rechnung betrachtet, so weist die Vorgabe „charge: 0, Spin:
+Singlet“ darauf hin.
+
+\textbf{Auswertung 4 }\\
+
+\begin{table}[!htpb]
+\begin{tabular}{c|ccc}
+ \large Homolytisch & &\multicolumn{2}{c}{\large Heterolytisch}\\
+ & &\\
+ \ce{\Lewis{0.2.4:6.,N}} & & \ce{N+} & \ce{N-}\\
+  & &\\
+\begin{tikzpicture}
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = up,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Quartett} ;
+\end{tikzpicture}
+& &
+\begin{tikzpicture}
+
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = up,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Triplett} ;
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = updown,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Triplett} ;
+\end{tikzpicture}\\
+&&&\\
+&&&\\
+\begin{tikzpicture}
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = updown,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[elec = up,pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Dublett} ;
+\end{tikzpicture}
+&&
+\begin{tikzpicture}
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = updown,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Singlet} ;
+\end{tikzpicture}
+&
+\begin{tikzpicture}
+%\draw [->,ultra thick] (-1,-2) --(-1,4) node[above] { Energie};
+\drawLevel[elec = updown,pos = {(0,0)},    width = 1]{d1};
+\drawLevel[elec = updown,pos = {(0,1.3)},  width = 1]{};
+\drawLevel[elec = updown,pos = {(0,2.6)},  width = 1]{};
+\drawLevel[elec = updown,pos = {(1.3,2.6)},  width = 1]{};
+\drawLevel[pos = {(2.6,2.6)},  width = 1]{};
+\node[right] at (right d1) { Singlet} ;
+\end{tikzpicture}\\
+
+\end{tabular}
+
 \caption{Die Elektronenbesetzungschemen der Stickstoff-Fragmenten von möglichen Dissoziationsarten \cite{wiberg98}}
-\end{figure}\\
-\noindent
-Die Singulett-Konfiguration (\ce{^4_{}S}) der Stickstoff-Fragmente hat die Multiplizität von $2 \cdot \frac{3}{2} + 1 = 4$ und die Dublett-Konfiguration (\ce{^4_{}S}) hat die Multiplizität von $2 \cdot \frac{1}{2} + 1 = 2$. Nach Hunds'chen Regel der Multiplizität, ist der Singulettzustand (\ce{^4_{}S}) energetisch günstiger als der Dublettzustand(\ce{^2_{}D}).\cite{wiberg98}
+\label{table:besetzung}
+\end{table}
+
+Die anderen Möglichkeiten zur Dissoziation und der Multiplizitäten sind oben in
+der ~\ref{table:besetzung} dargestellt.
+Bei einer heterolytischen Dissoziation erhält man ein
+Stickstoffkation und ein Stickstoffanion, die Singlet- und Dublett-Zustand aufweisen.
+Möglich ist eine homolytische Bindungsspaltung,
+bei der man zwei Stickstoffradikale erhält. Die dabei möglichen Multiplizitäten sind
+in der ~\ref{table:besetzung} zu sehen; es ist der Quartett- und der Dublett-Zustand
+möglich.
+\textbf{Auswertung 5}
+Nach der Hundschen Regel die Besetzung entarteter Orbitale so erfolgt, dass die größtmögliche Zahl
+ ungepaarter Elektronen erreicht wird (maximale Spinmultiplizität).
+ Solche Zustände sind energetisch stabiler als Zustände, bei denen die entarteten Orbitale nicht so besetzt werden,
+dass die Anzahl der ungepaarten Elektronen maximal wird. Demnach lautet die energetische Reihenfolge der
+Dissoziationskanäle wie folgt (nach aufsteigender Energie):\\
+ Quartett < Dublett < Triplett < Singlet.\\
+Daraus ergibt es sich dass es eine homolytische Dissoziation
+  energetisch günstiger als eine heterolytische Dissoziation.
 
 \subsection{Geometrieoptimierung des Stickstoffmoleküls}
 \textbf{Auswertung 1 und 2}
@@ -161,12 +245,12 @@ $1\sigma _g$ & &-14.03375 \\
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/1.png}
-      \subcaption{$1 \sigma _g$  }
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/1.png}}
+      \subcaption*{$1 \sigma _g$  }
     \end{subfigure}
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/2.png}
-         \subcaption{$1 \sigma _u$ }
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/2.png}}
+         \subcaption*{$1 \sigma _u$ }
     \end{subfigure}
 
 \end{figure}
@@ -174,14 +258,14 @@ $1\sigma _g$ & &-14.03375 \\
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/3.png}
-        \subcaption{$2 \sigma _g$ }
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/3.png}}
+        \subcaption*{$2 \sigma _g$ }
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/4.png}
-     \subcaption{$2 \sigma _u$}
+       \fbox{ \includegraphics[width=0.4\textwidth]{data/orbitale/4.png}}
+     \subcaption*{$2 \sigma _u$}
     \end{subfigure}
 
 \end{figure}
@@ -189,30 +273,29 @@ $1\sigma _g$ & &-14.03375 \\
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/5.png}
-        \subcaption{$1 \pi _u^x$  }
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/5.png}}
+        \subcaption*{$1 \pi _u^x$  }
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/6.png}
-        \subcaption{$1 \pi _u^y$}
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/6.png}}
+        \subcaption*{$1 \pi _u^y$}
     \end{subfigure}
-
+\label{figure:orbitalen2}
 \end{figure}
-\newpage
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/7.png}
-                \subcaption{$3 \sigma _g$}
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/7.png}}
+                \subcaption*{$3 \sigma _g$}
 
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/8.png}
-               \subcaption{$1 \pi _g$}
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/8.png}}
+               \subcaption*{$1 \pi _g$}
 
     \end{subfigure}
 \end{figure}
@@ -220,13 +303,13 @@ $1\sigma _g$ & &-14.03375 \\
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/9.png}
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/9.png}}
                \subcaption*{$1 \pi _g$}
     \end{subfigure}
     ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
       %(or a blank line to force the subfigure onto a new line)
     \begin{subfigure}[b]{0.4\textwidth}
-        \includegraphics[width=\textwidth]{data/orbitale/10.png}
+        \fbox{\includegraphics[width=0.4\textwidth]{data/orbitale/10.png}}
           \subcaption*{ $3 \sigma _u$}
     \end{subfigure}
 
