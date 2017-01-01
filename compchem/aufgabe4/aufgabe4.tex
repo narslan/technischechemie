@@ -70,15 +70,26 @@ GGW-Energie $E _h$ \\
 \midrule
 \ce{N _2} & RHF & 6-311G(d,p) & 0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.95140449 \\
 \bottomrule
+  \label{table:morse}
 \end{tabularx}
 \end{table}
 \begin{figure}[!htpb]
 \centering
-  \fbox{\includegraphics[width=\textwidth]{data/potentialkurve.png}}
+  \fbox{\includegraphics[width=\textwidth]{data/morse.png}}
   \caption{Potenzialkurve für Stickstoff auf RHF/6-311G(d,p)-Niveau}
+  \label{figure:morse}
 \end{figure}
-
-
+Das Morse Potential beschreibt den Verlauf des elektronischen Potentials eines zweiatomigen Moleküls
+in Abhängigkeit vom Kern­bindungsabstand {\displaystyle R} R durch eine exponentielle Näherung:
+\begin{equation}
+ E(r) = D_e (1-e^\alpha{r-r_e})^2
+\end{equation}
+ Darin ist $r$ der Kernabstand der beiden betrachteten Atome, $r_e$ der Kernabstand bei der
+geringsten potentiellen Energie $D_e$. $D_e$ ist die minimale Energie, auch spektroskopische
+Dissoziationsenergie genannt, $\alpha$ ist eine spezifische Stoffkonstante, abhängig von den
+betrachteten Atomen.
+Es ist an der ~\ref{figure:morse} erkennen, dass der Verlauf des berechneten Potentials
+ den exponentiellen Morse-Verlauf in guter Näherung wiedergibt.
 
 \noindent
 \textbf{Auswertung 3}\\
@@ -169,7 +180,7 @@ Stickstoffkation und ein Stickstoffanion, die Singlet- und Dublett-Zustand aufwe
 Möglich ist eine homolytische Bindungsspaltung,
 bei der man zwei Stickstoffradikale erhält. Die dabei möglichen Multiplizitäten sind
 in der ~\ref{table:besetzung} zu sehen; es ist der Quartett- und der Dublett-Zustand
-möglich.
+möglich.\\
 \textbf{Auswertung 5}
 Nach der Hundschen Regel die Besetzung entarteter Orbitale so erfolgt, dass die größtmögliche Zahl
  ungepaarter Elektronen erreicht wird (maximale Spinmultiplizität).
@@ -181,11 +192,12 @@ Daraus ergibt es sich dass es eine homolytische Dissoziation
   energetisch günstiger als eine heterolytische Dissoziation.
 
 \subsection{Geometrieoptimierung des Stickstoffmoleküls}
+Mit der gleichen Methode (RHF) und dem gleichen Basissatz 6-311G(d,p)
+wurde die Geometrie des Stickstoffmoleküls optimiert.
 \textbf{Auswertung 1 und 2}
 \begin{table}[!htpb]
-\centering
 \caption{}
-\begin{tabularx}{\textwidth}{lllll}
+\begin{tabular}{lllll}
 \toprule
 Molekül &
 Methode &
@@ -195,7 +207,7 @@ Gesamtenergie \si{\hartree}\\
 \midrule
 \ce{N _2} & RHF & 6-311G(d,p) & 1.07027 \si{\angstrom} & -108.98655 \\
 \bottomrule
-\end{tabularx}
+\end{tabular}
 \end{table}
 
 Im Vergleich zur Gesamtenergie aus dem ersten Aufgabenteil ist die Energie der optimierten Geometrie geringfügig niedriger.\\
@@ -206,7 +218,7 @@ Im Vergleich zur Gesamtenergie aus dem ersten Aufgabenteil ist die Energie der o
 \caption{Der experimentelle Gasphasenabstand im \ce{N_2} Molekül }
 \begin{tabular}{ccc}
 \toprule
-Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand \\
+Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand ~\cite{holleman} \\
 1.0 \si{\angstrom} & 1.07027 \si{\angstrom} & 1.0976 \si{\angstrom} \\
 \midrule
 \bottomrule
@@ -214,34 +226,27 @@ Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand \\
 \end{table}\\
 \noindent
 \textbf{Auswertung 4}\\
-\begin{figure}[!htpb]
-   \centering
-\includegraphics[width=0.5\textwidth,keepaspectratio]{data/mohf.png}
-\caption{MO-Diagramm für ein Stickstoff-Molekül auf RHF/6-311G(d,p)}
+
+
+Beim Vergleich der berechneten Orbitale mit denen aus der Literatur ~\cite{ritaatom} fällt auf,
+ dass die Orbitale von Stickstoffmoleküls in richtiger Reihenfolge aufgeführt sind. Es liegt daran
+
+\begin{figure}[!hptb]
+
+        \fbox{\includegraphics[width=\textwidth,height=8cm,keepaspectratio]{data/mohf.png}}
+
+\caption{MO-Diagramm für ein Stickstoff-Molekül auf RHF/6-311G(d,p) und aus der Literatur ~\cite{ritaatom}}
+
 \end{figure}
 
-\begin{table}[!htpb]
-\centering
-\caption{Die experimentellen und berechneten Orbital Energien des Stickstoffs}
-\begin{tabular}{lll}
-\toprule
-Orbital  && Orbitalenergien(RHF/6-311G(d,p)) (eV)\\
-\midrule
-$3\sigma _u$ & &   0.32629\\
-$1\pi _g$    & &    -0.09957 \\
-$1\pi _g$    & &   -0.09957 \\
-$1\pi _u$    &  &  -0.435529 \\
-$1\pi _u$    & &  -0.48286 \\
-$3\sigma _g$ &  & -0.48286 \\
-$2\sigma _u$ && -0.52102 \\
-$2\sigma _g$ & & -1.12397 \\
-$1\sigma _u$ &  &-14.03231 \\
-$1\sigma _g$ & &-14.03375 \\
-\bottomrule
-\end{tabular}
-\end{table}
 
-\textbf{Auswertung 5 und 6}
+
+
+
+\textbf{Auswertung 5 und 6} \\
+Im Folgenden werden die Orbitale als
+Abbildungen dargestellt und mit Hauptquantenzahl, Drehimpuls und Symmetrie
+gekennzeichnet.
 \begin{figure}[!hptb]
     \centering
     \begin{subfigure}[b]{0.4\textwidth}

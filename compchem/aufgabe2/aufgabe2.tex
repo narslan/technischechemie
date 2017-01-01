@@ -25,6 +25,10 @@
 \usepackage{chemstyle}
 \usepackage{tabularx}
 \usepackage[framemethod=tikz]{mdframed}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
 \mdfdefinestyle{mystyle}{%
   innerleftmargin=10,
   innerrightmargin=10,
@@ -37,6 +41,8 @@
   skipbelow=\topsep
 }
 %\usepackage[compatibility=4.7,language=german]{chemmacros}
+\usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
+
 \renewcommand{\familydefault}{\sfdefault}
 \sisetup{detect-all}
 \usepackage{chngcntr}
@@ -84,72 +90,30 @@ Die angewandten quantumchemischen Methoden werden im Zusammenhang von Elektronen
 \begin{table}[!htpb]
 
 \caption{Gesamtenergien und Symmetrien von \textit{cis-} und \textit{trans}-1,2-Dichlorethen}
-\begin{tabular}{llllcl}
+\begin{tabular}{llllc}
 \toprule
-Molekül & Methode &   Basissatz & Ges. En. \si{\hartree} & Symm. & Stabilisation\\
+Molekül & Methode &   Basissatz & Ges. En. \si{\hartree} & Symm. \\
 \midrule
-cis-1,2-Dichlorethen   & RHF& 6-311G(d,p)& -995.89694703 &$C_ {2v}$ & $\Delta E_{cis}- E_{tr}$\\
-trans-1,2-Dichlorethen & RHF& 6-311G(d,p)& -995.89737964 &$C_ {2h}$ & \\
-cis-1,2-Dichlorethen   & MP2& 6-311G(d,p)& -996.45258595  &$C_ {2v}$ & \\
-trans-1,2-Dichlorethen & MP2& 6-311G(d,p)& -996.45188 &$C_ {2h}$ &   \\
+cis-1,2-Dichlorethen   & RHF& 6-311G(d,p)& -995.89694703 &$C_ {2v}$  \\
+trans-1,2-Dichlorethen & RHF& 6-311G(d,p)& -995.89737964 &$C_ {2h}$ \\
+cis-1,2-Dichlorethen   & MP2& 6-311G(d,p)& -996.45258595  &$C_ {2v}$  \\
+trans-1,2-Dichlorethen & MP2& 6-311G(d,p)& -996.45188 &$C_ {2h}$    \\
 \bottomrule
 \label{table:energie}
 \end{tabular}
 \end{table}
-
-% \begin{tabularx}{\textwidth}{lllll}
-% &\multicolumn{2}{c}{\textit{cis-}}&\multicolumn{2}{c}{\textit{trans-}}\\
-% \toprule
-%    &HF/6-311G(d.p) & MP2/6-311G(d.p) & RHF/6-311G(d.p) & MP2/6-311G(d.p)\\
-% \midrule
-% C-Cl  & 1.723659 &1.715588   & 1.732743 & 1.723728\\
-% C-C  & 1.311110 & 1.338136   & 1.308159 & 1.335534\\
-% C-H  & 1.071179 & 1.082586   & 1.070440 & 1.082339\\
-% \bottomrule
-% \end{tabularx}
-% \caption{}
-% \label{tab:optparameter}
-% \end{table}
+ %\num{4.32e-4}
+ %\num{7.05e-4}
 
 
 
 
-
-% \begin{table}[!htpb]
-
-% \caption{theoretische und experimentelle Schwingungsfrequenzen mit irreduziblen Darstel-
-% lungen für \textit{cis}-1,2-Dichlorethen}
-% \begin{tabularx}{\textwidth}{llll|lll|llll}
-% \multicolumn{4}{c}{RHF/6-311G(d,p)}&\multicolumn{3}{c}{MP2/6-311G(d,p)}&\multicolumn{4}{c}{Experimentell} \\
-% \midrule
-% Irrep &  $\tilde{\nu}$ \si{\per\centi\meter} & \multicolumn{2}{c|}{Int} &
-% Irrep &   $\tilde{\nu}$ \si{\per\centi\meter} & Int   &
-% Irrep &  $\tilde{\nu}$\si{\per\centi\meter} & \multicolumn{2}{c}{Int}\\
-% & & IR & Raman& & & IR && & IR & Raman\\
-% \midrule
-% $A _1$ & 183  & 0.41 & 2.160  &$A _1$  & 173 & 0.21     & $A_1$&3077 & &\\
-% $A _2$ & 458  & 0 & 4.86      &$A _2$  & 411 & 0        & $A_1$&1587 & &\\
-% $B _2$ & 614  & 7.93 & 6.74   &$B _2$  & 584 & 3.03     & $A_1$&1179 & & \\
-% $A _1$ & 759  & 27.36 & 12.33 &$A _1$  & 714 & 69.15    & $A_1$& 711& &\\
-% $B _1$ & 803  & 73.62 & 1.13  &$B _1$  & 747 & 19.58    & $A_1$& 173& &\\
-% $B _2$ & 920  & 106.94 & 0.01 &$B _2$  & 888 & 0        & $A_1$& 876& &\\
-% $A _2$ & 1051 & 0 & 4.54      &$A _2$  & 897 & 84.06    & $A_2$& 406& &\\
-% $A _1$ & 1324 & 0.14 & 20.88  &$A _1$  & 1238 & 0.02    & $A_2$& 3072& &\\
-% $B _2$ & 1439 & 36.02 & 1.05  &$B _2$  & 1341 & 22.88   & $B _1$ &1303 & &\\
-% $A _1$ & 1818 & 34.83 & 59.81 &$A _1$  & 1648 &31.96    & $B _1$ &857 & &\\
-% $B _2$ & 3373 & 15.14 & 53.92 &$B _2$  & 3249 & 14.28   & $B _1$ & 571& &\\
-% $A _1$ & 3397 & 2.93 & 141.85 &$A _1$  & 3270 & 2.77    & $B _2$ & 697& &\\
-% \bottomrule
-% \end{tabularx}
-% \label{tab:cisvergleich}
-
-% \end{table}
 
 \begin{table}[!htpb]
 
 \caption{theoretische und experimentelle Schwingungsfrequenzen mit irreduziblen Darstellungen für \textit{cis}-1,2-Dichlorethen}
 \begin{tabular}{llllll}
-\multicolumn{2}{c}{RHF/6-311G(d,p)}&\multicolumn{2}{c}{MP2/6-311G(d,p)}&\multicolumn{2}{c}{Experimentell} \\
+\multicolumn{2}{c}{RHF/6-311G(d,p)}&\multicolumn{2}{c}{MP2/6-311G(d,p)}&\multicolumn{2}{c}{Experimentell\cite{cisvib}} \\
 \midrule
 Irrep &  $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &   $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &  $\tilde{\nu}$\si{\per\centi\meter} \\
 \midrule
@@ -181,7 +145,7 @@ $A _1$ & 3397 &$A _1$  & 3270   & $A _1$ & 3077\\
 \textit{cis}-1,2-Dichlorethen}
 \begin{tabular}{llll}
 \midrule
-Irrep & IR-Int(RHF)/rel & Raman-Int(RHF)/rel & Schwingungsmodus  \\
+Irrep & IR-Int(RHF)/rel & Raman-Int(RHF)/rel & Schwingungsmodus~\cite{cisvib} \\
 \midrule
 $A _1$ & 0.41 & 2.160   & CCCl Deformationss.\\
 $A _2$ & 0 & 4.86       & Torsion\\
@@ -203,44 +167,11 @@ $A _1$ & 2.93 & 141.85  & C-H Strecks.\\
 
 
 
-
-
-
-
-
-
-% \begin{table}[!htpb]
-
-% \caption{theoretische und experimentelle Schwingungsfrequenzen mit irreduziblen Darstellungen für \textit{trans}-1,2-Dichlorethen}
-% \begin{tabular}{llllll}
-% \multicolumn{2}{c}{RHF/6-311G(d,p)}&\multicolumn{2}{c}{MP2/6-311G(d,p)}&\multicolumn{2}{c}{Experimentell} \\
-% \midrule
-% Irrep &  $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &   $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &  $\tilde{\nu}$\si{\per\centi\meter} \\
-% \midrule
-% $A _u$ & 233  & 0.73   & 0     &   $A _u$ & 215 & 0.15     & & & &\\
-% $B _u$ & 257  & 4.58   & 0     &   $B _u$ & 243 & 3.09     & & & &\\
-% $A _g$ & 376  & 0.0    & 9.82  &   $A _g$ & 360 & 0        & & & &\\
-% $B _u$ & 875  & 156.36 & 0     &   $B _g$ & 753 & 0        & & & &\\
-% $B _g$ & 912  & 0      & 6.61  &   $B _u$ & 869 & 115.7    & & & &\\
-% $A _g$ & 920  & 0      & 9.56  &   $A _g$ & 892 & 0        & & & &\\
-% $A _u$ & 1049 & 82.03  & 0     &   $A _u$ & 939 & 73.37    & & & &\\
-% $B _u$ & 1333 & 27.08  & 0     &   $B _u$ & 1258 & 20.34   & & & &\\
-% $A _g$ & 1417 & 0      & 24.55 &   $A _g$ & 1325 & 0       & & & &\\
-% $A _g$ & 1815 & 0      & 49.17 &   $A _u$ & 1645 & 0       & & & &\\
-% $B _u$ & 3393 & 17.72  & 0     &   $B _u$ & 3263 & 15.29   & & & &\\
-% $A _g$ & 3400 & 0      & 115.68&   $A _g$ & 3267 & 0       & & & &\\
-% \bottomrule
-% \end{tabularx}
-% \label{tab:transvergleich}
-
-% \end{table}
-
-
 \begin{table}[!htpb]
 
 \caption{theoretische und experimentelle Schwingungsfrequenzen mit irreduziblen Darstellungen für \textit{trans}-1,2-Dichlorethen}
 \begin{tabular}{llllll}
-\multicolumn{2}{c}{RHF/6-311G(d,p)}&\multicolumn{2}{c}{MP2/6-311G(d,p)}&\multicolumn{2}{c}{Experimentell} \\
+\multicolumn{2}{c}{RHF/6-311G(d,p)}&\multicolumn{2}{c}{MP2/6-311G(d,p)}&\multicolumn{2}{c}{Experimentell}~\cite{transvib} \\
 \midrule
 Irrep &  $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &   $\tilde{\nu}$ \si{\per\centi\meter} & Irrep &  $\tilde{\nu}$\si{\per\centi\meter} \\
 \midrule
@@ -267,7 +198,7 @@ $A _g$ & 3400 & $A _g$ & 3267 & $B_u$ & 3090\\
 \caption{Schwingungsintensitäten mit irreduziblen Darstellungen und Schwingungsmodi für \textit{trans}-1,2-Dichlorethen }
 \begin{tabular}{llll}
 \midrule
-Irrep & IR-Int(RHF)/rel & Raman-Int(RHF)/rel & Schwingungsmodus  \\
+Irrep & IR-Int(RHF)/rel & Raman-Int(RHF)/rel & Schwingungsmodus~\cite{transvib}   \\
 \midrule
 $A _u$ & 0.73 w& 0 & Torsion\\
 $B _u$ & 4.58 w& 0 & CCCl Deformationss.\\
@@ -299,9 +230,26 @@ $A _g$ & 0 & 115.68 s& C-H Strecks.\\
          \fbox{   \includegraphics[width=\textwidth,height=5cm]{data/cis_ir_mp2.png}}
         \subcaption{auf MP2/6-311G(d,p) Niveau}
     \end{subfigure}
-    \caption{IR-Spektren von \textit{cis}-1,2-Dichlorethen}
+    \caption{Die berechneten IR-Spektren von \textit{cis}-1,2-Dichlorethen}
+    \label{figure:vergleichmethodec}
 \end{figure}
 
+\begin{figure}[!hptb]
+
+\begin{tikzpicture}[font=\sffamily]
+\begin{axis}[xlabel=Wellenzahl, ylabel=Intensität,  enlargelimits=true,axis x line=middle,
+    axis y line=middle,
+   y label style={at={(axis description cs:-0.15,.5)},anchor=south,rotate=90},
+    x tick label style={rotate=90,anchor=east},
+    x label style={at={(axis description cs:0.5,-.3)},anchor=south},
+     xmin=0
+    ]
+\addplot[blue] table[x=frequency ,y=intensity] {data/cisex.txt};
+\end{axis}
+\end{tikzpicture}
+    \caption{Das experimentelle IR-Spektrum von \textit{cis}-1,2-Dichlorethen \cite{cisir} }
+\label{figure:vergleichcis}
+\end{figure}
 
 \begin{figure}[!hptb]
     \centering
@@ -315,8 +263,26 @@ $A _g$ & 0 & 115.68 s& C-H Strecks.\\
          \fbox{   \includegraphics[width=\textwidth,height=5cm]{data/trans_ir_mp2.png}}
                 \subcaption{auf MP2/6-311G(d,p) Niveau}
     \end{subfigure}
-        \caption{IR-Spektren von \textit{trans}-1,2-Dichlorethen}
+        \caption{Die berechneten IR-Spektren von \textit{trans}-1,2-Dichlorethen}
+\label{figure:vergleichmethodet}
 
+\end{figure}
+
+\begin{figure}[!hptb]
+
+\begin{tikzpicture}[font=\sffamily]
+\begin{axis}[xlabel=Wellenzahl, ylabel=Intensität,  enlargelimits=true,axis x line=middle,
+    axis y line=middle,
+   y label style={at={(axis description cs:-0.15,.5)},anchor=south,rotate=90},
+    x tick label style={rotate=90,anchor=east},
+    x label style={at={(axis description cs:0.5,-.3)},anchor=south},
+     xmin=0
+    ]
+\addplot[blue] table[x=frequency ,y=intensity] {data/trans.txt};
+\end{axis}
+\end{tikzpicture}
+    \caption{Das experimentelle IR-Spektrum von \textit{trans}-1,2-Dichlorethen~\cite{transir}}
+\label{figure:vergleichtrans}
 \end{figure}
 
 
@@ -343,10 +309,10 @@ Dies liegt daran, dass die RHF-Methode die Elektronenkorrelation (die Wechselwir
 die MP2 Methode diese jedoch berücksichtigt.\\
 \textbf{Auswertung 4}\\
 Mit Elektronenkorrelation ist gemeint, dass die Coulombabstoßung $\dfrac{e^2}{\epsilon r_{12}}$ zwischen den beiden Elektronen einer Bindung dafür sorgt, dass sich
-die Elektronen nicht zu nahe kommen. coulsonseite=135 Ist das eine Elektron momentan in der Umgebung des einen Kerns,
+die Elektronen nicht zu nahe kommen. Ist das eine Elektron momentan in der Umgebung des einen Kerns,
 so ist die Wahrscheinlichkeit gross, dass sich das andere Elektron in der Umgebung des anderen Kerns aufhält. Die Elektronen bewegen sich derart \glqq
 korreliert\grqq, dass sie sich nicht nahe kommen. Die Elektronenkorrelation wirkt sich auf die Geometrie bzw. den
-Energiezustand einer Geometrie aus.\\
+Energiezustand einer Geometrie aus.\cite{coulson}  \\
 \textbf{Auswertung 5}\\
 Beim \textit{trans}-1,2-Dichlorethen fällt auf, dass es entweder nur ramanaktiv oder infrarotaktiv ist.
 Das \textit{cis}-1,2-Dichlorethen hingegen
@@ -356,15 +322,16 @@ Das Inversionszentrum verbietet bei einer symmetrischen Schwingung die
 Infrarotaktivität und bei einer asymmetrischen Schwingung die Ramanaktivität.\\
 \textbf{Auswertung 6}\\
 
-Anhand der Werte für die Hartree-Energien aus ~\ref{table:energie}lässt sich sagen, dass
-bei der Verwendung der RHF Methode für das {trans}-1,2-Dichlorethen eine
+Anhand der Werte für die Hartree-Energien aus ~\ref{table:energie} lässt sich sagen, dass
+bei der Verwendung der RHF Methode für das \textit{trans}-1,2-Dichlorethen eine
 kleinere Hartree-Energie ermittelt wurde als für das cis-1,2-Dichlorethen.
 Dementsprechend ist unter Verwendung der RHF Methode das cis-Isomer der
 Verbindung die stabilere. Betrachtet man jedoch die Werte, die anhand der MP2
-Methode berechnet wurden, so lässt sich feststellen, dass hierbei das cis-Isomer
-der Verbindung eine kleinere Hartree-Energie aufweist als das trans-Isomer.
-Daraus folgt, dass bei Verwendung der MP2 Methode das cis-Isomer das
-stabilere Isomer ist. Das ist kein korrektes Ergebnis.
+Methode berechnet wurden, so lässt sich feststellen, dass hierbei das \textit{cis}-Isomer
+eine kleinere Hartree-Energie aufweist als das trans-Isomer. Der Grund dafür ist, dass die MP2-Methode die destabilisierende Elektronenabstoßung
+ zwischen Elektronen der vicinalen Cl-Atomen von \textit{cis}-1,2-Dichlorethen in Betracht zieht.
+
+\printbibliography
 
 \end{onehalfspace}
 \end{document}

@@ -10,8 +10,8 @@
 
 \usepackage{microtype}
 % Minion and Myriad fonts
-\usepackage[minionint,mathlf]{MinionPro}
-\renewcommand{\sfdefault}{Myriad-LF}
+%\usepackage[minionint,mathlf]{MinionPro}
+%\renewcommand{\sfdefault}{Myriad-LF}
 \usepackage{siunitx}
 \usepackage{fancyhdr}
 \usepackage{sectsty}
@@ -47,10 +47,21 @@
 
 \begin{onehalfspace}
 
-\section{\ce{S_N}2-Substitution bei \ce{CH_3Br}}
-Ziele dieser Aufgabe ist Bestimmung des Reaktionspfades und Auswahl einer geeigneten Übergangszustandsgeometrie.
-\newpage
-\subsection{Bestimmung des Reaktionspfades und Auswahl einer geeigneten Übergangszustandsgeometrie}
+\raggedright
+\section{Aufgabe 5 S\textsubscript{N}2-Substitution des Br- durch Cl- an CH\textsubscript{3}Br}
+
+Ziel dieser Aufgabe ist die Bestimmung des Übergangszustandes bei der
+Substitution des Bromidions durch ein Chloridion an CH\textsubscript{3}Br,
+sowie die Auswahl der Startgeometrie (die Geometrie am höchsten höchsten Punkt
+des Energieprofiles, bei der schrittweisen annäherung des Chloridions an an
+das Methylbromid) und die Berechnung der Aktivierungsbarriere und der Ausbeute
+dieser Reaktion.
+
+
+\subsection{Bestimmung des Reaktionspfades und Auswahl einer geeigneten Startgeometrie}
+
+
+
 \textbf{Auswertung 1}:
 
 \begin{figure}[!htbp]
@@ -59,28 +70,30 @@ Ziele dieser Aufgabe ist Bestimmung des Reaktionspfades und Auswahl einer geeign
   \caption{Optimierte Geometrie des Übergangszustandes}
 \end{figure}
 \noindent
-\textbf{Auswertung 2:}\\
- Die Gesamtenergie für die Geometrie beträgt -3071.56972 \si{\hartree}.
-Der C-Cl Bindungsabstand beträgt 2.4500\si{\angstrom}.
- Der Basissatz ist aug-cc-pVDZ. Die Punktgruppe beträgt $C _{3v}$.
-\begin{table}[!htpb]
-\centering
-\begin{tabular}{cc}
-\toprule
-Bindung & Abstand \si{\angstrom}\\
-C-Br  & 2.5175 \si{\angstrom}\\
-C-Cl  & 2.4500 \si{\angstrom} \\
-\midrule
-\bottomrule
-\end{tabular}
-\caption{Die Bindungsabstände im Übergangszustand}
-\end{table}\\
-\noindent
-\textbf{Auswertung 3}\\
-Es gibt genau eine imaginäre Schwingungsfrequenz, welche $i^*$= 390.1 \si{\per\centi\meter} beträgt. Die Bewegung, welche bei der SN2 Reaktion abläuft, ist die eines Rückseitenangriffs des Chlorid-Anions an das CH3-Br Molekül. Diese Reaktion verläuft in drei Schritten. Als Erstes kommt der Rückseitenangriff des Cl-, anschließend die Bildung des Zwischenproduktes (Intermediats) und als Letztes der endgültige Bruch der Bindung zum Br-. Diese Bewegung ist als aperiodisch zu charakterisieren.
- Dies sieht man auch daran, dass bei den Schwingungsfrequenzen eine Imaginäre Frequenz auftaucht. Vergleichen lässt sich dies mit der eulerschen Form von Sinus und Cosinus, der e-Funktion. Sinus und Cosinus besitzen keinen Imaginärteil, sind also periodische Bewegung. Nur die eulersche Form hat einen Imaginärteil. Die e-Funktion ist aperiodisch.\\
 
-\subsection{Optimierung und Frequenzrechnung der Übergangszustandes}
+ Die Gesamtenergie für die Geometrie beträgt -3071.56972781 \si{\hartree}.
+ Der Basissatz ist aug-cc-pVDZ. Die Punktgruppe beträgt C\textsubscript{1}.
+
+\textbf{Auswertung 2}\\
+
+Nach der Optimierung kommt es zur änderung der Punktgruppe von
+C\textsubscript{1} zu C\textsubscript{3V}. Die Gesamtenergie beträgt nun
+-3071.56971543 \si{\hartree}. Die Bildungsenthalpie beträgt -3071.560004
+\si{\hartree} Die optimierte Bindungslänge der C-Cl bindung beträgt 2.45
+\si{\angstrom}
+
+Der Zustand besitzt die imaginäre Schwingungsfrequenz -390.12
+cm\textsuperscript{-1} Die Bewegung bei dieser Frequenz entspricht der
+Walden'sche Umkehr.
+
+\begin{figure}[!htbp]
+\centering
+  \includegraphics[width=\textwidth]{data/A5_opt_darstellung.png}%
+  \caption{Optimierte Geometrie des Übergangszustandes}
+\end{figure}
+\noindent
+
+\subsection{Optimierung und Frequenzrechnung des Übergangszustandes}
 
 \textbf{Auswertung 1}\\
 \begin{table}[!htpb]
@@ -88,7 +101,7 @@ Es gibt genau eine imaginäre Schwingungsfrequenz, welche $i^*$= 390.1 \si{\per\
 \begin{tabular}{ccc}
 \toprule
 Molekül & E/\textit{Hartree} & Bildungsenthalpie $\Delta G$  \textit{Hartree}\\
-\ce{CH_3Br}  & -2612.00556924 & -2611.990266 \\
+\ce{CH_3Br}  & -2612.00556924 & -2611.99026 \\
 \ce{CH_3Cl}  & -499.12227340 & -499.105102\\
 \ce{Br^-}  & -2572.46248971 & -2572.478665 \\
 \ce{Cl^-}  & -459.56364460 & -459.578667 \\
@@ -97,35 +110,51 @@ Molekül & E/\textit{Hartree} & Bildungsenthalpie $\Delta G$  \textit{Hartree}\\
 \end{tabular}
 \caption{Molekülbindungen und Energien}
 \end{table}
-Anhand der ermittelten Werte kann nun die freie Enthalpie wie folgt berechnet werden:
+Mit Hilfe der ermittelten Werte kann nun die freie Enthalpie wie folgt berechnet werden:
 \begin{equation}
 \Delta _R G = \sum\limits_{Produkte} \Delta _B G - \sum\limits_{Edukte} \Delta _B G
 \end{equation}
-Setzt man die Werte ein, so erhält man $ \Delta _R G = -0.014834$ \si{\hartree}. Rechnet man das Ergebnis nun in \si{\kilo\joule\per\mol} um, so erhält man $ \Delta _R G = -38.95$ \si{\kilo\joule\per\mol}.
-Anschließend wird die freie Aktivierungsenthalpie berechnet:
+Nach einsetzen der Werte erhält man $ \Delta _R G = -0.014834$ \si{\hartree}. Nach Umrechnung des Ergebnisses in  \si{\kilo\joule\per\mol},erhält man $ \Delta _R G = -38.95$ \si{\kilo\joule\per\mol}.
+Die freie Aktivierungsenthalpie wird definiert als Energiedifferenz der Edukte und der raktiven Zwischenstufe. Und wird wie folgt berechnet:
 \begin{equation}
-\Delta _R G^{\neq} = \sum\limits_{Produkte} \Delta _B G _U - \sum\limits_{Edukte} \Delta _B G
+\Delta _R G^{\neq} = \sum\limits_{Edukte} - \Delta _B G _U
 \end{equation}
-$\Delta _B G _U$ stellt hier die Energie des Übergangszustandes dar. Sie beträgt $\Delta _B G _U = -3071.56972$ \si{\hartree} (aus der Aufgabe 5 Teil 1). $\Delta _R G^{\neq}$ steht für die freie Aktivierungsenthalpie. Nach der Berechnung ergibt sich für die freie Aktivierungsenthalpie: $\Delta _R G^{\neq} = 26.167$ \si{\kilo\joule\per\mol}.
+$\Delta _B G _U$ stellt hier die Energie der reaktiven Zwischenstufe dar und  beträgt $\Delta _B G _U = -3071.560004$ \si{\hartree} (Wert aus Aufgabe 5 Teil 1). $\Delta _R G^{\neq}$ steht für die freie Aktivierungsenthalpie. Nach der Berechnung und Umrechnung in SI-Einheiten ergibt sich für die freie Aktivierungsenthalpie: $\Delta _R G^{\neq} = 24.178$ \si{\kilo\joule\per\mol}.
 
 \noindent
-\textbf{Auswertung 2}\\
-Betrachtet man den Graphen zur Ausbeute aus dem Skript, so lässt sich bei den dargestellten Temperaturen eine sehr gute Ausbeute von ca. 98 \% voraussagen. Aus dem niedrigen Wert für die freie Aktivierungsenergie lässt sich schließen, dass die Reaktion wahrscheinlich sehr schnell ablaufen wird, da der 2. Graph für die Reaktion 2. Ordnung mit niedrigen Aktivierungsenthalpien stark gegen Null geht. Ein Fehler von $\pm 10$ \si{\kilo\joule\per\mol} wirkt sich nur sehr geringfügig auf die Vorhersage auf, da auch bei so einem vergleichsweise hohen Fehler die Reaktion fast gleichschnell ablaufen und sich die Ausbeute nur geringfügig verringern würde.
-\newpage
+ \textbf{Auswertung 2:} Bei Betrachtung des Diagrammes ~\ref{figure:pfad} im
+Skript auf S.51 mit der auftragung der Reaktionsenthalpie gegen die Ausbeute
+für Reaktionen bei 25 °C bzw. 100 °C, lässst sich für den Berechneten Wert
+eine Ausbeute von annähernd 100\% vorraus sagen. Aus dem niedrigen Wert für
+die freie Aktivierungsenthalpie lässt sich schließen, dass die Reaktion sehr
+schnell ablaufen wird, da der Graph der halbwertszeiten für die Reaktion 2.
+Ordnung mit  Aktivierungsenthalpien unter $\Delta _R G^{\neq} = 90$
+\si{\kilo\joule\per\mol} stark gegen Null geht. Zur Betrachtung eines Fehlers
+von $\pm 10$ \si{\kilo\joule\per\mol} lässt sich sagen das sich dieser nur
+gerfingfügig auf eine Vorhersage auswirkt, da es auch bei einem so hohen
+Fehler nur zu unsignifikanten änderung der Reaktionszeit und der Ausbeute
+kommen würde.
 \subsection{Bestimmung des Reaktionspfades}
 \textbf{Auswertung 1}
-\begin{figure}[!htpb]
-\centering
-  \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{data/potentialkurve.png}%
-      \captionsetup{justification=raggedright}
-  \caption{Reaktionspfad: Auftragung der Energie der optimierten Geometrien gegen den C-Cl-Bindungsabstand}
-\end{figure}\\
-\noindent
-\textbf{Auswertung 2}\\
-Es handelt sich bei der Übergangsbewegung um eine aperiodische. \\
-\noindent
-\textbf{Auswertung 3}\\
-Maßgeblich an der Übergangsbewegung beteiligt sind das Brom- und Chloratom.
- Das sogenannte Bild des \glqq umklappenden Regenschirms \grqq ist nicht zutreffend, da die H-Atome bei der Übergangsbewegung starr auf ihrem Platz bleiben (nicht umklappen), wohingegen das C-Atom umklappt (Inversion am C-Zentrum).
-\end{onehalfspace}
-\end{document}
+ \begin{figure}[!htpb]
+ \centering
+ \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{data/potentialkurve.png}%
+\captionsetup{justification=raggedright}
+ \caption{Reaktionspfad: Auftragung der Energie der optimierten Geometrien gegen den C-Cl-Bindungsabstand}
+ \label{figure:pfad}
+\end{figure}
+\subsection{Bestimmung des Reaktionspfades}
+
+
+Die Bewegung, welche bei der S\textsubscript{N}2 Reaktion abläuft, ist die
+eines Rückseitenangriffs des Chloridions an das Methylbromid. Bei dieser
+Reaktion kommt es zunächst zu einem Rückseitenangriff des Chloridions,
+daraufhin zur Bildung eines Intermediates und letztlich zum Bindungsbruch zum
+Bromidion. Diese Bewegung ist aperiodisch.
+
+Die Vorstellung des \glqq umklappenden Regenschirms \grqq ist unpassend, da
+die H-Atome bei der Übergangsbewegung starr auf ihrem Platz bleiben, somit
+nicht umklappen, sondern das C-Atom die Fläche der H-Atome durchwandert
+(Inversion am C-Zentrum).
+ \end{onehalfspace}
+ \end{document}
