@@ -90,7 +90,7 @@ scaled y ticks=false
 
 % \end{axis}
 % \end{tikzpicture}
-
+\begin{figure}
 \begin{tikzpicture}
 
     % styles
@@ -153,24 +153,16 @@ scaled y ticks=false
     \path[transCS] (11,4) -- ++(-2.5,0) node[below,pos=0.5,text=violet] {\large ISC};
 
     % relaxation vib
-    \path[relax] (5.5,8.8) -- ++(0,-0.8) node[rv] {\textbf{VR}};
-    \path[relax] (8,8)     -- ++(0,-3)   node[rv] {\textbf{VR}};
-    \path[relax] (1,5)     -- ++(0,-5)   node[rv] {\textbf{VR}};
-    \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{VR}};
+    \path[relax] (5.5,8.8) -- ++(0,-0.8) node[rv] {\textbf{D}};
+    \path[relax] (8,8)     -- ++(0,-3)   node[rv] {\textbf{D}};
+    \path[relax] (1,5)     -- ++(0,-5)   node[rv] {\textbf{D}};
+    \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{D}};
 
 \end{tikzpicture}
-\begin{itemize}
-    \item[] \tikz {\path[line width=2pt,->,dashed,draw=vert]
-        (0,0) -- (1,0) node[above,pos=0.5,text=vert] {IC};} Internal Conversion,
-        $S_i\,\longrightarrow\,S_j$ non radiative transition.
 
-    \item[] \tikz {\path[line width=2pt,->,dashed,draw=violet]
-        (0,0) -- (1,0) node[above,pos=0.5,text=violet] {ISC};} InterSystem Crossing,
-        $S_i\,\longrightarrow\,T_j$ non radiative transition.
+\caption{Das Jablonski-Diagramm und die Erklärung zur thermische Variaton der Fluoreszenz und der Phosphoreszenz} \label{fig:jablonski}
+\end{figure}
 
-    \item[] \tikz {\path[line width=2pt,draw=orange,ultra thick,
-        decorate,decoration=snake] (0,0) -- (1,0) node[above,pos=0.5,text=orange] {D};}
-        Desaktivierung.
-\end{itemize}
+
 \end{onehalfspace}
 \end{document}
