@@ -27,6 +27,7 @@
 %\usepackage[justification=justified,singlelinecheck=false]{caption}
 \usepgfplotslibrary{units}
 \usetikzlibrary{pgfplots.groupplots}
+%\usepackage{gensymb}
 
 \usepackage{fancyhdr}
 \fancyhf{}
@@ -47,23 +48,17 @@
         scientific-notation = true,
 }
 \renewcommand{\arraystretch}{1.5}
-\definecolor{skyblue1}{RGB}{135, 206, 250}
-\definecolor{flame}{RGB}{226, 88, 34}
-\definecolor{scarletred1}{RGB}{252, 40, 71}
-\definecolor{cyanblau}{RGB}{0, 158, 224}
-\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
-
-\usepackage{unicode-math}
+%\usepackage{unicode-math}
 
 \setmainfont[Numbers = OldStyle,Ligatures = TeX,SmallCapsFeatures = {Renderer=Basic}]{Minion Pro}
 \setsansfont[Numbers={OldStyle,Proportional},Scale=MatchLowercase]{Minion Pro}
 \setmonofont[Numbers=OldStyle,Scale=MatchLowercase]{Minion Pro}
-\setmathfont{MnSymbol}
-\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Minion Pro}
-\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{MinionPro-Bold}
-\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{MinionPro-It}
-\setmathfont[range=\mathbfit/{num,latin,Latin,greek,Greek}]{MinionPro-BoldIt}
-\setmathrm{Minion Pro}
+%\setmathfont{MnSymbol}
+%\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Minion Pro}
+%\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{MinionPro-Bold}
+%\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{MinionPro-It}
+%\setmathfont[range=\mathbfit/{num,latin,Latin,greek,Greek}]{MinionPro-BoldIt}
+%\setmathrm{Minion Pro}
 %usepackage{sansmath} % Enables turning on sans-serif math mode, and using other environments
 
 \begin{luacode*}
@@ -72,7 +67,7 @@ fs = dofile("fs.lua")
 
 function drawPU()
 
- xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
+xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
 xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
 
 
@@ -164,6 +159,12 @@ xa2, xb2= fs.readcsv("data/ph12anregung_350_340.txt",23)
 end
 
 \end{luacode*}
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
 \definecolor{turquoise}{rgb}{0 0.41 0.41}
 \definecolor{rouge}{rgb}{0.79 0.0 0.1}
 \definecolor{vert}{rgb}{0.15 0.4 0.1}
@@ -172,13 +173,11 @@ end
 \definecolor{orange}{rgb}{0.8 0.4 0.2}
 \definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
 
+\definecolor{azulen}{RGB}{0,218,255}
 
  \newcommand\addplotzz{\directlua{drawPU()}}
  \newcommand\addplotiso{\directlua{drawISO()}}
  \newcommand\addplotaa{\directlua{drawISO2()}}
-
-
-
 \begin{document}
 
 \section{Ziel des Versuches}
@@ -220,7 +219,6 @@ Alternativ kann das angeregte Molekül die Energie durch Wärme verlieren:
  \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{D} [M^*]
 \end{align*}
 
-
 Eine weitere Möglichkeit ist die Übertragung der Energie des angeregten Moleküls auf ein
 anderes Molekül (Quencher, Q) durch Fluoreszenzlöschung ( Quenching ). Dabei wird
 der Quencher angeregt:
@@ -247,41 +245,81 @@ bierten Photonen, der die gewünschten Emissionsprozesse hervorruft. Wenn das f�
 absorbierte Photon zutrifft, wäre die Quantenausbeute Eins.\grqq
 Die Quantenausbeute für die Emission von $M^*$ ist die Geschwindigkeit der Emission
 dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quenchers :
+
 \begin{align*}
   \Phi _0 = \frac{\text{pro Sekunde Emittierte Photonen}}{\text{pro Sekunde absorbierte Photonen}} = \frac{k_{E} [M^*]}{k_{Abs.} [M]}
 \end{align*}
+
 \subsection{Aufbau des Fluoreszenz-Spektrometers\supercite{skript}}
-\begin{figure}[h]
 
-\centering
-\begin{tikzpicture}[
-  triangle/.style={isosceles triangle,draw=,thick,shape border rotate=90, minimum height=15mm,minimum width=15mm,inner sep=0},
-  ]{
-\node[triangle]{X};
-\node at (0,-0.7) {Licht quelle};
-\draw[->,ultra thick] (1,0.25)  -- (2,0.25);
- % \draw (0,0) rectangle (1,0.5) node[pos=.5] (a) {Licht quelle};
-\draw[->,ultra thick] (1,0.25)  -- (2,0.25);
-\draw (2,0) rectangle (5,0.5) node[pos=.5] (b) {Monochromator};
-\draw[->,ultra thick] (5,0.25)  -- (6,0.25);
-\draw (6,0) rectangle (8,0.5) node[pos=.5] (c) {Probe};
-\draw[->,ultra thick] (8,0.25)  -- (9,0.25);
-\draw (9,0) rectangle (11,0.5) node[pos=.5] (d) {Detektor};
-\draw[->,ultra thick] (11,0.25)  -- (12,0.25);
-\draw (12,0) rectangle (14,0.5) node[pos=.5] (e) {Rechner};
-
+\begin{figure}[!htbp]
+\begin{tikzpicture}[decoration=snake]{
+\draw (0,0) rectangle (2,1) node[pos=.5] (b) {\footnotesize Licht Quelle};
+\draw[->,decorate,flame] (2.2,0.2)  -- (4,0.2);
+\draw[->,decorate,yellow] (2.2,0.8)  -- (4,0.8);
+\draw[->,decorate,darkblue] (2.2,0.6)  -- (4,0.6);
+\draw[->,decorate,turquoise] (2.2,0.4)  -- (4,0.4);
+%\draw  decorate [decoration={name=zigzag}] {(0,2) -- (3,0)};
+\draw (4.2,0) rectangle (8.2,1) node[pos=.5] (b) {\footnotesize Anregungsmonochromator};
+%\draw[->,ultra thick] (5,0.25)  -- (6,0.25);
+\draw[->,decorate,darkblue,thick] (8.3,0.4)  -- (10.2,0.4) node[midway,above] (d) {$\lambda_{ex}$};
+\draw (10.3,0) rectangle (11.5,1) node[pos=.5] (e) {\footnotesize Probe};
+\draw[->,decorate,red] (10.4,-0.2)  -- (10.4,-2.3);
+\draw[->,decorate,mauve] (10.6,-0.2)  -- (10.6,-2.3);
+\draw[->,decorate,azulen] (10.8,-0.2)  -- (10.8,-2.3);
+\draw[->,decorate,green] (11.0,-0.2)  -- (11.0,-2.3);
+\draw[->,decorate,yellow] (11.0,-0.2)  -- (11.0,-2.3);
+%\draw[->,decorate] (9,-0.5)  -- (9,-2.3) node[pos=0.1] (d) {\tiny Lumineszenz mit verschiedenen $\lambda$};
+\draw (9.2,-2.4) rectangle (13,-3.4) node[pos=.5] (f) {\footnotesize Emissionsmonochromator };
+\draw[->,decorate,azulen,thick] (10.6,-3.5)  -- (10.6,-5) node[rotate=90,midway,above] (g) {$\lambda_{em}$};
+\draw (9.8,-5.1) rectangle (11.5,-6) node[pos=.5] (h) {\footnotesize Detektor };
+\draw (6.3,-2.1) rectangle (8.5,-3.4) node[pos=.5] (j) {\footnotesize Ref. Detektor };
+\draw (6.3,-5.1) rectangle (8.5,-6) node[pos=.5] (k) {\footnotesize Computer };
+\draw[<->,dashed] (h)  -- (k);
+\draw[<->,dashed] (j)  -- (k);
+\draw[->,decorate,skyblue1,thick] (7.3,-0.2)  -- (7.3,-2.1) node[midway,above,rotate=90] (d) {$\lambda_{ex}$};
 }
 \end{tikzpicture}
-
 \end{figure}
+
+\subsection{Experimenteller Teil}
+
+\begin{table}[!ht]
+ \begin{tabular}{ll}
+ Spektrometer & Edinburgh FS5 Spectrofluorometer ~\supercite{edin}   \\
+ Quarzküvetten & d = 1 \si{\centi\meter}   \\
+Pasteurpipetten & \\
+Meßpipetten &    \\
+\end{tabular}
+\caption{Verwendete Geräte}
+\end{table}
+
+\begin{table}[!ht]
+ \begin{tabular}{ll}
+&Konzentration\\ 
+\textbf{NaOH} & c = $0.01$ \si{\gram\per\liter}   \\
+ \textbf{HCl} & c = $0.1$ \si{\gram\per\liter}   \\
+ \textbf{2-Naphtol} & c = $10^{-5}$ \si{\gram\per\liter}   \\
+\end{tabular}
+
+\caption{Verwendete Chemikalien}
+\end{table}
+
+In dem ersten Teil des Versuches wurde $c_0 = 10^{-5}$ \si{\mol\per\liter} 2-Naphtol mit $0.1$ 
+\si{\mol\per\liter} HCl titriert. Bei 6 pH-Werten (12.2, 10, 8.2, 6.0, 4.0, 2.0) werden die Emmisionsspektren 
+bei den Anregungswellenlängen $\lambda_{ex}=360$ \si{\nano\meter} und $\lambda_{ex}=320$ \si{\nano\meter} gemessen.
+Der zweite Teil des Versuches besteht darin, dass die Anregungsspektren bei  
+   $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} gemessen werden.
+
 
 \subsection{Das Jablonski Schema} % (fold)
 \label{sub:jablonski_schema}
-\begin{figure}
-\begin{tikzpicture}
+
+\begin{figure}[!ht]
+\begin{tikzpicture}[scale=0.8]
 
     % styles
-    \tikzstyle{elec} = [line width=2pt,draw=black!80]
+    \tikzstyle{elec} = [line width=2pt,draw=black!30]
     \tikzstyle{vib} = [thick,draw=black!30]
     \tikzstyle{trans} = [line width=2pt,->]
     \tikzstyle{transCI} = [trans,dashed,draw=vert]
@@ -290,11 +328,11 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
     \tikzstyle{rv} = [rotate=90,text=orange,pos=0.5,yshift=3mm]
 
     % fondamental
-    \path[elec] (0,0)  -- ++ (14,0)
+    \path[elec] (0,0)  -- ++ (10,0)
         node[below,pos=0.5,yshift=-1mm] {\large Grundzustand  $S_0$};
-    \path[vib] (0,0.2) -- ++ (14,0);
-    \path[vib] (0,0.4) -- ++ (13,0);
-    \foreach \i in {1,2,...,30} {
+    \path[vib] (0,0.2) -- ++ (10,0);
+    \path[vib] (0,0.4) -- ++ (10,0);
+    \foreach \i in {1,2,...,20} {
         \path[vib] (0,0.4 + \i*0.2) -- ++ ({2 + 10*exp(-0.2*\i)},0);
     }
 
@@ -321,7 +359,7 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
 
     % absorption
     \path[trans,draw=turquoise] (4.5,0) -- ++(0,9)
-        node[rotate=90,pos=0.35,text=turquoise,yshift=-3mm] {\large Absorption};
+        node[rotate=90,pos=0.35,text=darkblue,yshift=-3mm] {\large Absorption};
 
     % fluo
     \path[trans,draw=rouge](7,5) -- ++(0,-4.4)
@@ -346,15 +384,23 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
     \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{D}};
 
 \end{tikzpicture}
-
-\caption{Das Jablonski-Diagramm und die Erklärung zur thermische Variaton der Fluoreszenz und der Phosphoreszenz} \label{fig:jablonski}
+\caption{Das Jablonski-Diagramm: Die thermische Variaton der Übergänge} \label{fig:jablonski}
 \end{figure}
 
 
+\begin{itemize}
+    \item[] \tikz {\path[line width=2pt,->,dashed,draw=vert] 
+        (0,0) -- (1,0) node[above,pos=0.5,text=vert] {IC};} Interne Konversion,
+        $S_i\,\longrightarrow\,S_j$ non radiative transition.
 
+    \item[] \tikz {\path[line width=2pt,->,dashed,draw=violet] 
+        (0,0) -- (1,0) node[above,pos=0.5,text=violet] {ISC};} Intersystem-Crossing,
+        $S_i\,\longrightarrow\,T_j$ non radiative transition.
 
-
-% subsection jablonski_schema (end)
+    \item[] \tikz {\path[line width=2pt,draw=orange,ultra thick,
+        decorate,decoration=snake] (0,0) -- (1,0) node[above,pos=0.5,text=orange] {RV};} 
+        Schwingungsrelaxation.
+\end{itemize}
 
 
 \section{Auswertung}
@@ -363,15 +409,15 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
  \begin{tabular}{cc}
  pH-Wert & Gemessener pH-Wert   \\
 \hline
- 12 &    12.2    \\
- 10 &  10.0 \\
-  8 & 8.2  \\
-   6 &  6.0 \\
-    4 & 4.0  \\
-     2 & 2.0  \\
+12 &    12.2    \\
+10 &  10.0 \\
+8 & 8.2  \\
+6 &  6.0 \\
+4 & 4.0  \\
+2 & 2.0  \\
 \end{tabular}
-  % \renewcommand\thetable{3}
-  \caption{ Die Ergebnisse der pH-Messungen}
+% \renewcommand\thetable{3}
+\caption{ Die Ergebnisse der pH-Messungen}
 \end{table}
 \subsection{Spektren}
 \subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
@@ -381,181 +427,175 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am An
 \subsection{Der Vergleich der Anregungsspektren}
 
 \pgfplotsset{
-  standard/.style={
-    axis x line=bottom,
-    axis y line=middle,
-     xlabel= Wellenlänge, % Set the labels
-    x unit= \si{\nano\meter},
-    x tick label style={rotate=90,anchor=east},
-  legend cell align=left
-  }
+	standard/.style={
+		axis x line=bottom,
+		axis y line=middle,
+		xlabel= Wellenlänge, % Set the labels
+		x unit= \si{\nano\meter},
+		x tick label style={rotate=90,anchor=east},
+		legend cell align=left
+	}
 }
 
-
-
 \begin{tikzpicture}
-\begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
-ylabels at=edge right}]
-\nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=420 \si{\nano\meter}},
-ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
-    \addplotiso
-\nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=350 \si{\nano\meter}}]
-    \addplotaa
- \end{groupplot}
+	\begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
+			ylabels at=edge right}]
+		\nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=420 \si{\nano\meter}},
+		ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
+		\addplotiso
+		\nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=350 \si{\nano\meter}}]
+		\addplotaa
+	\end{groupplot}
 \end{tikzpicture}
 
 
 \subsection{Bestimmung der Wellenlängemaxima aus den Spektren}
 Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgewichtes werden bestimmt und tabellerisch dargestellt.
 \begin{table}[!htbp]
- \begin{tabular}{ccc}
- pH-Wert & Anregungs-$\lambda$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
-\hline
-2& 420 & 284 ,328\\
-2& 350 & 284, 328\\
-6& 420 & 284 , 328\\
-6& 350 & 284 , 328\\
-12& 420 & 340\\
-12& 350 & 280, 297, 313\\
-\end{tabular}
-  % \renewcommand\thetable{3}
- \end{table}
+	\begin{tabular}{ccc}
+		pH-Wert & $\lambda_{Em}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
+		\hline
+		2.o& 420 & 284 ,328\\
+		2.0& 350 & 284, 328\\
+		6.0& 420 & 284 , 328\\
+		6.0& 350 & 284 , 328\\
+		12.2& 420 & 340\\
+		12.2& 350 & 280, 297, 313\\
+	\end{tabular}
+	% \renewcommand\thetable{3}
+\end{table}
 
 \subsection{Stokes Verschiebung}
 \pgfplotsset{
-  standard/.style={
-    axis x line=bottom,
-    axis y line=middle,
-     xlabel= Wellenlänge, % Set the labels
-    ylabel= Intensität ,
-    x unit= \si{\nano\meter},
-       legend style={at={(1.2,1)},anchor=north},
-    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
-    x tick label style={rotate=90,anchor=east},
-   yticklabel style={/pgf/number format/sci},
-scaled y ticks=false
-  }
+	standard/.style={
+		axis x line=bottom,
+		axis y line=middle,
+		xlabel= Wellenlänge, % Set the labels
+		ylabel= Intensität ,
+		x unit= \si{\nano\meter},
+		legend style={at={(1.2,1)},anchor=north},
+		y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+		x tick label style={rotate=90,anchor=east},
+		yticklabel style={/pgf/number format/sci},
+		scaled y ticks=false
+	}
 }
 
 
 \begin{figure}[!h]
-\begin{subfigure}{.4\textwidth}
-\resizebox{\linewidth}{!}{
-  \includegraphics[width=1.5\textwidth]{naphthol.jpg}}
-  \caption{zur Verfügung gestellt}
-\end{subfigure}%
-\begin{subfigure}{.4\textwidth}
-\resizebox{\linewidth}{!}{
- \begin{tikzpicture}
-\begin{axis}[standard]
-    \addplotzz
-  \end{axis}
-\end{tikzpicture}}
-\caption{experimentell}
-\end{subfigure}
-\caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
+	\begin{subfigure}{.45\textwidth}
+		\resizebox{\linewidth}{!}{
+			\includegraphics[width=1.5\textwidth,keepaspectratio]{naphthol.jpg}}
+		\caption{zur Verfügung gestellt}
+	\end{subfigure}%
+	\begin{subfigure}{.45\textwidth}
+		\resizebox{\linewidth}{!}{
+			\begin{tikzpicture}
+				\begin{axis}[standard]
+					\addplotzz
+				\end{axis}
+			\end{tikzpicture}}
+		\caption{experimentell}
+	\end{subfigure}
+	\caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
 
 \end{figure}
-
-
-
 
 \subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3
 
 \subsection{$pK_s$ Werte}
 
-
 \begin{table}[!htp]
- \begin{tabular}{lccccc}
- pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
-\hline
-2.000& 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
-3.986& 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
-5.925& 320 & 355 & \num{1.2808172e5}& \num{1.12685039e5} & \num{4.9373e4}\\
-8.158& 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
-9.973& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
-12.198& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
-\end{tabular}
-  % \renewcommand\thetable{3}
-  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
+	\begin{tabular}{lccccc}
+		pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
+		\hline
+		2.0 & 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
+		4.0 & 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
+		6.0 & 320 & 355 & \num{1.2808172e5}& \num{1.12685039e5} & \num{4.9373e4}\\
+		8.2 & 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
+		10.0& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
+		12.2& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
+	\end{tabular}
+	% \renewcommand\thetable{3}
+	\caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
 \end{table}
 
 \begin{table}[!htp]
- \begin{tabular}{lcccc}
- pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
-\hline
-2.000& 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
-3.986& 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
-5.925& 360 &  411 & \num{2.316608e3}& \num{2.42999e2} \\
-8.158& 360 &  411& \num{1.08663e4}& \num{8.87501e3}\\
-9.973& 360 &  411 & \num{1.25291e5}& \num{1.2253e5}\\
-12.198& 360 & 411 & \num{1.89882531e5}& \num{1.86032e5}  \\
-\end{tabular}
-  % \renewcommand\thetable{3}
-  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
+	\begin{tabular}{lcccc}
+		pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
+		\hline
+		2.0 & 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
+		4.0 & 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
+		6.0 & 360 &  411 & \num{2.316608e3}& \num{2.42999e2} \\
+		8.2 & 360 &  411& \num{1.08663e4}& \num{8.87501e3}\\
+		10.0& 360 &  411 & \num{1.25291e5}& \num{1.2253e5}\\
+		12.2& 360 & 411 & \num{1.89882531e5}& \num{1.86032e5}  \\
+	\end{tabular}
+	% \renewcommand\thetable{3}
+	\caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
 \end{table}
 
 
 Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert kann die Gleichgewichtskonstante K und der
 pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
-Experimentell wird ein pKs Wert für 2-Naphthol$^*$ 2.9 festgestellt und ein pKs Wert für 2-Naphthol 9.2.
-Der ermittelte pKs Wert 9.2 von 2-Naphthol weicht jedoch von der Literaturangabe
-2-Naphthol hat pKs Wert von 9.63 bei T=25 \si{\celsius}~\supercite{crc} ab. Durch Erhöhung der Anzahl der Messungen kann
+Experimentell wird ein pKs Wert für 2-Naphthol$^*$ 2.9 festgestellt und ein pKs Wert für 2-Naphthol 9.1.
+Der ermittelte pKs Wert 9.1 von 2-Naphthol weicht jedoch von der Literaturangabe
+2-Naphthol hat pKs Wert von 9.63 bei T=25 \si{\celsius} ab. ~\supercite{crc} Durch Erhöhung der Anzahl der Messungen kann
 eine genaure Bestimmung des pKs-Werts gemacht werden.
 \begin{figure}[!htbp]
-\begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
-\begin{axis}[
-axis x line=bottom,
-axis y line=middle,
-xlabel= pH,
-ylabel= Intensität,
-legend style={draw=none,legend pos=outer north east,font=\scriptsize},
-y label style={at={(axis description cs:-0.3,.5)},rotate=90,anchor=south},
-  legend cell align=left,
- scaled ticks=false,
-  y tick label style={/pgf/number format/sci},
- minor x tick num=10
-]
-\addplot[no marks,smooth,blue] table {
-   X Y
-2.000 1.77969086e2
-3.986  1.91234894e2
- 5.925 2.42990112e2
-8.158  8.8750166e3
- 9.973 1.22534625e5
- 12.198 1.86032375e5
-  };
-  \addlegendentry{$I_f$=(360 nm/420 nm)}
-\addplot[no marks,smooth,red] table {
-   X Y
-2.000 1.31233328e5
-3.986  1.11589625e5
- 5.925 1.12685039e5
-8.158  1.11267211e5
- 9.973 2.25562051e4
- 12.198 8.50769043e2
-  };
-    \addlegendentry{$I_f$=(320 nm/350 nm)}
+	\begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
+		\begin{axis}[
+			axis x line=bottom,
+			axis y line=left,
+			xlabel= pH,
+			ylabel= Intensität,
+			legend style={draw=none,legend pos=outer north east,font=\scriptsize},
+			y label style={at={(axis description cs:-0.3,.5)},anchor=south},
+			legend cell align=left,
+			scaled ticks=false,
+			y tick label style={/pgf/number format/sci},
+			minor x tick num=10
+			]
+			\addplot[thick,blue,mark=x] table {
+				X Y
+				12.198 1.86032375e5
+				9.973 1.22534625e5
+				8.158  8.8750166e3
+				5.925 2.42990112e2
+				3.986  1.91234894e2
+				2.000 1.77969086e2
+			};
+			\addlegendentry{$I_f$=(360 nm/420 nm)}
+			\addplot[thick,red,mark=x]  table {
+				X Y
+				12.198 8.50769043e2
+				9.973 2.25562051e4
+				8.158  1.11267211e5
+				5.925 1.12685039e5
+				3.986  1.11589625e5
+				2.000 1.31233328e5
+			};
+			\addlegendentry{$I_f$=(320 nm/350 nm)}
 
-  \addplot[no marks,smooth,green] table {
-   X Y
-2.000 1.71453184e4
-3.986  4.75454219e4
- 5.925 4.93732383e4
-8.158  5.58971602e4
- 9.973 1.12899375e5
- 12.198 1.59646828e5
-  };
-    \addlegendentry{$I_f$=(320 nm/420 nm)}
-\node[coordinate,pin=right:{\tiny pH = pKs = 9.2}] at (axis cs:9.12,6.7e4) {};
-\node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
-\node[dot] (a) at (axis cs:2.9,3.2e4) {};
-\node[dot] (b) at (axis cs:9.12,6.7e4) {};
+			\addplot[thick,yellow,mark=x]  table {
+				X Y
+				12.198 1.59646828e5
+				9.973 1.12899375e5
+				8.158  5.58971602e4
+				5.925 4.93732383e4
+				3.986  4.75454219e4
+				2.000 1.71453184e4
+			};
+			\addlegendentry{$I_f$=(320 nm/420 nm)}
+			\node[coordinate,pin=right:{\tiny pH = pKs = 9.1}] at (axis cs:9.1,6.6e4) {};
+			\node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
+			\node[dot] (a) at (axis cs:2.91,3.2e4) {};
+			\node[dot] (b) at (axis cs:9.1,6.6e4) {};
 
-\end{axis}
-\end{tikzpicture}
-\caption{Kurvenverlauf der pH-Werte gegen Fluoreszenzintänsitäten und Bestimmung der pKs-Werte}
+		\end{axis}
+	\end{tikzpicture}
+	\caption{Kurvenverlauf der pH-Werte gegen Fluoreszenzintänsitäten und Bestimmung der pKs-Werte}
 \end{figure}
 
 
@@ -563,29 +603,29 @@ y label style={at={(axis description cs:-0.3,.5)},rotate=90,anchor=south},
 
 Bei Messung der Spektren des pH Wertes 12 zeigt sich, dass sowohl bei einer Einschusswellenlänge von 320 nm (EM1) und
 360 nm (EM2) die Probe eine starke Emission mit Maximum bei 411 nm zeigt. Über die Anregungsspektren
- ergeben sich Anregungsmaxima bei 280nm, 297 nm und 313 nm bei einer Emissionswellenlänge von 420 nm (AN1)
- und bei einer Emissionswellenlänge von 350nm (AN2) ein Anregungsmaxima bei 340 nm.
+ergeben sich Anregungsmaxima bei 280nm, 297 nm und 313 nm bei einer Emissionswellenlänge von 420 nm (AN1)
+und bei einer Emissionswellenlänge von 350nm (AN2) ein Anregungsmaxima bei 340 nm.
 
 Es kann somit davon ausgegangen werden, dass an diesem pH Wert, das Naphthol komplett in dissoziierter Form, also dem Naphtholat vorliegt.
 Die gemessene emittierte Wellenlänge (Fluoreszenz) mit 420 nm zeigt den in der Theorie bereits angesprochenen „Stokes-Shift“.
- Die Probe wird mit einer Wellenlänge von 360 nm angeregt, während das durch Fluoreszenz wieder abgegebene
- Licht eine Wellenlänge von 420nm aufweist.
+Die Probe wird mit einer Wellenlänge von 360 nm angeregt, während das durch Fluoreszenz wieder abgegebene
+Licht eine Wellenlänge von 420nm aufweist.
 
 % Hier Spektren einblenden, keine Ahnung wie das geht :P
 
 Bei Messungen eines pH-Wertes von 2 ist die bei pH 12 gemessene Fluoreszenz mit einem Emissionsmaximum bei 420 nm verschwunden,
 jedoch zeigt sich eine Emission bei 340 nm unter Einstrahlung von 320 nm (EM1), nicht aber bei 360 nm (EM2).
- Des Weiteren zeigen sich zwei Anregungsmaxima bei 275 nm und 330 nm bei einer Emissionswellenlänge von 350 nm (AN2).
+Des Weiteren zeigen sich zwei Anregungsmaxima bei 275 nm und 330 nm bei einer Emissionswellenlänge von 350 nm (AN2).
 Dies legt nahe, dass bei einem pH Wert von 2, das Naphthol in seiner undissoziierten Form vorliegt
 und somit kein Naphtholat in der Probe vorhanden ist. Bei der gemessenen Fluoreszenz von 355 nm handelt
 es sich um die Emission des Naphthols. Das Licht mit einer Wellenlänge von 360 nm ist nicht dazu in der Lage,
- eine Fluoreszenz des Naphthols anzuregen.
+eine Fluoreszenz des Naphthols anzuregen.
 
 %wieder Spektren einfügen
 
 Die Betrachtung der Spektren bei einem pH Wert von 6 zeigt, dass lediglich eine Emission bei 350 nm
- über eine Anregung mit 320 nm (EM1) gemessen werden kann. Bei 275 nm und 330 nm zeigen sich sowohl Absorptionsmaxima bei 420 nm (AN1),
-  als auch bei 350 nm (AN2) Emissionswellenlänge.
+über eine Anregung mit 320 nm (EM1) gemessen werden kann. Bei 275 nm und 330 nm zeigen sich sowohl Absorptionsmaxima bei 420 nm (AN1),
+als auch bei 350 nm (AN2) Emissionswellenlänge.
 Somit ergibt sich aus den Messungen der Spektren bei einem pH Wert von 6,
 dass die Naphtholat-Konzentration zu gering ist bzw. zu instabil ist,
 als dass eine Emission über 350 nm gemessen werden kann.
@@ -596,8 +636,8 @@ Stattdessen kann lediglich die Fluoreszenz des Naphtholats
 
 Mittels eines Vergleiches der im Versuch gemessenen Absorptionsspektren mit den Vorgegeben Spektren wird ersichtlich,
 dass sich diese auf in mehrfachen Punkten decken. Zum einen kann in beiden die Verschiebung der Absorptionswellenlänge
- vom Naphthol zum Naphtholat hin in den längeren Wellenlängenbereich beobachtet werden. Ausserdem zeigt sich,
-  dass die Maxima in beiden Fällen nur minimal voneinander abweiche.
+vom Naphthol zum Naphtholat hin in den längeren Wellenlängenbereich beobachtet werden. Ausserdem zeigt sich,
+dass die Maxima in beiden Fällen nur minimal voneinander abweiche.
 Der Vergleich zeigt, dass die gegebenen Spektren mit den gemessenen im übereinstimmen,
 jedoch weisen die gegebenen Spektren eine größere Genauigkeit auf.
 
