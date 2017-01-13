@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[13pt]{article}
 \usepackage{amsmath,mathtools}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[bitstream-charter]{mathdesign}
@@ -18,8 +18,7 @@
 \restylefloat{table}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
 % header
-\usepackage[backend=biber,sorting=none]{biblatex} \addbibresource{books.bib}
-
+\usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
 \usepackage{fancyhdr}
 \fancyhf{}
 \rhead{13.01.2017}
@@ -46,7 +45,7 @@
 \section{Ziel des Versuches}
 Der Versuch befasst sich mit der Infrarotspektroskopie und den physikalischen Ursachen der Schwingungen der Materie.
 Dazu sollen Spektren von Kohlenmonoxid aufgenommen werden.
-\section {Theorie} \cite{fadini}
+\section {Theorie\supercite{fadini}}
 \subsection{Molekülschwingungen}
 Die Wechselwirkung zwischen elektromagnetischer Strahlung und Molekülen
 bildet die Grundlage verschiedener Methoden der Strukturbestimmung. Zu den wichtigsten
@@ -54,7 +53,7 @@ gehören diejenigen, die auf die Absorption der Strahlung (Infrarot Spektroskopi
 ihre Streuung (Raman Spektroskopie) oder Beugung (röntgenographische Methoden)
 zurückzuführen sind.
 Die Molekülschwingungen treten im allgemein im mittleren IR-Bereich,
-also bei Wellenzahlen 4000 und 200 cm$-^1$
+also bei Wellenzahlen 4000 \si{\per\centi\meter} und 200 \si{\per\centi\meter}.
 
 In einem makroskopischen Modell stellt man ein zweiatomiges Molekül
 durch zwei Massen m$_1$ und $_2$ dar, die durch eine elastische Ferder verbunden sind.
