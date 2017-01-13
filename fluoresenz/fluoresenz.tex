@@ -44,8 +44,8 @@
   round-mode          = figures,
   round-precision     = 2,
   inter-unit-product =\cdot,
-   group-digits=true,          %% Zifferngruppierung an/aus
-        scientific-notation = true,
+  group-digits=true,          %% Zifferngruppierung an/aus
+  scientific-notation = true,
 }
 \renewcommand{\arraystretch}{1.5}
 %\usepackage{unicode-math}
@@ -63,100 +63,100 @@
 
 \begin{luacode*}
 
-fs = dofile("fs.lua")
+  fs = dofile("fs.lua")
 
-function drawPU()
+  function drawPU()
 
-xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
-xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
+  xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
+  xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
 
 
-    tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
 
     for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
-     tex.sprint("\\addlegendentry{2-Naphtholat}")
+  tex.sprint("\\addlegendentry{2-Naphtholat}")
 
- tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
 
     for i=1,#xa do
-      tex.sprint("("..xa[i]..","..xb[i]..")")
+    tex.sprint("("..xa[i]..","..xb[i]..")")
     end
     tex.sprint("};")
-     tex.sprint("\\addlegendentry{2-Naphthol}")
+  tex.sprint("\\addlegendentry{2-Naphthol}")
 
 
 
-end
+  end
 
 
-function drawISO()
+  function drawISO()
 
-xwerte, ywerte = fs.readcsv("data/ph02anregung420_410.txt",23)
-xa1, xb1= fs.readcsv("data/ph06anregung420_410.txt",23)
-xa2, xb2= fs.readcsv("data/ph12anregung420_410.txt",23)
+  xwerte, ywerte = fs.readcsv("data/ph02anregung420_410.txt",23)
+  xa1, xb1= fs.readcsv("data/ph06anregung420_410.txt",23)
+  xa2, xb2= fs.readcsv("data/ph12anregung420_410.txt",23)
 
 
-    tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,red,thick".."] coordinates{")
 
     for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 2}")
+  tex.sprint("\\addlegendentry{ph 2}")
 
 
- tex.sprint("\\addplot[".."no marks,orange".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,blue,thick".."] coordinates{")
     for i=1,#xa2 do
-      tex.sprint("("..xa1[i]..","..xb1[i]..")")
+    tex.sprint("("..xa1[i]..","..xb1[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 6}")
+  tex.sprint("\\addlegendentry{ph 6}")
 
 
- tex.sprint("\\addplot[".."no marks,black".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,green,thick".."] coordinates{")
     for i=1,#xa2 do
-      tex.sprint("("..xa2[i]..","..xb2[i]..")")
+    tex.sprint("("..xa2[i]..","..xb2[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 12}")
+  tex.sprint("\\addlegendentry{ph 12}")
 
-end
+  end
 
-function drawISO2()
+  function drawISO2()
 
-xwerte, ywerte = fs.readcsv("data/ph02anregung350_340.txt",23)
-xa1, xb1= fs.readcsv("data/ph06anregung350_340.txt",23)
-xa2, xb2= fs.readcsv("data/ph12anregung_350_340.txt",23)
+  xwerte, ywerte = fs.readcsv("data/ph02anregung350_340.txt",23)
+  xa1, xb1= fs.readcsv("data/ph06anregung350_340.txt",23)
+  xa2, xb2= fs.readcsv("data/ph12anregung_350_340.txt",23)
 
 
-    tex.sprint("\\addplot[".."smooth,thick,red".."] coordinates{")
+  tex.sprint("\\addplot[".."smooth,thick,red".."] coordinates{")
 
     for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+    tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 2}")
+  tex.sprint("\\addlegendentry{ph 2}")
 
 
- tex.sprint("\\addplot[".."smooth,orange,thick".."] coordinates{")
+  tex.sprint("\\addplot[".."smooth,blue,thick".."] coordinates{")
     for i=1,#xa1 do
-      tex.sprint("("..xa1[i]..","..xb1[i]..")")
+    tex.sprint("("..xa1[i]..","..xb1[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 6}")
+  tex.sprint("\\addlegendentry{ph 6}")
 
 
- tex.sprint("\\addplot[".."smooth,thick,black".."] coordinates{")
+  tex.sprint("\\addplot[".."smooth,thick,green".."] coordinates{")
     for i=1,#xa2 do
-      tex.sprint("("..xa2[i]..","..xb2[i]..")")
+    tex.sprint("("..xa2[i]..","..xb2[i]..")")
     end
     tex.sprint("};")
-   tex.sprint("\\addlegendentry{ph 12}")
+  tex.sprint("\\addlegendentry{ph 12}")
 
-end
+  end
 
 \end{luacode*}
 \definecolor{skyblue1}{RGB}{135, 206, 250}
@@ -175,33 +175,35 @@ end
 
 \definecolor{azulen}{RGB}{0,218,255}
 
- \newcommand\addplotzz{\directlua{drawPU()}}
- \newcommand\addplotiso{\directlua{drawISO()}}
- \newcommand\addplotaa{\directlua{drawISO2()}}
+\newcommand\addplotzz{\directlua{drawPU()}}
+\newcommand\addplotiso{\directlua{drawISO()}}
+\newcommand\addplotaa{\directlua{drawISO2()}}
 \begin{document}
 
 \section{Ziel des Versuches}
-Der Versuch befasst sich mit spektralen Untersuchungen im UV-Bereich. Dafür werden die Fluoreszenzspektren und Anregungsspektren von 2-Naphthol und 2-Naphtolat in Wasser aufgenommen.
+Der Versuch befasst sich mit spektralen Untersuchungen im UV-Bereich.
+Dafür werden die Fluoreszenzspektren und Anregungsspektren von 2-Naphthol und 2-Naphtolat in Wasser aufgenommen.
 \section {Theorie}
 \subsection{Absorption und Emission\supercite{og}}
- Eine chemische Verbindung erscheint dann farbig, wenn sie aus dem sichtbaren Teil des Spektrums einen Wellenlängenbereich selektiv absorbiert.
-Im Allgemeinen sind gesättigte organische Verbindungen für unser Auge farblos, da sich ihr Absorptionsbereich außerhalb der Sichtbaren im fernen Ultraviolett
+Eine chemische Verbindung erscheint dann farbig, wenn sie aus dem sichtbaren Teil des Spektrums einen Wellenlängenbereich selektiv absorbiert.
+Im Allgemeinen sind gesättigte organische Verbindungen für unser Auge farblos,
+da sich ihr Absorptionsbereich außerhalb der Sichtbaren im fernen Ultraviolett
 befindet. Durch Einführung von $\pi$-Bindungssystemen wie verschieben sich
 die Absorptionsbanden immer mehr zum langwelligeren, sichtbaren Teil des Spektrums.
 Für die Farbigkeit ist vor allem die energetisch hochliegenden und damit leichter anregbaren $\pi$ Elektronen verantwortlich.
 Je stärker die $\pi$-Elektronen delokasiert sind, umso langwelliger ist das Licht, welches die Verbindung absorbiert.
-Man bezeichnet eine Gruppierung in einem Molekül, die Strahlung im UV/Vis Bereich absorbiert, als \textbf{Chromophore} (gr. \textit{phoron} = Träger). Die Anhäufung von Chromophoren,
+Man bezeichnet eine Gruppierung in einem Molekül, die Strahlung im UV/Vis Bereich absorbiert, 
+als \textbf{Chromophore} (gr. \textit{phoron} = Träger). Die Anhäufung von Chromophoren,
 besonders in konjugierten Systemen, ruft eine Farbvertiefung (\textbf{Bathochromie}, Rotverschiebung) hervor, d.h. eine Verschiebung der Absorptionsmaxima nach längeren Wellen.
 Die auxochromen (gr. \textit{auxesis}= Zunahme) Gruppen verschieben die Absorptionsmaxima noch längeren Wellen. Eine typische, auxochrome Gruppe ist die Hydroxgruppe,
--OH.
-Demgegenüber können Substituenten, die über einen $-I$-Effekt verfügen, einen hypsochromen Effekt (Blauverschiebung) (\textbf{Hypsochromie}) auslösen.
+-OH. Demgegenüber können Substituenten, die über einen $-I$-Effekt verfügen, einen hypsochromen Effekt (Blauverschiebung) (\textbf{Hypsochromie}) auslösen.
 
 \subsection{Physikalische Vorgänge der Fluoreszenz\supercite{harris}}
 Wir nehmen an, dass das Molekül M Licht absorbiert und in den angeregten Zustand $M^*$
 überführt wird:
 \begin{align*}
- \text{Absorption:} &= M + h \cdot v \, \rightarrow M^*\\
- \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Abs.} [M]
+  \text{Absorption:} &= M + h \cdot v \, \rightarrow M^*\\
+  \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Abs.} [M]
 \end{align*}
 Die Geschwindigkeitskonstante, $k_{Abs.}$ , hängt von der Intensität der Bestrahlung und
 dem Extinktionskoeffizienten ($\epsilon$) von $M$ ab. Je intensiver die Einstrahlung und je besser es
@@ -209,32 +211,32 @@ absorbiert wird, desto schneller wird $M^*$ gebildet.
 
 Nach der Absorption kann $M^*$ ein Photon emittieren und in den Grundzustand zurückkehren:
 \begin{align*}
- \text{Emmision:} &= M^* \rightarrow M +  h \cdot v\\
- \text{Geschwindigkeit:} &= -\frac{d[M^*]}{dt} = k _{E} [M^*]
+  \text{Emmision:} &= M^* \rightarrow M +  h \cdot v\\
+  \text{Geschwindigkeit:} &= -\frac{d[M^*]}{dt} = k _{E} [M^*]
 \end{align*}
 
 Alternativ kann das angeregte Molekül die Energie durch Wärme verlieren:
 \begin{align*}
- \text{Desaktivierung:} &= M^* \rightarrow +  W\ddot{a}rme\\
- \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{D} [M^*]
+  \text{Desaktivierung:} &= M^* \rightarrow +  W\ddot{a}rme\\
+  \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{D} [M^*]
 \end{align*}
 
 Eine weitere Möglichkeit ist die Übertragung der Energie des angeregten Moleküls auf ein
 anderes Molekül (Quencher, Q) durch Fluoreszenzlöschung ( Quenching ). Dabei wird
 der Quencher angeregt:
 \begin{align*}
- \text{Quenching:} &= M^* + Q \rightarrow M +  Q^*\\
- \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Q} [M^*] [Q]
+  \text{Quenching:} &= M^* + Q \rightarrow M +  Q^*\\
+  \text{Geschwindigkeit:} &= - \frac{d[M^*]}{dt} = k _{Q} [M^*] [Q]
 \end{align*}
 
 Aus den beschriebenen Einzelprozessen resultiert, dass sich die Geschwindigkeit der Deaktivierung von $M^*$ aus der Summe der Geschwindigkeiten von Emission, Deaktivierung
 und Löschung ergibt:
 \begin{align*}
- \text{Geschwindigkeit des Verschwindens von } M^* &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
+  \text{Geschwindigkeit des Verschwindens von } M^* &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
 \end{align*}
 Setzt man Bildungs- und Abbaugeschwindigkeit von M* gleich, erhält man:
 \begin{align*}
- k_{Abs} [M] &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
+  k_{Abs} [M] &=  k _{E} [M^*] + k _{D} [M^*] + k _{Q} [M^*] [Q]\\
 \end{align*}
 \subsection{Quantenausbeute\supercite{harris}} % (fold)
 \label{ssub:quantenausbeute}
@@ -253,70 +255,69 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
 \subsection{Aufbau des Fluoreszenz-Spektrometers\supercite{skript}}
 
 \begin{figure}[!htbp]
-\begin{tikzpicture}[decoration=snake]{
-\draw (0,0) rectangle (2,1) node[pos=.5] (b) {\footnotesize Licht Quelle};
-\draw[->,decorate,flame] (2.2,0.2)  -- (4,0.2);
-\draw[->,decorate,yellow] (2.2,0.8)  -- (4,0.8);
-\draw[->,decorate,darkblue] (2.2,0.6)  -- (4,0.6);
-\draw[->,decorate,turquoise] (2.2,0.4)  -- (4,0.4);
-%\draw  decorate [decoration={name=zigzag}] {(0,2) -- (3,0)};
-\draw (4.2,0) rectangle (8.2,1) node[pos=.5] (b) {\footnotesize Anregungsmonochromator};
-%\draw[->,ultra thick] (5,0.25)  -- (6,0.25);
-\draw[->,decorate,darkblue,thick] (8.3,0.4)  -- (10.2,0.4) node[midway,above] (d) {$\lambda_{ex}$};
-\draw (10.3,0) rectangle (11.5,1) node[pos=.5] (e) {\footnotesize Probe};
-\draw[->,decorate,red] (10.4,-0.2)  -- (10.4,-2.3);
-\draw[->,decorate,mauve] (10.6,-0.2)  -- (10.6,-2.3);
-\draw[->,decorate,azulen] (10.8,-0.2)  -- (10.8,-2.3);
-\draw[->,decorate,green] (11.0,-0.2)  -- (11.0,-2.3);
-\draw[->,decorate,yellow] (11.0,-0.2)  -- (11.0,-2.3);
-%\draw[->,decorate] (9,-0.5)  -- (9,-2.3) node[pos=0.1] (d) {\tiny Lumineszenz mit verschiedenen $\lambda$};
-\draw (9.2,-2.4) rectangle (13,-3.4) node[pos=.5] (f) {\footnotesize Emissionsmonochromator };
-\draw[->,decorate,azulen,thick] (10.6,-3.5)  -- (10.6,-5) node[rotate=90,midway,above] (g) {$\lambda_{em}$};
-\draw (9.8,-5.1) rectangle (11.5,-6) node[pos=.5] (h) {\footnotesize Detektor };
-\draw (6.3,-2.1) rectangle (8.5,-3.4) node[pos=.5] (j) {\footnotesize Ref. Detektor };
-\draw (6.3,-5.1) rectangle (8.5,-6) node[pos=.5] (k) {\footnotesize Computer };
-\draw[<->,dashed] (h)  -- (k);
-\draw[<->,dashed] (j)  -- (k);
-\draw[->,decorate,skyblue1,thick] (7.3,-0.2)  -- (7.3,-2.1) node[midway,above,rotate=90] (d) {$\lambda_{ex}$};
-}
-\end{tikzpicture}
+  \begin{tikzpicture}[decoration=snake]{
+      \draw (0,0) rectangle (2,1) node[pos=.5] (b) {\footnotesize Licht Quelle};
+      \draw[->,decorate,flame] (2.2,0.2)  -- (4,0.2);
+      \draw[->,decorate,yellow] (2.2,0.8)  -- (4,0.8);
+      \draw[->,decorate,darkblue] (2.2,0.6)  -- (4,0.6);
+      \draw[->,decorate,turquoise] (2.2,0.4)  -- (4,0.4);
+      %\draw  decorate [decoration={name=zigzag}] {(0,2) -- (3,0)};
+      \draw (4.2,0) rectangle (8.2,1) node[pos=.5] (b) {\footnotesize Anregungsmonochromator};
+      %\draw[->,ultra thick] (5,0.25)  -- (6,0.25);
+      \draw[->,decorate,darkblue,thick] (8.3,0.4)  -- (10.2,0.4) node[midway,above] (d) {$\lambda_{ex}$};
+      \draw (10.3,0) rectangle (11.5,1) node[pos=.5] (e) {\footnotesize Probe};
+      \draw[->,decorate,red] (10.4,-0.2)  -- (10.4,-2.3);
+      \draw[->,decorate,mauve] (10.6,-0.2)  -- (10.6,-2.3);
+      \draw[->,decorate,azulen] (10.8,-0.2)  -- (10.8,-2.3);
+      \draw[->,decorate,green] (11.0,-0.2)  -- (11.0,-2.3);
+      \draw[->,decorate,yellow] (11.0,-0.2)  -- (11.0,-2.3);
+      %\draw[->,decorate] (9,-0.5)  -- (9,-2.3) node[pos=0.1] (d) {\tiny Lumineszenz mit verschiedenen $\lambda$};
+      \draw (9.2,-2.4) rectangle (13,-3.4) node[pos=.5] (f) {\footnotesize Emissionsmonochromator };
+      \draw[->,decorate,azulen,thick] (10.6,-3.5)  -- (10.6,-5) node[rotate=90,midway,above] (g) {$\lambda_{em}$};
+      \draw (9.8,-5.1) rectangle (11.5,-6) node[pos=.5] (h) {\footnotesize Detektor };
+      \draw (6.3,-2.1) rectangle (8.5,-3.4) node[pos=.5] (j) {\footnotesize Ref. Detektor };
+      \draw (6.3,-5.1) rectangle (8.5,-6) node[pos=.5] (k) {\footnotesize Computer };
+      \draw[<->,dashed] (h)  -- (k);
+      \draw[<->,dashed] (j)  -- (k);
+      \draw[->,decorate,skyblue1,thick] (7.3,-0.2)  -- (7.3,-2.1) node[midway,above,rotate=90] (d) {$\lambda_{ex}$};
+    }
+  \end{tikzpicture}
 \end{figure}
 
 \subsection{Experimenteller Teil}
 
 \begin{table}[!ht]
- \begin{tabular}{ll}
- Spektrometer & Edinburgh FS5 Spectrofluorometer ~\supercite{edin}   \\
- Quarzküvetten & d = 1 \si{\centi\meter}   \\
-Pasteurpipetten & \\
-Meßpipetten &    \\
-\end{tabular}
-\caption{Verwendete Geräte}
+  \begin{tabular}{ll}
+    Spektrometer & Edinburgh FS5 Spectrofluorometer ~\supercite{edin}   \\
+    Quarzküvetten & d = 1 \si{\centi\meter}   \\
+    Pasteurpipetten & \\
+    50-Ml Meßkolben &    \\
+  \end{tabular}
+  \caption{Verwendete Geräte}
 \end{table}
 
 \begin{table}[!ht]
- \begin{tabular}{ll}
-&Konzentration\\ 
-\textbf{NaOH} & c = $0.01$ \si{\gram\per\liter}   \\
- \textbf{HCl} & c = $0.1$ \si{\gram\per\liter}   \\
- \textbf{2-Naphtol} & c = $10^{-5}$ \si{\gram\per\liter}   \\
-\end{tabular}
-
-\caption{Verwendete Chemikalien}
+  \begin{tabular}{ll}
+    &Konzentration\\ 
+    \textbf{NaOH} & c = $0.01$ \si{\gram\per\liter}   \\
+    \textbf{HCl} & c = $0.1$ \si{\gram\per\liter}   \\
+    \textbf{2-Naphtol} & c = $10^{-5}$ \si{\gram\per\liter}   \\
+  \end{tabular}
+  \caption{Verwendete Chemikalien}
 \end{table}
 
 In dem ersten Teil des Versuches wurde $c_0 = 10^{-5}$ \si{\mol\per\liter} 2-Naphtol mit $0.1$ 
 \si{\mol\per\liter} HCl titriert. Bei 6 pH-Werten (12.2, 10, 8.2, 6.0, 4.0, 2.0) werden die Emmisionsspektren 
+Zur pH-Messung wird eine ionenselektive elektrode verwendet, die eine dünne Glasmembran hat.   
 bei den Anregungswellenlängen $\lambda_{ex}=360$ \si{\nano\meter} und $\lambda_{ex}=320$ \si{\nano\meter} gemessen.
 Der zweite Teil des Versuches besteht darin, dass die Anregungsspektren bei  
-   $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} gemessen werden.
-
+$\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} gemessen werden.
 
 \subsection{Das Jablonski Schema} % (fold)
 \label{sub:jablonski_schema}
 
 \begin{figure}[!ht]
-\begin{tikzpicture}[scale=0.8]
+  \begin{tikzpicture}[scale=0.8]
 
     % styles
     \tikzstyle{elec} = [line width=2pt,draw=black!30]
@@ -328,46 +329,46 @@ Der zweite Teil des Versuches besteht darin, dass die Anregungsspektren bei
     \tikzstyle{rv} = [rotate=90,text=orange,pos=0.5,yshift=3mm]
 
     % fondamental
-    \path[elec] (0,0)  -- ++ (10,0)
-        node[below,pos=0.5,yshift=-1mm] {\large Grundzustand  $S_0$};
+    \path[elec] (0,0)  -- ++ (14,0)
+    node[below,pos=0.5,yshift=-1mm] {\large Grundzustand  $S_0$};
     \path[vib] (0,0.2) -- ++ (10,0);
     \path[vib] (0,0.4) -- ++ (10,0);
-    \foreach \i in {1,2,...,20} {
-        \path[vib] (0,0.4 + \i*0.2) -- ++ ({2 + 10*exp(-0.2*\i)},0);
+    \foreach \i in {1,2,...,30} {
+      \path[vib] (0,0.4 + \i*0.2) -- ++ ({2 + 10*exp(-0.2*\i)},0);
     }
 
     % T1
     \path[elec] (11,4) -- ++ (3,0) node[anchor=south west] {\large $T_1$};
     \foreach \i in {1,2,...,6} {
-        \path[vib] (11,4 + \i*0.2) -- ++ (3,0);
+      \path[vib] (11,4 + \i*0.2) -- ++ (3,0);
     }
 
     % S1
     \path[elec] (4,5) node[anchor=south east] {\large $S_1$} -- ++ (5,0);
     \foreach \i in {1,2,...,6} {
-        \path[vib] (4,5 + \i*0.2) -- ++ (5,0);
+      \path[vib] (4,5 + \i*0.2) -- ++ (5,0);
     }
     \foreach \i in {1,2,...,12} {
-        \path[vib] ({7.5 - 1*exp(-0.3*\i)},6.2+\i*0.2) -- (9,6.2+\i*0.2);
+      \path[vib] ({7.5 - 1*exp(-0.3*\i)},6.2+\i*0.2) -- (9,6.2+\i*0.2);
     }
 
     % S2
     \path[elec] (4,8) node[anchor=south east] {\large $S_2$} -- ++ (2,0);
     \foreach \i in {1,2,...,6} {
-        \path[vib] (4,8 + \i*0.2) -- ++ (2,0);
+      \path[vib] (4,8 + \i*0.2) -- ++ (2,0);
     }
 
     % absorption
     \path[trans,draw=turquoise] (4.5,0) -- ++(0,9)
-        node[rotate=90,pos=0.35,text=darkblue,yshift=-3mm] {\large Absorption};
+    node[rotate=90,pos=0.35,text=darkblue,yshift=-3mm] {\large Absorption};
 
     % fluo
     \path[trans,draw=rouge](7,5) -- ++(0,-4.4)
-        node[rotate=90,pos=0.5,text=rouge,yshift=-3mm] {\large Fluoreszenz};
+    node[rotate=90,pos=0.5,text=rouge,yshift=-3mm] {\large Fluoreszenz};
 
     % phosphorescence
     \path[trans,draw=mauve] (13,4) -- ++(0,-3.4)
-        node[rotate=90,pos=0.5,text=mauve,yshift=-3mm] {\large Phosphoreszenz};
+    node[rotate=90,pos=0.5,text=mauve,yshift=-3mm] {\large Phosphoreszenz};
 
     % Conversion interne
     \path[transCI] (4,5) -- ++(-1.9,0) node[below,pos=0.5,text=vert] {\large IC};
@@ -378,46 +379,46 @@ Der zweite Teil des Versuches besteht darin, dass die Anregungsspektren bei
     \path[transCS] (11,4) -- ++(-2.5,0) node[below,pos=0.5,text=violet] {\large ISC};
 
     % relaxation vib
-    \path[relax] (5.5,8.8) -- ++(0,-0.8) node[rv] {\textbf{D}};
-    \path[relax] (8,8)     -- ++(0,-3)   node[rv] {\textbf{D}};
-    \path[relax] (1,5)     -- ++(0,-5)   node[rv] {\textbf{D}};
-    \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{D}};
+    \path[relax] (5.5,8.8) -- ++(0,-0.8) node[rv] {\textbf{SR}};
+    \path[relax] (8,8)     -- ++(0,-3)   node[rv] {\textbf{SR}};
+    \path[relax] (1,5)     -- ++(0,-5)   node[rv] {\textbf{SR}};
+    \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{SR}};
 
-\end{tikzpicture}
-\caption{Das Jablonski-Diagramm: Die thermische Variaton der Übergänge} \label{fig:jablonski}
+  \end{tikzpicture}
+  \caption{Das Jablonski-Diagramm: Die thermische Variaton der Übergänge} \label{fig:jablonski}
 \end{figure}
 
 
 \begin{itemize}
-    \item[] \tikz {\path[line width=2pt,->,dashed,draw=vert] 
-        (0,0) -- (1,0) node[above,pos=0.5,text=vert] {IC};} Interne Konversion,
-        $S_i\,\longrightarrow\,S_j$ non radiative transition.
+  \item[] \tikz {\path[line width=2pt,->,dashed,draw=vert] 
+      (0,0) -- (1,0) node[above,pos=0.5,text=vert] {IC};} Interne Konversion,
+    $S_i\,\longrightarrow\,S_j$ strahlungsloser Übergang.
 
-    \item[] \tikz {\path[line width=2pt,->,dashed,draw=violet] 
-        (0,0) -- (1,0) node[above,pos=0.5,text=violet] {ISC};} Intersystem-Crossing,
-        $S_i\,\longrightarrow\,T_j$ non radiative transition.
+  \item[] \tikz {\path[line width=2pt,->,dashed,draw=violet] 
+      (0,0) -- (1,0) node[above,pos=0.5,text=violet] {ISC};} Intersystem-Crossing,
+    $S_i\,\longrightarrow\,T_j$ strahlungsloser Übergang.
 
-    \item[] \tikz {\path[line width=2pt,draw=orange,ultra thick,
-        decorate,decoration=snake] (0,0) -- (1,0) node[above,pos=0.5,text=orange] {RV};} 
-        Schwingungsrelaxation.
+  \item[] \tikz {\path[line width=2pt,draw=orange,ultra thick,
+      decorate,decoration=snake] (0,0) -- (1,0) node[above,pos=0.5,text=orange] {SR};} 
+    Schwingungsrelaxation.
 \end{itemize}
 
 
 \section{Auswertung}
 \subsection{Messergebnisse}
 \begin{table}[!ht]
- \begin{tabular}{cc}
- pH-Wert & Gemessener pH-Wert   \\
-\hline
-12 &    12.2    \\
-10 &  10.0 \\
-8 & 8.2  \\
-6 &  6.0 \\
-4 & 4.0  \\
-2 & 2.0  \\
-\end{tabular}
-% \renewcommand\thetable{3}
-\caption{ Die Ergebnisse der pH-Messungen}
+  \begin{tabular}{cc}
+    pH-Wert & Gemessener pH-Wert   \\
+    \hline
+    12 &  12.2    \\
+    10 &  10.0 \\
+    8  &   8.2  \\
+    6  &   6.0 \\
+    4  &   4.0  \\
+    2  &   2.0  \\
+  \end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{ Die Ergebnisse der pH-Messungen}
 \end{table}
 \subsection{Spektren}
 \subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
@@ -427,77 +428,77 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am An
 \subsection{Der Vergleich der Anregungsspektren}
 
 \pgfplotsset{
-	standard/.style={
-		axis x line=bottom,
-		axis y line=middle,
-		xlabel= Wellenlänge, % Set the labels
-		x unit= \si{\nano\meter},
-		x tick label style={rotate=90,anchor=east},
-		legend cell align=left
-	}
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+    xlabel= Wellenlänge, % Set the labels
+    x unit= \si{\nano\meter},
+    x tick label style={rotate=90,anchor=east},
+    legend cell align=left
+  }
 }
 
 \begin{tikzpicture}
-	\begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
-			ylabels at=edge right}]
-		\nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=420 \si{\nano\meter}},
-		ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
-		\addplotiso
-		\nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \textbf{$\lambda_{Emission}$=350 \si{\nano\meter}}]
-		\addplotaa
-	\end{groupplot}
+  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
+      ylabels at=edge right}]
+    \nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=420 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-410) \si{\nano\meter}  }}},
+    ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
+    \addplotiso
+    \nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=350 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-340) \si{\nano\meter}  }}} ]
+    \addplotaa
+  \end{groupplot}
 \end{tikzpicture}
 
 
 \subsection{Bestimmung der Wellenlängemaxima aus den Spektren}
 Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgewichtes werden bestimmt und tabellerisch dargestellt.
 \begin{table}[!htbp]
-	\begin{tabular}{ccc}
-		pH-Wert & $\lambda_{Em}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
-		\hline
-		2.o& 420 & 284 ,328\\
-		2.0& 350 & 284, 328\\
-		6.0& 420 & 284 , 328\\
-		6.0& 350 & 284 , 328\\
-		12.2& 420 & 340\\
-		12.2& 350 & 280, 297, 313\\
-	\end{tabular}
-	% \renewcommand\thetable{3}
+  \begin{tabular}{ccc}
+    pH-Wert & $\lambda_{Em}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
+    \hline
+    2.o& 420 & 284 ,328\\
+    2.0& 350 & 284, 328\\
+    6.0& 420 & 284 , 328\\
+    6.0& 350 & 284 , 328\\
+    12.2& 420 & 340\\
+    12.2& 350 & 280, 297, 313\\
+  \end{tabular}
+  % \renewcommand\thetable{3}
 \end{table}
 
 \subsection{Stokes Verschiebung}
 \pgfplotsset{
-	standard/.style={
-		axis x line=bottom,
-		axis y line=middle,
-		xlabel= Wellenlänge, % Set the labels
-		ylabel= Intensität ,
-		x unit= \si{\nano\meter},
-		legend style={at={(1.2,1)},anchor=north},
-		y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
-		x tick label style={rotate=90,anchor=east},
-		yticklabel style={/pgf/number format/sci},
-		scaled y ticks=false
-	}
+  standard/.style={
+    axis x line=bottom,
+    axis y line=middle,
+    xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+    legend style={at={(1.2,1)},anchor=north},
+    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+    x tick label style={rotate=90,anchor=east},
+    yticklabel style={/pgf/number format/sci},
+    scaled y ticks=false
+  }
 }
 
 
 \begin{figure}[!h]
-	\begin{subfigure}{.45\textwidth}
-		\resizebox{\linewidth}{!}{
-			\includegraphics[width=1.5\textwidth,keepaspectratio]{naphthol.jpg}}
-		\caption{zur Verfügung gestellt}
-	\end{subfigure}%
-	\begin{subfigure}{.45\textwidth}
-		\resizebox{\linewidth}{!}{
-			\begin{tikzpicture}
-				\begin{axis}[standard]
-					\addplotzz
-				\end{axis}
-			\end{tikzpicture}}
-		\caption{experimentell}
-	\end{subfigure}
-	\caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
+  \begin{subfigure}{.45\textwidth}
+    \resizebox{\linewidth}{!}{
+      \includegraphics[width=1.5\textwidth,keepaspectratio]{naphthol.jpg}}
+    \caption{zur Verfügung gestellt}
+  \end{subfigure}%
+  \begin{subfigure}{.45\textwidth}
+    \resizebox{\linewidth}{!}{
+      \begin{tikzpicture}
+        \begin{axis}[standard]
+          \addplotzz
+        \end{axis}
+      \end{tikzpicture}}
+    \caption{experimentell}
+  \end{subfigure}
+  \caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
 
 \end{figure}
 
@@ -507,36 +508,36 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
 \subsection{$pK_s$ Werte}
 
 \begin{table}[!htp]
-	\begin{tabular}{lccccc}
-		pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
-		\hline
-		2.0 & 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
-		4.0 & 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
-		6.0 & 320 & 355 & \num{1.2808172e5}& \num{1.12685039e5} & \num{4.9373e4}\\
-		8.2 & 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
-		10.0& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
-		12.2& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
-	\end{tabular}
-	% \renewcommand\thetable{3}
-	\caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
+  \begin{tabular}{lccccc}
+    pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
+    \hline
+    2.0 & 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
+    4.0 & 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
+    6.0 & 320 & 355 & \num{1.2808172e5}& \num{1.12685039e5} & \num{4.9373e4}\\
+    8.2 & 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
+    10.0& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
+    12.2& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
+  \end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
 \end{table}
 
 \begin{table}[!htp]
-	\begin{tabular}{lcccc}
-		pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
-		\hline
-		2.0 & 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
-		4.0 & 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
-		6.0 & 360 &  411 & \num{2.316608e3}& \num{2.42999e2} \\
-		8.2 & 360 &  411& \num{1.08663e4}& \num{8.87501e3}\\
-		10.0& 360 &  411 & \num{1.25291e5}& \num{1.2253e5}\\
-		12.2& 360 & 411 & \num{1.89882531e5}& \num{1.86032e5}  \\
-	\end{tabular}
-	% \renewcommand\thetable{3}
-	\caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
+  \begin{tabular}{lcccc}
+    pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
+    \hline
+    2.0 & 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
+    4.0 & 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
+    6.0 & 360 &  411 & \num{2.316608e3}& \num{2.42999e2} \\
+    8.2 & 360 &  411& \num{1.08663e4}& \num{8.87501e3}\\
+    10.0& 360 &  411 & \num{1.25291e5}& \num{1.2253e5}\\
+    12.2& 360 & 411 & \num{1.89882531e5}& \num{1.86032e5}  \\
+  \end{tabular}
+  % \renewcommand\thetable{3}
+  \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
 \end{table}
 
-
+\subsection{Graphische Bestimmung aus $I$-$pH$-Diagrammen mittels Wendepunktanalyse}
 Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert kann die Gleichgewichtskonstante K und der
 pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
 Experimentell wird ein pKs Wert für 2-Naphthol$^*$ 2.9 festgestellt und ein pKs Wert für 2-Naphthol 9.1.
@@ -544,60 +545,65 @@ Der ermittelte pKs Wert 9.1 von 2-Naphthol weicht jedoch von der Literaturangabe
 2-Naphthol hat pKs Wert von 9.63 bei T=25 \si{\celsius} ab. ~\supercite{crc} Durch Erhöhung der Anzahl der Messungen kann
 eine genaure Bestimmung des pKs-Werts gemacht werden.
 \begin{figure}[!htbp]
-	\begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
-		\begin{axis}[
-			axis x line=bottom,
-			axis y line=left,
-			xlabel= pH,
-			ylabel= Intensität,
-			legend style={draw=none,legend pos=outer north east,font=\scriptsize},
-			y label style={at={(axis description cs:-0.3,.5)},anchor=south},
-			legend cell align=left,
-			scaled ticks=false,
-			y tick label style={/pgf/number format/sci},
-			minor x tick num=10
-			]
-			\addplot[thick,blue,mark=x] table {
-				X Y
-				12.198 1.86032375e5
-				9.973 1.22534625e5
-				8.158  8.8750166e3
-				5.925 2.42990112e2
-				3.986  1.91234894e2
-				2.000 1.77969086e2
-			};
-			\addlegendentry{$I_f$=(360 nm/420 nm)}
-			\addplot[thick,red,mark=x]  table {
-				X Y
-				12.198 8.50769043e2
-				9.973 2.25562051e4
-				8.158  1.11267211e5
-				5.925 1.12685039e5
-				3.986  1.11589625e5
-				2.000 1.31233328e5
-			};
-			\addlegendentry{$I_f$=(320 nm/350 nm)}
+  \begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
+    \begin{axis}[
+      axis x line=bottom,
+      axis y line=left,
+      xlabel= pH,
+      ylabel= Intensität,
+      legend style={draw=none,legend pos=outer north east,font=\scriptsize},
+      y label style={at={(axis description cs:-0.3,.5)},anchor=south},
+      legend cell align=left,
+      scaled ticks=false,
+      y tick label style={/pgf/number format/sci},
+      minor x tick num=10
+      ]
+      \addplot[thick,blue,mark=x] table {
+        X Y
+        12.198 1.86032375e5
+        9.973  1.22534625e5
+        8.158  8.8750166e3
+        5.925 2.42990112e2
+        3.986  1.91234894e2
+        2.000 1.77969086e2
+      };
+      \addlegendentry{$I_f$=(360 nm/420 nm)}
+      \addplot[thick,red,mark=x]  table {
+        X Y
+        12.198 8.50769043e2
+        9.973 2.25562051e4
+        8.158  1.11267211e5
+        5.925 1.12685039e5
+        3.986  1.11589625e5
+        2.000 1.31233328e5
+      };
+      \addlegendentry{$I_f$=(320 nm/350 nm)}
 
-			\addplot[thick,yellow,mark=x]  table {
-				X Y
-				12.198 1.59646828e5
-				9.973 1.12899375e5
-				8.158  5.58971602e4
-				5.925 4.93732383e4
-				3.986  4.75454219e4
-				2.000 1.71453184e4
-			};
-			\addlegendentry{$I_f$=(320 nm/420 nm)}
-			\node[coordinate,pin=right:{\tiny pH = pKs = 9.1}] at (axis cs:9.1,6.6e4) {};
-			\node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
-			\node[dot] (a) at (axis cs:2.91,3.2e4) {};
-			\node[dot] (b) at (axis cs:9.1,6.6e4) {};
+      \addplot[thick,green,mark=x]  table {
+        X Y
+        12.198 1.59646828e5
+        9.973 1.12899375e5
+        8.158  5.58971602e4
+        5.925 4.93732383e4
+        3.986  4.75454219e4
+        2.000 1.71453184e4
+      };
+      \addlegendentry{$I_f$=(320 nm/420 nm)}
+      \node[coordinate,pin=right:{\tiny pH = pKs = 9.1}] at (axis cs:9.1,6.6e4) {};
+      \node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
+      \node[dot] (a) at (axis cs:2.9,3.2e4) {};
+      \node[dot] (b) at (axis cs:9.1,6.6e4) {};
 
-		\end{axis}
-	\end{tikzpicture}
-	\caption{Kurvenverlauf der pH-Werte gegen Fluoreszenzintänsitäten und Bestimmung der pKs-Werte}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Kurvenverlauf der pH-Werte gegen $I_F$ und Bestimmung der pKs-Werte}
 \end{figure}
 
+\subsection{Die rechnerisische Bestimmung}
+
+Wird
+also gegen die Extinktion E bei verschiedenen pH-Werten aufgetragen,
+so ergibt sich die Säurekonstante pK durch Umrechnen aus der Steigung. 
 
 \section{Diskussion}
 
