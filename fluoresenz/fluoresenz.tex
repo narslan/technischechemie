@@ -385,7 +385,7 @@ $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} geme
     \path[relax] (11.5,5)  -- ++(0,-1)   node[rv] {\textbf{SR}};
 
   \end{tikzpicture}
-  \caption{Das Jablonski-Diagramm: Die thermische Variaton der Übergänge} \label{fig:jablonski}
+  \caption{Das Jablonski-Diagramm} \label{fig:jablonski}
 \end{figure}
 
 
@@ -503,13 +503,13 @@ Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgew
 \end{figure}
 
 \subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
-Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3.
 
 \subsection{$pK_s$ Werte}
 
 \begin{table}[!htp]
   \begin{tabular}{lccccc}
-    pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
+    pH-Wert & $\lambda_{ex}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{350}$ & $I_{420}$ \\
     \hline
     2.0 & 320 & 354 & \num{1.3172177e5}& \num{1.312e5} & \num{1.7145e4} \\
     4.0 & 320 & 351 & \num{1.12065891e5}& \num{1.11589e5} & \num{4.75454e4}\\
@@ -517,6 +517,7 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
     8.2 & 320 & 355 & \num{1.1583568e5}& \num{1.11267211e5}& \num{5.589716e4}\\
     10.0& 320 & 415 & \num{1.144213915e5}& \num{2.25556e4} & \num{1.12899375e5}\\
     12.2& 320 & 414 & \num{1.61930719e5}& \num{8.50769e2} & \num{1.59646828e5} \\
+   
   \end{tabular}
   % \renewcommand\thetable{3}
   \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 320 }
@@ -524,7 +525,7 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
 
 \begin{table}[!htp]
   \begin{tabular}{lcccc}
-    pH-Wert & $\lambda_{An.}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
+    pH-Wert & $\lambda_{ex}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter} & $I_{max}$ & $I_{420}$  \\
     \hline
     2.0 & 360 &  411 & \num{2.2639e3}& \num{1.779e2}  \\
     4.0 & 360 &  411 & \num{2.31473e3}& \num{1.9123e2} \\
@@ -540,10 +541,6 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
 \subsection{Graphische Bestimmung aus $I$-$pH$-Diagrammen mittels Wendepunktanalyse}
 Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert kann die Gleichgewichtskonstante K und der
 pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
-Experimentell wird ein pKs Wert für 2-Naphthol$^*$ 2.9 festgestellt und ein pKs Wert für 2-Naphthol 9.1.
-Der ermittelte pKs Wert 9.1 von 2-Naphthol weicht jedoch von der Literaturangabe
-2-Naphthol hat pKs Wert von 9.63 bei T=25 \si{\celsius} ab. ~\supercite{crc} Durch Erhöhung der Anzahl der Messungen kann
-eine genaure Bestimmung des pKs-Werts gemacht werden.
 \begin{figure}[!htbp]
   \begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
     \begin{axis}[
@@ -590,19 +587,18 @@ eine genaure Bestimmung des pKs-Werts gemacht werden.
       };
       \addlegendentry{$I_f$=(320 nm/420 nm)}
       \node[coordinate,pin=right:{\tiny pH = pKs = 9.1}] at (axis cs:9.1,6.6e4) {};
-      \node[coordinate,pin=right:{\tiny pH = pKs = 2.9}] at (axis cs:2.9,3.2e4) {};
-      \node[dot] (a) at (axis cs:2.9,3.2e4) {};
       \node[dot] (b) at (axis cs:9.1,6.6e4) {};
 
     \end{axis}
   \end{tikzpicture}
-  \caption{Kurvenverlauf der pH-Werte gegen $I_F$ und Bestimmung der pKs-Werte}
+  \caption{Kurvenverlauf der pH-Werte gegen $I_F$ und Bestimmung der $pK_s$-Werte}
 \end{figure}
 
 \subsection{Die rechnerisische Bestimmung}
+Durch Umformung von ~\ref{eq:hh}
 
-Wird
-also gegen die Extinktion E bei verschiedenen pH-Werten aufgetragen,
+
+Wird also gegen die Extinktion E bei verschiedenen pH-Werten aufgetragen,
 so ergibt sich die Säurekonstante pK durch Umrechnen aus der Steigung. 
 
 \section{Diskussion}
@@ -630,8 +626,7 @@ eine Fluoreszenz des Naphthols anzuregen.
 %wieder Spektren einfügen
 
 Die Betrachtung der Spektren bei einem pH Wert von 6 zeigt, dass lediglich eine Emission bei 350 nm
-über eine Anregung mit 320 nm (EM1) gemessen werden kann. Bei 275 nm und 330 nm zeigen sich sowohl Absorptionsmaxima bei 420 nm (AN1),
-als auch bei 350 nm (AN2) Emissionswellenlänge.
+über eine Anregung mit 320 nm (EM1) gemessen werden kann. Bei 275 nm und 330 nm zeigen sich sowohl Absorptionsmaxima bei 420 nm (AN1), als auch bei 350 nm (AN2) Emissionswellenlänge.
 Somit ergibt sich aus den Messungen der Spektren bei einem pH Wert von 6,
 dass die Naphtholat-Konzentration zu gering ist bzw. zu instabil ist,
 als dass eine Emission über 350 nm gemessen werden kann.

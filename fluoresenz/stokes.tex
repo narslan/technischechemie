@@ -18,7 +18,6 @@
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
 \definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
 %\usepackage{helvet}
-\usepackage{unicode-math}
 
 %\usepackage[landscape]{geometry}
 %\setmainfont{Ubuntu}
@@ -36,50 +35,175 @@
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
 
-\usepackage{caption}
-\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
-
-\usepackage{caption}
-\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
+%\usepackage{caption}
 
 %\usepackage{libertine}
 %\usepackage{beramono}
 %\setmainfont{Ubuntu}
 \begin{luacode*}
 
-fs = dofile("fs.lua")
+  fs = dofile("fs.lua")
 
-function drawPU()
+  function drawPU()
 
- xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
-xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
+  ph12ax,ph12ay = fs.readcsv("data/ph12anregung420_410.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph12emmissions_360_370.txt",23)
 
 
-    tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
 
-    for i=1,#xwerte do
-      tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
     end
-    tex.sprint("};")
-     tex.sprint("\\addlegendentry{2-Naphtholat}")
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
 
- tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
 
-    for i=1,#xa do
-      tex.sprint("("..xa[i]..","..xb[i]..")")
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
     end
-    tex.sprint("};")
-     tex.sprint("\\addlegendentry{2-Naphthol}")
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
 
 
 
-end
+  end
+
+  function drawZU()
+
+  ph12ax,ph12ay = fs.readcsv("data/ph12anregung_350_340.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph12emmissions_320_330.txt",23)
+
+
+
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
+
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
+
+  end
+
+  function drawHU()
+
+  ph12ax,ph12ay = fs.readcsv("data/ph06anregung420_410.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph06emmissions_360_370.txt",23)
+
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
+
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
+
+  end
+
+  function drawOU()
+
+  ph12ax,ph12ay = fs.readcsv("data/ph06anregung350_340.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph06emmissions_320_330.txt",23)
+
+
+
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
+
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
+
+  end
+
+  function drawBU()
+
+  ph12ax,ph12ay = fs.readcsv("data/ph02anregung420_410.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph02emmissions_360_370.txt",23)
+
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
+
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
+
+  end
+
+  function drawIU()
+
+  ph12ax,ph12ay = fs.readcsv("data/ph02anregung350_340.txt",23)
+  ph12ex,ph12ey = fs.readcsv("data/ph02emmissions_320_330.txt",23)
+
+
+
+  tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
+
+    for i=1,#ph12ax do
+    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Anregung}")
+
+  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+
+    for i=1,#ph12ex do
+    tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\addlegendentry{Emission}")
+
+  end
+
+
 
 
 \end{luacode*}
 
 
- \newcommand\addplotzz{\directlua{drawPU()}}
+\newcommand\addplotzz{\directlua{drawPU()}}
+\newcommand\addplotyu{\directlua{drawZU()}}
+\newcommand\addplothu{\directlua{drawHU()}}
+\newcommand\addplotou{\directlua{drawOU()}}
+\newcommand\addplotbu{\directlua{drawBU()}}
+\newcommand\addplotiu{\directlua{drawIU()}}
 
 
 \begin{document}
@@ -87,29 +211,40 @@ end
   standard/.style={
     axis x line=bottom,
     axis y line=middle,
-     xlabel= Wellenlänge, % Set the labels
+    xlabel= Wellenlänge, % Set the labels
     ylabel= Intensität ,
     x unit= \si{\nano\meter},
-       legend style={at={(1.2,1)},anchor=north},
+    legend style={at={(0,1)},anchor=north},
     y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
     x tick label style={rotate=90,anchor=east},
-   yticklabel style={/pgf/number format/sci},
-scaled y ticks=false
+    yticklabel style={/pgf/number format/sci},
+    scaled y ticks=false
   }
 }
-  \tikzset{
-    every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-    small dot/.style={fill=chameleon1,circle,scale=0.3}
-  }
+\tikzset{
+  every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
+  small dot/.style={fill=chameleon1,circle,scale=0.3}
+}
 
-\begin{figure}
 \begin{tikzpicture}
-
-\begin{axis}[standard]
-    \addplotzz
-  \end{axis}
+\begin{groupplot}[group style={group size=2 by 3,horizontal sep=15pt,vertical sep=50pt,xlabels at=edge bottom,ylabels at=edge left,}]
+  \nextgroupplot[standard,title= \textbf{ph 12}]
+  \addplotzz
+  \nextgroupplot[standard,title= \textbf{ph 12}]
+  \addplotyu
+  \nextgroupplot[standard,title=\textbf{ph 6}]
+  \addplothu
+  \nextgroupplot[standard,title= \textbf{ph 6} ]
+  \addplotou
+  \nextgroupplot[standard,title=\textbf{ph 2}]
+  \addplotbu
+  \nextgroupplot[standard,title= \textbf{ph 2} ]
+  \addplotiu
+  \end{groupplot}
 \end{tikzpicture}
-\caption{ Stokes Verschiebung}
 
-\end{figure}
-\end{document}
+
+
+
+
+    \end{document}
