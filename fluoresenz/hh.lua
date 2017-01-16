@@ -2,11 +2,11 @@ fit=require "fit"
 see=require "see"
 function hh360 (intensity) 
    intbas = 1.86e5
-	 return math.log(intensity/(intbas-intensity))
+	 return -math.log(intensity/(intbas-intensity))
 end
 function hh320 (intensity) 
    intbas = 1.5964e5
-	 return math.log(intensity/(intbas-intensity))
+	 return -math.log(intensity/(intbas-intensity))
 end
 
 
@@ -49,4 +49,13 @@ local t32  = fit.linearmitr(k320x,k320y)
 
 print(see(t36))
 print(see(t32))
+for i=1,#k360x do
+  print(k360x[i],k360y[i])
+end
+
+--for i=1,#k320x do
+--  print(k320x[i],k320y[i])
+--end
+
+
 

@@ -6,13 +6,14 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{siunitx}
 \usepackage[german]{babel}
-
+\usepackage{tikz}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
+\usetikzlibrary{datavisualization} 
 
-
+\usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
@@ -27,20 +28,24 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{subcaption}
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=2mm,
+ top=30mm,
+ right=2mm
+ }
+
 
 
 \rhead{ Gruppe 6}
-\lhead{\textbf{Fluoreszenzspektroskopie} Stokes Verschiebung}
-\setlength{\headheight}{15pt}
+\lhead{\textbf{Fluoreszenzspektroskopie} Stokes Verschiebung (\textit{St. Ver.})}
+\fancyheadoffset{-1cm}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
 
-%\usepackage{caption}
-
-%\usepackage{libertine}
-%\usepackage{beramono}
-%\setmainfont{Ubuntu}
 \begin{luacode*}
+
 
   fs = dofile("fs.lua")
 
@@ -49,27 +54,27 @@
   ph12ax,ph12ay = fs.readcsv("data/ph12anregung420_410.txt",23)
   ph12ex,ph12ey = fs.readcsv("data/ph12emmissions_360_370.txt",23)
 
-
-
   tex.sprint("\\addplot[".."no marks,blue".."] coordinates{")
-
     for i=1,#ph12ax do
-    tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    	tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
     end
   tex.sprint("};")
   tex.sprint("\\addlegendentry{Anregung}")
 
-  tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
+  
+	tex.sprint("\\addplot[".."no marks,red".."] coordinates{")
 
     for i=1,#ph12ex do
     tex.sprint("("..ph12ex[i]..","..ph12ey[i]..")")
     end
   tex.sprint("};")
-  tex.sprint("\\addlegendentry{Emission}")
-
-
+	tex.sprint("node [pos=1,anchor=east, text=black] {Fluoreszenzintensität};")
+	tex.sprint("\\draw[->] (0,-2) -- (0,4) node[above] {$y(t)$};")
+	tex.sprint("\\addlegendentry{Emission}")
 
   end
+
+
 
   function drawZU()
 
@@ -192,9 +197,6 @@
 
   end
 
-
-
-
 \end{luacode*}
 
 
@@ -204,44 +206,138 @@
 \newcommand\addplotou{\directlua{drawOU()}}
 \newcommand\addplotbu{\directlua{drawBU()}}
 \newcommand\addplotiu{\directlua{drawIU()}}
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+
+\definecolor{azulen}{RGB}{0,218,255}
+
 
 
 \begin{document}
 \pgfplotsset{
   standard/.style={
     axis x line=bottom,
-    axis y line=middle,
+    axis y line=left,
     xlabel= Wellenlänge, % Set the labels
     ylabel= Intensität ,
     x unit= \si{\nano\meter},
-    legend style={at={(0,1)},anchor=north},
-    y label style={at={(axis description cs:-.19,.5)},rotate=90,anchor=south},
+    legend style={at={(0.8,1)},anchor=north},
+    y label style={at={(axis description cs:-.2,.5)},anchor=south},
     x tick label style={rotate=90,anchor=east},
-    yticklabel style={/pgf/number format/sci},
-    scaled y ticks=false
+    yticklabel style={/pgf/number format/fixed},
+    scaled y ticks=false,
+legend cell align=left
   }
 }
-\tikzset{
-  every pin/.style={fill=scarletred1,rectangle,rounded corners=3pt,font=\tiny},
-  small dot/.style={fill=chameleon1,circle,scale=0.3}
-}
 
+\begin{table}[!ht]
+  \centering
+ \begin{tabular}{ll}
+ Anregungsspektren bei $\lambda_{em}$ = 420 \si{\nano\meter} & Anregungsspektren bei $\lambda_{em}$ = 350 \si{\nano\meter}   \\
+ Emissionsspektren bei $\lambda_{ex}$ = 360 \si{\nano\meter} & Emissionsspektren bei $\lambda_{ex}$ = 320 \si{\nano\meter}  \\
+\hline
 \begin{tikzpicture}
-\begin{groupplot}[group style={group size=2 by 3,horizontal sep=15pt,vertical sep=50pt,xlabels at=edge bottom,ylabels at=edge left,}]
-  \nextgroupplot[standard,title= \textbf{ph 12}]
+\begin{axis}[standard,title= \textbf{2-Naphtolat ph 12}]
   \addplotzz
-  \nextgroupplot[standard,title= \textbf{ph 12}]
-  \addplotyu
-  \nextgroupplot[standard,title=\textbf{ph 6}]
-  \addplothu
-  \nextgroupplot[standard,title= \textbf{ph 6} ]
-  \addplotou
-  \nextgroupplot[standard,title=\textbf{ph 2}]
-  \addplotbu
-  \nextgroupplot[standard,title= \textbf{ph 2} ]
-  \addplotiu
-  \end{groupplot}
+\draw[|->|] (343,2.502e5) -- (411,2.502e5) node[midway,above] (d) {St. Ver.};
+\end{axis}
+	%\draw[->,black,thick] (6.8,0)  -- (6.8,5.8) node[midway,above,rotate=90] (d) {Emmision};
 \end{tikzpicture}
+ &
+ \begin{tikzpicture}
+\begin{axis}[standard,title= \textbf{2-Naphtolat / ph 12}]
+  \addplotyu
+\end{axis}
+\end{tikzpicture}
+ \\
+\begin{tikzpicture}
+\begin{axis}[standard,title= \textbf{2-Naphtol / ph 2}]
+  \addplotbu
+\end{axis}
+\end{tikzpicture}
+& 
+\begin{tikzpicture}
+\begin{axis}[standard,title= \textbf{2-Naphtol / ph 2}]
+  \addplotiu
+\end{axis}
+\end{tikzpicture}
+\\
+\begin{tikzpicture}
+\begin{axis}[standard,title= \textbf{2-Naphtol $\rightleftharpoons$ 2-Naphtolat /  ph 6 }]
+  \addplothu
+\end{axis}
+\end{tikzpicture}
+& 
+\begin{tikzpicture}
+\begin{axis}[standard,title= \textbf{2-Naphtol $\rightleftharpoons$ 2-Naphtolat   / ph 6 }]
+  \addplotou
+\end{axis}
+\end{tikzpicture}
+
+\end{tabular}
+\end{table}
+\tikzstyle{every pin}=[fill=white,draw=black,font=\footnotesize]
+
+\begin{figure}[!htbp]
+  \begin{tikzpicture}
+    \begin{axis}[
+      axis x line=middle,
+      axis y line=middle,
+      ylabel= $-\log\frac{I_F}{I_{ph12}-I_F} $,
+      xlabel= pH,
+      legend style={draw=none,legend pos=outer north east,font=\normalsize},
+      y label style={at={(axis description cs:-0.1,.5)},anchor=south,rotate=90},
+      x label style={at={(axis description cs:0.5,-0.2)}},
+      legend cell align=left,
+      scaled ticks=false,
+      y tick label style={/pgf/number format/fixed},
+      x tick label style={yshift=-.4cm},
+      ymax = 12,
+      xmax = 12
+      ]
+      \addplot[only marks,mark=x,darkblue] table {
+        X Y
+				2.0   6.9513234487189   
+				4.0   6.8789964134648   
+				6.0   6.6391373242081   
+				8.2   2.9936161794321   
+				10.0  -0.65778854464298   
+      };
+      \addlegendentry{$\lambda_{ex}=$ 360 \si{\nano\meter}}
+      \addplot[darkblue,domain=0:10] {-0.94*x+10.25};
+      \addlegendentry{$-0.94x+10.25$}
+        \node[coordinate,pin=right:{ $pK_s$ =10.25}] at (axis cs:0,10.25) {};
+        \addplot[only marks,mark=diamond,rouge]  table {
+            X Y
+            2.0    2.1176003254589 
+            4.0   0.85765811360383 
+            6.0    0.8035009813797 
+            8.2   0.61840157081968 
+            10.0  -0.88188323440229 
+          };
+        \addlegendentry{$\lambda_{ex}=$ 320 \si{\nano\meter}}
+          \addplot[rouge,domain=0:10] {-0.3*x+2.55};
+          \addlegendentry{$-0.3x+2.55$};
+          \node[coordinate,pin=45:{ $pK_s^*$ =2.55}] at (axis cs:0,2.55) {};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{ }
+
+
+
+    \end{figure}
+
 
 
 

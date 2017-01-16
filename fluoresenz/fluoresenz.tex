@@ -421,36 +421,24 @@ $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} geme
   \caption{ Die Ergebnisse der pH-Messungen}
 \end{table}
 \subsection{Spektren}
-\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 1
-\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 12)}
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 12)}
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 2
-\subsection{Der Vergleich der Anregungsspektren}
-
-\pgfplotsset{
-  standard/.style={
-    axis x line=bottom,
-    axis y line=middle,
-    xlabel= Wellenlänge, % Set the labels
-    x unit= \si{\nano\meter},
-    x tick label style={rotate=90,anchor=east},
-    legend cell align=left
-  }
-}
-
-\begin{tikzpicture}
-  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
-      ylabels at=edge right}]
-    \nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=420 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-410) \si{\nano\meter}  }}},
-    ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
-    \addplotiso
-    \nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=350 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-340) \si{\nano\meter}  }}} ]
-    \addplotaa
-  \end{groupplot}
-\end{tikzpicture}
+%\subsubsection{Der Vergleich der Anregungsspektren}
+%\begin{tikzpicture}
+%  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
+  %    ylabels at=edge right}]
+ %   \nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=420 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-410) \si{\nano\meter}  }}},
+  %  ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
+  %  \addplotiso
+   % \nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=350 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-340) \si{\nano\meter}  }}} ]
+    %\addplotaa
+  %\end{groupplot}
+%\end{tikzpicture}
 
 
-\subsection{Bestimmung der Wellenlängemaxima aus den Spektren}
+\subsubsection{Bestimmung der Wellenlängemaxima aus den Spektren}
 Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgewichtes werden bestimmt und tabellerisch dargestellt.
 \begin{table}[!htbp]
   \begin{tabular}{ccc}
@@ -466,7 +454,7 @@ Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgew
   % \renewcommand\thetable{3}
 \end{table}
 
-\subsection{Stokes Verschiebung}
+\subsubsection{Stokes Verschiebung}
 \pgfplotsset{
   standard/.style={
     axis x line=bottom,
@@ -502,7 +490,7 @@ Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgew
 
 \end{figure}
 
-\subsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3.
 
 \subsection{$pK_s$ Werte}
@@ -538,10 +526,10 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
   \caption{Die Intensitäten aus der Emissionsspektren bei der Anregungswellenlänge $\lambda_{An.}$ = 360 }
 \end{table}
 
-\subsection{Graphische Bestimmung aus $I$-$pH$-Diagrammen mittels Wendepunktanalyse}
-Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert kann die Gleichgewichtskonstante K und der
-pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
+\subsubsection{Graphische Bestimmung der $pK_s$- und $pK_s^*$-Werte mittels Wendepunktanalyse}
+Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert ~\ref{fig:wende} können die $pK_s$- und $pK_s^*$-Werte bestimmt werden. Am Wendepunkt der Kurve gilt $pH = pK_s$ bzw. $pH = pK_s*$.
 \begin{figure}[!htbp]
+  \label{fig:wende}
   \begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
     \begin{axis}[
       axis x line=bottom,
@@ -555,7 +543,7 @@ pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
       y tick label style={/pgf/number format/sci},
       minor x tick num=10
       ]
-      \addplot[thick,blue,mark=x] table {
+      \addplot[thick,darkblue,mark=x] table {
         X Y
         12.198 1.86032375e5
         9.973  1.22534625e5
@@ -565,7 +553,7 @@ pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
         2.000 1.77969086e2
       };
       \addlegendentry{$I_f$=(360 nm/420 nm)}
-      \addplot[thick,red,mark=x]  table {
+      \addplot[thick,rouge,mark=x]  table {
         X Y
         12.198 8.50769043e2
         9.973 2.25562051e4
@@ -576,7 +564,7 @@ pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
       };
       \addlegendentry{$I_f$=(320 nm/350 nm)}
 
-      \addplot[thick,green,mark=x]  table {
+      \addplot[thick,vert,mark=x]  table {
         X Y
         12.198 1.59646828e5
         9.973 1.12899375e5
@@ -586,20 +574,75 @@ pK-Wert ermittelt werden. Am Wendepunkt der Kurve gilt pH = pK.
         2.000 1.71453184e4
       };
       \addlegendentry{$I_f$=(320 nm/420 nm)}
-      \node[coordinate,pin=right:{\tiny pH = pKs = 9.1}] at (axis cs:9.1,6.6e4) {};
+      \node[coordinate,pin=right:{ $pK_s$ = 9.1}] at (axis cs:9.1,6.6e4) {};
       \node[dot] (b) at (axis cs:9.1,6.6e4) {};
+      \node[coordinate,pin=right:{ $pK_s$ = 2.9}] at (axis cs:2.9,3.15e4) {};
+      \node[dot] (a) at (axis cs:2.9,3.15e4) {};
 
     \end{axis}
   \end{tikzpicture}
   \caption{Kurvenverlauf der pH-Werte gegen $I_F$ und Bestimmung der $pK_s$-Werte}
 \end{figure}
 
-\subsection{Die rechnerisische Bestimmung}
-Durch Umformung von ~\ref{eq:hh}
+\subsubsection{Bestimmung der $pK_s$- und $pK_s^*$-Werte mit der Henderson-Hasselbalch-Gleichung }
+Zur Bestimmung der $pK_s$- und $pK_s^*$-Werte werden die Intensitäten $I_f$ in die Henderson-Hasselbalch-Gleichung ~\ref{eq:hh} eingesetzt. 
+\begin{equation}
+  \label{eq:hh}
+  pH-pK_s = -\log\frac{I_F}{I_{ph12}-I_F} 
+\end{equation}
+Wird der rechte Term dieser Gleichung gegen den pH aufgetragen, so entspricht der Geradenschnittpunkt
+mit der y-Achse dem pK-Wert. 
+Für die Ermittlung des $pK_s^*$-Werts werden die Emissionsintensitäten $I _f$  bei der Anregung $\lambda _{ex}$ = 320 \si{\nano\meter} verwendet. 
+Für den Ermittlung des $pK_s$-Wert werden die Emissionsintensitäten $I _f$  bei der Anregung  $\lambda _{ex}$ = 360 \si{\nano\meter} verwendet. Der über Lineasierung ermittelte $pK_s$-Wert 10.25 weicht von dem Literaturwert 9.573~\supercite{harris} deutlich ab. Da die Henderson-Hasselbalch-Gleichung nicht über den gesamten Bereich gültig ist, sondern nur für einen bestimmten pH-Bereich um den Wert $pH = pK_s$, wird bei diesem Auswerteverfahren
+nicht über den gesamten Messbereich ein linearer Zusammenhang erhalten. 
 
+ \begin{figure}[!htbp]
+  \label{fig:hh}
+  \begin{tikzpicture}
+    \begin{axis}[
+      axis x line=middle,
+      axis y line=middle,
+      ylabel= $-\log\frac{I_F}{I_{ph12}-I_F} $,
+      xlabel= pH,
+      legend style={draw=none,legend pos=outer north east,font=\normalsize},
+      y label style={at={(axis description cs:-0.1,.5)},anchor=south,rotate=90},
+      x label style={at={(axis description cs:0.5,-0.2)}},
+      legend cell align=left,
+      scaled ticks=false,
+      y tick label style={/pgf/number format/fixed},
+      x tick label style={yshift=-.4cm},
+      ymax = 12,
+      xmax = 12
+      ]
+      \addplot[only marks,mark=x,darkblue] table {
+        X Y
+				2.0   6.9513234487189   
+				4.0   6.8789964134648   
+				6.0   6.6391373242081   
+				8.2   2.9936161794321   
+				10.0  -0.65778854464298   
+      };
+      \addlegendentry{$\lambda_{ex}=$ 360 \si{\nano\meter}}
+      \addplot[darkblue,domain=0:10] {-0.94*x+10.25};
+      \addlegendentry{$-0.94x+10.25$}
+        \node[coordinate,pin=right:{ $pK_s$ =10.25}] at (axis cs:0,10.25) {};
+        \addplot[only marks,mark=diamond,rouge]  table {
+            X Y
+            2.0    2.1176003254589 
+            4.0   0.85765811360383 
+            6.0    0.8035009813797 
+            8.2   0.61840157081968 
+            10.0  -0.88188323440229 
+          };
+        \addlegendentry{$\lambda_{ex}=$ 320 \si{\nano\meter}}
+          \addplot[rouge,domain=0:10] {-0.3*x+2.55};
+          \addlegendentry{$-0.3x+2.55$};
+          \node[coordinate,pin=45:{ $pK_s^*$ =2.55}] at (axis cs:0,2.55) {};
+        \end{axis}
+      \end{tikzpicture}
+      \caption{Die Ermittlung der $pK_s$-Werte von 2-Naphthol und 2-Naphthol$^*$ }
 
-Wird also gegen die Extinktion E bei verschiedenen pH-Werten aufgetragen,
-so ergibt sich die Säurekonstante pK durch Umrechnen aus der Steigung. 
+    \end{figure}
 
 \section{Diskussion}
 
