@@ -1,11 +1,11 @@
-\documentclass[13pt]{article}
+\documentclass{article}
 \usepackage{amsmath,mathtools}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[bitstream-charter]{mathdesign}
 \usepackage{microtype}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{libertine}
+%\usepackage{libertine}
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage[german]{babel}
@@ -14,6 +14,13 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{tikz}
+\usetikzlibrary{datavisualization}
+\usetikzlibrary{datavisualization.formats.functions}
+
+%\usepackage[sfdefault]{AlegreyaSans} %% Option 'black' gives heavier bold face
+%% The 'sfdefault' option to make the base font sans serif
+%\renewcommand*\oldstylenums[1]{{\AlegreyaSansOsF #1}}
+
 \floatstyle{plaintop}
 \restylefloat{table}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
@@ -265,5 +272,16 @@ ihre Wahrscheinlichkeit und damit die Intensität der betreffenden Absorptionban
 jedoch mit zunehmender Größe des Quantensprungs ab. Der Übergang $v =0 \rightarrow v =1$ entspricht der Grundschwingung,
 $ v =0 \rightarrow v=2 $ der ersten Oberschwingung, die bei einer etwas kleineren als der doppelten Grundfrequenz
 zu einer wesentlich schwächeren Bande führt, usw.
+\section{Auswertung}
+
+\begin{tikzpicture}[baseline]
+\datavisualization [ scientific axes=clean,
+visualize as smooth line,
+style sheet=strong colors,
+style sheet=vary dashing
+ ]
+ data [read from file=data/1cm1scan.txt,separator=\space] ;
+\end{tikzpicture}
+
 \printbibliography
 \end{document}

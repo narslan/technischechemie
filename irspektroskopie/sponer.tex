@@ -1,0 +1,192 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+\usetikzlibrary{datavisualization} 
+
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{luacode}
+%\usepackage{helvet}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+\setmainfont{Linux Libertine}
+\setsansfont{Linux Biolinum}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+\usepackage[landscape]{geometry}
+\usepackage{adjustbox}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Infrarot Spektroskopie} Spektren}
+\fancyheadoffset{-1cm}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{luacode*}
+
+
+  fs = dofile("fs.lua")
+
+  function drawPR()
+
+  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
+    for i=1,#px do
+    	tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+ --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+ --   for i=1,#rx do
+ --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+ --   end
+ -- tex.sprint("};")
+
+ 
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+   -- Q-Zweig bei 2141
+
+  end
+
+  function drawRZW()
+
+  -- px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    for i=1,#rx do
+    	tex.sprint("("..rx[i]..","..ry[i]..")")
+    end
+  tex.sprint("};")
+ --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+ --   for i=1,#rx do
+ --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+ --   end
+ -- tex.sprint("};")
+
+ 
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+   -- Q-Zweig bei 2141
+
+  end
+ 
+ function drawBIRGE()
+
+  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
+    for i=1,#px do
+    	tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+ --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+ --   for i=1,#rx do
+ --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+ --   end
+ -- tex.sprint("};")
+
+ 
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+   -- Q-Zweig bei 2141
+
+  end
+
+
+
+  function drawDIFF()
+  dx,dy = fs.readcsv2("data/pzweig1cm1Scan.txt",3892,4096)
+  tex.sprint("\\addplot[".."flame".."] coordinates{")
+    for i=1,#dx do
+    	tex.sprint("("..dx[i]..","..dy[i]..")")
+    end
+  tex.sprint("};")
+  end
+\end{luacode*}
+
+
+\newcommand\addplotpr{\directlua{drawPR()}}
+\newcommand\addplotrzw{\directlua{drawRZW()}}
+\newcommand\addplotdiff{\directlua{drawDIFF()}}
+\newcommand\addplotbirge{\directlua{drawDIFF()}}
+
+
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+\begin{document}
+\pgfplotsset{
+  standard/.style={
+    axis x line*=bottom,
+    axis y line=left,
+    xlabel= Wellenlänge, % Set the labels
+    ylabel= Intensität ,
+    x unit= \si{\nano\meter},
+    legend style={at={(0.8,1)},anchor=north},
+    y label style={at={(axis description cs:-.1,.5)},anchor=south},
+    x tick label style={rotate=90,anchor=east, font=\tiny},
+    yticklabel style={/pgf/number format/fixed},
+    scaled y ticks=false,
+legend cell align=left,
+      x dir=reverse
+  }
+}
+\begin{tikzpicture}[scale=2]
+  \begin{axis}[standard,title= \textbf{P-Zweig},ycomb,line width=0.1pt,nodes near coords, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
+  \addplotpr
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}[scale=2]
+  \begin{axis}[standard,title= \textbf{R-Zweig},ycomb,line width=0.1pt,nodes near coords, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
+  \addplotrzw
+\end{axis}
+\end{tikzpicture}
+
+
+
+%\begin{adjustbox}{width=0.9\textwidth}
+%\begin{tikzpicture}
+%\begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 1 Scan},ycomb,line width=0.1pt, xtick=data,x tick label style={font=\tiny\sffamily},font={\sffamily}]
+%  \addplotdiff
+%\end{axis}
+%\end{tikzpicture}
+%\end{adjustbox}
+
+
+
+
+
+\end{document}
