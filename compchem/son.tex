@@ -1,0 +1,633 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,mathtools}
+\usepackage[bitstream-charter]{mathdesign}
+
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[german]{babel}
+
+\usepackage{libertine}
+
+%\renewcommand*\familydefault{\sfdefault} 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+%\usepackage{helvet}
+
+\usepackage{microtype}
+
+\usepackage{siunitx}
+\usepackage{fancyhdr}
+\usepackage{sectsty}
+\usepackage{setspace}
+\usepackage{booktabs} % To thicken table lines
+\usepackage{graphicx}
+\usepackage[labelfont=bf]{caption}
+\usepackage{subcaption}
+\usepackage[version=4]{mhchem}
+\usepackage{graphicx}
+\usepackage{overcite}
+\renewcommand\citeform[1]{[#1]}
+%\usepackage[compatibility=4.7,language=german]{chemmacros}
+\renewcommand{\familydefault}{\sfdefault}
+\sisetup{detect-all}
+\usepackage{chngcntr}
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ left=20mm,
+ top=30mm,
+ right=20mm
+ }
+
+\begin{document}
+\tableofcontents  
+\begin{onehalfspace}
+
+\section{Berechnung der Hartree-Fock-Energie von Wasser}
+Ziel dieser Aufgabe ist es, die Hartree-Fock-Energie von Wasser für verschiedene Geometrien und Methoden zu berechnen. 
+\subsection{Berechnung der Gesamtenergie einer Geometrie von Wasser}
+Im ersten Teil soll die Gesamtenergie einer Geometrie von Wasser berechnet werden. Hierfür wird wie im Skript erläutert ein Wassermolekül erstellt und die Geometrie wie im Datenblatt angegeben angepasst. Als Basissatz wird cc-pVTZ verwendet. \\
+\textbf{Auswertung 1} Fünf grundlegende Parameter einer quantenmechanischen Rechnung sind die Geometrie, die Ladung, die Multiplizität, die Basisparameter und die QC-Methode. \\
+\textbf{Auswertung 2} Die sich ergebene Gesamtenergie beträgt -76.05334 \si{\hartree}.
+Die Punktgruppe der verwendeten Geometrie ist $C _s$ .\\
+\subsection{Gesamtenergie in Abhängigkeit von der Geometrie}
+In dem zweiten Teil soll die Abhängigkeit der Gesamtenergie von der Geometrie gezeigt werden, wofür dies Geometrie optimiert wird.\\
+\textbf{Auswertung 1}:\\
+\begin{figure}[!htbp]
+\centering
+  \includegraphics[width=0.7\textwidth,height=4cm]{aufgabe1/molekul.png}%
+  \caption{Optimierte Geometrie von Wasser (RHF/cc-pVTZ)}
+\end{figure}
+\noindent
+Die sich für die optimierte Geometrie ergebene Gesamtenergie beträgt -76.05776 \si{\hartree}. \\
+\begin{table}[htbp]
+\centering
+\caption{Die Partialladungen von Sauerstoffatom und Wasserstoffatom im Wassermolekül}
+\begin{tabular}{lr}
+\toprule
+Atom &  Partialladungen (in e)\\
+O & -0.475\\
+H & 0.238\\
+\midrule
+\bottomrule
+
+\end{tabular}
+\end{table}
+\noindent
+Summiert man alle Partialladungen auf ergibt sich 0, was für ein neutral geladenes Molekül spricht.
+Für das Dipolmoment ergibt sich ein Wert von + 1.987 Debye und für die Richtung des Dipols in negativer Z-Achsenrichtung (-z).
+Der Wechsel der Punktgruppe von Aufgaben Teil 1 zu Teil 2 ist auf die Geometrieoptimierung in Teil 2 zurückzuführen. Es wurde mit einer unsymmetrischen Geometrie gestartet, die als Punktgruppe $C _s$ ausgab. Bei der Geometrieoptimierung in Teil 2 wurde die Symmetrie erhöht und es wurde die Punktgruppe $C _{2v}$ ausgegeben, da eine Spiegelebene entlang der $C _2$ Achse existiert.\\
+\noindent
+\textbf{Auswertung 2}\\
+Als nächstes soll die Optimierung der Geometrie nachvollzogen werden, was durch die Auftragung der Hartree-Energie sichtbar wird.
+\begin{figure}[!htp]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe1/aufgabe1_teil2_geometrieoptimirung.png}%
+  \caption{Auftragung der Gesamtenergie gegen die Optimierungsschritte (RHF/cc-pVTZ)}
+\end{figure}
+Es ist deutlich zu erkennen, dass die Energie ab dem 2. Optimierungsschritt deutlich langsamer sinkt als zuvor. Diese langsamere Verbesserung hat zur Folge, dass sich der Kosten/Nutzen-Faktor bei den späteren Schritten verschlechtert.\\
+\newpage
+\noindent
+\textbf{Auswertung 3}\\
+Die Terme des Hamilton-Operators, welche von der Änderung der Geometrie betroffen sind, sind die der potentiellen Energien 
+$\hat{V} _{K,K}(\vec{R})$, $\hat{V} _{K,el}(\vec{r},\vec{R})$ und $\hat{V} _{el,el}(\vec{r})$.
+Diese hängen vom Abstand des Elektrons bzw. des Kerns ab, den sie zueinander haben. Das kann am Beispiel von Helium gezeigt werden \cite{atkins219}:\\
+\begin{align*}
+\hat{V} &= - \hat{V} _{K,el1}(\vec{r},\vec{R}) - \hat{V} _{K,el2}(\vec{r},\vec{R})  + \hat{V} _{el,el}(\vec{r}) \\
+  &= - \frac{2e^2}{4\pi \varepsilon _0 r _1} - \frac{2e^2}{4\pi \varepsilon _0 r _2} +  \frac{e^2}{4\pi \varepsilon _0 r _{12}}
+\end{align*}
+$\hat{V}$ wird mit abnehmendem Kern-Elektronenabstand $\vec{r}$ negativer (stabilisierend) und mit abnehmendem Elektron-Elektronenabstand $\vec{r} _{12}$ positiver (destabilisierend).
+
+\subsection{Gesamtenergie in Abhängigkeit von der quantenchemischen Methode}
+In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden. Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert. Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).
+\newpage
+\noindent
+\textbf{Auswertung 1}\\
+\begin{table}[!htpb]
+\centering
+\caption{Vergleich der Basissätze}
+\begin{tabular}{lrr}
+\toprule
+ &
+STO-3G &
+cc-pVDZ \\
+\midrule
+Punktgruppe & $C _{2v}$ & $C _{2v}$\\
+Energie \si{\hartree}    & -74.95929 & -76.02694  \\
+$S _O / \textit{e}$ & -0.385 & -0.288  \\
+$S _H / \textit{e}$ & +0.192 & +0.144  \\
+$\nu / \textit{Debye}$ & 1.7371 & 2.0175  \\
+\bottomrule
+\end{tabular}
+\end{table}\\
+\textbf{Auswertung 2}\\
+Anhand der in der Tabelle aufgelisteten Werte ist zu erkennen, dass im Vergleich mit den zuvor berechneten Werten, der cc-pVDZ Basissatz eine niedrigere Gesamtenergie ergibt als der STO-3G. Ebenso verhält es sich mit dem Dipolmoment ($\mu$ [Debye]). Bei den Partialladungen weisen beide Basissätze große Unterschiede nicht nur zueinander, sondern auch zu der optimierten Geometrie aus Teil 2 der ersten Aufgabe auf. 
+\subsection{Gesamtenergie in Abhängigkeit von der quantenchemischen Methode}
+In diesem Teil soll die Abhängigkeit der Gesamtenergie von der quantenmechanischen Methode gezeigt werden. Hierfür wird die Gesamtenergie des Wassermoleküls mit dem Basissatz cc-pVTZ berechnet, allerdings die genutzte Methode variiert. Die zu genutzten Methoden sind MP2, CCSD und CCSD(T).\\
+\textbf{Auswertung 1}\\
+
+\begin{table}[!htpb]
+\centering
+\caption{ Vergleich der QM-Methoden}
+\begin{tabular}{ll}
+\toprule
+Methode &   Energie \si{\hartree} \\
+\midrule
+Hartree-Fock & -76.05776\\
+MP2 & -76.31791\\
+CCSD & -76.32396 \\
+CCSD(T) & -76.3314\\
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent
+Es ist zu erkennen, dass die sich für die Gesamtenergie errechneten Werte relativ nah beieinander liegen, jedoch in den Nachkommastellen voneinander abweichen. Die CCSD(T) Methode ist die Komplexeste, welche zugleich die niedrigste der drei Energien aufweist. 
+
+\section{Geometrieoptimierung und Frequenzberechnung an Dichlorethen}
+Ziel dieser Aufgabe ist es eine Geometrieoptimierung von cis- und trans- 1,2-Dichlorethen durchzuführen und anschließend die Schwingungsfrequenzen zu berechnen.
+\textbf{Auswertung 1 }\\
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe2/cis_optimierte_geometrie_mp2.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe2/trans_optimierte_geometrie_mp2.png}
+    \end{subfigure}
+    \caption{Optimierte Geometrien von cis- und trans-1,2-Dichlorethen}
+\end{figure}\\
+In Folgenden Tabellen sind die Ergebnisse zur Geometrieoptimierung und die Schwingungsfrequenzen zu cis-und trans-1,2-Dichlorethen mit der RHF Methode mit dem Basissatz 6-31+G(d,p) aufgeführt:\\
+\begin{table}[!htpb]
+\centering
+\caption{cis-1,2-Dichlorethen RHF mit Basissatz 6-31+G(d,p) }
+\begin{tabular}{lrrr}
+\toprule
+Darstellung & 	Schwingungsfrequenz \si{\per\centi\meter} & \multicolumn{2}{c}{Schwingungsintensität} \\
+&&IR&Raman\\
+\midrule
+$A _1$ & 182 & 0.44 & 2.15\\
+$A _2$ & 462 & 0.00 & 3.90\\
+$B _2$ & 619 & 8.08 & 6.22\\
+$A _1$ & 768 & 26.36 & 15.10\\
+$B _1$ & 810 & 72.43 & 0.29\\
+$B _2$ & 931 & 94.09 & 0.02\\
+$A _2$ & 1060 & 0.00 & 6.86\\
+$A _1$ & 1333 & 0.01 & 20.48\\
+$B _2$ & 1451 & 41.10 & 0.50\\
+$A _1$ & 1823 & 39.79 & 70.01\\
+$B _2$ & 1451 & 15.46 & 50.59\\
+$A _1$ & 1823 & 1.73 & 141.62\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htpb]
+\centering
+\caption{trans-1,2-Dichlorethen RHF mit Basissatz 6-31+G(d,p) }
+\begin{tabular}{lrrr}
+\toprule
+Darstellung & Schwingungsfrequenz \si{\per\centi\meter} & \multicolumn{2}{c}{Schwingungsintensität} \\
+&&IR&Raman\\
+\midrule
+$A _u$ & 235 & 0.59 & 0.00\\
+$A _u$ & 259 & 4.64 & 0.00\\
+$B _g$ & 379 & 0.00 & 10.33\\
+$A _u$ & 886 & 147.81 & 0.00\\
+$B _g$ & 921 & 0.00 & 10.33\\
+$B _g$ & 929 & 0.00 & 11.75\\
+$A _u$ & 1053 & 79.24 & 0.00\\
+$A _u$ & 1344 & 27.36 & 0.00\\
+$B _g$ & 1427 & 0.00 & 31.78\\
+$A _g$ & 1823 & 0.00 & 29.61\\
+$B _u$ & 3415 & 17.88 & 0.00\\
+$A _g$ & 3420 & 0.00 & 115.20\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{table}[!htpb]
+\centering
+\caption{cis-1,2-Dichlorethen mit MP2 Methode mit Basissatz 6-31+G(d,p)}
+\begin{tabular}{lrr}
+\toprule
+Darstellung & Schwingungsfrequenz \si{\per\centi\meter} & \multicolumn{1}{c}{Schwingungsintensität} \\
+&&IR\\
+\midrule
+$A _1$ & 170.7 & 0.22\\
+$A _2$ & 401.2 & 0.00\\
+$B _2$ & 588.5 & 4.10\\
+$A _1$ & 721.9 & 68.26\\
+$B _1$ & 748.7 & 19.38\\
+$B _2$ & 891.5 & 0.00\\
+$A _2$ & 901.8 & 76.80\\
+$A _1$ & 1256.8 & 0.01 \\
+$B _2$ & 1367.6 & 27.83\\
+$A _1$ & 1664.6 &35.93\\
+$B _2$ & 3295.9 & 14.23\\
+$A _1$ & 3316 & 1.97\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htpb]
+\centering
+\caption{trans-1,2-Dichlorethen mit MP2 Methode mit Basissatz 6-31+G(d,p)}
+\begin{tabular}{lrr}
+\toprule
+Darstellung & Schwingungsfrequenz \si{\per\centi\meter} & \multicolumn{1}{c}{Schwingungsintensität} \\
+&&IR\\
+\midrule
+$A _u$ & 210.5 & 0.13\\
+$A _u$ & 244.6 & 3.18\\
+$B _g$ & 360.7 & 0.00\\
+$A _u$ & 767.2 & 0.00\\
+$B _g$ & 868.9 & 113.44\\
+$B _g$ & 896.4 & 0.00\\
+$A _u$ & 944.2 & 70.43\\
+$A _u$ & 1276.0 & 21.18\\
+$B _g$ & 1343.6 & 0.00 \\
+$A _g$ & 1662.3 & 0.00 \\
+$B _u$ & 3309.3 & 14.86\\
+$A _g$ & 3312 & 0.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!htpb]
+\centering
+\caption{ Zusammenfassung Moleküle}
+\begin{tabular}{llcrc}
+\toprule
+Molekül & Methode &   Basissatz & Energie \si{\hartree} & Symmetrie\\
+\midrule
+cis-1,2-Dichlorethen   & RHF& 6-31+G(d,p)& -995.83649439 &$C_ {2v}$\\
+cis-1,2-Dichlorethen   & MP2& 6-31+G(d,p)&-996.36801361  &$C_ {2v}$\\
+trans-1,2-Dichlorethen & RHF& 6-31+G(d,p)& -995.83661280 &$C_ {2h}$ \\
+trans-1,2-Dichlorethen & MP2& 6-31+G(d,p)& -996.36710269 &$C_ {2h}$\\
+\bottomrule
+\end{tabular}\\
+\end{table}
+
+
+\textbf{Auswertung 2}
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/cis_ir_mp2.png}%
+  \caption{CIS IR Spektrum MP2}
+\end{figure}
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/cis_ir_rhf.png}%
+  \caption{CIS IR Spektrum RHF}
+\end{figure}
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/trans_ir_mp2.png}%
+  \caption{TRANS IR Spektrum MP2}
+\end{figure}
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/trans_ir_rhf.png}%
+  \caption{TRANS IR Spektrum RHF}
+\end{figure}
+
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/cis_raman_rhf.png}%
+  \caption{CIS Raman Spektrum RHF}
+\end{figure}
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.7\textwidth]{aufgabe2/trans_raman_rhf.png}%
+  \caption{TRANS Raman Spektrum RHF}
+\end{figure}
+\section{Geometrieoptimierung und Berechnung der chemischen Verschiebung von Toluol}
+Ziel dieser Aufgabe ist es, nach einer durchgeführten Geometrieoptimierung, die \ce{^1_{}H-NMR}-Verschiebung von Toluol gegen Tetramethylsilan (TMS) als Standard zu berechnen.\\
+\textbf{Auswertung 1:}\\
+
+\begin{table}[!htpb]
+\centering
+\caption{ Parameter für die optimierte Geometrie von Toluol}
+\begin{tabular}{lrllc}
+\toprule
+Molekül  & Methode & Basissatz & Energie \si{\hartree} & Geometrie \\
+\midrule
+ Toluol & MP2 & 6-311G(d,p))& -270.90944 &$C _S$\\
+\midrule
+ Bindung & Bindungslänge \si{\angstrom} & &  &\\
+ C-C (Ring) & 1.3970 &&&\\
+ C-C (Ipso) & 1.5072 &&&\\
+ C-H (Ring) & 1.0862 &&&\\
+ C-H (Alkyl)& 1.0933 &&&\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Auswertung 2:}\\
+
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.9\textwidth]{aufgabe3/toluol_geometrie.png}%
+  \caption{Optimierte Geometrie Toluol}
+\end{figure}
+\begin{figure}[!htbp]
+\centering
+  \includegraphics[width=0.8\textwidth]{aufgabe3/shielding.png}%
+  \caption{Chemische Verschiebung und Intensitäten}
+\end{figure}
+
+\begin{table}[!htpb]
+\centering
+\caption{Chemische Verschiebung der Wasserstoffatome für die optimierten Geometrie von Toluol}
+\begin{tabular}{lllll}
+\toprule
+H-Atom  & \parbox[t]{4cm}{$\delta$ Toluol \\ (MP2/6-311G(d,p))\\ ppm} & \parbox[t]{4cm}{$\delta$ Toluol/TMS \\ (MP2/6-311G(d,p)) \\ ppm} &  \parbox[t]{4cm}{$\delta$ Toluol\cite{zeeh} ppm} & Intensitäten\\
+\midrule
+H8 & 24.3885  & 7.5621 & 7.17 & 1  \\ 
+H9 & 24.3885  & 7.5621 & 7.17 & 2  \\ 
+H7 & 24.4095  & 7.5411 & 7.21 & 3  \\ 
+H10 & 24.4095 & 7.5411 & 7.21 & 4 \\ 
+H11 & 24.4651 & 7.4855 & 7.17 & 1 \\ 
+H13 & 29.3154 & 2.6352 & 2.32 & 1 \\ 
+H14 & 29.6529 & 2.2977 & 2.32 & 1 \\ 
+H15 & 29.6529 & 2.2977 & 2.32 & 2 \\ 
+\bottomrule
+\end{tabular}
+\end{table}
+\noindent
+\newpage
+In der \ce{^1_{}H-NMR} Spektroskopie wird die Anzahl der Protonen mit der Fläche des Resonanzsignals ermittelt. Die berechnetten Intensitäten stellen keine Fläche dar. Sie lassen sich somit zur Deutung nicht verwenden. Die Summe der Intensitäten von 3 Alkylprotonen ergibt $1 + 1 + 2 = 4$  und die Summe der Intensitäten von 5 Arylprotonen ergibt $1+2+3+4+1 = 11 $, welches anschließend ein (Alkyl-H/Aryl-H) Verhältnis von $\frac{4}{11}$ ergibt. Ein Intensitätverhältnis von $\frac{4}{11}$ wiedergibt das tatsächliche Verhältnis von $\frac{3}{5}$ nicht.
+
+\section{Potentialkurve von \ce{N_2}}
+Ziel dieser Aufgabe ist es, die Potentialkurve des Stickstoffmoleküls zu berechnen und anschließend die Orbitale visualisiert und ein MO-Diagramm erstellt werden.
+\subsection{Berechnung der Potenzialkurve auf Hartree-Fock Niveau}
+\textbf{Auswertung 1 und 2 }\\
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.8\textwidth]{aufgabe4/stickstoff_potentialkurve.png}%
+  \caption{Potenzialkurve für Stickstoff auf RHF/cc-pVTZ-Niveau}
+\end{figure}
+
+\begin{table}[!htpb]
+\centering
+\caption{}
+\begin{tabular}{lllclll}
+\toprule
+Molekül &
+Methode &
+Basissatz &
+\parbox[t]{2cm}{Gitter\\(Min, Max, Incr)} &
+Symmetrie &
+GGW-Abstand &  
+GGW-Energie $E _h$ \\
+\midrule
+\ce{N _2} & RHF & cc-pVTZ &0.6, 4.6, 0.2 \si{\angstrom}& $D _{\infty h}$ & 1 \si{\angstrom} & -108.96801 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent
+\textbf{Auswertung 3}\\
+ Bei der Vorgabe wird der Bindungsabstand in jedem Eingabeschritt 0.2 \si{\angstrom} erhöht, was in 20 Schritten einen Abstand von 4.6 \si{\angstrom} ausmacht. Die Dissoziation erfolgt in etwa 10 Schritten.\\
+Bei der Bindungsspaltung handelt es sich um eine homolytische Moleküldissoziation\cite{wiberg71} in der die Bindungselektronen gleichmäßig auf beide Molekülbruchstücke verteilt werden. Es entstehen dabei zwei \ce{N$\cdot$} Radikal-Fragmente\cite{wiberg384}. Der andere Dissoziationweg wäre heterolytisch, in dem 
+zwei Stickstoff-Fragmente mit entgegengesetzen Ladungen entstehen.\\
+ \noindent
+\textbf{Auswertung 4 und 5}\\
+\begin{figure}[!htpb]
+   \centering
+\includegraphics[width=0.8\textwidth]{aufgabe4/hund.png}
+\caption{Die Elektronenbesetzungschemen der Stickstoff-Fragmenten von möglichen Dissoziationsarten \cite{wiberg98}}
+\end{figure}\\
+\noindent
+Die Singulett-Konfiguration (\ce{^4_{}S}) der Stickstoff-Fragmente hat die Multiplizität von $2 \cdot \frac{3}{2} + 1 = 4$ und die Dublett-Konfiguration (\ce{^4_{}S}) hat die Multiplizität von $2 \cdot \frac{1}{2} + 1 = 2$. Nach Hunds'chen Regel der Multiplizität, ist der Singulettzustand (\ce{^4_{}S}) energetisch günstiger als der Dublettzustand(\ce{^2_{}D}).\cite{wiberg98} 
+\subsection{Geometrieoptimierung des Stickstoffmoleküls}
+\textbf{Auswertung 1} 
+Die Gesamtenergie der optimierten Geometrie beträgt -108.98655 \si{\hartree} und der Gleichgewicht-Abstand 1.06711 \si{\angstrom}.\\
+\textbf{Auswertung 2}  
+Im Vergleich zur Gesamtenergie aus dem ersten Aufgabenteil ist die Energie der optimierten Geometrie geringfügig niedriger.\\
+\textbf{Auswertung 3}\\
+\begin{table}[!htpb]
+\centering
+\caption{Der experimentelle Gasphasenabstand im \ce{N_2} Molekül \cite{wiberg653}}
+\begin{tabular}{ccc}
+\toprule
+Abstand Teil 1 & Abstand Teil 2 (opt. Geometrie)  & experimenteller Abstand \\
+1 \si{\angstrom} & 1.06711 \si{\angstrom} & 1.0976 \si{\angstrom} \\
+\midrule
+\bottomrule
+\end{tabular}
+\end{table}\\
+\noindent
+\textbf{Auswertung 4 und Auswertung 5}\\ 
+\begin{figure}[!htpb]
+   \centering
+\includegraphics[width=0.5\textwidth,height=11cm]{aufgabe4/mohf.png}
+\caption{MO-Diagramm für ein Stickstoff-Molekül (RHF/cc-pVTZ-Niveau)}
+\end{figure}
+
+\begin{table}[!htpb]
+\centering
+\caption{Die experimentellen und berechneten Orbital Energien des Stickstoffs}
+\begin{tabular}{lrr}
+\toprule
+Orbital & Orbitalenergien \cite{miessler} (eV) & Orbitalenergien(RHF/aug-cc-pVDZ) (eV)\\
+\midrule
+$3\sigma _u$ & &    0.42837\\
+$1\pi _g$    & &    0.17721 \\
+$1\pi _g$    & &    0.17721 \\    
+$1\pi _u$    & - 16.9 &  -0.62551 \\    
+$1\pi _u$    & - 16.9 & -0.62551 \\    
+$3\sigma _g$ &  - 15.5 & -0.63513 \\    
+$2\sigma _u$ & - 18.7 & -0.76739 \\    
+$2\sigma _g$ & -19.4  & -1.49206 \\   
+$1\sigma _u$ &  &-15.66636 \\    
+$1\sigma _g$ & &-15.67063 \\    
+\bottomrule
+\end{tabular}
+\end{table}
+ Die HF-Energien von p-Orbitalen entsprechen den Photoelektronenspektren Werte \cite{miessler} nicht. 
+ Der Grund dafür ist, die RHF Methode beschreiben die Orbitale nicht gut, die weit weg vom Kern sind. 
+
+\textbf{Auswertung 6}
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital1.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital2.png}
+    \end{subfigure}
+    \caption{$1 \sigma _g$  und $1 \sigma _u$ }
+\end{figure}
+
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital3.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital4.png}
+    \end{subfigure}
+    \caption{$2 \sigma _g$ und $2 \sigma _u$ }
+\end{figure}
+
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital5.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital6.png}
+    \end{subfigure}
+		 \caption{$1 \pi _u^x$ und $1 \pi _u^y$ }
+\end{figure}
+\newpage
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital7.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital8.png}
+    \end{subfigure}
+       \caption{$3 \sigma _g$ und $1 \pi _g$}
+\end{figure}
+
+\begin{figure}[!hptb]
+    \centering
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital9.png}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.4\textwidth}
+        \includegraphics[width=\textwidth]{aufgabe4/n2_Orbital10.png}
+    \end{subfigure}
+    \caption{$1 \pi _g^x$   und $3 \sigma _u$}
+\end{figure}
+\section{\ce{S_N}2-Substitution bei \ce{CH_3Br}}
+Ziele dieser Aufgabe ist Bestimmung des Reaktionspfades und Auswahl einer geeigneten Übergangszustandsgeometrie.
+\newpage
+\subsection{Bestimmung des Reaktionspfades und Auswahl einer geeigneten Übergangszustandsgeometrie}
+\textbf{Auswertung 1}:
+
+\begin{figure}[!htbp]
+\centering
+  \includegraphics[width=0.8\textwidth]{aufgabe5/opt_uebergangszustand_abbildung51.png}%
+  \caption{Optimierte Geometrie des Übergangszustandes}
+\end{figure}
+\noindent
+\textbf{Auswertung 2:}\\
+ Die Gesamtenergie für die Geometrie beträgt -3071.56972 \si{\hartree}. 
+Der C-Cl Bindungsabstand beträgt 2.4500\si{\angstrom}.
+ Der Basissatz ist aug-cc-pVDZ. Die Punktgruppe beträgt $C _{3v}$.
+\begin{table}[!htpb]
+\centering
+\begin{tabular}{cc}
+\toprule
+Bindung & Abstand \si{\angstrom}\\
+C-Br  & 2.5175 \si{\angstrom}\\
+C-Cl  & 2.4500 \si{\angstrom} \\
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Die Bindungsabstände im Übergangszustand}
+\end{table}\\
+\noindent
+\textbf{Auswertung 3}\\
+Es gibt genau eine imaginäre Schwingungsfrequenz, welche $i^*$= 390.1 \si{\per\centi\meter} beträgt. Die Bewegung, welche bei der SN2 Reaktion abläuft, ist die eines Rückseitenangriffs des Chlorid-Anions an das CH3-Br Molekül. Diese Reaktion verläuft in drei Schritten. Als Erstes kommt der Rückseitenangriff des Cl-, anschließend die Bildung des Zwischenproduktes (Intermediats) und als Letztes der endgültige Bruch der Bindung zum Br-. Diese Bewegung ist als aperiodisch zu charakterisieren.
+ Dies sieht man auch daran, dass bei den Schwingungsfrequenzen eine Imaginäre Frequenz auftaucht. Vergleichen lässt sich dies mit der eulerschen Form von Sinus und Cosinus, der e-Funktion. Sinus und Cosinus besitzen keinen Imaginärteil, sind also periodische Bewegung. Nur die eulersche Form hat einen Imaginärteil. Die e-Funktion ist aperiodisch.\\
+
+\subsection{Optimierung und Frequenzrechnung der Übergangszustandes}
+
+\textbf{Auswertung 1}\\
+\begin{table}[!htpb]
+\centering
+\begin{tabular}{ccc}
+\toprule
+Molekül & E/\textit{Hartree} & Bildungsenthalpie $\Delta G$  \textit{Hartree}\\
+\ce{CH_3Br}  & -2612.00556924 & -2611.990266 \\
+\ce{CH_3Cl}  & -499.12227340 & -499.105102\\
+\ce{Br^-}  & -2572.46248971 & -2572.478665 \\
+\ce{Cl^-}  & -459.56364460 & -459.578667 \\
+\midrule
+\bottomrule
+\end{tabular}
+\caption{Molekülbindungen und Energien}
+\end{table}
+Anhand der ermittelten Werte kann nun die freie Enthalpie wie folgt berechnet werden:
+\begin{equation}
+\Delta _R G = \sum\limits_{Produkte} \Delta _B G - \sum\limits_{Edukte} \Delta _B G
+\end{equation}
+Setzt man die Werte ein, so erhält man $ \Delta _R G = -0.014834$ \si{\hartree}. Rechnet man das Ergebnis nun in \si{\kilo\joule\per\mol} um, so erhält man $ \Delta _R G = -38.95$ \si{\kilo\joule\per\mol}.
+Anschließend wird die freie Aktivierungsenthalpie berechnet:
+\begin{equation}
+\Delta _R G^{\neq} = \sum\limits_{Produkte} \Delta _B G _U - \sum\limits_{Edukte} \Delta _B G
+\end{equation}
+$\Delta _B G _U$ stellt hier die Energie des Übergangszustandes dar. Sie beträgt $\Delta _B G _U = -3071.56972$ \si{\hartree} (aus der Aufgabe 5 Teil 1). $\Delta _R G^{\neq}$ steht für die freie Aktivierungsenthalpie. Nach der Berechnung ergibt sich für die freie Aktivierungsenthalpie: $\Delta _R G^{\neq} = 26.167$ \si{\kilo\joule\per\mol}.
+
+\noindent
+\textbf{Auswertung 2}\\
+Betrachtet man den Graphen zur Ausbeute aus dem Skript, so lässt sich bei den dargestellten Temperaturen eine sehr gute Ausbeute von ca. 98 \% voraussagen. Aus dem niedrigen Wert für die freie Aktivierungsenergie lässt sich schließen, dass die Reaktion wahrscheinlich sehr schnell ablaufen wird, da der 2. Graph für die Reaktion 2. Ordnung mit niedrigen Aktivierungsenthalpien stark gegen Null geht. Ein Fehler von $\pm 10$ \si{\kilo\joule\per\mol} wirkt sich nur sehr geringfügig auf die Vorhersage auf, da auch bei so einem vergleichsweise hohen Fehler die Reaktion fast gleichschnell ablaufen und sich die Ausbeute nur geringfügig verringern würde.
+\newpage
+\subsection{Bestimmung des Reaktionspfades}
+\textbf{Auswertung 1}
+\begin{figure}[!htpb]
+\centering
+  \includegraphics[width=0.6\textwidth,height=4in]{aufgabe5/Teil4.png}%
+      \captionsetup{justification=raggedright}
+  \caption{Reaktionspfad: Auftragung der Energie der optimierten Geometrien gegen den C-Cl-Bindungsabstand}
+\end{figure}\\
+\noindent
+\textbf{Auswertung 2}\\
+Es handelt sich bei der Übergangsbewegung um eine aperiodische. \\
+\noindent
+\textbf{Auswertung 3}\\
+Maßgeblich an der Übergangsbewegung beteiligt sind das Brom- und Chloratom. 
+ Das sogenannte Bild des \glqq umklappenden Regenschirms \grqq ist nicht zutreffend, da die H-Atome bei der Übergangsbewegung starr auf ihrem Platz bleiben (nicht umklappen), wohingegen das C-Atom umklappt (Inversion am C-Zentrum). 
+\section{Literatur}
+\renewcommand{\section}[2]{}%
+\begin{thebibliography}{}
+\bibitem{wiberg71}
+A. F. Holleman, N. Wiberg \textit{Lehrbuch der Anorganischen Chemie}, 102. Aufl., de Gruyter, Berlin \textbf{2007}, S. 71.
+\bibitem{wiberg384}
+A. F. Holleman, N. Wiberg \textit{Lehrbuch der Anorganischen Chemie}, 102. Aufl., de Gruyter, Berlin \textbf{2007}, S. 384.
+\bibitem{wiberg98}
+A. F. Holleman, N. Wiberg \textit{Lehrbuch der Anorganischen Chemie}, 102. Aufl., de Gruyter, Berlin \textbf{2007}, S. 98.
+\bibitem{wiberg653}
+A. F. Holleman, N. Wiberg \textit{Lehrbuch der Anorganischen Chemie}, 3. Aufl., de Gruyter, Berlin \textbf{2007}, S. 653.
+\bibitem{miessler}
+G. L. Miessler, \textit{Inorganic Chemistry}, 5. Aufl., Pearson, Boston \textbf{2014}, S. 132.
+\bibitem{atkins219}
+P.W. Atkins, R. Friedmann, \textit{Molecular Quantum Mechanics}, 4. Aufl., Oxford University Press, \textbf{2005}, S. 219.
+\bibitem{zeeh}
+ M. Hesse, H. Meier, B. Zeeh, \textit{Spektroskopische Methoden in der organischen Chemie}, 7.
+Aufl., Thieme Verlag, \textbf{2005}, S.208.
+\end{thebibliography}
+\end{onehalfspace}
+\end{document}
+

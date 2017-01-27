@@ -1,0 +1,194 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{luacode}
+%\usepackage{helvet}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+%\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+%\setmainfont{Linux Libertine}
+%\setsansfont{Linux Biolinum}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+\usepackage[landscape]{geometry}
+\usepackage{adjustbox}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Infrarot Spektroskopie} Spektren}
+\fancyheadoffset{-1cm}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{luacode*}
+
+
+	fs = dofile("fs.lua")
+	function Reverse( tbl )
+
+	local len = #tbl
+	local ret = {}
+
+	for i = len, 1, -1 do
+	ret[ len - i + 1 ] = tbl[ i ]
+	end
+
+	return ret
+
+	end
+
+
+	function drawBIRGE()
+
+	px,py = fs.readcsv2("data/pzweig1cm1Scan.txt",1,29)
+	rx,ry = fs.readcsv2("data/rzweig1cm1Scan.txt",1,29)
+
+	--px,py = fs.readcsv2("data/1cm1scan.txt",7600,8400)
+	local rev_px = Reverse(px)  
+
+
+
+	tex.sprint("\\addplot[".."darkblue,only marks".."] coordinates{")
+		for i=1,#rev_px do
+		local deltav=rev_px[i]
+		local v = i-1/2
+		tex.sprint("("..v..","..px[i]..")")
+		end
+	tex.sprint("};")
+
+
+	--  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+		--   for i=1,#rx do
+		--   	tex.sprint("("..rx[ida]..","..ry[i]..")")
+		--   end
+	-- tex.sprint("};")
+
+
+	--tex.sprint("\\addlegendentry{Anregung}")
+
+	-- Q-Zweig bei 2141
+
+	end
+
+	function drawKONFIG()
+
+	local qpx,qpy = fs.readcsv2("data/pzweig1cm1Scan.txt",1,29)
+	local rx,ry = fs.readcsv2("data/rzweig1cm1Scan.txt",1,29)
+
+	local px = Reverse(qpx)  
+
+--tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+
+		for i=1,#px do
+			local tt=""
+			local diff = ""
+			
+			if i%2 == 0 then
+			tt = tostring(i-0.5) 
+			 
+			diff=  math.abs(px[i]-px[i-1]) 
+			rdiff=  math.abs(rx[i]-rx[i-1]) 
+			 
+			 tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff,"\\\\"))
+			 
+			else
+			diff= (i==1) and math.abs(px[i]-2143.18) or math.abs(px[i]-px[i-1]) 
+			rdiff= (i==1) and math.abs(rx[i]-2143.18) or math.abs(rx[i]-rx[i-1]) 
+			 tt = " $\\frac{"..i.."}{2}$ " 
+		tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff,"\\\\"))
+			end
+
+
+
+		end
+	--  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+		--   for i=1,#rx do
+		--   	tex.sprint("("..rx[ida]..","..ry[i]..")")
+		--   end
+	-- tex.sprint("};")
+
+
+	--tex.sprint("\\addlegendentry{Anregung}")
+
+	-- Q-Zweig bei 2141
+
+	end
+
+
+
+
+\end{luacode*}
+
+
+\newcommand\addplotbirge{\directlua{drawBIRGE()}}
+\newcommand\addplotkonfig{\directlua{drawKONFIG()}}
+
+
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+\begin{document}
+\pgfplotsset{
+	standard/.style={
+		axis x line*=bottom,
+		axis y line=left,
+		xlabel= $v+\frac{1}{2}$, % Set the labels
+		ylabel= $\Delta E / \tilde{\nu}$ $(v+1 \rightarrow v)$ ,
+		legend style={at={(0.8,1)},anchor=north},
+		y label style={at={(axis description cs:-.1,.5)},anchor=south},
+		x tick label style={rotate=90,anchor=east},
+		yticklabel style={/pgf/number format/fixed},
+		scaled y ticks=false,
+		legend cell align=left,
+		enlarge x limits={abs=0cm}
+	}
+}
+\begin{tikzpicture}[scale=2,every node/.style={scale=0.6}]
+	\begin{axis}[standard,title= Birge-Sponer-Extrapolation,line width=0.1pt, xtick=data]
+		\addplotbirge
+		\end{axis}
+	\end{tikzpicture}
+
+
+	\begin{table}[htpb]
+		\centering
+		\caption{Kombinations-Differenz}
+		\label{tab:label}
+		\begin{tabular}{llcll}
+			P-Zweig & R-Zweig &~ & ~& ~\\
+			$\tilde{\nu}$ & $\tilde{\nu}$ & $J + 1/2$& $\Delta \tilde{v}$-P & $\Delta \tilde{v}$-R \\
+			\addplotkonfig
+		\end{tabular}
+	\end{table}
+
+	\end{document}

@@ -16,7 +16,7 @@ function fs.readcsv( file , strip)
 
   for i, line in ipairs(lines) do
 
-    if (i>strip and not isempty(line) ) then
+    if (i>=strip and not isempty(line) ) then
 
       local s, e = line:find("%s+", 1)
       local y=tonumber(line:sub(e))
@@ -45,7 +45,7 @@ function fs.readcsv2( file , strip,strip2)
   end
   for i, line in ipairs(lines) do
 
-    if (i>strip and i<strip2 and not isempty(line)) then 
+    if (i>=strip and i<=strip2) then 
 
       local s, e = line:find("%s+", 1)
       local y=tonumber(line:sub(e))

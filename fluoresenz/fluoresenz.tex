@@ -29,6 +29,7 @@
 \usetikzlibrary{pgfplots.groupplots}
 %\usepackage{gensymb}
 
+\usepackage{geometry}
 \usepackage{fancyhdr}
 \fancyhf{}
 \rhead{13.12.2016}
@@ -65,7 +66,7 @@
 
   fs = dofile("fs.lua")
 
-  function drawPU()
+  function drawZZ()
 
   xwerte, ywerte = fs.readcsv("data/ph12anregung420_410.txt",23)
   xa, xb= fs.readcsv("data/ph02anregung350_340.txt",23)
@@ -86,79 +87,11 @@
     end
     tex.sprint("};")
   tex.sprint("\\addlegendentry{2-Naphthol}")
-
-
-
   end
 
-
-  function drawISO()
-
-  xwerte, ywerte = fs.readcsv("data/ph02anregung420_410.txt",23)
-  xa1, xb1= fs.readcsv("data/ph06anregung420_410.txt",23)
-  xa2, xb2= fs.readcsv("data/ph12anregung420_410.txt",23)
-
-
-  tex.sprint("\\addplot[".."no marks,red,thick".."] coordinates{")
-
-    for i=1,#xwerte do
-    tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 2}")
-
-
-  tex.sprint("\\addplot[".."no marks,blue,thick".."] coordinates{")
-    for i=1,#xa2 do
-    tex.sprint("("..xa1[i]..","..xb1[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 6}")
-
-
-  tex.sprint("\\addplot[".."no marks,green,thick".."] coordinates{")
-    for i=1,#xa2 do
-    tex.sprint("("..xa2[i]..","..xb2[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 12}")
-
-  end
-
-  function drawISO2()
-
-  xwerte, ywerte = fs.readcsv("data/ph02anregung350_340.txt",23)
-  xa1, xb1= fs.readcsv("data/ph06anregung350_340.txt",23)
-  xa2, xb2= fs.readcsv("data/ph12anregung_350_340.txt",23)
-
-
-  tex.sprint("\\addplot[".."smooth,thick,red".."] coordinates{")
-
-    for i=1,#xwerte do
-    tex.sprint("("..xwerte[i]..","..ywerte[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 2}")
-
-
-  tex.sprint("\\addplot[".."smooth,blue,thick".."] coordinates{")
-    for i=1,#xa1 do
-    tex.sprint("("..xa1[i]..","..xb1[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 6}")
-
-
-  tex.sprint("\\addplot[".."smooth,thick,green".."] coordinates{")
-    for i=1,#xa2 do
-    tex.sprint("("..xa2[i]..","..xb2[i]..")")
-    end
-    tex.sprint("};")
-  tex.sprint("\\addlegendentry{ph 12}")
-
-  end
 
 \end{luacode*}
+
 \definecolor{skyblue1}{RGB}{135, 206, 250}
 \definecolor{flame}{RGB}{226, 88, 34}
 \definecolor{scarletred1}{RGB}{252, 40, 71}
@@ -172,12 +105,9 @@
 \definecolor{violet}{rgb}{0.58 0. 0.41}
 \definecolor{orange}{rgb}{0.8 0.4 0.2}
 \definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
-
 \definecolor{azulen}{RGB}{0,218,255}
 
-\newcommand\addplotzz{\directlua{drawPU()}}
-\newcommand\addplotiso{\directlua{drawISO()}}
-\newcommand\addplotaa{\directlua{drawISO2()}}
+\newcommand\addplotzr{\directlua{drawZZ()}}
 \begin{document}
 
 \section{Ziel des Versuches}
@@ -284,7 +214,7 @@ dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quencher
   \end{tikzpicture}
 \end{figure}
 
-\subsection{Experimenteller Teil}
+\subsection{Der experimentelle Teil}
 
 \begin{table}[!ht]
   \begin{tabular}{ll}
@@ -407,6 +337,7 @@ $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} geme
 \section{Auswertung}
 \subsection{Messergebnisse}
 \begin{table}[!ht]
+\centering
   \begin{tabular}{cc}
     pH-Wert & Gemessener pH-Wert   \\
     \hline
@@ -421,10 +352,10 @@ $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} geme
   \caption{ Die Ergebnisse der pH-Messungen}
 \end{table}
 \subsection{Spektren}
-\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2)}
-Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 1
-\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 12)}
-Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 2
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (pH 12)}
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 12) befinden sich am Anhang 1.
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 2)}
+Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 2.
 %\subsubsection{Der Vergleich der Anregungsspektren}
 %\begin{tikzpicture}
 %  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
@@ -438,11 +369,13 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am An
 %\end{tikzpicture}
 
 
-\subsubsection{Bestimmung der Wellenlängemaxima aus den Spektren}
-Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgewichtes werden bestimmt und tabellerisch dargestellt.
+\subsubsection{Bestimmung der Wellenlängenmaxima und Feststellung der Stokes Verschiebung aus den Spektren}
+Die Wellenlängenmaxima der Spektren des 2-Naphtolat $\rightleftharpoons$ 2-Naphtol 
+Gleichgewichtes werden bestimmt und tabellerisch und graphisch am Anhang 4 dargestellt. 
 \begin{table}[!htbp]
+  \centering
   \begin{tabular}{ccc}
-    pH-Wert & $\lambda_{Em}$ \si{\nano\meter} & $\lambda_{max}$ \si{\nano\meter}  \\
+    pH-Wert & $\lambda_{em}$ \si{\nano\meter} & $\lambda_{ex}$ \si{\nano\meter}  \\
     \hline
     2.o& 420 & 284 ,328\\
     2.0& 350 & 284, 328\\
@@ -451,10 +384,12 @@ Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgew
     12.2& 420 & 340\\
     12.2& 350 & 280, 297, 313\\
   \end{tabular}
+  \caption{Die Wellenlängenmaxima aus den Anregungsspektren}
+  \label{table:wm}
   % \renewcommand\thetable{3}
 \end{table}
 
-\subsubsection{Stokes Verschiebung}
+
 \pgfplotsset{
   standard/.style={
     axis x line=bottom,
@@ -471,27 +406,32 @@ Die Wellenlängemaxima der Anregungsspektren des 2-Naphtolat-2-Naphtol Gleichgew
 }
 
 
-\begin{figure}[!h]
+\begin{figure}[!htbp]
   \begin{subfigure}{.45\textwidth}
     \resizebox{\linewidth}{!}{
-      \includegraphics[width=1.5\textwidth,keepaspectratio]{naphthol.jpg}}
+      \includegraphics[width=\textwidth,keepaspectratio]{naphthol.jpg}}
     \caption{zur Verfügung gestellt}
   \end{subfigure}%
   \begin{subfigure}{.45\textwidth}
     \resizebox{\linewidth}{!}{
       \begin{tikzpicture}
         \begin{axis}[standard]
-          \addplotzz
+          \addplotzr
         \end{axis}
       \end{tikzpicture}}
     \caption{experimentell}
   \end{subfigure}
-  \caption{Der Vergleich der Absorptions- und Anregungsspektren des Naphtol-Naphtolat-Sytems}
+  \caption{Der Vergleich der zur Verfügung gestelten Anregungsspektren mit den experimentellen Anregungsspektren}
 
 \end{figure}
 
-\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6)}
-Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) befinden sich am Anhang 3.
+
+
+
+
+
+\subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol $\rightleftharpoons$ 2-Naphtolat (ph 6)}
+Die Fluoreszenzs- und Anregungsspektren vom Gleichgewicht 2-Naphtol $\rightleftharpoons$ 2-Naphtolat (ph 6) befinden sich am Anhang 3.
 
 \subsection{$pK_s$ Werte}
 
@@ -529,7 +469,6 @@ Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol und 2-Naphtolat (ph 6) bef
 \subsubsection{Graphische Bestimmung der $pK_s$- und $pK_s^*$-Werte mittels Wendepunktanalyse}
 Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert ~\ref{fig:wende} können die $pK_s$- und $pK_s^*$-Werte bestimmt werden. Am Wendepunkt der Kurve gilt $pH = pK_s$ bzw. $pH = pK_s*$.
 \begin{figure}[!htbp]
-  \label{fig:wende}
   \begin{tikzpicture}[inner sep=0pt,thick, dot/.style={fill=blue,circle,minimum size=3pt}]
     \begin{axis}[
       axis x line=bottom,
@@ -582,6 +521,7 @@ Aus der Auftragung der Fluoreszenzintensität gegen pH-Wert ~\ref{fig:wende} kö
     \end{axis}
   \end{tikzpicture}
   \caption{Kurvenverlauf der pH-Werte gegen $I_F$ und Bestimmung der $pK_s$-Werte}
+  \label{fig:wende}
 \end{figure}
 
 \subsubsection{Bestimmung der $pK_s$- und $pK_s^*$-Werte mit der Henderson-Hasselbalch-Gleichung }

@@ -1,0 +1,140 @@
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------
+
+ Parameter fuer die Aufgaben des Praktikums
+ ----------------------------------------------------------------------------------------------------
+
+ Gruppe/Logname: pqc02
+
+ Praktikanten: 
+
+ Datum des Praktikumsbeginns: 15. Dez. 2016
+ ----------------------------------------------------------------------------------------------------
+
+ Aufgabe 1/Teil 1
+ -----------------
+ Molekül:          H2O
+ Startgeometrie:   109.5 Degree, 1.00 Angstroem, 0.96 Angstroem
+ Methode:          HF
+ Basissatz:        cc-pvQZ
+ ----------------------------------------------------------------------
+
+ Aufgabe 1/Teil 2
+ -----------------
+ Molekül:          H2O
+ Startgeometrie:   Builder
+ Methode:          HF
+ Basissatz:        cc-pVQZ
+ ----------------------------------------------------------------------
+
+ Aufgabe 1/Teil 3
+ -----------------
+ Molekül:          H2O
+ Startgeometrie:   optimierte Geometrie aus A1 T2 ( cc-pVQZ )
+ Methode:          HF
+ Basissatz:        STO-3G
+ --------------------------------------------------
+
+ Molekül:          H2O
+ Startgeometrie:   optimierte Geometrie aus A1 T2 ( cc-pVQZ )
+ Methode:          HF
+ Basissatz:        cc-pVDZ
+ ----------------------------------------------------------------------
+
+ Aufgabe 1/Teil 4
+ -----------------
+ Molekül:          H2O
+ Startgeometrie:   optimierte Geometrie aus A1 T2 ( cc-pVQZ )
+ Methode1:         MP2
+ Methode2:         CCSD
+ Methode3:         CCSD(T)
+ ----------------------------------------------------------------------------------------------------
+
+ Aufgabe 2
+ ----------
+ Molekül:         cis-1.2-C2H2Cl2
+ Startgeometrie:  Builder
+ Methode1:        HF
+ Basissatz1:      6-311G(d.p)
+ Methode2:        MP2
+ Basissatz2:      6-311G(d.p)
+ --------------------------------------------------
+ Molekül:         trans-1.2-C2H2Cl2
+ Startgeometrie:  Builder
+ Methode1:        HF
+ Basissatz1:      6-311G(d.p)
+ Methode2:        MP2
+ Basissatz2:      6-311G(d.p)
+ ----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+ Aufgabe 3
+ ----------
+ Molekül:         C6H5CH3
+ Startgeometrie:  Builder
+ Methode:         MP2
+ Basissatz:       aug-cc-pVDZ
+ ----------------------------------------------------------------------------------------------------
+
+ Aufgabe 4/Teil 1
+ -----------------
+ Molekül:               N2
+ Startgeometrie:        Builder
+ Gitter(Min,Max,Incr):  0.6 Angstroem,  4.6 Angstroem,  0.2 Angstroem
+ Methode:               RHF
+ Basissatz:             6-311G(d.p)
+ ----------------------------------------------------------------------
+
+ Aufgabe 4/Teil 2
+ -----------------
+ Molekül:          N2
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        6-311G(d.p)
+ ----------------------------------------------------------------------------------------------------
+
+ Aufgabe 5/Teil 1
+ -----------------
+ Molekül:          [Cl-CH3-Br]-
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ ----------------------------------------------------------------------
+
+ Aufgabe 5/Teil 2
+ -----------------
+ Molekül:          [Cl-CH3-Br]-
+ Startgeometrie:   Geometrie aus  A5 T1 ( aug-cc-pVDZ )
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ ----------------------------------------------------------------------
+
+ Aufgabe 5/Teil 3
+ -----------------
+ Molekül:          CH3Br
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ --------------------------------------------------
+ Molekül:          CH3Cl
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ --------------------------------------------------
+ Molekül:          [Br]-
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ --------------------------------------------------
+ Molekül:          [Cl]-
+ Startgeometrie:   Builder
+ Methode:          RHF
+ Basissatz:        aug-cc-pVDZ
+ ----------------------------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------------------------

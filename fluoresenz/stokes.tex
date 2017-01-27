@@ -39,7 +39,7 @@
 
 
 \rhead{ Gruppe 6}
-\lhead{\textbf{Fluoreszenzspektroskopie} Stokes Verschiebung (\textit{St. Ver.})}
+\lhead{\textbf{Fluoreszenzspektroskopie} Stokes Verschiebung (\textit{St. Ver.}) und Wellenlängenmaxima - Anhang 4}
 \fancyheadoffset{-1cm}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
@@ -287,56 +287,6 @@ legend cell align=left
 
 \end{tabular}
 \end{table}
-\tikzstyle{every pin}=[fill=white,draw=black,font=\footnotesize]
-
-\begin{figure}[!htbp]
-  \begin{tikzpicture}
-    \begin{axis}[
-      axis x line=middle,
-      axis y line=middle,
-      ylabel= $-\log\frac{I_F}{I_{ph12}-I_F} $,
-      xlabel= pH,
-      legend style={draw=none,legend pos=outer north east,font=\normalsize},
-      y label style={at={(axis description cs:-0.1,.5)},anchor=south,rotate=90},
-      x label style={at={(axis description cs:0.5,-0.2)}},
-      legend cell align=left,
-      scaled ticks=false,
-      y tick label style={/pgf/number format/fixed},
-      x tick label style={yshift=-.4cm},
-      ymax = 12,
-      xmax = 12
-      ]
-      \addplot[only marks,mark=x,darkblue] table {
-        X Y
-				2.0   6.9513234487189   
-				4.0   6.8789964134648   
-				6.0   6.6391373242081   
-				8.2   2.9936161794321   
-				10.0  -0.65778854464298   
-      };
-      \addlegendentry{$\lambda_{ex}=$ 360 \si{\nano\meter}}
-      \addplot[darkblue,domain=0:10] {-0.94*x+10.25};
-      \addlegendentry{$-0.94x+10.25$}
-        \node[coordinate,pin=right:{ $pK_s$ =10.25}] at (axis cs:0,10.25) {};
-        \addplot[only marks,mark=diamond,rouge]  table {
-            X Y
-            2.0    2.1176003254589 
-            4.0   0.85765811360383 
-            6.0    0.8035009813797 
-            8.2   0.61840157081968 
-            10.0  -0.88188323440229 
-          };
-        \addlegendentry{$\lambda_{ex}=$ 320 \si{\nano\meter}}
-          \addplot[rouge,domain=0:10] {-0.3*x+2.55};
-          \addlegendentry{$-0.3x+2.55$};
-          \node[coordinate,pin=45:{ $pK_s^*$ =2.55}] at (axis cs:0,2.55) {};
-        \end{axis}
-      \end{tikzpicture}
-      \caption{ }
-
-
-
-    \end{figure}
 
 
 

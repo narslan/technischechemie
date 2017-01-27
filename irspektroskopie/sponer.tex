@@ -1,8 +1,7 @@
 % !TEX encoding   = UTF-8
 % !TEX program    = LuaLaTeX
 % !TEX spellcheck = de_DE
-\documentclass[a4paper]{article}
-\usepackage{fontspec}
+\documentclass[landscape,a4paper]{article}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{siunitx}
 \usepackage[german]{babel}
@@ -11,22 +10,25 @@
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
-\usetikzlibrary{datavisualization} 
+%\usetikzlibrary{datavisualization} 
 
 \usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{luacode}
-%\usepackage{helvet}
+\usepackage{helvet}
 
 %\usepackage[landscape]{geometry}
 %\setmainfont{Ubuntu}
-\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
-\setmainfont{Linux Libertine}
-\setsansfont{Linux Biolinum}
+%\setmainfont{Linux Libertine}
+%\setsansfont{Linux Biolinum}
+\usepackage{paratype}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{subcaption}
-\usepackage[landscape]{geometry}
 \usepackage{adjustbox}
+
+\usepackage[top=0cm, bottom=0cm, left=0.5cm, right=0.5cm]{geometry}
 
 
 \rhead{ Gruppe 6}
@@ -40,26 +42,45 @@
 
   fs = dofile("fs.lua")
 
+
+
+
   function drawPR()
 
   px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
   rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
 
-  tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
-    for i=1,#px do
-    	tex.sprint("("..px[i]..","..py[i]..")")
-    end
-  tex.sprint("};")
- --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
- --   for i=1,#rx do
- --   	tex.sprint("("..rx[i]..","..ry[i]..")")
- --   end
- -- tex.sprint("};")
+  erste_ableitung = {}
+  
+  for i=1,#px do
+    if i%2 == 0 then
+      dif = px[i]-px[i-1]
+      table.insert(erste_ableitung, dif)
+  end
+  end
 
- 
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+    for i=1,#rx do
+    tex.sprint("("..rx[i]..","..ry[i]..")")
+    end
+
+  tex.sprint("};")
+
+  -- tex.sprint("\\addplot[".."rouge".."] coordinates{")
+  --     tex.sprint("};")
+  -- tex.sprint("\\draw (axis cs:2142.0,0) -- (axis cs:2142,130) node [above] {Q-Zweig};")
+  tex.sprint("\\draw (axis cs:2143.18,0) -- (axis cs:2143.18,1.4) node [anchor=north,rotate=90,above,font=\\tiny,pos=0.9] {Q-Zweig $\\tilde{\\nu}$=2143.18 } ;")
+    
+    
+
   --tex.sprint("\\addlegendentry{Anregung}")
 
-   -- Q-Zweig bei 2141
+  -- Q-Zweig bei 2142
 
   end
 
@@ -70,62 +91,53 @@
 
   tex.sprint("\\addplot[".."rouge".."] coordinates{")
     for i=1,#rx do
-    	tex.sprint("("..rx[i]..","..ry[i]..")")
+    tex.sprint("("..rx[i]..","..ry[i]..")")
     end
   tex.sprint("};")
- --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
- --   for i=1,#rx do
- --   	tex.sprint("("..rx[i]..","..ry[i]..")")
- --   end
- -- tex.sprint("};")
+  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    --   for i=1,#rx do
+    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+    --   end
+  -- tex.sprint("};")
 
- 
+
   --tex.sprint("\\addlegendentry{Anregung}")
 
-   -- Q-Zweig bei 2141
+  -- Q-Zweig bei 2141
 
   end
- 
- function drawBIRGE()
+
+  function drawBIRGE()
 
   px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
   rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
 
   tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
     for i=1,#px do
-    	tex.sprint("("..px[i]..","..py[i]..")")
+    tex.sprint("("..px[i]..","..py[i]..")")
     end
   tex.sprint("};")
- --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
- --   for i=1,#rx do
- --   	tex.sprint("("..rx[i]..","..ry[i]..")")
- --   end
- -- tex.sprint("};")
+  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    --   for i=1,#rx do
+    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+    --   end
+  -- tex.sprint("};")
 
- 
+
   --tex.sprint("\\addlegendentry{Anregung}")
 
-   -- Q-Zweig bei 2141
+  -- Q-Zweig bei 2141
 
   end
 
 
-
-  function drawDIFF()
-  dx,dy = fs.readcsv2("data/pzweig1cm1Scan.txt",3892,4096)
-  tex.sprint("\\addplot[".."flame".."] coordinates{")
-    for i=1,#dx do
-    	tex.sprint("("..dx[i]..","..dy[i]..")")
-    end
-  tex.sprint("};")
-  end
 \end{luacode*}
 
 
 \newcommand\addplotpr{\directlua{drawPR()}}
 \newcommand\addplotrzw{\directlua{drawRZW()}}
 \newcommand\addplotdiff{\directlua{drawDIFF()}}
-\newcommand\addplotbirge{\directlua{drawDIFF()}}
+\newcommand\addplotbirge{\directlua{drawBIRGE()}}
 
 
 
@@ -147,46 +159,55 @@
 
 
 \begin{document}
+
 \pgfplotsset{
   standard/.style={
     axis x line*=bottom,
     axis y line=left,
-    xlabel= Wellenlänge, % Set the labels
     ylabel= Intensität ,
-    x unit= \si{\nano\meter},
+    x unit= \si{\per\centi\meter},
     legend style={at={(0.8,1)},anchor=north},
     y label style={at={(axis description cs:-.1,.5)},anchor=south},
     x tick label style={rotate=90,anchor=east, font=\tiny},
+    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
     yticklabel style={/pgf/number format/fixed},
     scaled y ticks=false,
-legend cell align=left,
-      x dir=reverse
+    legend cell align=left,
+    x dir=reverse
   }
 }
-\begin{tikzpicture}[scale=2]
-  \begin{axis}[standard,title= \textbf{P-Zweig},ycomb,line width=0.1pt,nodes near coords, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
-  \addplotpr
-\end{axis}
-\end{tikzpicture}
 
-\begin{tikzpicture}[scale=2]
-  \begin{axis}[standard,title= \textbf{R-Zweig},ycomb,line width=0.1pt,nodes near coords, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
-  \addplotrzw
-\end{axis}
-\end{tikzpicture}
+\begin{tikzpicture}[scale=2.5,every node/.style={scale=0.6}]
+  \begin{axis}[standard,title= \textsf{IR-Spektrum von CO bei 1 \si{\per\centi\meter} Auflösung und 1 Scan},ycomb,line width=0.1pt, enlarge x limits={abs=0.2cm},xtick=data, xlabel=$\tilde{\nu}$]
+    \addplotpr
+    \end{axis}
+  \end{tikzpicture}
 
 
 
-%\begin{adjustbox}{width=0.9\textwidth}
-%\begin{tikzpicture}
-%\begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 1 Scan},ycomb,line width=0.1pt, xtick=data,x tick label style={font=\tiny\sffamily},font={\sffamily}]
-%  \addplotdiff
-%\end{axis}
-%\end{tikzpicture}
-%\end{adjustbox}
+  %\begin{adjustbox}{width=0.9\textwidth}
+  %\begin{tikzpicture}
+  %\begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 1 Scan},ycomb,line width=0.1pt, xtick=data,x tick label style={font=\tiny\sffamily},font={\sffamily}]
+  %  \addplotdiff
+  %\end{axis}
+  %\end{tikzpicture}
+  %\end{adjustbox}
+
+  %\begin{tikzpicture}[scale=2]
+  % \begin{axis}[standard,title= \textbf{P-Zweig},ycomb,line width=0.1pt, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
+  % \addplotpr
+  %\end{axis}
+  %\end{tikzpicture}
+
+  %\begin{tikzpicture}[scale=2]
+  %  \begin{axis}[standard,title= \textbf{R-Zweig},ycomb,line width=0.1pt, xtick=data]
+  %  \addplotrzw
+  %\end{axis}
+  %\end{tikzpicture}
 
 
 
 
 
-\end{document}
+
+  \end{document}
