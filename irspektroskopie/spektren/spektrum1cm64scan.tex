@@ -1,0 +1,121 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+
+
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{luacode}
+\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
+\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
+\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
+%\usepackage{helvet}
+
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+%\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
+%\setmainfont{Linux Libertine}
+%\setsansfont{Linux Biolinum}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+\usepackage[landscape]{geometry}
+\usepackage{adjustbox}
+
+
+\rhead{Gruppe 6}
+\lhead{\textbf{Infrarot Spektroskopie} Anhang Spektrum II}
+\fancyheadoffset{-1cm}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{luacode*}
+
+
+  fs = dofile("../fs.lua")
+
+  function drawPU()
+
+  ph12ax,ph12ay = fs.readcsv("../data/1cm64scan.txt",0)
+
+  tex.sprint("\\addplot[".."no marks,charcoal".."] coordinates{")
+    for i=1,#ph12ax do
+    	tex.sprint("("..ph12ax[i]..","..ph12ay[i]..")")
+    end
+  tex.sprint("};")
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+
+  end
+
+
+
+\end{luacode*}
+
+
+\newcommand\addplotzz{\directlua{drawPU()}}
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+\begin{document}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line=bottom,
+    axis y line=left,
+    x unit= \si{\per\centi\meter}, % Set the labels
+    xlabel=$\tilde{\nu}$,
+    ylabel= Intensität ,
+    legend style={at={(0.8,1)},anchor=north},
+    y label style={at={(axis description cs:-.2,.5)},anchor=south},
+    x tick label style={rotate=90,anchor=east},
+    yticklabel style={/pgf/number format/fixed},
+    scaled y ticks=false,
+legend cell align=left,
+      x dir=reverse,
+      ymin = 0
+  }
+}
+
+
+
+\begin{tikzpicture}[scale=1.4]
+  \begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 64 Scan}]
+  \addplotzz
+\end{axis}
+\end{tikzpicture}
+
+
+
+\end{document}

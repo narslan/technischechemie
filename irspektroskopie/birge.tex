@@ -39,6 +39,7 @@
 
 
 	fs = dofile("fs.lua")
+	fit = dofile("fit.lua")
 	function Reverse( tbl )
 
 	local len = #tbl
@@ -85,7 +86,7 @@
 
 	end
 
-	function drawKONFIG()
+	function tabelleKONFIG()
 
 	local qpx,qpy = fs.readcsv2("data/pzweig1cm1Scan.txt",1,29)
 	local rx,ry = fs.readcsv2("data/rzweig1cm1Scan.txt",1,29)
@@ -93,29 +94,42 @@
 	local px = Reverse(qpx)  
 
 --tex.sprint("\\addplot[".."darkblue".."] coordinates{")
-
+  local summex = {}
+  local summey = {}
 		for i=1,#px do
-			local tt=""
-			local diff = ""
 			
-			if i%2 == 0 then
-			tt = tostring(i-0.5) 
+      if i%2 == 0 then
+			  
+        local tt = tostring(i-0.5) 
+		 
+			  local diff  = math.abs(px[i]-px[i-1]) 
+			  local rdiff = math.abs(rx[i]-rx[i-1]) 
+        local sdiff = diff + rdiff
+        local cdiff = sdiff+summey[i-1]
+        table.insert(summex,i) 
+        table.insert(summey,cdiff) 
+        tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff, cdiff,"\\\\"))
 			 
-			diff=  math.abs(px[i]-px[i-1]) 
-			rdiff=  math.abs(rx[i]-rx[i-1]) 
-			 
-			 tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff,"\\\\"))
-			 
-			else
-			diff= (i==1) and math.abs(px[i]-2143.18) or math.abs(px[i]-px[i-1]) 
-			rdiff= (i==1) and math.abs(rx[i]-2143.18) or math.abs(rx[i]-rx[i-1]) 
-			 tt = " $\\frac{"..i.."}{2}$ " 
-		tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff,"\\\\"))
+			  else
+
+        local diff= (i==1) and math.abs(px[i]-2143.18) or math.abs(px[i]-px[i-1]) 
+        local rdiff= (i==1) and math.abs(rx[i]-2143.18) or math.abs(rx[i]-rx[i-1]) 
+        local sdiff = diff + rdiff
+        local cdiff = (i==1) and 0 or sdiff + summey[i-1]
+
+        table.insert(summex,i) 
+          table.insert(summey,cdiff) 
+	      tt = " $\\frac{"..i.."}{2}$ " 
+        tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff, cdiff,"\\\\"))
 			end
 
+           --  tex.sprint(string.format("%.2f & %.2f & %s & %.2f & %.2f & %.2f %s",px[i],rx[i],tt,diff,rdiff, cdiff,"\\\\"))
 
 
 		end
+ local f = fit.linearmitr(summex,summey)
+ tex.sprint(string.format("%s"," Slope & $R^2$ & & & &\\\\"))
+      tex.sprint(string.format("%.2f & %.6f %s ",f.slope,f.rSquared," & & & &\\\\"))
 	--  tex.sprint("\\addplot[".."rouge".."] coordinates{")
 		--   for i=1,#rx do
 		--   	tex.sprint("("..rx[ida]..","..ry[i]..")")
@@ -129,6 +143,50 @@
 
 	end
 
+	function drawKONFIG()
+
+	local qpx,qpy = fs.readcsv2("data/pzweig1cm1Scan.txt",1,29)
+	local rx,ry = fs.readcsv2("data/rzweig1cm1Scan.txt",1,29)
+
+	local px = Reverse(qpx)  
+
+	  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+--tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+  summe = {}
+		for i=1,#px do
+			
+      if i%2 == 0 then
+			  
+        local tt = tostring(i-0.5) 
+		 
+			  local diff  = math.abs(px[i]-px[i-1]) 
+			  local rdiff = math.abs(rx[i]-rx[i-1]) 
+        local sdiff = diff + rdiff
+        local cdiff = sdiff+summe[i-1]
+        table.insert(summe,cdiff) 
+        tex.sprint("("..i..","..cdiff..")")
+
+			 
+			  else
+
+        local diff= (i==1) and math.abs(px[i]-2143.18) or math.abs(px[i]-px[i-1]) 
+        local rdiff= (i==1) and math.abs(rx[i]-2143.18) or math.abs(rx[i]-rx[i-1]) 
+        local sdiff = diff + rdiff
+        local cdiff = (i==1) and 0 or sdiff + summe[i-1]
+
+          table.insert(summe,cdiff) 
+	      tt = " $\\frac{"..i.."}{2}$ " 
+        tex.sprint("("..i..","..cdiff..")")
+			end
+
+
+
+		end
+
+	   tex.sprint("};")
+
+	end
+
 
 
 
@@ -136,7 +194,8 @@
 
 
 \newcommand\addplotbirge{\directlua{drawBIRGE()}}
-\newcommand\addplotkonfig{\directlua{drawKONFIG()}}
+\newcommand\addplottkonfig{\directlua{tabelleKONFIG()}}
+\newcommand\addplotbkonfig{\directlua{drawKONFIG()}}
 
 
 
@@ -163,7 +222,7 @@
 		axis x line*=bottom,
 		axis y line=left,
 		xlabel= $v+\frac{1}{2}$, % Set the labels
-		ylabel= $\Delta E / \tilde{\nu}$ $(v+1 \rightarrow v)$ ,
+    ylabel= $\Delta \tilde{\nu}$ ,
 		legend style={at={(0.8,1)},anchor=north},
 		y label style={at={(axis description cs:-.1,.5)},anchor=south},
 		x tick label style={rotate=90,anchor=east},
@@ -184,11 +243,24 @@
 		\centering
 		\caption{Kombinations-Differenz}
 		\label{tab:label}
-		\begin{tabular}{llcll}
-			P-Zweig & R-Zweig &~ & ~& ~\\
-			$\tilde{\nu}$ & $\tilde{\nu}$ & $J + 1/2$& $\Delta \tilde{v}$-P & $\Delta \tilde{v}$-R \\
-			\addplotkonfig
+		\begin{tabular}{llclll}
+      P-Zweig & R-Zweig &~ & ~& ~& ~\\
+      $\tilde{\nu}$ & $\tilde{\nu}$ & $J + 1/2$& $\Delta \tilde{v}$-P & $\Delta \tilde{v}$-R & $E$\\
+			\addplottkonfig
 		\end{tabular}
 	\end{table}
+
+\begin{tikzpicture}[scale=2,every node/.style={scale=0.6}]
+	\begin{axis}[standard,title= Bestimmung der Rotationskonstante durch das Verfahren der Kombinationsdifferenzen, xtick=data]
+		\addplotbkonfig
+		\end{axis}
+	\end{tikzpicture}
+
+
+
+
+      %title= ,
+
+
 
 	\end{document}

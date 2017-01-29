@@ -14,8 +14,6 @@
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{tikz}
-\usetikzlibrary{datavisualization}
-\usetikzlibrary{datavisualization.formats.functions}
 
 %\usepackage[sfdefault]{AlegreyaSans} %% Option 'black' gives heavier bold face
 %% The 'sfdefault' option to make the base font sans serif
@@ -59,12 +57,12 @@ bildet die Grundlage verschiedener Methoden der Strukturbestimmung. Zu den wicht
 gehören diejenigen, die auf die Absorption der Strahlung (Infrarot Spektroskopie),
 ihre Streuung (Raman Spektroskopie) oder Beugung (röntgenographische Methoden)
 zurückzuführen sind.
-Die Molekülschwingungen treten im allgemein im mittleren IR-Bereich,
+Die Schwingungen treten im allgemein im mittleren IR-Bereich,
 also bei Wellenzahlen 4000 \si{\per\centi\meter} und 200 \si{\per\centi\meter}.
 
 In einem makroskopischen Modell stellt man ein zweiatomiges Molekül
-durch zwei Massen m$_1$ und $_2$ dar, die durch eine elastische Ferder verbunden sind.
-Wenn der Gleichgewichtsabstand r$_e$ zwischen den beiden MAssen um den Betrag $\delta r$
+durch zwei Massen m$_1$ und $_2$ dar, die durch eine elastische Feder verbunden sind.
+Wenn der Gleichgewichtsabstand r$_e$ zwischen den beiden Massen um den Betrag $\delta r$
 verzerrt und das System darauf losgelassen wird, so führt es eine Schwingungsbewegung
 um die Gleichgewichtslage aus, die durch die rücktreibende Kraft $K$ verursacht wird. $K$
 ist in erster Näherung zur Auslenkung proportional, jedoch entgegengerichtet:
@@ -191,7 +189,7 @@ beschrieben wird:
 \begin{equation}
   V(r) = D \cdot [ 1- e^{-a(r-r_e)} ]^2
 \end{equation}
-Dies entspricht einer asymetrischen Potentialkurve, deren Krümung durch die Konstante $a$ charakterisiert wird. Der Faktor $D$
+Dies entspricht einer asymmetrischen Potentialkurve, deren Krümmung durch die Konstante $a$ charakterisiert wird. Der Faktor $D$
 bedeutet die Summe aus Nullpunktsenergie $E _0$ und Dissoziationsenergie $E _D$.
 \begin{figure}[!ht]
   \centering
@@ -255,33 +253,107 @@ bedeutet die Summe aus Nullpunktsenergie $E _0$ und Dissoziationsenergie $E _D$.
 
 \subsection{IR-Spektroskopie}
 Die Anregung einer \textit{Grundschwingung} kann dadurch beschrieben werden,
-dass das Molekül unter Absorption eines Lichtquants vom Schwingungsgrundzustand in dennächsthöheren übergeht.
-Dieser Vorgang ist nur dann möglich, wenn die damit verbundene Energiänderung gleich der Energie der einfallenden Lichtquanten ist:
+dass das Molekül unter Absorption eines Lichtquants vom 
+Schwingungsgrundzustand in den nächsthöheren übergeht.
+Dieser Vorgang ist nur dann möglich, 
+wenn die damit verbundene Energieänderung 
+gleich der Energie der einfallenden Lichtquanten ist:
 \begin{equation}
   E _1 - E_0 = h. \nu ^{'}_{vib} = E _{LQ} = h \cdot \nu ^{'}_{LQ}
 \end{equation}
-Grunbedingung ist also, dass $\nu ^{'}_{vib} = \nu ^{'}_{LQ} $ ist ($LQ =$ Lichtquant). \par
+Grundbedingung ist also, dass $\nu ^{'}_{vib} = \nu ^{'}_{LQ} $ ist ($LQ =$ Lichtquant). \par
 Zur Aufnahme des Infrarot-Spektrums wird der Probe daher \textit{polychromatischer Strahlung} ausgesetzt,
-deren Energie im mitleren IR-Bereich (3 \si{\nano\meter} - 50 \si{\nano\meter}) liegt; durch sukzessiven
+deren Energie im mittleren IR-Bereich (3 \si{\nano\meter} - 50 \si{\nano\meter}) liegt; durch sukzessiven
 Intensitätsvergleich mit einem die Probe nicht durchlaufenden Referenzstrahl können dann die Frequenzwerte
 der absorbierten Strahlung festgestellt und somit die Schwingungsfrequenzen $\nu ^{'}_{vib} $ als Absolutwerte
 ermittelt werden. \par
 Als Folge der Anharmonizität sind neben dem Übergang eines Moleküls zum nächsthöheren Schwingungsniveau
 (entsprechend der Auswahlregel $ \Delta v = +1$) auch solche mit $ \Delta v = +2, +3$ usw. erlaubt;
-ihre Wahrscheinlichkeit und damit die Intensität der betreffenden Absorptionbande nehmen
+ihre Wahrscheinlichkeit und damit die Intensität der betreffenden Absorptionsbande nehmen
 jedoch mit zunehmender Größe des Quantensprungs ab. Der Übergang $v =0 \rightarrow v =1$ entspricht der Grundschwingung,
 $ v =0 \rightarrow v=2 $ der ersten Oberschwingung, die bei einer etwas kleineren als der doppelten Grundfrequenz
 zu einer wesentlich schwächeren Bande führt, usw.
+\subsection{Rotationsspektrum zweiatomiger Moleküle~\supercite{rovib}}
+Das Modell zur Beschreibung von Rotationsübergängen 
+ist das starre zweiatomige Molekül, auch als starrer Rotator bezeichnet. 
+Beim starren Rotator sind zwei Atome mit den Massen $m_1$ und $m_2$ 
+durch eine starre Bindung mit der Länge $r_0$ verbunden. 
+Die Energie der Rotation ist quantisiert und erhält man nach Lösen 
+der entsprechenden Schrödinger-Gleichung folgende Energieeigenwerte der Rotation:
+\begin{equation}
+\label{eq:erot}
+E_{rot} = hc B J (J+1) \,\, \text{ mit } J = 0, 1,2 
+\end{equation}
+
+\begin{equation}
+\label{eq:bconst}
+B = \frac{h}{8 \ pi ^2 c I} ; (B in cm^{-1})  
+\end{equation}
+wobei $I$ das Trägheitsmoment des Moleküls, 
+wie folgt zu berechnen ist.
+\begin{align}
+\label{eq:trag}
+I &=\frac{m_1 m_2 }{m_1 + m_2} r_0^2\\
+&=\mu r_0^2
+\end{align}
+Der Ausdruck $\mu$ ist die reduzierte Masse.
+$B$ wird als Rotationskonstante bezeichnet; aus ihr kann die Bindungslänge des Moleküls
+$r_0$ bestimmt werden. Die Rotationsenergieniveaus sind nicht äquidistant, sie
+wachsen quadratisch mit der Rotationsquantenzahl J an.
+
+\subsection{Interferometer}
+
 \section{Auswertung}
 
-\begin{tikzpicture}[baseline]
-\datavisualization [ scientific axes=clean,
-visualize as smooth line,
-style sheet=strong colors,
-style sheet=vary dashing
- ]
- data [read from file=data/1cm1scan.txt,separator=\space] ;
-\end{tikzpicture}
+\subsection{Untersuchung der Spektren}
 
-\printbibliography
+Bei der Aufnahme der Spektren wurden die Auflösung sowie die Scanzahl variiert. Anhand der aufgenommenen Spektren wird ersichtlich, das mit höhere Scanzahl und Auflösung die Spektren deutlicher sind als mit geringerer Auflösung und Scanzahl. 
+Wird die Anzahl der Scans bei einer Messung erhöht, so wird das Rauschen geringer und die Peaks können deutlicher erkannt werden. Bei niedriger Auflösung verschwimmen die Peaks wobei man bei einer höher gewählten Auflösung die Peaks besser unterscheiden kann.
+
+Im Hintergrundsspektrum lassen sich Peaks bei einer Wellenzahl von circa 3600 \si{\per\centi\meter} und 1595 \si{\per\centi\meter}  
+erkennen, welche für Wasser sprechen. Die sind tatsächlich drei normalen Modi des Wasser-Moleküls \supercite{atkins}. 
+\begin{table}[htpb]
+  \caption{Schwingungsfrequenzen von $H_2O$ aus der Literatur~\supercite{atkins}}
+  \label{tab:label}
+  \begin{tabular}{llc}
+    $v_1$ & 3652 \si{\per\centi\meter} & Streck\\  
+    $v_2$ & 1595 \si{\per\centi\meter} & Deformations \\  
+    $v_3$ & 3756 \si{\per\centi\meter} & Streck\\  
+  \end{tabular}
+\end{table}
+sowie bei den Wellenzahlen von circa 2250-2400 \si{\per\centi\meter} erkennt man die Peaks von $CO_2$.
+Anhand der Tabelle~\ref{tab:chsc} aus dem Literatur\supercite{atkins} (S. 462) lässt sich festsellen, dass es in der Probekammer $CH_4$ vorhanden sein.  
+\begin{table}[htpb]
+  \caption{Typische Kohlenstoff Schwingungen}
+  \label{tab:chsc}
+  \begin{tabular}{ccl}
+    Schwingungsart & $\tilde{\nu}$ \si{\per\centi\meter} \\
+    C-H stretch & 2850–2960 \\
+C-H bend & 1340–1465 \\
+C-C stretch& 700-1230 \\
+C=C stretch & 1620–1680
+  \end{tabular}
+
+\end{table}
+Am besten sollte bei hoher Auflösung und einer hohen Scanzahl messen, da die Spektren so am deutlichsten lesbar sind. 
+Dies lässt sich durch einen Vergleich von Spektren am \textit{Anhang I} und am \textit{Anhang II} mit dem am \textit{Anhang III} verdeutlichen.
+
+\subsection{Bestimmung der Bindungslänge des CO-Moleküls}
+In dem Versuch sollte die Bindungslänge des CO-Moleküls mit Hilfe der 
+
+Die Werte, die für die Kombinationsdifferenz benötigt werden sind im R- bzw. P-Zweig enthalten. 
+Hierzu werden zunächste die Rotationskonstanten $B_0$ und $B_1$ benötigt.
+Durch Auftragung von $\Delta \tilde {\nu}$ gegen $J+0.5$ wird eine Gerade erhalten, 
+mit deren Steigung die Rotationskonstanten berechnet werden können. 
+Für den Grundzustand ergeben sich somit folgende Werte:
+
+
+\subsection{Bestimmung der Dissoziationsenergie des CO-Moleküls}
+
+Die Dissoziationsenergie kann mit Hilfe der Birge-Spooner-Extrapolation berechnet werden. Hierfür werden zunächst die Werte des Q-Zweiges aus den Mittelwerten der ersten Übergänge des P- und R-Zweiges ermittelt.
+Die verwendeten Werte für die Birge-Spooner-Extrapolation betragen somit:
+
+
+
+%\printbibliography
 \end{document}

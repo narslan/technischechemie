@@ -1,0 +1,209 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[landscape,a4paper]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+%\usetikzlibrary{datavisualization} 
+
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{luacode}
+\usepackage{helvet}
+
+%\usepackage[landscape]{geometry}
+%\setmainfont{Ubuntu}
+%\setmainfont{Linux Libertine}
+%\setsansfont{Linux Biolinum}
+\usepackage{paratype}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+
+\usepackage[top=0cm, bottom=0cm, left=0.5cm, right=0.5cm]{geometry}
+
+
+\rhead{ Gruppe 6}
+\lhead{\textbf{Infrarot Spektroskopie} Vibrationsspektrum -  \textbf{Anhang VII}}
+\fancyheadoffset{-1cm}
+\pagenumbering{gobble}
+\usetikzlibrary{pgfplots.groupplots}
+
+\begin{luacode*}
+
+
+  fs = dofile("fs.lua")
+  function drawPR()
+
+  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  erste_ableitung = {}
+  
+  for i=1,#px do
+    if i%2 == 0 then
+      dif = px[i]-px[i-1]
+      table.insert(erste_ableitung, dif)
+  end
+  end
+
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+    for i=1,#rx do
+    tex.sprint("("..rx[i]..","..ry[i]..")")
+    end
+
+  tex.sprint("};")
+
+  -- tex.sprint("\\addplot[".."rouge".."] coordinates{")
+  --     tex.sprint("};")
+  -- tex.sprint("\\draw (axis cs:2142.0,0) -- (axis cs:2142,130) node [above] {Q-Zweig};")
+  tex.sprint("\\draw (axis cs:2143.18,0) -- (axis cs:2143.18,1.8) node [anchor=north,rotate=90,above,font=\\tiny,pos=0.9] {Q-Zweig $\\tilde{\\nu}$=2143.18 } ;")
+    
+    
+
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+  -- Q-Zweig bei 2142
+
+  end
+
+  function drawRZW()
+
+  -- px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    for i=1,#rx do
+    tex.sprint("("..rx[i]..","..ry[i]..")")
+    end
+  tex.sprint("};")
+  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    --   for i=1,#rx do
+    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+    --   end
+  -- tex.sprint("};")
+
+
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+  -- Q-Zweig bei 2141
+
+  end
+
+  function drawBIRGE()
+
+  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
+  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
+
+  tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
+    --   for i=1,#rx do
+    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
+    --   end
+  -- tex.sprint("};")
+
+
+  --tex.sprint("\\addlegendentry{Anregung}")
+
+  -- Q-Zweig bei 2141
+
+  end
+
+
+\end{luacode*}
+
+
+\newcommand\addplotpr{\directlua{drawPR()}}
+\newcommand\addplotrzw{\directlua{drawRZW()}}
+\newcommand\addplotdiff{\directlua{drawDIFF()}}
+\newcommand\addplotbirge{\directlua{drawBIRGE()}}
+
+
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+\begin{document}
+
+\pgfplotsset{
+  standard/.style={
+    axis x line*=bottom,
+    axis y line=left,
+    ylabel= Intensität ,
+    x unit= \si{\per\centi\meter},
+    legend style={at={(0.8,1)},anchor=north},
+    y label style={at={(axis description cs:-.1,.5)},anchor=south},
+    x tick label style={rotate=90,anchor=east, font=\tiny},
+    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+    yticklabel style={/pgf/number format/fixed},
+    scaled y ticks=false,
+    legend cell align=left,
+    x dir=reverse
+  }
+}
+
+\begin{tikzpicture}[scale=2.5,every node/.style={scale=0.6}]
+  \begin{axis}[standard,title= \textsf{IR-Spektrum von CO bei 1 \si{\per\centi\meter} Auflösung und 1 Scan},ycomb,line width=0.1pt, enlarge x limits={abs=0.2cm},xtick=data, xlabel=$\tilde{\nu}$]
+    \addplotpr
+    \end{axis}
+  \end{tikzpicture}
+
+
+
+  %\begin{adjustbox}{width=0.9\textwidth}
+  %\begin{tikzpicture}
+  %\begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 1 Scan},ycomb,line width=0.1pt, xtick=data,x tick label style={font=\tiny\sffamily},font={\sffamily}]
+  %  \addplotdiff
+  %\end{axis}
+  %\end{tikzpicture}
+  %\end{adjustbox}
+
+  %\begin{tikzpicture}[scale=2]
+  % \begin{axis}[standard,title= \textbf{P-Zweig},ycomb,line width=0.1pt, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
+  % \addplotpr
+  %\end{axis}
+  %\end{tikzpicture}
+
+  %\begin{tikzpicture}[scale=2]
+  %  \begin{axis}[standard,title= \textbf{R-Zweig},ycomb,line width=0.1pt, xtick=data]
+  %  \addplotrzw
+  %\end{axis}
+  %\end{tikzpicture}
+
+
+
+
+
+
+  \end{document}

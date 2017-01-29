@@ -42,102 +42,26 @@
 
   fs = dofile("fs.lua")
 
+  function drawAG()
 
-
-
-  function drawPR()
-
-  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
-  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
-
-  erste_ableitung = {}
-  
-  for i=1,#px do
-    if i%2 == 0 then
-      dif = px[i]-px[i-1]
-      table.insert(erste_ableitung, dif)
-  end
-  end
-
+  px,py = fs.readcsv("data/silber/vorkratzen1.txt",0)
 
 
   tex.sprint("\\addplot[".."darkblue".."] coordinates{")
     for i=1,#px do
     tex.sprint("("..px[i]..","..py[i]..")")
     end
-    for i=1,#rx do
-    tex.sprint("("..rx[i]..","..ry[i]..")")
-    end
-
   tex.sprint("};")
 
-  -- tex.sprint("\\addplot[".."rouge".."] coordinates{")
-  --     tex.sprint("};")
-  -- tex.sprint("\\draw (axis cs:2142.0,0) -- (axis cs:2142,130) node [above] {Q-Zweig};")
-  tex.sprint("\\draw (axis cs:2143.18,0) -- (axis cs:2143.18,1.4) node [anchor=north,rotate=90,above,font=\\tiny,pos=0.9] {Q-Zweig $\\tilde{\\nu}$=2143.18 } ;")
-    
-    
-
-  --tex.sprint("\\addlegendentry{Anregung}")
-
-  -- Q-Zweig bei 2142
 
   end
 
-  function drawRZW()
-
-  -- px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
-  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
-
-  tex.sprint("\\addplot[".."rouge".."] coordinates{")
-    for i=1,#rx do
-    tex.sprint("("..rx[i]..","..ry[i]..")")
-    end
-  tex.sprint("};")
-  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
-    --   for i=1,#rx do
-    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
-    --   end
-  -- tex.sprint("};")
-
-
-  --tex.sprint("\\addlegendentry{Anregung}")
-
-  -- Q-Zweig bei 2141
-
-  end
-
-  function drawBIRGE()
-
-  px,py = fs.readcsv("data/pzweig1cm1Scan.txt",0)
-  rx,ry = fs.readcsv("data/rzweig1cm1Scan.txt",0)
-
-  tex.sprint("\\addplot[".."skyblue1".."] coordinates{")
-    for i=1,#px do
-    tex.sprint("("..px[i]..","..py[i]..")")
-    end
-  tex.sprint("};")
-  --  tex.sprint("\\addplot[".."rouge".."] coordinates{")
-    --   for i=1,#rx do
-    --   	tex.sprint("("..rx[i]..","..ry[i]..")")
-    --   end
-  -- tex.sprint("};")
-
-
-  --tex.sprint("\\addlegendentry{Anregung}")
-
-  -- Q-Zweig bei 2141
-
-  end
 
 
 \end{luacode*}
 
 
-\newcommand\addplotpr{\directlua{drawPR()}}
-\newcommand\addplotrzw{\directlua{drawRZW()}}
-\newcommand\addplotdiff{\directlua{drawDIFF()}}
-\newcommand\addplotbirge{\directlua{drawBIRGE()}}
+\newcommand\addplotpr{\directlua{drawAG()}}
 
 
 
@@ -176,9 +100,10 @@
     x dir=reverse
   }
 }
-
+%\pgfplotsset{tick style={very thin,gray}}
+%
 \begin{tikzpicture}[scale=2.5,every node/.style={scale=0.6}]
-  \begin{axis}[standard,title= \textsf{IR-Spektrum von CO bei 1 \si{\per\centi\meter} Auflösung und 1 Scan},ycomb,line width=0.1pt, enlarge x limits={abs=0.2cm},xtick=data, xlabel=$\tilde{\nu}$]
+  \begin{axis}[standard,title= Spektrum von Silber Probe, smooth, line width=0.1pt, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
     \addplotpr
     \end{axis}
   \end{tikzpicture}
