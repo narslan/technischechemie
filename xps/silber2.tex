@@ -109,7 +109,7 @@
     y label style={at={(axis description cs:-.1,.5)},anchor=south},
     x tick label style={rotate=90,anchor=east, font=\tiny},
     tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
-    yticklabel style={/pgf/number format/fixed},
+    yticklabel style={/pgf/number format/fixed,scale=0.6},
     scaled y ticks=false,
     legend cell align=left,
     x dir=reverse
@@ -117,40 +117,26 @@
 }
 %\pgfplotsset{tick style={very thin,gray}}
 %
-\begin{tikzpicture}[scale=2.5,every node/.style={scale=0.6}]
-  \begin{axis}[standard,title= Spektrum von Silber Probe -Nach Sputter, smooth, line width=0.1pt, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
+
+\begin{figure}
+\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
+  \begin{axis}[standard, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
     \addplotpr
     \end{axis}
   \end{tikzpicture}
+	\caption{XPS-Spektrum eines AG-Drahts nach dem \textit{Sputting}}
+\end{figure}
 
-\begin{tikzpicture}[scale=2.5,every node/.style={scale=0.6}]
-  \begin{axis}[standard,title= Spektrum von Silber Probe -Nach Sputter 3D, smooth, line width=0.1pt, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
+
+\begin{figure}
+\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
+  \begin{axis}[standard, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
     \addplotdd
     \end{axis}
   \end{tikzpicture}
 
-
-
-  %\begin{adjustbox}{width=0.9\textwidth}
-  %\begin{tikzpicture}
-  %\begin{axis}[standard,title= \textbf{1 $cm^{-1}$ / 1 Scan},ycomb,line width=0.1pt, xtick=data,x tick label style={font=\tiny\sffamily},font={\sffamily}]
-  %  \addplotdiff
-  %\end{axis}
-  %\end{tikzpicture}
-  %\end{adjustbox}
-
-  %\begin{tikzpicture}[scale=2]
-  % \begin{axis}[standard,title= \textbf{P-Zweig},ycomb,line width=0.1pt, every node near coord/.append style={font=\tiny,rotate=90,anchor=west},enlarge x limits={abs=0.2cm},xtick=data]
-  % \addplotpr
-  %\end{axis}
-  %\end{tikzpicture}
-
-  %\begin{tikzpicture}[scale=2]
-  %  \begin{axis}[standard,title= \textbf{R-Zweig},ycomb,line width=0.1pt, xtick=data]
-  %  \addplotrzw
-  %\end{axis}
-  %\end{tikzpicture}
-
+	\caption{Das hochaufgelöste XPS-Spektrum des AG-Drahts nach dem \textit{Sputting}}
+\end{figure}
 
 
 
