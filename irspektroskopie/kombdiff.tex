@@ -1,0 +1,104 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[12pt]{article}
+\usepackage{amsmath,mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{comment}
+\usepackage{nicefrac}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{tikz}
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+%\usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{luacode}
+\floatstyle{plaintop}
+\restylefloat{table}
+%\usepackage[justification=justified,singlelinecheck=false]{caption}
+\usepgfplotslibrary{units}
+\usetikzlibrary{pgfplots.groupplots}
+%\usepackage{gensymb}
+
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\fancyhf{}
+\rhead{13.12.2016}
+\lhead{Nevroz Arslan, Justin König Gruppe 6}
+\setlength{\headheight}{15pt}
+\rfoot{\thepage }
+\lfoot{Versuch 1: Fluoreszenzspektroskopie}
+\pagestyle{fancy}
+
+\usepackage{url}
+\usepackage{csquotes}
+\sisetup{
+  round-mode          = figures,
+  round-precision     = 2,
+  inter-unit-product =\cdot,
+  group-digits=true,          %% Zifferngruppierung an/aus
+  scientific-notation = true,
+}
+\renewcommand{\arraystretch}{1.5}
+%\usepackage{unicode-math}
+
+%\setmainfont[Numbers = OldStyle,Ligatures = TeX,SmallCapsFeatures = {Renderer=Basic}]{Minion Pro}
+%\setsansfont[Numbers={OldStyle,Proportional},Scale=MatchLowercase]{Minion Pro}
+%\setmonofont[Numbers=OldStyle,Scale=MatchLowercase]{Minion Pro}
+%\setmathfont{MnSymbol}
+%\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Minion Pro}
+%\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{MinionPro-Bold}
+%\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{MinionPro-It}
+%\setmathfont[range=\mathbfit/{num,latin,Latin,greek,Greek}]{MinionPro-BoldIt}
+%\setmathrm{Minion Pro}
+%usepackage{sansmath} % Enables turning on sans-serif math mode, and using other environments
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+\definecolor{left} {HTML}{c1f0c1}
+
+\newcommand\addplotzr{\directlua{drawZZ()}}
+\begin{document}
+\begin{figure}[!htbp]
+  \begin{tikzpicture}[]{
+			 \draw (0,1) -- (4,1) node[left=-12mm] {$J-1$};
+			 \draw (0,2) -- (4,2) node[left=-5mm] {$J$};
+			 \draw (0,3) -- (4,3) node[left=-12mm] {$J+1$};
+			 
+			 \draw (0,-2) -- (4,-2) node[left=-12mm] {$J+1$};
+			 \draw (0,-3) -- (4,-3) node[left=-5mm] {$J$};
+			 \draw (0,-4) -- (4,-4) node[left=-12mm] {$J-1$};
+
+			 \draw[color=violet] (0.5,-4) -- (0.5,2) node[pos=0.6,above=2pt,rotate=90] {$\tilde{\nu} _R (J-1)$};
+			 \draw[color=violet] (1.5,-2) -- (1.5,2) node[pos=0.44,above=2pt,rotate=90] {$\tilde{\nu} _P (J+1)$};
+			 \draw[color=violet] (2.5,-3) -- (2.5,3) node[pos=0.45,above=2pt,rotate=90] {$\tilde{\nu} _R (J)$};
+			 \draw[color=violet] (3.8,1) -- (3.8,-3) node[pos=0.4,above=2pt,rotate=90] {$\tilde{\nu} _P (J)$};
+			 \node [shading = axis,rectangle, left color=left, right color=left!30!white, anchor=north, minimum height=2cm] (box) at (-1,-2){$B_0$};
+			 \node [shading = axis,rectangle, left color=left, right color=left!30!white, anchor=north, minimum height=2cm] (box) at (-1,3){$B_1$};
+
+			}
+    \end{tikzpicture}
+    \caption{Das Verfahren der Kombinatonsdifferenzen}
+  \end{figure}
+  \end{document}
