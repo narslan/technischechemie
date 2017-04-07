@@ -18,7 +18,8 @@
 *.ps
 *.jpg
 *.png
-## Bibliography auxiliary files (bibtex/biblatex/biber):
+*.ppt
+### Bibliography auxiliary files (bibtex/biblatex/biber):
 *.bbl
 *.bcf
 *.blg
