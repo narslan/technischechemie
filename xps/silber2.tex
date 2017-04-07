@@ -11,7 +11,7 @@
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
 %\usetikzlibrary{datavisualization} 
-
+\usepackage{graphicx}
 \usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{luacode}
 \usepackage{helvet}
@@ -28,11 +28,12 @@
 \usepackage{subcaption}
 \usepackage{adjustbox}
 
-\usepackage[top=0cm, bottom=0cm, left=0.5cm, right=0.5cm]{geometry}
+\usepackage[top=3cm, bottom=3cm, left=2cm, right=2cm]{geometry}
 
+\setlength{\headheight}{30pt} 
 
-\rhead{ Gruppe 6}
-\lhead{\textbf{XPS} Spektren}
+\rhead{ \Large \textbf{$\mathsf{Ag^0}$}}
+\lhead{\large \textbf{Silber Metal (Z=47) \textit{Sputting}}}
 \fancyheadoffset{-1cm}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
@@ -47,27 +48,41 @@
   px,py = fs.readcsv("data/silber/nachkratzen1.txt",0)
 
 
-  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
-    for i=1,#px do
-    tex.sprint("("..px[i]..","..py[i]..")")
-    end
-  tex.sprint("};")
+	tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+		for i=1,#px do
+		tex.sprint("("..px[i]..","..py[i]..")")
+		end
+	tex.sprint("};")
+	tex.sprint("\\node[darkblue] (a) at (-26,700) {4d};")
+	tex.sprint("\\node[violet] (b) at (30,440) {\\footnotesize 4p};")
+	tex.sprint("\\node[violet] (c) at (80,440) {\\footnotesize 4s};")
+	
+	tex.sprint("\\node[violet] (d) at (328,6000) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (e) at (328,6000) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (f) at (420,5050) {$\\mathsf{3d_{\\frac{3}{2}}}$};")
+	tex.sprint("\\node[violet](g) at (523,2720) {$\\mathsf{3p_{\\frac{3}{2}}}$};")
+	tex.sprint("\\node[violet](h) at (640,2320) {$\\mathsf{3p_{\\frac{1}{2}}}$};")
+
+	tex.sprint("\\node[violet] (j) at (719,1650) {\\footnotesize 3s};")
+	tex.sprint("\\node (m) at (990,4073) {MNN-Auger};")
+
+	end
+
+	function drawAGDD()
+
+	px,py = fs.readcsv("data/silber/nachkratzen3d.txt",0)
 
 
-  end
-  function drawAGDD()
-
-  px,py = fs.readcsv("data/silber/nachkratzen3d.txt",0)
-
-
-  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
-    for i=1,#px do
-    tex.sprint("("..px[i]..","..py[i]..")")
-    end
-  tex.sprint("};")
+	tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+		for i=1,#px do
+		tex.sprint("("..px[i]..","..py[i]..")")
+		end
+	tex.sprint("};")
+	tex.sprint("\\node[violet] (et) at (368,1550) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (ft) at (374,1150) {$\\mathsf{3d_{\\frac{3}{2}}}$};")
 
 
-  end
+	end
 
 
 
@@ -100,46 +115,68 @@
 \begin{document}
 
 \pgfplotsset{
-  standard/.style={
-    axis x line*=bottom,
-    axis y line=left,
-    ylabel= Intensität ,
-    x unit= \si{\per\centi\meter},
-    legend style={at={(0.8,1)},anchor=north},
-    y label style={at={(axis description cs:-.1,.5)},anchor=south},
-    x tick label style={rotate=90,anchor=east, font=\tiny},
-    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
-    yticklabel style={/pgf/number format/fixed,scale=0.6},
-    scaled y ticks=false,
-    legend cell align=left,
-    x dir=reverse
-  }
+	standard/.style={
+		axis x line*=bottom,
+		axis y line=left,
+		ylabel= Intensität ,
+		xlabel= Bindungsenergie,
+		x unit= \si{\electronvolt},
+		legend style={at={(0.8,1)},anchor=north},
+		y label style={at={(axis description cs:-.1,.5)},anchor=south},
+		x tick label style={rotate=90,anchor=east, font=\tiny},
+		tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+		yticklabel style={/pgf/number format/fixed,scale=0.6},
+		scaled y ticks=false,
+		legend cell align=left,
+		x dir=reverse
+	}
 }
 %\pgfplotsset{tick style={very thin,gray}}
 %
+%\begin{figure}
+%\begin{tikzpicture}[every node/.style={scale=0.6}]
+%  \begin{axis}[standard, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
+%    \addplotdd
+%    \end{axis}
+%  \end{tikzpicture}
 
-\begin{figure}
-\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
-  \begin{axis}[standard, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
-    \addplotpr
-    \end{axis}
-  \end{tikzpicture}
-	\caption{XPS-Spektrum eines AG-Drahts nach dem \textit{Sputting}}
-\end{figure}
+%	\caption{Das hochaufgelöste XPS-Spektrum des AG-Drahts nach dem \textit{Sputting}}
+%\end{figure}
+
+\begin{figure}[!htpb]
+	\centering 
+	\resizebox{21cm}{14cm}{%
+		\begin{tikzpicture}[every node/.style={transform shape}, every node/.style={scale=0.6}]
+			\begin{axis}[
+					standard,
+					enlarge x limits={abs=0.2cm},
+					minor x tick num=1,
+					ymax=8000,
+					/tikz/line join=bevel]
+				\addplotpr
+				\end{axis}
+			\end{tikzpicture}
+		}
+	\caption{Das gesamt XPS-Spektrum von $Ag^0$}
+	\end{figure}
 
 
-\begin{figure}
-\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
-  \begin{axis}[standard, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
-    \addplotdd
-    \end{axis}
-  \end{tikzpicture}
+\begin{figure}[!htpb]
+	\centering 
+	\resizebox{21cm}{14cm}{%
+		\begin{tikzpicture}[every node/.style={transform shape}, every node/.style={scale=0.6}]
+			\begin{axis}[
+					standard,
+					enlarge x limits={abs=0.2cm},
+					minor x tick num=1,
+					ymax=2000,
+					/tikz/line join=bevel]
+				\addplotdd
+				\end{axis}
+			\end{tikzpicture}
+		}
+	\caption{Das hochaufgelöste XPS-Spektrum von $Ag^0$ um $3d_{3/2}$ $3d_{5/2}$}
+	\end{figure}
 
-	\caption{Das hochaufgelöste XPS-Spektrum des AG-Drahts nach dem \textit{Sputting}}
-\end{figure}
 
-
-
-
-
-  \end{document}
+	\end{document}

@@ -1,0 +1,313 @@
+\documentclass{article}
+\usepackage{amsmath,mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{comment}
+\usepackage{nicefrac}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
+\usepackage{luacode}
+\usepackage{paratype}
+\renewcommand*\familydefault{\sfdefault} %% Only if the base font of the document is to be sans serif
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+
+\begin{luacode*}
+
+
+  fs = dofile("fs.lua")
+
+  function drawAG()
+
+  px,py = fs.readcsv("data/silber/nachkratzen1.txt",0)
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+  tex.sprint("\\node (a) at (-26,700) {4d};")
+  tex.sprint("\\node[red] (b) at (30,400) {\\footnotesize 4p};")
+  tex.sprint("\\node[red] (c) at (80,400) {\\footnotesize 4s};")
+     tex.sprint("\\node[red] (d) at (328,6000) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+     tex.sprint("\\node[red] (e) at (420,5050) {$\\mathsf{3d_{\\frac{3}{2}}}$};")
+     tex.sprint("\\node[red](f) at (523,2720) {$\\mathsf{3p_{\\frac{3}{2}}}$};")
+     tex.sprint("\\node[red](g) at (640,2320) {$\\mathsf{3p_{\\frac{1}{2}}}$};")
+  
+     tex.sprint("\\node (h) at (990,4073) {MNN-Auger};")
+
+
+  end
+  function drawAGDD()
+
+  px,py = fs.readcsv("data/silber/nachkratzen3d.txt",0)
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+
+
+  end
+
+
+
+
+\end{luacode*}
+
+
+\newcommand\addplotpr{\directlua{drawAG()}}
+\newcommand\addplotdd{\directlua{drawAGDD()}}
+
+
+
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+
+
+\usepackage{fancyhdr}
+\fancyhf{}
+\rhead{27.02.2017}
+\lhead{Nevroz Arslan, Justin König Gruppe 6}
+\setlength{\headheight}{15pt}
+\rfoot{\thepage }
+\lfoot{Versuch 3: Röntgenphotoelektronenspektroskopie}
+\pagestyle{fancy}
+%\renewcommand{\thesection}{\arabic{section}}% Remove section references...
+%\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
+%\usepackage[backend=biber,sorting=none]{biblatex} \addbibresource{books.bib}
+
+\usepackage{url} \usepackage{csquotes}
+\sisetup{inter-unit-product=\ensuremath{{}\cdot{}}}
+\renewcommand{\arraystretch}{1.5}
+
+
+\begin{document}
+
+\section{Ziel des Versuches}
+Mit Hilfe der Photoelektronenspektroskopie sollen Spektren von Silber $Ag$ , einer unbekannten Probe sowie eines Polymers aufgenommen werden. Anhand der aufgenommen Spektren sollen die elementare Zusammensetzung der Proben bestimmt werden.
+
+\section {Theorie~\supercite{skript} ~\supercite{harris}}
+
+\subsection{Photoelektrischer Effekt}
+
+Die Grundlage der XPS beruht auf dem photoelektrischen Effekt. Hierbei werden die Rumpfelektronen eines Atoms mittels Röntgenstrahlen angeregt. Die emittierte Energie, die durch die Elektronen abgegeben wird, wenn es zur Relaxation aus einem Orbital höherer Energie kommt, ist Element spezifisch. Die Energie die benötigt wird um ein Elektron vom Atom zu entfernen, ist die Bindungsenergie des Elektrons. Die überschüssige Energie wird vom Elektron in Form kinetischer Energie behalten. Somit ist die zugeführte Energie des XPS die Summe der Bindungs- und der Kinetischen Energie des emittierten Elektrons.
+
+\begin{equation}
+    h\nu = E_B + E_{kin}
+\end{equation}
+
+\subsection{Zuständer der Elektronen}
+
+
+
+Elektronen befinden sich in Orbitalen, deren Zustände sich durch vier Quantenzahlen beschreiben lassen. Die Hauptquantenzahl n, Nebenquantenzahl l, magnetische Quantenzahl m$_l$ und die Spinquantenzahl m$_s$. Besonders die Haupt- und Nebenquantenzahlen sind maßgeblich für die Energie der jeweiligen Elektronen. Die unterschiedlichen Zustände sind von großer Bedeutung bei der XPS. Wie bereits oben beschrieben, wird die Energiedifferenz beim Austreten der Elektronen aufgenommen, wodurch das Übersichtsspektrum entsteht. Ebenfalls sind die Energien durch die Quantenzahlen festgelegt. Somit sind die gegebenen Bindungsenergien, Element- und Orbitalspezifisch. Jedoch kann es zu Überlagerung in einem Spektrum kommen, da den Valenzelektronen schon eine geringe Energie ausreicht um die Orbitale des Atoms zu verlassen. Dieser Energiebetrag nährt sich den Werten unterschiedlicher Elemente wodurch es zu Überlagerungen der Peaks in einem Spektrum kommen kann.
+
+
+
+\subsection{Sekundär Elektronen}
+
+Sekundär Elektronen sind Elektronen die aus einer tiefer liegenden Atomschicht emittiert wurden, durch diesen tieferen Ausgangspunkt kommt es beim austritt aus der Probe zur Bremsung durch unelastische Stöße. Sie erscheinen in einem Spektrum bei einer höheren Bindungsenergie. Dieser Effekt macht es nötig eine Untergrund-Korrektur durch zu führen. Außerdem wird durch diesen Effekt aufgezeigt, dass es sich bei der XPS im eine Oberflächenemdpfindliche Methode handelt. 
+
+\subsection{Auger-Elektronen}
+
+Die Auger-Elektronen, entstehen als direkte Folge der Photo emittierten Elektronen. Diese hinterlassen bei dem Verlassen ihrer Schale eine Lücke, die von Elektronen aus höher liegenden Schalen aus energetischen Gründen wieder besetzt werden. Durch die hierbei frei werdende Energie kann es zur Emission eines anderen auf einem passenden Energieniveau liegenden Elektrons kommen. Somit entstehen bei diesem Ablauf zweifach ionisierte Atome. Die kinetische Energie des Auger-Elektrons ergibt sich mit:
+
+\begin{equation}
+    E{_kin} = (E_1-E_2)-E_3
+\end{equation}
+
+\subsection{Chemische Verschiebung}
+
+Handelt es sich bei der zu untersuchenden Probe um Moleküle, so wirken sich auch Elektronenziehende und -schiebende Effekte auf die Position der Peaks im Spektrum aus. Bei positiver Polarisierung kommt es zu Verschiebung des Signales zu einer höheren Energie, da die Elektronen in einem positiv polarisierten Atoms fester an den Kern gebunden sind. Durch die Chemische Verschiebung lassen sich in Spektren unterschiedlich polarisierte Verbindungen identifizieren.
+
+\subsection{Sputtering}
+
+Für das Sputtering wird ein neutrales Gas genutzt, bei welchem ein Teil der Atome des Gases ionisiert werden und auf die Probe geschossen werden. Diese ionisierten Atome dienen zur Entfernung von Kontaminationen auf der Oberfläche der Probe. Jedoch sollte immer bedacht werden, das empfindliche Proben durch das Sputtering in ihrer chemischen Struktur verändert werden können. 
+
+
+
+\section{Auswertung}
+
+\subsection{Silber Probe}
+
+\begin{table}[htpb]
+  \centering
+  \caption{Werte der Silber-Probe}
+  \label{tab:chsc}
+  \begin{tabular}{cc}
+   Bindungsenergie E$_B$ [eV] & Photoelektronen-/Augerlinie\\
+  60 & Ag 4p$_{3/2}$ \\
+ 368 & Ag 3d$_{5/2}$ \\
+ 374 & Ag 3d$_{3/2}$ \\
+ 573 & Ag 3p$_{3/2}$ \\
+ 604 & Ag 3p$_{1/2}$ \\
+ 720 & Ag 3s \\
+ 1135 & Ag MNN \\
+ 1129 & Ag MNN \\
+  
+  \end{tabular}
+
+\end{table}
+
+
+\pgfplotsset{
+  standard/.style={
+    axis x line*=bottom,
+    axis y line=left,
+    ylabel= Intensität ,
+    x unit= \si{\electronvolt},
+    legend style={at={(0.8,1)},anchor=north},
+    y label style={at={(axis description cs:-.1,.5)},anchor=south},
+    x tick label style={rotate=90,anchor=east, font=\tiny},
+    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+    yticklabel style={/pgf/number format/fixed,scale=0.6},
+    scaled y ticks=false,
+    legend cell align=left,
+    x dir=reverse
+  }
+}
+
+
+
+\subsection{Unbekannte Probe}
+
+\begin{table}[htpb]
+  \centering
+  \caption{Werte der Unbekannten-Probe}
+  \label{tab:chsac}
+  \begin{tabular}{cc}
+   Bindungsenergie E$_B$ [eV] & Photoelektronen-/Augerlinie\\
+  77 & Cu 3p$_{1/2}$ \\
+ 88 & Zn 3p$_{3/2}$ \\
+ 123 & Cu 3s \\
+ 138 & Zn 3s \\
+ 285 & C 1s \\
+ 473 & Zn LMM \\
+ 495 & Zn LMM \\
+ 531 & O 1s \\
+ 559 & Zn LMM \\
+ 567 & Cu KLL \\
+ 640 & Mn 2p$_{3/2}$ \\
+ 647 & Cu LMM \\
+ 720 & Cu LMM \\
+ 933 & Cu 2p$_{3/2}$ \\
+ 952 & Cu 2p$_{1/2}$ \\
+ 1022 & Zn 2p$_{3/2}$\\
+ 1044 & Zn 2p$_{1/2}$ \\
+ 1073 & Na 1s \\
+ 1098 & Cu 2s \\
+ 1196 & Zn 2s \\
+
+  \end{tabular}
+
+\end{table}
+ 
+Durch Entfernen der obersten Schicht werden alle adsorbierten Moleküle auf der Oberfläche entfernt. Dies führt dazu, dass wesentlich mehr Peaks im Spektrum aufgelöst und erkannt werden können. Gut zu sehen ist ebenso, dass die Peaks des Sauerstoffs und Kohlenstoffs nach dem Sputtern wesentlich kleiner sind als zuvor.
+
+\subsection{PET-Probe}
+
+\begin{table}[htpb]
+  \centering
+  \caption{Übersicht PET}
+  \label{tab:pet}
+  \begin{tabular}{cc}
+   Bindungsenergie E$_B$ [eV] & Photoelektronen-/Augerlinie\\
+ 284  & C 1s \\
+ 533 & O 1s \\
+ 979 & O KLL \\
+ 1229 & C KLL \\
+   \end{tabular}
+\end{table}
+  
+
+
+\subsection{Hochaufgelöstes C1-Spektrum }
+
+Im PET-Übersichtsspektrum ist für C1s lediglich ein Peak zu sehen. Wenn der Bereich von 279eV bis 297eV jedoch hoch aufgelöst wird, spaltet sich der eine Peak des Übersichtsspektrums in drei (im C1-Spektrum erkennbare) Peaks auf. Diese drei Peaks resultieren aus der chemischen Verschiebung der drei verschiedenen Kohlenstoffsorten im Polymer, verursacht durch die unterschiedlichen Bindungspartner. Bei der niedrigsten Bindungsenergie von 284,56 eV findet sich das C-H, des aromatischen Systems. Es ist nur an C-Atome sowie an Wasserstoffatome gebunden. Diese Reste bilden keinen nennenswerten elektronenschiebenden bzw. ziehenden Effekte, somit ist es hier am leichtesten, ein Elektron aus der Innenschale zu entfernen. Die Komponente der mittleren Bindungsenergie mit 286,13 eV bildet das C-O. Es besizt eine Bindung zum  elektronegativeren Sauerstoff. Dieses übt auf das Kohlenstoffatom einen elektronenziehenden Effekt aus, wodurch das Kohlenstoffatom partiell positiv polarisiert wird. Durch diese partielle Polarisation werden alle Elektronen des Kohlenstoffs stärker an den Kern heran gezogen, wodurch eine höhere Bindungsenergie aller Elektronen entsteht. Diese leicht erhöhte Bindungsenergie ist im Spektrum zu erkennen.
+Im Fall der dritten Komponente, des C=O,  tritt der gleiche Effekt auf. Hier trägt das Kohlenstoffatom gleich zwei Bindungen zum stark elektronegativeren Element Sauerstoff, wodurch der zuvor beschriebene Effekt noch verstärkt wird und die Bindungsenergie der Elektronen somit noch weiter zunimmt (288,62 eV).
+
+\subsection{Hochaufgelöstes O1-Spektrum}
+
+Bei dem hoch Auflösen des Bereiches von 525eV bis 545eV, erkennt man wie die auftrennung des Sauerstoffpeaks in zwei Peaks. Auch hier handelt es sich um zwei verschiedene Sauerstoffsorten im PET. Das eine Sauerstoffatom(O=C) besitzt eine ungesättigte Doppelbindung zu einem Kohlenstoffatom, und kann daher mehr Elektronendichte zu sich herziehen als das andere Sauerstoffatom(C-O), das lediglich mit einer Einfachbindung an ein Kohlenstoffatom gebunden ist. Da das C-O somit eine niedrigere Elektronendichte besitzt als das O=C, sind die Elektronen des C-O schwerer zu entfernen und haben somit eine höhere Bindungsenergie als das O=C. Der Peak bei EB=531,9eV lässt sich dadurch dem C-O zuordnen und der Peak bei EB=532,99eV dem O=C.
+
+
+\subsection{Verhältnisberechnung}
+
+
+Das prozentuale Verhältnis der Kohlenstoffsorten zueinander betrug:
+
+\begin{table}[htpb]
+  \centering
+  \caption{}
+  \label{tab:cverh}
+  \begin{tabular}{cc}
+   Bindungsenergie E$_B$ [eV] & Photoelektronen-/Augerlinie\\
+ C-H  & 69.00\% \\
+ C-O & 18.14 \% \\
+ C=O & 12.85 \% \\
+  \end{tabular}
+\end{table}
+  Die nach der Strukturformel des Polymers erwartete Zusammensetzung ist allerdings:
+\begin{table}[htpb]
+  \centering
+  \caption{}
+  \label{tab:orig}
+  \begin{tabular}{cc}
+   Bindungsenergie E$_B$ [eV] & Photoelektronen-/Augerlinie\\
+ C-H  & 50\% \\
+ C-O & 25 \% \\
+ C=O & 25 \% \\
+  \end{tabular}
+
+\end{table}
+
+Diese Abweichung des gemessenen von erwartetem Wert ist durch eine Verunreinigung der Polymeroberfläche durch C-H-Gruppen zu erklären. 
+
+Das Verhältnis von C:O lässt sich dadurch ermitteln, dass man die Beziehung ausnutzt, dass für jedes C-O und C=O jeweils ein Sauerstoff im Molekül vorhanden ist. Setzt man somit 
+ ((C-H)+(C-O)+(C=O)) : ((C-O)+(C=O)) ins Verhältnis, ergibt sich C:O. 
+
+C:O=(69,00+18,14+12,85) : (18,14+12,85)
+C:O=10:3
+Nach der Strukturformel wäre C:O=10:4 zu erwarten gewesen.
+
+Das Verhältnis von O-C : O=C aus der O1s-Signalanalyse betrug:
+O-C:	43,06\%	
+O=C:	56,93\%
+Dies entspricht ungefähr dem erwarteten Verhältnis von 1:1. 
+
+
+
+%\printbibliography
+
+\end{document}
+
+

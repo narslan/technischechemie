@@ -10,64 +10,68 @@
 \usepackage{pgfplotstable}
 \pgfplotsset{compat=newest}
 \usepgfplotslibrary{units}
-
-
+\usetikzlibrary{pgfplots.groupplots}
+%\usetikzlibrary{datavisualization} 
 
 \usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{luacode}
-
 \usepackage[bitstream-charter]{mathdesign}
 \usepackage{microtype}
 \usepackage[T1]{fontenc}
-
-
-%\usepackage[landscape]{geometry}
-%\setmainfont{Ubuntu}
-%\defaultfontfeatures{Ligatures=TeX,Numbers=OldStyle,Scale=MatchLowercase}
-%\setmainfont{Linux Libertine}
-%\setsansfont{Linux Biolinum}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{subcaption}
-\usepackage[landscape]{geometry}
 \usepackage{adjustbox}
 
 
-\rhead{ \Large \textbf{Polyethylenterephthalat}}
-\lhead{\large \textbf{ C (Z=6) und O (Z=8)  }}
+\usepackage[landscape]{geometry}
+\rhead{ \Large \textbf{$\mathsf{Zn^0} - \mathsf{Cu^0}$}}
+\lhead{\large \textbf{Zink Metal (Z=30) und Kupfer (Z=29)  }}
 
 
 \fancyheadoffset{-1cm}
 \pagenumbering{gobble}
-\usetikzlibrary{pgfplots.groupplots}
-\usepackage{pgfplotstable}
+
 \begin{luacode*}
 
 
   fs = dofile("fs.lua")
 
-  function drawPET()
+  function drawAGM()
 
-  px,py = fs.readcsv("data/pet/ubersichtspektrern.txt",0)
+  px,py = fs.readcsv("data/munze/vorkratzen.txt",0)
 
 
-  tex.sprint("\\addplot[".."black".."] coordinates{")
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
     for i=1,#px do
     tex.sprint("("..px[i]..","..py[i]..")")
     end
   tex.sprint("};")
 
-  tex.sprint("\\node[rotate=90] (a) at (290,1.7e5) {\\textbf{C 1s}};")
-  tex.sprint("\\node[rotate=90] (a) at (536,1.7e5) {\\textbf{O 1s}};")
 
   end
-  
+  function drawAGDDM()
+
+  px,py = fs.readcsv("data/munze/nachkratzen.txt",0)
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+
+
+  end
+
+
 
 
 \end{luacode*}
 
 
-\newcommand\addplotpr{\directlua{drawPET()}}
+\newcommand\addplotprm{\directlua{drawAGM()}}
+\newcommand\addplotddm{\directlua{drawAGDDM()}}
 
 
 
@@ -89,18 +93,19 @@
 
 
 \begin{document}
+
 \begin{figure}[!t]
 \begin{tikzpicture}
   \begin{groupplot}[
       group style={
         group name=my plots,
-        group size=1 by 1,
+        group size=1 by 2,
         xlabels at=edge bottom,
-        xticklabels at=edge bottom,
-        vertical sep=20pt
+        xticklabels at=all,
+        vertical sep=50pt
       },
       width=16cm,
-      height=12cm,
+      height=6cm,
       xlabel=Bindungsenergie,
       ylabel=Intensität, 
 			tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
@@ -113,28 +118,27 @@
 			legend style={draw=none,legend pos=outer north east},
 			legend cell align=left,
 			x dir=reverse,
-      ymin=0
+      xmin=0,xmax=1350
 		]
-    \nextgroupplot[title=\textbf{Spektrum ID\# VII}]
-		\addplotpr
-    			\end{groupplot}
+    \nextgroupplot[title=\textbf{Spektrum ID\# V}]
+		\addplotprm
+      \addlegendentry{Ohne Sputting}
+    \nextgroupplot[title=\textbf{Spektrum ID\# VI}]
+			\addplotddm
+      \addlegendentry{Mit Sputting}
+			\end{groupplot}
 		\end{tikzpicture}
-    \pgfplotstabletypeset[col sep=&,
+  \pgfplotstabletypeset[col sep=&,
    columns/a/.style={string type,column type=l,column name=\textbf{Spektrum ID\#}},
-   columns/b/.style={string type,column type=l,column name=\textsc{VII}},
+   columns/b/.style={string type,column type=l,column name=\textsc{V - VI}},
    ]{
    a & b
-   \textbf{Materie} & Polyethylenterephthalat 
+   \textbf{Materie} & $\mathsf{Zn^0 - ZnO  / Cu^0 - CuO - Cu_2O}$
    \textbf{Technik} & XPS 
-   \textbf{Spektral Bereich} & Übersicht
+   \textbf{Spektral Bereich} & 0 - 1350 \si{\electronvolt}
 }
+    \caption*{\textbf{Abbildung 3.} Das gesamt XPS-Spektrum einer Münze aus Zn und Kupfer}
 
-\caption*{\textbf{Abbildung 4.} Das Übersichtsspektrum von PET}
-	\end{figure}
+  \end{figure}
 
-
-
-
-
-
-  \end{document}
+	\end{document}

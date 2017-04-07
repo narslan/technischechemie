@@ -1,0 +1,130 @@
+% Page Layout
+\documentclass{beamer}
+\usepackage[latin1]{}
+\usepackage{tikz}
+\usepackage{chemfig}
+\usepackage{xcolor}
+
+\usepackage{siunitx}
+\usepackage[version=4]{mhchem}
+%\usepackage[method=mhchem]{chemmacros}
+\usepackage{graphicx}
+%\usetikzlibrary{positioning,calc,arrows}
+\usepackage{url}
+\usepackage[german]{babel}
+%\usepackage{libertine}
+%\renewcommand*\familydefault{\sfdefault}  %%
+%\usepackage[default]{opensans}
+%\usepackage{gillius2}
+%\usepackage{lato}
+\usepackage{adjustbox}
+%\usepackage[utf8]{inputenc}
+\usepackage{caption}
+
+\usepackage[T1]{fontenc}
+
+\usepackage{array} % needed for \arraybackslash
+\usepackage{graphicx}
+\usepackage{adjustbox} % for \adjincludegraphics
+%\usepackage[backend=biber]{biblatex}
+\usepackage{tabularx}
+%\addbibresource{lactam.bib}
+
+\sisetup{
+  round-mode          = places,
+  round-precision     = 2,
+  inter-unit-product =\ensuremath{{}\cdot{}}
+}
+ % Avoid an error due to a lack of registers
+\renewcommand*\printatom[1]{{\fontsize{14}{14}\selectfont\ensuremath{\mathsf{#1}}}}
+\definesubmol\cycleoplus{-[,0.25,,,draw=none]\oplus}
+\definesubmol{e}{-[,.1,,,draw=none]}
+\definesubmol\nobond{[,0.2,,,draw=none]}
+
+\definecolor{orange}{RGB}{255,127,0}
+%\include{head}
+\title[]{Ephedrin und Ephedra-Alkaloiden}
+\author[N. Arslan]{Nevroz Arslan}
+\date[18.04.17]{18. Apr 2017}
+%\titlegraphic{\includegraphics[width=\textwidth,height=.5\textheight]{bogen1200.png}}
+\setbeamerfont{page number in head/foot}{size=\large}
+\beamertemplatenavigationsymbolsempty
+
+
+\setdoublesep{4pt}
+\setatomsep{3em}
+\let\otp\titlepage
+\renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
+
+\begin{document}
+\setbeamercolor{block title}{use=structure,fg=black,bg=white}
+\setbeamercolor{block body}{use=structure,fg=black,bg=white}
+%\input{title.tex}
+%\setbeamerfont{bibliography item}{size=\scriptsize}
+%\setbeamerfont{bibliography entry author}{size=\scriptsize}
+%\setbeamerfont{bibliography entry title}{size=\scriptsize}
+%\setbeamerfont{bibliography entry location}{size=\scriptsize}
+%\setbeamerfont{bibliography entry note}{size=\scriptsize}
+%\setbeamerfont{bibliography entry url}{size=\scriptsize}
+
+
+%%%%%%%%%%%% Start of content %%%%%%%%%%%%
+
+%\input{seite11.tex}
+\usebackgroundtemplate{
+
+\includegraphics[width=1.0\paperwidth,height=0.17\paperheight]{bogen1200}
+\begin{tikzpicture}[overlay, remember picture]
+    \node[xshift=-10.80cm,yshift=1.15cm] at (0,0)    {\includegraphics[scale=0.6]{logo}};
+\end{tikzpicture}
+}
+
+\addtobeamertemplate{frametitle}{\vskip+7ex}{}
+\setbeamercolor{frametitle}{fg=black}
+\setbeamertemplate{caption}{\insertcaption}
+
+\setbeamertemplate{itemize/enumerate body begin}{\normalsize}
+\setbeamerfont{frametitle}{size=\large}
+\frame[plain]{\titlepage}
+\defbeamertemplate{footline}{centered page number}
+{%
+ \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \raisebox{.5cm}[0pt][0pt]{% <--- change here
+    \insertframenumber\,/\,\inserttotalframenumber\kern1em}%
+}
+
+\setbeamertemplate{footline}[centered page number]
+\newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
+\def\makebraces[#1,#2]#3#4#5{%
+\edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+\edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+\chemmove{%
+\node[at=(#4),yshift=(\delimvshift)]
+{$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right.$};%
+\node[at=(#5),yshift=(\delimvshift)]
+{$\left.\vrule height\delimhalfdim depth\delimhalfdim
+width0pt\right\delimright_{\rlap{$\scriptstyle#3$}}$};}}
+\setpolymerdelim()
+\setatomsep{3em}
+\definesubmol{&}{-[,,,,draw=none]}
+
+
+
+\begin{frame}[t]
+
+\frametitle{Struktur}
+    \begin{itemize}
+      \item Alkaloiden werden von Aminosäuren abgeleitet
+    \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}[t]
+\frametitle{Biosynthese der Alkaloide}
+\end{frame}
+
+\end{document}

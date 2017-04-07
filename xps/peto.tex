@@ -37,9 +37,11 @@
 \usepackage[landscape]{geometry}
 \usepackage{adjustbox}
 
+\rhead{ \Large \textbf{Polyethylenterephthalat}}
+\lhead{\large \textbf{O (Z=8)  }}
 
-\rhead{Gruppe 6}
-\lhead{\textbf{XPS-Spektroskopie} Anhang I}
+
+
 \fancyheadoffset{-1cm}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
@@ -141,35 +143,48 @@
 
 \begin{document}
 
-\pgfplotsset{
-  standard/.style={
-    axis x line*=bottom,
-    axis y line=left,
-    ylabel= Intensität ,
-    ylabel= Bindungs Energie ,
-    x unit= \si{\per\centi\meter},
-    legend style={at={(0.3,1)},anchor=north},
-    y label style={at={(axis description cs:-.1,.5)},anchor=south},
-    x tick label style={rotate=90,anchor=east, font=\tiny},
-    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
-    yticklabel style={/pgf/number format/fixed,scale=0.6},
-    scaled y ticks=false,
-    legend cell align=left,
-    x dir=reverse
-  }
+\begin{figure}[!t]
+\begin{tikzpicture}
+  \begin{groupplot}[
+      group style={
+        group name=my plots,
+        group size=1 by 1,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=20pt
+      },
+      width=16cm,
+      height=12cm,
+      xlabel=Bindungsenergie,
+      ylabel=Intensität, 
+			tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+			x tick label style={rotate=90,anchor=east},
+			yticklabel style={/pgf/number format/fixed},
+			x unit= \si{\electronvolt},
+			tickpos=left,
+			ytick align=outside,
+			xtick align=outside,
+			legend style={draw=none,legend pos=outer north east},
+			legend cell align=left,
+			x dir=reverse,
+      ymin=0
+		]
+    \nextgroupplot[title=\textbf{Spektrum ID\# IX}]
+		\addplotpr
+			\end{groupplot}
+		\end{tikzpicture}
+ \pgfplotstabletypeset[col sep=&,
+   columns/a/.style={string type,column type=l,column name=\textbf{Spektrum ID\#}},
+   columns/b/.style={string type,column type=l,column name=\textsc{IX}},
+   ]{
+   a & b
+   \textbf{Materie} & Polyethylenterephthalat 
+   \textbf{Technik} & XPS 
+   \textbf{Spektral Bereich} & O 1s
 }
-\pgfplotsset{tick style={very thin,gray}}
 
-\setcounter{figure}{5}
-\begin{figure}
-
-\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
-  \begin{axis}[standard, line width=0.1pt, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
-    \addplotpr
-    \end{axis}
-  \end{tikzpicture}
-	\caption{Die hochaufgelösten XPS-Spektren der O 1s der PET-Probe }
-\end{figure}
+\caption*{\textbf{Abbildung 6.} Das O 1s Spektrum}
+	\end{figure}
 
 
 

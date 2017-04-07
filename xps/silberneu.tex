@@ -1,0 +1,228 @@
+% !TEX encoding   = UTF-8
+% !TEX program    = LuaLaTeX
+% !TEX spellcheck = de_DE
+\documentclass[a4paper]{article}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{siunitx}
+\usepackage[german]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{units}
+\usetikzlibrary{pgfplots.groupplots}
+%\usetikzlibrary{datavisualization} 
+
+\usetikzlibrary{arrows,chains,matrix,shapes}
+\usepackage{luacode}
+
+
+\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{subcaption}
+\usepackage{adjustbox}
+
+\usepackage[landscape]{geometry}
+
+\rhead{ \Large \textbf{$\mathsf{Ag^0}$}}
+\lhead{\large \textbf{Silber Metal (Z=47)}}
+
+\fancyheadoffset{-1cm}
+\pagenumbering{gobble}
+
+\begin{luacode*}
+
+
+  fs = dofile("fs.lua")
+
+  function drawAG()
+
+  px,py = fs.readcsv("data/silber/vorkratzen1.txt",0)
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+
+
+  end
+  function drawAGDD()
+
+  px,py = fs.readcsv("data/silber/vorkratzen3d.txt",0)
+
+
+  tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+    for i=1,#px do
+    tex.sprint("("..px[i]..","..py[i]..")")
+    end
+  tex.sprint("};")
+
+
+  end
+
+  function drawAGpro()
+
+  px,py = fs.readcsv("data/silber/nachkratzen1.txt",0)
+
+
+	tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+		for i=1,#px do
+		tex.sprint("("..px[i]..","..py[i]..")")
+		end
+	tex.sprint("};")
+	tex.sprint("\\node[darkblue] (a) at (-26,700) {4d};")
+	tex.sprint("\\node[violet] (b) at (30,440) {\\footnotesize 4p};")
+	tex.sprint("\\node[violet] (c) at (80,440) {\\footnotesize 4s};")
+	
+	tex.sprint("\\node[violet] (d) at (328,6000) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (e) at (328,6000) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (f) at (420,5050) {$\\mathsf{3d_{\\frac{3}{2}}}$};")
+	tex.sprint("\\node[violet](g) at (523,2720) {$\\mathsf{3p_{\\frac{3}{2}}}$};")
+	tex.sprint("\\node[violet](h) at (640,2320) {$\\mathsf{3p_{\\frac{1}{2}}}$};")
+
+	tex.sprint("\\node[violet] (j) at (719,1650) {\\footnotesize 3s};")
+	tex.sprint("\\node (m) at (990,4073) {MNN-Auger};")
+
+	end
+
+	function drawAGDDpro()
+
+	px,py = fs.readcsv("data/silber/nachkratzen3d.txt",0)
+
+
+	tex.sprint("\\addplot[".."darkblue".."] coordinates{")
+		for i=1,#px do
+		tex.sprint("("..px[i]..","..py[i]..")")
+		end
+	tex.sprint("};")
+	tex.sprint("\\node[violet] (et) at (368,1550) {$\\mathsf{3d_{\\frac{5}{2}}}$};")
+	tex.sprint("\\node[violet] (ft) at (374,1150) {$\\mathsf{3d_{\\frac{3}{2}}}$};")
+
+
+	end
+
+
+
+
+
+
+
+\end{luacode*}
+
+
+\newcommand\addplotpr{\directlua{drawAG()}}
+\newcommand\addplotdd{\directlua{drawAGDD()}}
+\newcommand\addplotprpro{\directlua{drawAGpro()}}
+\newcommand\addplotddpro{\directlua{drawAGDDpro()}}
+
+
+
+\definecolor{skyblue1}{RGB}{135, 206, 250}
+\definecolor{flame}{RGB}{226, 88, 34}
+\definecolor{scarletred1}{RGB}{252, 40, 71}
+\definecolor{cyanblau}{RGB}{0, 158, 224}
+\definecolor{darkblue}{RGB}{0, 0,139}
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\definecolor{turquoise}{rgb}{0 0.41 0.41}
+\definecolor{rouge}{rgb}{0.79 0.0 0.1}
+\definecolor{vert}{rgb}{0.15 0.4 0.1}
+\definecolor{mauve}{rgb}{0.6 0.4 0.8}
+\definecolor{violet}{rgb}{0.58 0. 0.41}
+\definecolor{orange}{rgb}{0.8 0.4 0.2}
+\definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
+\definecolor{azulen}{RGB}{0,218,255}
+
+
+
+\begin{document}
+
+
+
+\begin{figure}[!t]
+\
+\begin{tikzpicture}
+  \begin{groupplot}[
+      group style={
+        group name=my plots,
+        group size=1 by 2,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=40pt
+      },
+      width=16cm,
+      height=7cm,
+      xlabel=Bindungsenergie,
+      ylabel=Intensität, 
+		tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+      x tick label style={rotate=90,anchor=east},
+      yticklabel style={/pgf/number format/fixed},
+      x unit= \si{\electronvolt},
+      tickpos=left,
+      ytick align=outside,
+      xtick align=outside,
+      legend style={draw=none,legend pos=outer north east},
+    legend cell align=left,
+    x dir=reverse,
+    every axis plot/.append style={line width=0.1pt}
+]
+    \nextgroupplot[title=\textbf{Spektrum ID\# I}]
+    \addplotpr
+      \addlegendentry{Ohne Sputting}
+    \nextgroupplot[title=\textbf{Spektrum ID\# II}]
+      \addplotprpro
+      \addlegendentry{Mit Sputting}
+      \end{groupplot}
+    \end{tikzpicture}
+  \caption*{\textbf{Abbildung 1.} Das Übersichtsspektrum von $\mathsf{Ag^0}$ }
+  \end{figure}
+
+
+
+
+\begin{figure}[!t]
+\begin{tikzpicture}
+  \begin{groupplot}[
+      group style={
+        group name=my plots,
+        group size=1 by 2,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=40pt
+      },
+      width=16cm,
+      height=7cm,
+      xlabel=Bindungsenergie,
+      ylabel=Intensität, 
+      x tick label style={rotate=90,anchor=east},
+      yticklabel style={/pgf/number format/fixed},
+		tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+      x unit= \si{\electronvolt},
+      tickpos=left,
+      ytick align=outside,
+      xtick align=outside,
+      legend style={draw=none,legend pos=outer north east},
+    legend cell align=left,
+    x dir=reverse,
+    every axis plot/.append style={line width=0.01pt}
+]
+    \nextgroupplot[title=\textbf{Spektrum ID\# III}]
+    \addplotdd
+      \addlegendentry{Ohne Sputting}
+    \nextgroupplot[title=\textbf{Spektrum ID\# IV},ymax=1800]
+      \addplotddpro
+      \addlegendentry{Mit Sputting}
+      \end{groupplot}
+    \end{tikzpicture}
+    \caption*{\textbf{Abbildung 2.} Das hochaufgelöste XPS-Spektrum von $\mathsf{Ag^0}$ um $\mathsf{3d_{3/2} / 3d_{5/2}}$ }
+  \end{figure}
+
+
+
+  \end{document}

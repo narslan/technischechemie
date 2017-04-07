@@ -15,9 +15,6 @@
 
 \usetikzlibrary{arrows,chains,matrix,shapes}
 \usepackage{luacode}
-\definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
-\definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
-\definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
 %\usepackage{helvet}
 
 \usepackage[bitstream-charter]{mathdesign}
@@ -38,8 +35,10 @@
 \usepackage{adjustbox}
 
 
-\rhead{Gruppe 6}
-\lhead{\textbf{XPS-Spektroskopie} Anhang I}
+\rhead{ \Large \textbf{Polyethylenterephthalat}}
+\lhead{\large \textbf{ C (Z=6)   }}
+
+
 \fancyheadoffset{-1cm}
 \pagenumbering{gobble}
 \usetikzlibrary{pgfplots.groupplots}
@@ -62,13 +61,14 @@
   residuex,residuey = fs.readanalyse("data/pet/canalyze.txt",0,1,8)
 
 
-  tex.sprint("\\addplot[".."darkblue,thick".."] coordinates{")
+  tex.sprint("\\addplot[".."darkblue,ultra thin".."] coordinates{")
     for i=1,#px do
     tex.sprint("("..px[i]..","..py[i]..")")
     end
   tex.sprint("};")
 
   tex.sprint("\\addlegendentry{Hauptspektrum}")
+
   tex.sprint("\\addplot[".."rouge,thick,dashed".."] coordinates{")
     for i=1,#cscanax do
     tex.sprint("("..cscanax[i]..","..cscanay[i]..")")
@@ -83,7 +83,7 @@
   tex.sprint("};")
 
   tex.sprint("\\addlegendentry{C1s Scan B}")
-  tex.sprint("\\addplot[".."yellow,thick,dashed".."] coordinates{")
+  tex.sprint("\\addplot[".."darkorange,thick,dashed".."] coordinates{")
     for i=1,#cscancx do
     tex.sprint("("..cscancx[i]..","..cscancy[i]..")")
     end
@@ -107,13 +107,17 @@
 
   tex.sprint("\\addlegendentry{Residue}")
 
- tex.sprint("\\addplot[".."thick, loosely dashed".."] coordinates{")
+  tex.sprint("\\addplot[".."thick, mark=*,each nth point={15}".."] coordinates{")
     for i=1,#residuex do
     tex.sprint("("..residuex[i]..","..residuey[i]..")")
     end
   tex.sprint("};")
-
   tex.sprint("\\addlegendentry{Envelope}")
+  
+  tex.sprint("\\node[rouge] (a) at (284,30000) {C-H (284.52) \\si{\\electronvolt}};")
+  tex.sprint("\\node[green,rotate=90] (b) at (286,14000) {O-C (286.14) \\si{\\electronvolt}};")
+  tex.sprint("\\node[darkorange,rotate=90] (c) at (288.5,14000) {O-C=O (288.62) \\si{\\electronvolt}};")
+  tex.sprint("\\node[red] (d) at (291,3000) {$\\pi - \\pi^*$};")
 
 
   end
@@ -145,39 +149,63 @@
 \definecolor{bleu}{rgb}{0.39, 0.58, 0.93}
 \definecolor{azulen}{RGB}{0,218,255}
 
+\definecolor{bluejay}{RGB}{43, 84, 126}
+\definecolor{purplejay}{RGB}{125, 42, 84}
+\definecolor{greenjay}{RGB}{42, 125, 84}
 
 
+\definecolor{shamrockgreen}{RGB}{ 52, 124, 23}
+\definecolor{darkorange}{RGB}{248, 128, 23}
 \begin{document}
 
-\pgfplotsset{
-  standard/.style={
-    axis x line*=bottom,
-    axis y line=left,
-    ylabel= Intensität ,
-    xlabel= Bindungsenergie ,
-    x unit= \si{\per\centi\meter},
-    legend style={at={(0.3,1)},anchor=north},
-    y label style={at={(axis description cs:-.1,.5)},anchor=south},
-    x tick label style={rotate=90,anchor=east, font=\tiny},
-    tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
-    yticklabel style={/pgf/number format/fixed,scale=0.6},
-    scaled y ticks=false,
-    legend cell align=left,
-    x dir=reverse
-  }
+%\setcounter{figure}{4}
+
+
+
+\begin{figure}[!t]
+\begin{tikzpicture}
+  \begin{groupplot}[
+      group style={
+        group name=my plots,
+        group size=1 by 1,
+        xlabels at=edge bottom,
+        xticklabels at=edge bottom,
+        vertical sep=20pt
+      },
+      width=16cm,
+      height=12cm,
+      xlabel=Bindungsenergie,
+      ylabel=Intensität, 
+			tick label style={/pgf/number format/assume math mode=true,font=\sffamily},
+			x tick label style={rotate=90,anchor=east},
+			yticklabel style={/pgf/number format/fixed},
+			x unit= \si{\electronvolt},
+			tickpos=left,
+			ytick align=outside,
+			xtick align=outside,
+			legend style={draw=none,legend pos=outer north east},
+			legend cell align=left,
+			x dir=reverse,
+      ymin=0
+		]
+    \nextgroupplot[title=\textbf{Spektrum ID\# VIII}]
+		\addplotpr
+			\end{groupplot}
+		\end{tikzpicture}
+  \pgfplotstabletypeset[col sep=&,
+   columns/a/.style={string type,column type=l,column name=\textbf{Spektrum ID\#}},
+   columns/b/.style={string type,column type=l,column name=\textsc{VIII}},
+   ]{
+   a & b
+   \textbf{Materie} & Polyethylenterephthalat 
+   \textbf{Technik} & XPS 
+   \textbf{Spektral Bereich} & C 1s
 }
-%\pgfplotsset{tick style={very thin,gray}}
 
-\setcounter{figure}{4}
-\begin{figure}
+\caption*{\textbf{Abbildung 5.} Das C 1s Spektrum }
 
-\begin{tikzpicture}[xscale=2.5,yscale=2,every node/.style={scale=0.6}]
-  \begin{axis}[standard, line width=0.1pt, enlarge x limits={abs=0.2cm},minor x tick num=1, xlabel=$\tilde{\nu}$]
-    \addplotpr
-    \end{axis}
-  \end{tikzpicture}
-	\caption{Die hochaufgelösten XPS-Spektren der C 1s der PET-Probe }
-\end{figure}
+	\end{figure}
+
 
 
 \end{document}
