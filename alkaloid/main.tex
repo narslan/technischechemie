@@ -13,19 +13,17 @@
 \usepackage{graphicx}
 \usepackage{url}
 \usepackage[german]{babel}
-\usepackage{adjustbox}
+\usepackage[export]{adjustbox}
 \usepackage{caption}
-
+\usepackage{multirow}
 \usepackage[T1]{fontenc}
 \usepackage{fontspec,microtype}
 \defaultfontfeatures{Ligatures=TeX, Scale=MatchLowercase}
-
+\usepackage[german=quotes]{csquotes}
 \setmainfont[SmallCapsFeatures={LetterSpace=6}, Numbers={Proportional,OldStyle}]{Minion Pro}
 \setsansfont[LetterSpace=2, Numbers={Proportional,OldStyle}]{Myriad Pro}
 
 \usepackage{array} % needed for \arraybackslash
-\usepackage{graphicx}
-\usepackage{adjustbox} % for \adjincludegraphics
 \usepackage{tabularx}
 
 \sisetup{
@@ -37,7 +35,7 @@
 
 \definecolor{orange}{RGB}{255,127,0}
 %\include{head}
-\title[]{Ephedrin und Ephedra-Alkaloiden}
+\title[]{Alkaloiden}
 \author[N. Arslan]{Nevroz Arslan}
 \date[18.04.17]{18. Apr 2017}
 %\titlegraphic{\includegraphics[width=\textwidth,height=.5\textheight]{bogen1200.png}}
@@ -45,22 +43,26 @@
 \beamertemplatenavigationsymbolsempty
 
 
-\setdoublesep{4pt}
-\setatomsep{3em}
 \let\otp\titlepage
 \renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
 
 \renewcommand*\printatom[1]{\ensuremath{\mathsf{#1}}}
 \begin{document}
+\makeatletter
+\newenvironment{myitemize}{%
+   \setlength{\topsep}{0pt}
+   \setlength{\partopsep}{0pt}
+   \renewcommand*{\@listi}{\leftmargin\leftmargini \parsep\z@ \topsep\z@ \itemsep\z@}
+   \let\@listI\@listi
+   \itemize
+}{\enditemize}
+\makeatother   
+
+
 \setbeamercolor{block title}{use=structure,fg=black,bg=white}
 \setbeamercolor{block body}{use=structure,fg=black,bg=white}
-
 \setbeamerfont{frametitle}{size=\large}
-%%%%%%%%%%%% Start of content %%%%%%%%%%%%
-
-%\input{seite11.tex}
 \usebackgroundtemplate{
-
 \includegraphics[width=1.0\paperwidth,height=0.17\paperheight]{bogen1200}
 \begin{tikzpicture}[overlay, remember picture]
     \node[xshift=-10.80cm,yshift=1.15cm] at (0,0)    {\includegraphics[scale=0.6]{logo}};
@@ -87,13 +89,15 @@
 \setbeamertemplate{footline}[centered page number]
 \setatomsep{3em}
 \setdoublesep{4pt}
+
+\input{einteilung}
+%\input{capsaicin}
+%\input{mohn}
 %\definesubmol{&}{-[,,,,draw=none]}
-
-
-
-\input{tryptamin}
-\input{ephedraarten}
-\input{pseudoephedrin}
+%\input{intro}
+%\input{tryptamin}
+%\input{ephedraarten}
+%\input{pseudoephedrin}
 
 
 \end{document}
