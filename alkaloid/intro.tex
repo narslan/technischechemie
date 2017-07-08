@@ -1,38 +1,30 @@
-\begin{frame}[t]{title}
- 
+\begin{frame}[t]{Sekundär Metaboliten}
+\centering 
 \begin{tikzpicture}
-  \colorlet{good}{green!75!black}
-  \colorlet{bad}{red}
-  \colorlet{neutral}{black!60}
-  \colorlet{none}{white}
+   \fill[even odd rule,mymagenta] circle (1);
 
-  \node[align=center,text width=2cm]{Photosynthese};
-\draw[step=.5cm,gray,very thin] (-3,-2) grid (3,4);
-%  \begin{scope}[line width=4mm]
-%    \draw[good] (-250:2cm) arc (-250:-270:2cm);
-    %\draw[good!60!white] (-36:2cm) arc (-36:-101:2cm);
-    %\draw[neutral]       (-36:2cm) arc (-36:36:2cm);
-    %\draw[bad!60!white]  (36:2cm)  arc (36:93:2cm);
-
-%    \newcount\mycount
-%    \foreach \angle in {0,72,...,3599}
-%    {
-%      \mycount=\angle\relax
-%      \divide\mycount by 10\relax
-%      \draw[black!15,thick] (\the\mycount:18mm) -- (\the\mycount:22mm);
-%    }
-
- %   \draw (0:2.2cm) node[below] {Alkaloide};
- %   \draw (165:2.2cm) node[above] {};
- %   \draw (-111:2.2cm) node[left] {};
- %   \draw (-68:2.2cm) node[left] {};
- %   \draw (65:2.2cm) node[right] {};
- %   \draw (93:2.2cm) node[right] {};
- % \end{scope}
-  \draw[gray] (0,1) circle (3cm) circle (2cm) circle (1 cm);
-  \draw (0,0) -- (0,-1);
+   \node at (0,0) [
+      font  = \mytextstyle,
+      color = white,
+      align = center
+   ]{
+      Photo-\\
+      Synthese
+   };
+   \arckarrow{ 32 }{148 }{ Kohlenhydrat Metabolismus }
+   \arcarrow{ 150 }{268}{ Stickstoff Metabolismus   }
+   \arcarrow{ 270 }{390}{ Fettsäure Metabolismus    }
+   \arcyrarrow{ 0 }{40}{ Flavonoide   }
+   \arcyrarrow{ 41 }{82}{Chinone     }
+   \arcyrarrow{ 83 }{110}{ Coumarine    }
+   \arcyrarrow{ 111 }{141}{ Tanine    }
+   \arcyrarrow{ 142 }{182}{ Glucosinolats    }
+   \arcyarrow{ 183 }{243}{ Cyanogenglycoside   }
+   \arcyarrow{ 244 }{284}{ Alkaloide    }
+   \arcyarrow{ 285 }{325}{ Terpene    }
+   \arcyarrow{ 326 }{359}{ Polyketide    }
+ %  \arcarrow{250}{ 30}{ CHECK }
 \end{tikzpicture}
-
 \end{frame}
 
 

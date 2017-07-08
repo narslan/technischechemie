@@ -1,0 +1,45 @@
+\documentclass[11pt]{article}
+
+\usepackage{amsmath,mathtools}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{microtype}
+\usepackage[ngerman]{babel}
+%\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{libertine}
+% header
+%\setlength{\headheight}{15pt}
+%\setlength{\topmargin}{-15mm}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\renewcommand{\thesection}{}% Remove section references...
+\renewcommand{\thesubsection}{\arabic{subsection}}%... from subsections
+%\usepackage[
+%backend=biber,
+%style=numeric,
+%sorting=ynt
+%]{biblatex}
+%\addbibresource{books.bib}
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{epigraph}
+\renewcommand{\epigraphrule}{0pt}
+\begin{document}
+ 
+\section{Vorwort}
+
+\setlength{\epigraphwidth}{0.7\textwidth}
+
+\epigraph{\textit{We all need histories that no history book can tell,
+      but they are not in the class room, not the history classrooms, anyway. 
+      They are in the lessons we learn at home, in poetry and childhood games, 
+      in what is left of history when we close the history books with their verifiable facts.}}{Michel-Rolph Trouillot}
+\end{document}
