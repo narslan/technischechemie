@@ -16,9 +16,8 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 
 \usepackage{endnotes} \let\footnote\endnote
 
-%\usepackage[style=authortitle,backend=biber]{biblatex}
-
-\usepackage[notes,backend=biber]{biblatex-chicago}
+\usepackage[style=verbose,backend=biber]{biblatex}
+%\usepackage[notes,backend=biber]{biblatex-chicago}
 \addbibresource{books.bib}
 
 \usepackage[onehalfspacing]{setspace}
@@ -36,21 +35,21 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 \title{Erfahrung als Kritik. Kritik der Erfahrung?} 
 \author{Birgit Manz} 
 
-
+\linespread{1.25}
 \begin{document}
 \setlength{\epigraphwidth}{0.7\textwidth}
 
 %\tableofcontents
 
-\include{vorwort}
+%\include{prolog}
 \include{exposition}
-%\include{universitat}
-%\include{erfahrung}
-%\include{episteme}
-%\include{hegemonial}
-%\include{widerstand}
-%\include{erzaehlung}
-%\include{resume}
-%\include{epilogue}
-%\printbibliography
+\include{universitat}
+\include{erfahrung}
+\include{episteme}
+\include{hegemonial}
+\include{widerstand}
+\include{erzaehlung}
+\include{resume}
+\include{epilogue}
+\printbibliography
 \end{document}
