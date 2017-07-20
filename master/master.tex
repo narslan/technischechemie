@@ -16,8 +16,7 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 
 \usepackage{endnotes} \let\footnote\endnote
 
-\usepackage[ style=verbose, backend=biber, isbn=false, doi=false, url=false,
-date=year ]{biblatex} \addbibresource{books.bib}
+\usepackage[style=authortitle,backend=biber]{biblatex} \addbibresource{books.bib}
 
 \usepackage[onehalfspacing]{setspace}
 
@@ -36,11 +35,19 @@ date=year ]{biblatex} \addbibresource{books.bib}
 
 
 \begin{document}
-
 \setlength{\epigraphwidth}{0.7\textwidth}
 
+%\tableofcontents
+
+\include{vorwort}
+\include{exposition}
+%\include{universitat}
+%\include{erfahrung}
 %\include{episteme}
 %\include{hegemonial}
 %\include{widerstand}
-\include{erzaehlung}
+%\include{erzaehlung}
+%\include{resume}
+%\include{epilogue}
+%\printbibliography
 \end{document}
