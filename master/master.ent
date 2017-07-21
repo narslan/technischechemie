@@ -2,11 +2,5 @@
 macro:->\protecting
 {\blxmkbibnote
 {foot}{\blxciteicmd
-{footfullcite}{}{}{gilroyatlantic}{}}}
-\@endanenote 
-\@doanenote {2}
-macro:->\protecting
-{\blxmkbibnote
-{foot}{\blxciteicmd
-{footfullcite}{}{}{derrida}{}}}
+{smartcite}{}{}{lohman}{}}}
 \@endanenote 
