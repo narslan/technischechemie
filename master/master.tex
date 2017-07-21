@@ -25,8 +25,9 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 \usepackage{epigraph} \renewcommand{\epigraphrule}{0pt}
 
 \usepackage{changepage}   % for the adjustwidth environment
-\newenvironment{myenv}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
+%\newenvironment{myenv}{\begin{adjustwidth}{2cm}{}\linespread{0.8}}{\end{adjustwidth}\linespread{1.25}}
 
+\newenvironment{myenv}{\begin{adjustwidth}{2cm}{}}{\end{adjustwidth}}
 \usepackage[hang]{footmisc}
 \setlength\footnotemargin{10pt}
 \usepackage{url}
@@ -41,15 +42,15 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 
 %\tableofcontents
 
-%\include{prolog}
-\include{exposition}
-\include{universitat}
-\include{erfahrung}
-\include{episteme}
-\include{hegemonial}
-\include{widerstand}
-\include{erzaehlung}
-\include{resume}
-\include{epilogue}
+\include{prolog}
+%\include{exposition}
+%\include{universitat}
+%\include{erfahrung}
+%\include{episteme}
+%\include{hegemonial}
+%\include{widerstand}
+%\include{erzaehlung}
+%\include{resume}
+%\include{epilogue}
 \printbibliography
 \end{document}
