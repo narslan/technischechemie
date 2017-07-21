@@ -1,11 +1,19 @@
 \documentclass[11pt]{article}
 
-\usepackage{amsmath,mathtools} \usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{microtype} \usepackage[ngerman]{babel}
+\usepackage{amsmath,mathtools} 
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage{microtype} 
+\usepackage[ngerman]{babel}
 %\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
 \usepackage{libertine}
+
+
+
+
+
+
 % header
 %\setlength{\headheight}{15pt} \setlength{\topmargin}{-15mm}
 \usepackage{csquotes} \usepackage{geometry} \geometry{ a4paper,
@@ -18,8 +26,7 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 
 %\usepackage[style=verbose,backend=biber]{biblatex}
 \usepackage[style=verbose,isbn=false,doi=false,backend=biber]{biblatex}
-\addbibresource{books.bib}
-%\renewcommand{\autocite}[1]{\footnote{\cite{#1}}}
+%\addbibresource{books.bib}
 
 \usepackage[onehalfspacing]{setspace}
 
@@ -33,7 +40,8 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
 \setlength\footnotemargin{10pt}
 \usepackage{url}
 
-
+\setcounter{secnumdepth}{0}
+\usepackage{indentfirst}
 %\title{Erfahrung als Kritik. Kritik der Erfahrung?} 
 %\author{Birgit Manz} 
 \usepackage{setspace}
@@ -50,15 +58,16 @@ total={170mm,257mm}, left=30mm, right=30mm, top=20mm, }
         
         \vspace{0.5cm}
         \LARGE
-Praktiken des Gegenerzählens und ihre Bedeutung für eine dekoloniale Bildung an der Universität.
+Praktiken des Gegenerzählens und ihre Bedeutung für eine dekoloniale Bildung an der Universität
         
         \vspace{1.5cm}
         
-        vorgelegt von \textbf{Birgit Manz}
+        vorgelegt von\\
+        \textbf{Birgit Manz}
         
         \vfill
        
-        Master Arbeit
+        Masterarbeit
                 
         \vspace{0.8cm}
    %\rotatebox{0}{\includegraphics[width=0.5\textwidth]{unilogo.pdf}} 
@@ -80,20 +89,19 @@ Praktiken des Gegenerzählens und ihre Bedeutung für eine dekoloniale Bildung a
 \end{titlepage}
 
 
+\tableofcontents
 
-%\tableofcontents
+\include{prolog}
+\include{exposition}
 
-%\include{prolog}
-%\include{exposition}
-
-%\include{universitat}
-%\include{erfahrung}
-%\include{episteme}
-%\include{hegemonial}
-%\include{widerstand}
-%\include{erzaehlung}
-%\include{resume}
-%\include{epilogue}
+\include{universitat}
+\include{erfahrung}
+\include{episteme}
+\include{hegemonial}
+\include{widerstand}
+\include{erzaehlung}
+\include{resume}
+\include{epilogue}
 \include{biblio}
 %\printbibliography
 
