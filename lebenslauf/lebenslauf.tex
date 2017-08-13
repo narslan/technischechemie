@@ -6,7 +6,7 @@
 % conditions of the LaTeX Project Public License version 1.3c,
 % available at http://www.latex-project.org/lppl/.
 
-\documentclass[11pt,a4paper,sans]{moderncv}
+\documentclass[12pt,a4paper]{moderncv}
 
 \usepackage{verbatim}
 
@@ -14,12 +14,18 @@
 \moderncvstyle{classic}
 \moderncvcolor{blue}
 
+\usepackage{microtype} 
+\usepackage[ngerman]{babel}
+%	\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\usepackage{libertine}
 % character encoding
-\usepackage[utf8]{inputenc}                   % replace by the encoding you are using
+%\usepackage[utf8]{inputenc}                   % replace by the encoding you are using
 
 % adjust the page margins
 \usepackage[scale=0.8]{geometry}
-
+\usepackage{url}
 % personal data
 \firstname{Nevroz}
 \familyname{Arslan}
@@ -40,81 +46,40 @@
 
 \section{Ausbildung}
 \cventry{2012--2017}{Fachbachelor Chemie}{Universität Oldenburg}{Oldenburg}{}{}
-\cventry{1997--2005}{Fachbachelor Elektroingenieurwissenschaft}{Technische Universität
-Istanbul}{Istanbul}{}{}
-%\cvline{advisor:}{\small Professor Eric Bach}
-%\cventry{2003--2007}{BS, Computer Science and Engineering}{UCLA}{Los Angeles, CA}{}{}  % arguments 3 to 6 can be left empty
-%\cvline{gpa:}{\small 3.76/4.0}
-%\cvline{honors:}{\small Cum Laude}
+\cventry{1997--2005}{Fachbachelor Elektroingenieurwissenschaft}{Technische Universität Istanbul}{Istanbul}{}{}
 
 
 \section{Erfahrungen}
 
 \cventry{Herbst 2012--}{Student}{Carl von Osietzky Universität Oldenburg}{Oldenburg}{}{
 Organische Chemie, Naturstoffchemie, Pericyclische Reaktionen, Molekülare Strukturbestimmung, }
+%\cventry{Winter 2011}{Sprachstudent}{Eduglobal}{Karlsruhe}{}{Deutsch }
+%\cventry{Sommer 2010--Herbst 2011}{Webmaster}{Istanbul}{Selbstständig gearbeitet}
+%\cventry{Sommer 2007-- Sommer 2010 }{Programmier}{Istanbul}{
+%\url{http://www.mobilgi.com}, eine Informatik Firma, für die die Supermärkte
+%Warenwirtschaftssysteme entwickelt hatte. Mit der Perl-Programmiersprache
+%habe ich die Daten bearbeitet. Datenbank(MySql) programmiert 
+%\url{http://www.multimap.com}, jetzt \url{http://www.bing.com}  
+%\url{http://www.reidin.com},
+%\url{http://www.parkyeri.com}
+%}
 
-\cventry{Winter 2011}{Sprachstudent}{Eduglobal}{Karlsruhe}{}{
-Deutschsprachkenntnis wurde verbessert.}
-\cventry{Sommer 2010--Herbst 2011}{Webmaster}{}{
-Selbstständig gearbeitet, die Auseinendersetzung mit der deutschen Sprache }
-\cventry{Sommer 2007-- Sommer 2010 }{Programmier}{Verschiedene IT-Unternehmen}{Istanbul}{}{
-www.mobilgi.com, eine Informatik Firma, für die die Supermärkte
-Warenwirtschaftssysteme entwickelt hatte. Mit der Perl-Programmiersprache
-habe ich die Daten bearbeitet. Datenbank(MySql) programmiert 
-www.multimap.com,   
-www.reidin.com,
-www.parkyeri.com
-}
-
-\cventry{Frühling 2003- Herbst
-  2005}{Systemadministrator}{Internet Securities International}{Istanbul}{}{
-Verwaltung und Programmierung der Linux Server bei \url{http://www.securities.com}.  
-}
+%\cventry{Frühling 2003- Herbst
+%  2005}{Systemadministrator}{Internet Securities International}{Istanbul}{}{
+%Verwaltung und Programmierung der Linux Server bei \url{http://www.securities.com}.  
+%}
 
 \section{Praktische Erfahrung}
 \subsection{Effiziente Nutzung}
-
 \cvline{Programmiersprachen}{Latex, Lua, Javascript, Html, Css}
 \cvline{Technologien}{ Vim, Ubuntu \& Arch Linux}
 
-\subsection{Berufserfahrung}
+\subsection{nur Berufserfahrung}
 \cvline{Aufgabe} {Server Administrator, Programmier} 
 \cvline{Programmiersprachen}{Perl, MySql, Octave, Html }
 \cvline{Technologien}{Datenbank}
 
-\section{}
-\subsection{University of California, Los Angeles}
-\cvline{computer science}{Programming in C++, Digital Design, VHDL, CAD tools, Machine Language (MIPS), Computer Network Fundamentals, Physical Layer of Computer Networks, Programming Languages, Computer Architecture, Algorithms, Complexity Theory, Databases, Operating Systems, Digital Graphics}
-\cvline{electrical engineering}{Electromagnetics, Semiconductors, Systems and Signals, Circuit Analysis}
-\subsection{University of Wisconsin, Madison}
-\cvline{computer science}{Quantum Computing, Arithmetic Algorithms, Advanced Complexity Theory, Harmonic Analysis of Boolean Functions, Computational Cognitive Science, Bioinformatics, Combinatorics, Artificial Intelligence, Advanced Databases}
-\cvline{remote sensing}{Environmental Remote Sensing, Digital Image Processing}
-\cvline{business}{Entrepreneurship and Small Business Management, Venture Creation}
-
-\section{Honors}
-\cvline{honor societies}{Tau Beta Pi, Eta Kappa Nu, Golden Key, Upsilon Pi Epsilon}
-\cvline{dean's list}{2 semesters at UCLA}
-\cvline{fellowships}{Offered Southern California's Provost Ph.D. Fellowship in Electrical Engineering}
-
-\section{Activities}
-\cventry{2004--2007}{Ultimate Frisbee Club Team}{UCLA}{Los Angeles, CA}{}{
-Practiced four times a week and traveled across the western united states for between 10 and 12 tournaments each year.
-}
-\cventry{2007--2011}{Ultimate Frisbee Club Teams}{UW-Madison}{Madison, WI}{}{
-Practiced and traveled with three Madison based ultimate frisbee club teams.
-Played in numerous recreational leagues.
-}
-\cventry{2007--2011}{Engineers Without Borders}{UW-Madison}{Madison, WI and Orongo, Kenya}{}{
-Began a long term irrigation system project to allow the members of Orongo to grow more profitable crops.
-Started an income generating agroforestry project at a Kenyan Primary School.
-Built and tested prototype biosand filters in both Kenya and Madison.
-Built and tested prototype low cost solar cookers in both Kenya and Madison.
-}
-\cventry{2011-present}{Ultimate Frisbee Club Teams}{Ultimate Chicago}{Chicago, IL}{}{
-Coached, captained, and played on several teams in recreational leagues.
-}
-\cventry{}{Other Current Hobbies}{}{}{}{
-Web Programming, Camping, Hiking, Backpacking, Traveling, Road Trips, Basketball, Piano, Guitar
-}
+\section{Weitere Fähigkeiten und Kentnisse}
+\cvline{Deutsch}{}
 
 \end{document}
