@@ -6,12 +6,10 @@
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{siunitx}
 
-
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
-\pgfplotsset{compat=1.13}
+\pgfplotsset{compat=1.18}
 \usepgfplotslibrary{units}
-
 
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
@@ -20,11 +18,7 @@
 %\usepackage{helvet}
 \usepackage[landscape]{geometry}
 \usepackage{unicode-math}
-
-%\usepackage[landscape]{geometry}
-%\setmainfont{Ubuntu}
 \setmainfont{TeX Gyre Heros}
-
 \setmathfont{TeX Gyre Heros}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -36,13 +30,8 @@
 \pagenumbering{gobble}
 
 \usepackage{caption}
-\captionsetup[figure]{labelformat=empty}% redefines the caption setup of the figures environment in the beamer class.
-
-%\usepackage{libertine}
-%\usepackage{beramono}
-%\setmainfont{Ubuntu}
+\captionsetup[figure]{labelformat=empty}
 \begin{luacode*}
-
 
 function tabled()
 local lines = {}
@@ -66,13 +55,9 @@ for i, line in ipairs(lines) do
      table.insert(ywerte,y)
    end
 end
-
-
-    for i=1,#xwerte do
-      tex.sprint(string.format("%d & %g \\\\",xwerte[i],ywerte[i]))
-    end
-
-
+for i=1,#xwerte do
+  tex.sprint(string.format("%d & %g \\\\",xwerte[i],ywerte[i]))
+end
 
 end
 

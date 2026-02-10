@@ -27,7 +27,8 @@
 %\usepackage[justification=justified,singlelinecheck=false]{caption}
 \usepgfplotslibrary{units}
 \usetikzlibrary{pgfplots.groupplots}
-%\usepackage{gensymb}
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
 
 \usepackage{geometry}
 \usepackage{fancyhdr}
@@ -49,18 +50,7 @@
   scientific-notation = true,
 }
 \renewcommand{\arraystretch}{1.5}
-%\usepackage{unicode-math}
 
-\setmainfont[Numbers = OldStyle,Ligatures = TeX,SmallCapsFeatures = {Renderer=Basic}]{Minion Pro}
-\setsansfont[Numbers={OldStyle,Proportional},Scale=MatchLowercase]{Minion Pro}
-\setmonofont[Numbers=OldStyle,Scale=MatchLowercase]{Minion Pro}
-%\setmathfont{MnSymbol}
-%\setmathfont[range=\mathup/{num,latin,Latin,greek,Greek}]{Minion Pro}
-%\setmathfont[range=\mathbfup/{num,latin,Latin,greek,Greek}]{MinionPro-Bold}
-%\setmathfont[range=\mathit/{num,latin,Latin,greek,Greek}]{MinionPro-It}
-%\setmathfont[range=\mathbfit/{num,latin,Latin,greek,Greek}]{MinionPro-BoldIt}
-%\setmathrm{Minion Pro}
-%usepackage{sansmath} % Enables turning on sans-serif math mode, and using other environments
 
 \begin{luacode*}
 
@@ -172,9 +162,8 @@ Setzt man Bildungs- und Abbaugeschwindigkeit von M* gleich, erhält man:
 \label{ssub:quantenausbeute}
 
 % subsubsection quantenausbeute (end)
-\grqq Die Quantenausbeute für einen photophysikalischen Prozess ist der Anteil der absor-
-bierten Photonen, der die gewünschten Emissionsprozesse hervorruft. Wenn das für jedes
-absorbierte Photon zutrifft, wäre die Quantenausbeute Eins.\grqq
+\enquote{Die Quantenausbeute für einen photophysikalischen Prozess ist der Anteil der absorbierten Photonen, der die gewünschten Emissionsprozesse hervorruft. Wenn das für jedes
+absorbierte Photon zutrifft, wäre die Quantenausbeute Eins}
 Die Quantenausbeute für die Emission von $M^*$ ist die Geschwindigkeit der Emission
 dividiert durch die Geschwindigkeit der Absorption. Bei Abwesenheit des Quenchers :
 
@@ -356,18 +345,6 @@ $\lambda_{em}=420$ \si{\nano\meter} und $\lambda_{em}=350$ \si{\nano\meter} geme
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 12) befinden sich am Anhang 1.
 \subsubsection{Die Fluoreszenzs- und Anregungsspektren von 2-Naphtolat (ph 2)}
 Die Fluoreszenzs- und Anregungsspektren von 2-Naphtol (pH 2) befinden sich am Anhang 2.
-%\subsubsection{Der Vergleich der Anregungsspektren}
-%\begin{tikzpicture}
-%  \begin{groupplot}[group style={group size=2 by 1,horizontal sep=20pt,vertical sep=50pt,xlabels at=edge bottom,
-  %    ylabels at=edge right}]
- %   \nextgroupplot[standard, legend style={at={(0.75,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=420 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-410) \si{\nano\meter}  }}},
-  %  ylabel = Intensität,  y label style={at={(axis description cs:-0.1,.5)},rotate=90,anchor=south},]
-  %  \addplotiso
-   % \nextgroupplot[standard, legend style={at={(0.7,1)},anchor=north}, title= \small{\textbf{$\lambda_{em}$=350 \si{\nano\meter}, \textbf{$\lambda_{ex}$=(275-340) \si{\nano\meter}  }}} ]
-    %\addplotaa
-  %\end{groupplot}
-%\end{tikzpicture}
-
 
 \subsubsection{Bestimmung der Wellenlängenmaxima und Feststellung der Stokes Verschiebung aus den Spektren}
 Die Wellenlängenmaxima der Spektren des 2-Naphtolat $\rightleftharpoons$ 2-Naphtol 
@@ -407,11 +384,7 @@ Gleichgewichtes werden bestimmt und tabellerisch und graphisch am Anhang 4 darge
 
 
 \begin{figure}[!htbp]
-  \begin{subfigure}{.45\textwidth}
-    \resizebox{\linewidth}{!}{
-      \includegraphics[width=\textwidth,keepaspectratio]{naphthol.jpg}}
-    \caption{zur Verfügung gestellt}
-  \end{subfigure}%
+
   \begin{subfigure}{.45\textwidth}
     \resizebox{\linewidth}{!}{
       \begin{tikzpicture}
@@ -424,9 +397,6 @@ Gleichgewichtes werden bestimmt und tabellerisch und graphisch am Anhang 4 darge
   \caption{Der Vergleich der zur Verfügung gestelten Anregungsspektren mit den experimentellen Anregungsspektren}
 
 \end{figure}
-
-
-
 
 
 
