@@ -12,4 +12,4 @@
   [Abgabe]("hplc/hplc.pdf")
   [Diskussion]("hplc/diskussion.pdf")
   [HPLC - Charakterisierung eines Chromatographie-Sytems]("hplc/benzoetable.pdf")
-  
+- [IR-Spektroskopie]("irspektroskopie/irspektroskopie.pdf")
