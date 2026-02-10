@@ -1,25 +1,9 @@
 \documentclass{article}
 \usepackage{amsmath}
-
-
-%encoding
-%--------------------------------------
-
-%----------------------------
 \usepackage{microtype}
-%\usepackage{fourier}
-\usepackage{helvet}
-\usepackage{arevtext,arevmath}
-
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-
-\usepackage{mathastext}
-%units
-%--------------------------------------
+\usepackage{lmodern}
 \usepackage{siunitx}
-%drawing
-%------------------------------------
+
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
@@ -35,7 +19,8 @@
 \usepackage[backend=biber,sorting=none,autocite = superscript,natbib=true]{biblatex} \addbibresource{books.bib}
 \usepackage{url}
 \pagestyle{fancy}
-
+\usepackage[ngerman]{babel}
+\usepackage{csquotes}
 \cfoot{\thepage}
 
 \rhead{Gruppe 24}
@@ -111,7 +96,7 @@ Säule durch andere Teilchen erschwert. Dies führt zur einen größeren Standar
 
 Wenn das Messergebniss der unverdünnten Kaffee-Probe
 $\ce{c_{Kaffee}} = 875 \, \si{\milli\gram\per\liter} \pm 119  \, \si{\milli\gram\per\liter}$
- mit der \glqq offiziellen \grqq ~\supercite{koffeincom} Konzentrationsangabe $\ce{c_{Kaffee}} = 800 \, \si{\milli\gram\per\liter}$ verglichen wird,
+ mit der  \enquote{offiziellen} ~\supercite{koffeincom} Konzentrationsangabe $\ce{c_{Kaffee}} = 800 \, \si{\milli\gram\per\liter}$ verglichen wird,
  es ist festzustellen, dass es sich bei der Kaffee-Probe um einen gewöhnlichen Morgenkaffeee handelt.
 
 
