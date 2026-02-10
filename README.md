@@ -6,3 +6,4 @@
   - [Abgabe]("fluoreszenz/fluoreszenz.pdf") 
   - [Aufbau des Fluoreszenz-Spektrometers]("fluoreszenz/aufbau.pdf")
   - [Naphtol-Naphtolat Gleichgewichtspektren]("fluoreszenz/auswert_fluor")
+- [Gaswäsche]("gaswasche/prot.pdf")

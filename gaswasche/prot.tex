@@ -186,9 +186,9 @@ Es gilt:
   \ce{r_{ges}} = \ce{\frac{\dot{n}_{\ce{CO2}}}{A} } =\ce{k _0} + \ce{k_{kat}} \cdot \ce{c_{kat}}
 \end{equation}
 Um \ce{k_{kat}} zu berechnen muss zuerst die Absorptionsrate
-von \ce{CO2} \ce{\.{n}_{\ce{CO2}} } berechnet werden.
+von \ce{CO2} \ce{\dot{n}_{\ce{CO2}} } berechnet werden.
 
-\subsubsection{Ermittlung von \ce{\.{n}_{\ce{CO2}}}} % (fold)
+\subsubsection{Ermittlung von \ce{\dot{n}_{\ce{CO2}}}} % (fold)
 \label{ssub:erm}
 Es gilt :
 \begin{equation}
@@ -203,35 +203,14 @@ wobei das Volumen \ce{V_{\ce{CO2}}} \SI{10}{\milli\liter} = \SI{10}{\cubic\centi
 
 \begin{table}[ht!]
  \begin{tabularx}{\textwidth}{XXXX}
-\ce{c_{kat}}/\si{\mol\per\cubic\centi\meter} & \ce{t0} / \si{\second} & n / \si{\mol} & \ce{\.{n}_{\ce{CO2}}}/\si{\mol\per\second}  \\
+\ce{c_{kat}}/\si{\mol\per\cubic\centi\meter} & \ce{t0} / \si{\second} & n / \si{\mol} & \ce{\dot{n}_{\ce{CO2}}}/\si{\mol\per\second}  \\
 \hline
 \num{0}     &    62.97 & \num{4.09e-6} & \num{64.95e-9} \\
 \num{3e-6}  &   40.9 &  \num{4.09e-6}  & \num{100.0e-9} \\
 \num{6e-6} &  39.11 & \num{4.09e-6}     & \num{104.5e-9} \\
 \end{tabularx}
-  \caption{ Ermittlung von \ce{\.{n}_{\ce{CO2}}} }
+  \caption{ Ermittlung von \ce{\dot{n}_{\ce{CO2}}} }
 \end{table}
-
-
-
-%\begin{equation}
- % \frac{\ce{\.{n}_{\ce{CO2}} }}/t
-%\end{equation}
-
-
- %t  5 ml
-%\begin{align}
-%  y & = -1.03 \cdot 10^{-5} x^2 - 1.861 \cdot 10^{-2} x + 1.796 & R^2 = 0.8566 \\
-%\end{align}
-
-%              Estimate Std. Error t value Pr(>|t|)
-%(Intercept)  4.547e+01  1.498e+00  30.357 5.86e-12 ***
-%t2           2.836e-02  6.219e-03   4.559 0.000817 ***
-%I(t2^2)     -1.417e-05  5.129e-06  -2.762 0.018493 *
-%R= 0.7936
-%R = 0.8496
-%R = 0.9287
-
 
 
 \begin{figure}[htbp]
@@ -308,7 +287,7 @@ wobei das Volumen \ce{V_{\ce{CO2}}} \SI{10}{\milli\liter} = \SI{10}{\cubic\centi
   \ce{\dot{n}_{\ce{CO2}}^2} = \ce{k0A^2D^L c_{\ce{CO2}^{i^2}} + k_{kat}  A^2 D^L c_{\ce{CO2}^{i^2}}} \ce{c_{kat}}
 \end{equation}
 
-Wird nun \ce{\.{n}_{\ce{CO2}}^2} gegen \ce{c_{kat}} aufgetragen ergibt sich eine gerade mit Steigung \ce{\gamma}.
+Wird nun \ce{\dot{n}_{\ce{CO2}}^2} gegen \ce{c_{kat}} aufgetragen ergibt sich eine gerade mit Steigung \ce{\gamma}.
 \begin{equation}
   tan \gamma = k _{kat} A^2 D^L c_{\ce{CO2}^{i^2}}
 \end{equation}
@@ -319,13 +298,13 @@ Umformuliert:
 
 \begin{table}[ht!]
  \begin{tabularx}{\textwidth}{XXXX}
-\ce{c_{kat}} [\si{\mol\per\cubic\centi\meter}] & \ce{t0} [\si{\second}]  & \ce{\.{n}_{\ce{CO2}}}  [\si{\mol\per\second}] & \ce{\.{n}_{\ce{CO2}}^2}  [\si{\square\mol\per\square\second}]  \\
+\ce{c_{kat}} [\si{\mol\per\cubic\centi\meter}] & \ce{t0} [\si{\second}]  & \ce{\dot{n}_{\ce{CO2}}}  [\si{\mol\per\second}] & \ce{\dot{n}_{\ce{CO2}}^2}  [\si{\square\mol\per\square\second}]  \\
 \hline
 0  & 62.97 & \num{6.495e-6} & \num{42.185e-12}  \\
 \num{3.03e-7}  & 45.47 & \num{8.994e-6} & \num{80.89e-12} \\
 \num{6.06e-7}  &  39.11 & \num{10.46e-6} & \num{109.4e-12} \\
 \end{tabularx}
-  \caption{ Ermittlung von \ce{\.{n}_{\ce{CO2}}} }
+  \caption{ Ermittlung von \ce{\dot{n}_{\ce{CO2}}} }
 \end{table}
 
 \begin{figure}[htbp!]
@@ -334,7 +313,7 @@ Umformuliert:
           width=\linewidth, % Scale the plot to \linewidth
           grid=major,
           grid style={dashed,gray!30},
-          ylabel= \ce{\.{n}_{\ce{CO2}}^2}, % Set the labels
+          ylabel= \ce{\dot{n}_{\ce{CO2}}^2}, % Set the labels
           xlabel= \ce{c_{kat}},
           xlabel style={font=\large},
           ylabel style={font=\large},
