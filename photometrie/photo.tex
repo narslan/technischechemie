@@ -2,23 +2,20 @@
 % !TEX program    = LuaLaTeX
 % !TEX spellcheck = de_DE
 \documentclass[a4paper]{report}
-\usepackage{fontspec}
 \usepackage[usenames,dvipsnames]{color}
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
 
-%\usepackage{MinionPro}
-%\usepackage{MnSymbol}
-\pgfplotsset{compat=1.11}
+\pgfplotsset{compat=1.18}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage{luacode}
 \definecolor{skyblue1}{rgb}{0.447,0.624,0.812}
 \definecolor{scarletred1}{rgb}{0.937,0.161,0.161}
 \definecolor{chameleon1}{rgb}{0.541,0.886,0.204}
-\usepackage{mathpazo} % add possibly `sc` and `osf` options
+\usepackage{fontspec}
+\setmainfont{TeX Gyre Pagella}
 
-%\setmainfont{Minion Pro}
 \begin{luacode*}
 unpack=table.unpack
 -- Code to write PGFplots data as coordinates
@@ -44,7 +41,7 @@ end
 
 
 --- SMDE,
-for line in io.lines("hplc.csv") do
+for line in io.lines("iso.csv") do
   table.insert(lines, line)
 end
 local summex=0
@@ -265,7 +262,4 @@ end
 \tabellenwerte
 \par
 
-%\textbf{Referenzen (Online) }
-%\footnote{http://www.chemgapedia.de/vsengine/vlu/vsc/de/ch/13/vlu/analytik/begriffe/begriffe.vlu/Page/vsc/de/ch/13/pc/analytik/begriffe/richtigkeit.vscml.html}
-%\footnote{http://www.uni-leipzig.de/stksachs/tl\_files/media/pdf/lehrbuecher/informatik/Regressionsanalyse.pdf}
 \end{document}
