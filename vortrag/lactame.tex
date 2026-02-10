@@ -1,60 +1,39 @@
 % Page Layout
 \documentclass[10pt]{beamer}
-\usepackage[latin1]{}
 \usepackage{tikz}
 \usepackage{chemfig}
 \usepackage{xcolor}
 
-%\documentclass[12pt]{article}
-
-%\usepackage{fancyhdr}
-%\usepackage{chemfig}
-%\usepackage{sectsty}
-%\usepackage{setspace}
-%\usepackage{helvet}
-%\usepackage{graphicx}
-%\usepackage{overcite}
-%\usepackage{parskip}
+\usepackage{chemfig}
+\usepackage{chemmacros}
 \usepackage{siunitx}
-\usepackage[version=4]{mhchem}
-\usepackage[method=mhchem]{chemmacros}
-%\usepackage{libertine}
-%\usepackage[scaled=.83]{beramono}
-\usepackage{graphicx}
-%\usepackage{hyperref}
-%\usepackage[a4paper]{geometry}
-%\usepackage{unicode-math}
-%\usepackage{microtype}
-%\usepackage{xcolor}
-%\usepackage{chemformula}
-\usetikzlibrary{positioning,calc,arrows}
-\usepackage{url}
-
-%\usepackage{libertine}
-%\renewcommand*\familydefault{\sfdefault}  %%
-\usepackage[default]{opensans}
-%\usepackage{gillius2}
-%\usepackage{lato}
-\usepackage{adjustbox}
-\usepackage[utf8]{inputenc}
-\usepackage{caption}
-
-\usepackage[T1]{fontenc}
-
-\usepackage{array} % needed for \arraybackslash
-\usepackage{graphicx}
-\usepackage{adjustbox} % for \adjincludegraphics
-%\usepackage[backend=biber]{biblatex}
-\usepackage{tabularx}
-\usepackage{url}
-%\addbibresource{lactam.bib}
+\usepackage{chemformula}
+\chemsetup{
+  modules = {
+    reactions,
+    spectroscopy,
+    scheme  },
+  formula = mhchem
+}
 
 \sisetup{
-  round-mode          = places,
-  round-precision     = 2,
-  inter-unit-product =\ensuremath{{}\cdot{}}
+  separate-uncertainty = true,
+  per-mode = symbol,
+  range-phrase = --,
+  mode = text
 }
- % Avoid an error due to a lack of registers
+\usepackage{graphicx}
+\usetikzlibrary{positioning,calc}
+\usetikzlibrary{arrows.meta}
+
+\usepackage{url}
+
+\usepackage{adjustbox}
+
+\usepackage{array}
+\usepackage{tabularx}
+
+% Avoid an error due to a lack of registers
 \renewcommand*\printatom[1]{{\fontsize{14}{14}\selectfont\ensuremath{\mathsf{#1}}}}
 \definesubmol\cycleoplus{-[,0.25,,,draw=none]\oplus}
 \definesubmol{e}{-[,.1,,,draw=none]}
@@ -69,9 +48,6 @@
 \setbeamerfont{page number in head/foot}{size=\large}
 \beamertemplatenavigationsymbolsempty
 
-
-\setdoublesep{4pt}
-\setatomsep{3em}
 \let\otp\titlepage
 \renewcommand{\titlepage}{\otp\addtocounter{framenumber}{-1}}
 
@@ -86,17 +62,7 @@
 %\setbeamerfont{bibliography entry note}{size=\scriptsize}
 %\setbeamerfont{bibliography entry url}{size=\scriptsize}
 
-
 %%%%%%%%%%%% Start of content %%%%%%%%%%%%
-
-%\input{seite11.tex}
-\usebackgroundtemplate{
-
-\includegraphics[width=1.0\paperwidth,height=0.17\paperheight]{bogen1200}
-\begin{tikzpicture}[overlay, remember picture]
-    \node[xshift=-10.80cm,yshift=1.15cm] at (0,0)    {\includegraphics[scale=0.6]{logo}};
-\end{tikzpicture}
-}
 
 \addtobeamertemplate{frametitle}{\vskip+7ex}{}
 \setbeamercolor{frametitle}{fg=black}
@@ -107,334 +73,350 @@
 \frame[plain]{\titlepage}
 \defbeamertemplate{footline}{centered page number}
 {%
- \hfill%
+  \hfill%
   \usebeamercolor[fg]{page number in head/foot}%
   \usebeamerfont{page number in head/foot}%
   \raisebox{.5cm}[0pt][0pt]{% <--- change here
-    \insertframenumber\,/\,\inserttotalframenumber\kern1em}%
+  \insertframenumber\,/\,\inserttotalframenumber\kern1em}%
 }
 \setbeamertemplate{footline}[centered page number]
 \newcommand\setpolymerdelim[2]{\def\delimleft{#1}\def\delimright{#2}}
 \def\makebraces[#1,#2]#3#4#5{%
-\edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
-\edef\delimvshift{\the\dimexpr(#1-#2)/2}%
-\chemmove{%
-\node[at=(#4),yshift=(\delimvshift)]
-{$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
-width0pt\right.$};%
-\node[at=(#5),yshift=(\delimvshift)]
-{$\left.\vrule height\delimhalfdim depth\delimhalfdim
+  \edef\delimhalfdim{\the\dimexpr(#1+#2)/2}%
+  \edef\delimvshift{\the\dimexpr(#1-#2)/2}%
+  \chemmove{%
+    \node[at=(#4),yshift=(\delimvshift)]
+    {$\left\delimleft\vrule height\delimhalfdim depth\delimhalfdim
+    width0pt\right.$};%
+    \node[at=(#5),yshift=(\delimvshift)]
+    {$\left.\vrule height\delimhalfdim depth\delimhalfdim
 width0pt\right\delimright_{\rlap{$\scriptstyle#3$}}$};}}
 \setpolymerdelim()
-\setatomsep{3em}
 \definesubmol{&}{-[,,,,draw=none]}
 
-
-
 \begin{frame}[t]
-\frametitle{Struktur}
+  \frametitle{Struktur}
   \begin{itemize}
     \item Lactame werden von Aminosäuren abgeleitet
   \end{itemize}
   \begin{center}
     \scalebox{0.5}{
-    \schemestart
-\chemname{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OH}}{\\ \\ $\gamma$-Aminobuttersäure }
-\arrow{->[][][2mm]}
-\chemname{\chemfig{ *5(--{NH}-(=O)--)}}{\\ \\ $\gamma$-Butyrolactam}
-\+{,,14pt}
-\arrow(--[yshift=2mm]){0}[,0]
-\chemfig{H_2O}
-\schemestop
-\chemnameinit{}
-}
-\end{center}
+      \schemestart
+      \chemname{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OH}}{\\ \\ $\gamma$-Aminobuttersäure
+      }
+      \arrow{->[][][2mm]}
+      \chemname{\chemfig{ *5(--{NH}-(=O)--)}}{\\ \\ $\gamma$-Butyrolactam}
+      \+{,,14pt}
+      \arrow(--[yshift=2mm]){0}[,0]
+      \chemfig{H_2O}
+      \schemestop
+      \chemnameinit{}
+    }
+  \end{center}
   \begin{center}
     \scalebox{0.5}{
-    \schemestart
-\chemname{\chemfig{H_2N-[:30]-[:-30]-[:30](=[2]O)-[:-30]OH}}{\\ \\ $\beta$-Alanin }
-\arrow{->[][][2mm]}
-\chemname{\chemfig{ *4(-\chembelow{N}{H}-(=O)---)}}{\\ \\ $\beta$-Lactam}
-\+{,,10pt}
-\arrow(--[yshift=2mm]){0}[,0]
-\chemfig{H_2O}
-\schemestop
-\chemnameinit{}
-}
-\end{center}
- %Lactame entstehen aus Amino-carbonsäuren durch intramolekulare Kondensation
+      \schemestart
+      \chemname{\chemfig{H_2N-[:30]-[:-30]-[:30](=[2]O)-[:-30]OH}}{\\ \\ $\beta$-Alanin
+      }
+      \arrow{->[][][2mm]}
+      \chemname{\chemfig{ *4(-\chembelow{N}{H}-(=O)---)}}{\\ \\ $\beta$-Lactam}
+      \+{,,10pt}
+      \arrow(--[yshift=2mm]){0}[,0]
+      \chemfig{H_2O}
+      \schemestop
+      \chemnameinit{}
+    }
+  \end{center}
+  %Lactame entstehen aus Amino-carbonsäuren durch intramolekulare Kondensation
   \begin{itemize}
-    \item \small Die griechischen Buchstaben geben an wie viele Kohlenstoffatome im Ring vorhanden sind
-    \item $\alpha =2$ , $\beta = 3$, $\gamma =4$ , $\delta = 5$, $\epsilon = 6$, $\omega=n$
+    \item \small Die griechischen Buchstaben geben an wie viele
+      Kohlenstoffatome im Ring vorhanden sind
+    \item $\alpha =2$ , $\beta = 3$, $\gamma =4$ , $\delta = 5$,
+      $\epsilon = 6$, $\omega=n$
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}[t]
-\frametitle{\small Wichtige Lactame - \scriptsize{\textbf{nicht funktionalisiert}}}
-\setatomsep{2em}
- \begin{tabularx}{\textwidth}{llllr}
- ~ &  ~  & \scriptsize \textbf{Anwendung} & \scriptsize \textbf{Polymer} & \scriptsize \textbf{Bezeichnung}\\
-\scalebox{0.3}{\chemfig{ *5([:-35]--*6(--*6(--{NH}-(=[:40]O)---[,,,,draw=none])-[,,,,draw=none]--)-[,,,,draw=none]--)}} &\scriptsize Laurinlactam  & \scriptsize Faserherstellung & \scalebox{0.3}{\chemfig{[:-30]-[@{leftd,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[:30]--[:30]--[@{rightd,0.25}:30]}
- \makebraces[5pt,25pt]{\!\!\!n}{leftd}{rightd}} & \scriptsize PA12\\[2ex]
-\scalebox{0.3}{\chemfig{ *7(---{NH}-(=[:60,0.8]O)---)}} & \scriptsize $\epsilon$-caprolactam  & \scriptsize Faserherstellung  & \scalebox{0.3}{\chemfig{[:-30]-[@{lefte,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{righte,0.25}:30]} \makebraces[5pt,25pt]{\!\!\!n}{lefte}{righte}} & \scriptsize PA6 \\[2ex]
-\scalebox{0.3}{\chemfig{ *5(--{NH}-(=[,0.8]O)--)} }&\scriptsize $\gamma$-butyrolactam  & \scriptsize Faserherstellung  & \scalebox{0.3}{\chemfig{[:-30]-[@{leftf,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[@{rightf,0.25}:30]} \makebraces[5pt,25pt]{\!\!\!n}{leftf}{rightf}} & \scriptsize PA4\\
-\end{tabularx}
-\setatomsep{3em}
+  \frametitle{\small Wichtige Lactame - \scriptsize{\textbf{nicht
+  funktionalisiert}}}
+  \begin{tabularx}{\textwidth}{lllll}
+    ~ &  ~  & \tiny \textbf{Anwendung} & \tiny
+    \textbf{Polymer} & \tiny \textbf{Bezeichnung}\\
+    \scalebox{0.3}{\chemfig{
+    *5([:-35]--*6(--*6(--{NH}-(=[:40]O)---[,,,,draw=none])-[,,,,draw=none]--)-[,,,,draw=none]--)}}
+    &\scriptsize Laurinlactam  & \scriptsize Faserherstellung &
+    \scalebox{0.3}{\chemfig{[:-30]-[@{leftd,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[:30]--[:30]--[@{rightd,0.25}:30]}
+    \makebraces[5pt,25pt]{\!\!\!n}{leftd}{rightd}} & \scriptsize PA12\\[2ex]
+    \scalebox{0.3}{\chemfig{ *7(---{NH}-(=[:60,0.8]O)---)}} &
+    \scriptsize $\epsilon$-caprolactam  & \scriptsize
+    Faserherstellung  &
+    \scalebox{0.3}{\chemfig{[:-30]-[@{lefte,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{righte,0.25}:30]}
+    \makebraces[5pt,25pt]{\!\!\!n}{lefte}{righte}} & \scriptsize PA6 \\[2ex]
+    \scalebox{0.3}{\chemfig{ *5(--{NH}-(=[,0.8]O)--)} }&\scriptsize
+    $\gamma$-butyrolactam  & \scriptsize Faserherstellung  &
+    \scalebox{0.3}{\chemfig{[:-30]-[@{leftf,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[@{rightf,0.25}:30]}
+    \makebraces[5pt,25pt]{\!\!\!n}{leftf}{rightf}} & \scriptsize PA4\\
+  \end{tabularx}
 
-\begin{itemize}
-\item \scriptsize Die Monomere werden durch Peptid-Bindungen miteinander verknüpft.(Polyamid)
-  \item \scriptsize Die Polyamide werden häufig durch Nummern und/oder Buchstaben charakterisiert.
+  \begin{itemize}
+    \item \scriptsize Die Monomere werden durch Peptid-Bindungen
+      miteinander verknüpft.(Polyamid)
+    \item \scriptsize Die Polyamide werden häufig durch Nummern
+      und/oder Buchstaben charakterisiert.
       \begin{enumerate}
-      \item \scriptsize PA6 aus $\epsilon$-caprolactam
-      \scalebox{0.5}{\chemfig{[:-30]-[@{leftx,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{rightx,0.25}:30]}
-   \makebraces[5pt,25pt]{\!\!\!n}{leftx}{rightx}}
-      \item \scriptsize PA4 aus $\gamma$-lactam \scalebox{0.5}{\chemfig{[:-30]-[@{lefty,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[@{righty,0.25}:30]}
-   \makebraces[5pt,25pt]{\!\!\!n}{lefty}{righty}}
-    \end{enumerate}
-\end{itemize}
+        \item \scriptsize PA6 aus $\epsilon$-caprolactam
+          \scalebox{0.5}{\chemfig{[:-30]-[@{leftx,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{rightx,0.25}:30]}
+          \makebraces[5pt,25pt]{\!\!\!n}{leftx}{rightx}}
+        \item \scriptsize PA4 aus $\gamma$-lactam
+          \scalebox{0.5}{\chemfig{[:-30]-[@{lefty,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[@{righty,0.25}:30]}
+          \makebraces[5pt,25pt]{\!\!\!n}{lefty}{righty}}
+      \end{enumerate}
+  \end{itemize}
 
 \end{frame}
 
 \begin{frame}[t]
   \frametitle{\small Lactame als Faser}
   \begin{itemize}
-   \item \scriptsize Lactame werden größtenteils zur Faserherstellung eingesetzt
-   \begin{figure}
- \centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.4\linewidth]{faser}
+    \item \scriptsize Lactame werden größtenteils zur
+      Faserherstellung eingesetzt
+      \begin{figure}
+        \centering
 
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-\end{minipage}
+        \begin{minipage}{.5\textwidth}
+        \end{minipage}
 
       \end{figure}
-   \item \scriptsize gute Reissfestigkeit
-   \begin{figure}
-    \centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.4\linewidth]{fallschirm}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.4\linewidth]{airbagexplose}
-\end{minipage}
-      \end{figure}
-   \item \scriptsize elastisches Verhalten
-   \begin{figure}
-            \centering
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.4\linewidth]{strumf}
-\end{minipage}%
-\begin{minipage}{.5\textwidth}
-  \centering
-  \includegraphics[width=.4\linewidth]{teppich}
-\end{minipage}
-      \end{figure}
-    %%%% Polymer resimleri
+    \item \scriptsize gute Reissfestigkeit
+
+    \item \scriptsize elastisches Verhalten
+
+      %%%% Polymer resimleri
   \end{itemize}
 \end{frame}
 
-
 \begin{frame}[t] \frametitle{\small Synthese zur Faserherstellung \footnotemark}
-\begin{itemize}
-  \item \scriptsize Die Polymerisation der Lactame gelingt über drei Wege
-  \begin{enumerate}
-    \item \scriptsize Hydrolytische Polymerisation
-    \item \scriptsize Anionische Ringöffnende Polymerisation
-    \item \scriptsize Kationische Ringöffnende Polymerisation
-  \end{enumerate}
+  \begin{itemize}
+    \item \scriptsize Die Polymerisation der Lactame gelingt über drei Wege
+      \begin{enumerate}
+        \item \scriptsize Hydrolytische Polymerisation
+        \item \scriptsize Anionische Ringöffnende Polymerisation
+        \item \scriptsize Kationische Ringöffnende Polymerisation
+      \end{enumerate}
 
- \begin{tabularx}{\textwidth}{XXXX}
- C-Atome & Monomer & Anionisch& Hydrolytisch \\
- \hline \\[1ex]
-2& $\beta$-alanin & + & -\\[1ex]
-4& $\gamma$-butyrolactam & + & -\\[1ex]
-6& $\epsilon$-caprorolactam &+ & +\\[1ex]
-8 & Capryllactam & -& + \\[1ex]
-12 & Laurinlactam & - &+ \\
-\end{tabularx}
+      \begin{tabularx}{\textwidth}{XXXX}
+        C-Atome & Monomer & Anionisch& Hydrolytisch \\
+        \hline \\[1ex]
+        2& $\beta$-alanin & + & -\\[1ex]
+        4& $\gamma$-butyrolactam & + & -\\[1ex]
+        6& $\epsilon$-caprorolactam &+ & +\\[1ex]
+        8 & Capryllactam & -& + \\[1ex]
+        12 & Laurinlactam & - &+ \\
+      \end{tabularx}
 
+    \item \scriptsize Das industriell wichtigste Verfahren für
+      Polyamid 6-Fasern ist die hydrolytische Polymerisation.
 
-  \item \scriptsize Das industriell wichtigste Verfahren für Polyamid 6-Fasern ist die hydrolytische Polymerisation.
+  \end{itemize}
 
-\end{itemize}
-
-\footnotetext[1]{Hans-Georg E., \textit{Makromoleküle, Band 3}, Wiley-VCH \textbf{1999}    }
+  \footnotetext[1]{Hans-Georg E., \textit{Makromoleküle, Band 3},
+  Wiley-VCH \textbf{1999}    }
 
 \end{frame}
 
+\begin{frame}[t] \frametitle{\small Anionische Ringöffnende
+  Polymerisation \footnotemark}
 
-\begin{frame}[t] \frametitle{\small Anionische Ringöffnende Polymerisation \footnotemark}
+  \begin{itemize}
+    \item \scriptsize \textbf{Initiierung}
+      \scalebox{0.5}{
+        \schemestart
+        \chemname{\chemfig{ *7(---{NH}-(=[:60]O)---)}}{$\epsilon$-Caprolactam}
+        \+{,,10pt}
+        \arrow(--[yshift=-2pt]){0}[,0]
+        \chemfig{Na}
+        \arrow{->}[,1.2]
+        \arrow{0}[,0.5]
+        \chemname{\chemfig{
+            *7(---\chemabove{N}{\hspace{4mm}\scriptstyle
+        -}-(=[:60]O)---)}}{$\epsilon$-Caprolactamamid}
+        \+{,,10pt}
+        \arrow(--[yshift=-2pt]){0}[,0]
+        \chemfig{\chemabove{Na}{\hspace{5mm}\scriptstyle +}}
+        \schemestop
+      }
+    \item \scriptsize \textbf{Propagation}
+      \scalebox{0.5}{
+        \schemestart
+        \chemfig{ *7(---@{x1}\chemabove{N}{\hspace{4mm} -}-(=[:60]O)---)}
+        \+{2em}
+        \chemfig{ *7(---N(-H)-@{x2}(=[:60]O)---)}
+        \arrow{<=>[][][-10pt]}
+        \chemfig{
+          *7(---N(-C(=[2]O)-[@{left,0.6}]CH_2-[@{right,0.2},1.3,,,,]\chemabove{NH}{\hspace{-3mm}
+        -})-(=[:60]O)---)}
+        %\chemfig{[:-30]-[@{left,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{right,0.25}:30]}
+        \makebraces[7pt,12pt]{\!\!\!6}{left}{right}
+        \schemestop
+        \chemmove{
+          \draw[shorten <=5pt, shorten >= 5pt]
+        (x1).. controls +(30:20mm) and +(110:15mm).. (x2);}
+      }
+    \item \scriptsize \textbf{Kettenabbruch}
+      \scalebox{0.5}{
+        \schemestart
+        \chemfig{
+          *7(---N(-C(=[2]O)-[@{lefty,0.6}]CH_2-[@{righty,0.2},1.3,,,,]@{x2}\chemabove{NH}{\hspace{-3mm}
+        -})-(=[:60]O)---)}
+        \makebraces[7pt,12pt]{\!\!\!6}{lefty}{righty}
+        \+{2em}
+        \chemfig{ *7(---N(-@{x3}H)-(=[:60]O)---)}
+        \arrow{<=>[][][-10pt]}
+        \chemfig{
+        *7(---N(-C(=[2]O)-[@{leftx,0.6}]CH_2-[@{rightx,0.2},1.3,,,,]NH_2)-(=[:60]O)---)}
+        %\chemfig{[:-30]-[@{left,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{right,0.25}:30]}
+        \makebraces[7pt,12pt]{\!\!\!6}{leftx}{rightx}
+        \schemestop
+        \chemmove{\draw[shorten <=5pt, shorten >= 5pt] (x2)..
+        controls +(-70:20mm) and +(-110:15mm).. (x3);}
 
-\begin{itemize}
-\item \scriptsize \textbf{Initiierung}
-\scalebox{0.5}{
-    \schemestart
-\chemname{\chemfig{ *7(---{NH}-(=[:60]O)---)}}{$\epsilon$-Caprolactam}
-\+{,,10pt}
-\arrow(--[yshift=-2pt]){0}[,0]
-\chemfig{Na}
-\arrow{->}[,1.2]
-\arrow{0}[,0.5]
-\chemname{\chemfig{ *7(---\chemabove{N}{\hspace{4mm}\scriptstyle -}-(=[:60]O)---)}}{$\epsilon$-Caprolactamamid}
-\+{,,10pt}
-\arrow(--[yshift=-2pt]){0}[,0]
-\chemfig{\chemabove{Na}{\hspace{5mm}\scriptstyle +}}
-\schemestop
-}
-\item \scriptsize \textbf{Propagation}
-\scalebox{0.5}{
- \schemestart
-\chemfig{ *7(---@{x1}\chemabove{N}{\hspace{4mm} -}-(=[:60]O)---)}
-\+{2em}
-\chemfig{ *7(---N(-H)-@{x2}(=[:60]O)---)}
-  \arrow{<=>[][][-10pt]}
-\chemfig{ *7(---N(-C(=[2]O)-[@{left,0.6}]CH_2-[@{right,0.2},1.3,,,,]\chemabove{NH}{\hspace{-3mm}  -})-(=[:60]O)---)}
-%\chemfig{[:-30]-[@{left,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{right,0.25}:30]}
-\makebraces[7pt,12pt]{\!\!\!6}{left}{right}
-\schemestop
-\chemmove{
-\draw[shorten <=5pt, shorten >= 5pt]
-(x1).. controls +(30:20mm) and +(110:15mm).. (x2);}
-}
-\item \scriptsize \textbf{Kettenabbruch}
-\scalebox{0.5}{
- \schemestart
-\chemfig{ *7(---N(-C(=[2]O)-[@{lefty,0.6}]CH_2-[@{righty,0.2},1.3,,,,]@{x2}\chemabove{NH}{\hspace{-3mm} -})-(=[:60]O)---)}
-\makebraces[7pt,12pt]{\!\!\!6}{lefty}{righty}
-\+{2em}
-\chemfig{ *7(---N(-@{x3}H)-(=[:60]O)---)}
-  \arrow{<=>[][][-10pt]}
-\chemfig{ *7(---N(-C(=[2]O)-[@{leftx,0.6}]CH_2-[@{rightx,0.2},1.3,,,,]NH_2)-(=[:60]O)---)}
-%\chemfig{[:-30]-[@{left,.75}]N(-[6]H)-[:30](=[2]O)--[:30]--[:30]--[@{right,0.25}:30]}
-\makebraces[7pt,12pt]{\!\!\!6}{leftx}{rightx}
-\schemestop
-\chemmove{\draw[shorten <=5pt, shorten >= 5pt] (x2).. controls +(-70:20mm) and +(-110:15mm).. (x3);}
-
-}
-\end{itemize}
-\footnotetext[2]{Sebastian K., Micheal M., Oscar N, \textit{Polymere}, Springer Verlag \textbf{2014}    }
+      }
+  \end{itemize}
+  \footnotetext[2]{Sebastian K., Micheal M., Oscar N,
+  \textit{Polymere}, Springer Verlag \textbf{2014}    }
 \end{frame}
 
 \begin{frame}[t]\frametitle{Thermochemie der Polymerisaton}
 
- \begin{itemize}
-   \item \scriptsize Die Reaktivität aller Lactame wird durch die Ringgröße beeinflusst
-   \item \scriptsize Polymerisierbarkeit der Lactame \footnotemark
-     \end{itemize}
-\begin{center}
-\scalebox{0.5}{
- \begin{tabularx}{\textwidth}{XXXX}
- C-Zahl & $\Delta H$ \si{\kilo\joule\per\mol}&  $\Delta G$ \si{\kilo\joule\per\mol} & $T \Delta S$ \si{\kilo\joule\per\mol}\\[1ex]
- \hline \\[1ex]
-4&  -4.6  & 4.6   & -9.2 \\[1ex]
-5&  -7.1  & 0.4   & -7.5\\[1ex]
-6&  -13.8 & -15.1 & 1.3\\[1ex]
-7&  -22.6 & -27.6 & 5.0 \\[1ex]
-8&  -35.1 & -47.8 & 12.7\\[1ex]
-9&  -23.4 & -42.4 & 19\\[1ex]
-10&  -11.7 & -36.8 & 25.1 \\[1ex]
-11& -2.9  & -40.6 & 37.7\\
-\end{tabularx}
-}
-\end{center}
-\begin{itemize}
-   \item \scriptsize steigender Entropie-Term bei größeren Ringen
-   \item \scriptsize Zunahme von Freiheitsgraden beim Übergang zur Kette
-\end{itemize}
-\footnotetext[3]{Houben-Weyl Methods of Organic Chemistry Vol. E 20, 4th Edition Supplement s.1505}
+  \begin{itemize}
+    \item \scriptsize Die Reaktivität aller Lactame wird durch die
+      Ringgröße beeinflusst
+    \item \scriptsize Polymerisierbarkeit der Lactame \footnotemark
+  \end{itemize}
+  \begin{center}
+    \scalebox{0.5}{
+      \begin{tabularx}{\textwidth}{XXXX}
+        C-Zahl & $\Delta H$ \si{\kilo\joule\per\mol}&  $\Delta G$
+        \si{\kilo\joule\per\mol} & $T \Delta S$ \si{\kilo\joule\per\mol}\\[1ex]
+        \hline \\[1ex]
+        4&  -4.6  & 4.6   & -9.2 \\[1ex]
+        5&  -7.1  & 0.4   & -7.5\\[1ex]
+        6&  -13.8 & -15.1 & 1.3\\[1ex]
+        7&  -22.6 & -27.6 & 5.0 \\[1ex]
+        8&  -35.1 & -47.8 & 12.7\\[1ex]
+        9&  -23.4 & -42.4 & 19\\[1ex]
+        10&  -11.7 & -36.8 & 25.1 \\[1ex]
+        11& -2.9  & -40.6 & 37.7\\
+      \end{tabularx}
+    }
+  \end{center}
+  \begin{itemize}
+    \item \scriptsize steigender Entropie-Term bei größeren Ringen
+    \item \scriptsize Zunahme von Freiheitsgraden beim Übergang zur Kette
+  \end{itemize}
+  \footnotetext[3]{Houben-Weyl Methods of Organic Chemistry Vol. E
+  20, 4th Edition Supplement s.1505}
 \end{frame}
 
+\begin{frame}[t]\frametitle{\small Wichtige Lactame -
+  \scriptsize{\textbf{funktionalisiert}}}
 
-\begin{frame}[t]\frametitle{\small Wichtige Lactame - \scriptsize{\textbf{funktionalisiert}}}
-
- \begin{tabularx}{\textwidth}{lll}
- ~ &  ~  & \scriptsize \textbf{Anwendung} \\
-%\scalebox{0.3}{\chemfig{ *5([:-35]--*6(--*6(--{NH}-(=[:40]O)---[,,,,draw=none])-[,,,,draw=none]--)-[,,,,draw=none]--)}} &\scriptsize Laurinlactam  & \scriptsize Faserherstellung PA12\\[2ex]
-%\scalebox{0.3}{\chemfig{ *7(---{NH}-(=[:60,0.8]O)---)}} & \scriptsize $\epsilon$-caprolactam  & \scriptsize Faserherstellung PA6 \\[2ex]
-\scalebox{0.3}{\chemfig{ *7(---N(-CH_3)-(=[:60,0.8]O)---)}} & \scriptsize $N$-Methyl-$\epsilon$-caprolactam  & \scriptsize unpolares Lösemittel \\[2ex]
-\scalebox{0.3}{\chemfig{ *5(--N(-=[:60])-(=[,0.8]O)--)} }&\scriptsize $N$-Vinyl-$\gamma$-lactam  & \scriptsize Klebstoffe, Hilfsmittel PVP\\[2ex]
-\scalebox{0.3}{\chemfig{ *5(--N(-CH_3)-(=[,0.8]O)--)} }&\scriptsize $N$-Methyl-$\gamma$-lactam  & \scriptsize unpolares Lösemittel NMP\\[2ex]
-\scalebox{0.3}{\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]R)=[:-90]O)-[:-30]*4(-[,,,,red,line width=2pt](=[,,,,red,line width=2pt]\textcolor{red}{O})-[,,,,red,line width=2pt]\textcolor{red}{N}*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)-[,,,,red,line width=2pt]-[,,,,red,line width=2pt])}} & \scriptsize $\beta$-Lactam, Penicillin & \scriptsize Synthese der Antibiotika\\
-\end{tabularx}
+  \begin{tabularx}{\textwidth}{lll}
+    ~ &  ~  & \scriptsize \textbf{Anwendung} \\
+    \scalebox{0.3}{\chemfig{ *7(---N(-CH_3)-(=[:60,0.8]O)---)}} &
+    \scriptsize $N$-Methyl-$\epsilon$-caprolactam  & \scriptsize
+    unpolares Lösemittel \\[2ex]
+    \scalebox{0.3}{\chemfig{ *5(--N(-=[:60])-(=[,0.8]O)--)}
+    }&\scriptsize $N$-Vinyl-$\gamma$-lactam  & \scriptsize
+    Klebstoffe, Hilfsmittel PVP\\[2ex]
+    \scalebox{0.3}{\chemfig{ *5(--N(-CH_3)-(=[,0.8]O)--)}
+    }&\scriptsize $N$-Methyl-$\gamma$-lactam  & \scriptsize unpolares
+    Lösemittel NMP\\[2ex]
+    \scalebox{0.3}{\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]R)=[:-90]O)-[:-30]*4(-[,,,,red,line
+          width=2pt]
+          (=[,,,,red,line width=2pt]
+          \textcolor{red}{O})-[,,,,red,line width=2pt]
+          \textcolor{red}{N}*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)-[,,,,red,line
+    width=2pt]-[,,,,red,line width=2pt])}} & \scriptsize
+    $\beta$-Lactam, Penicillin & \scriptsize Synthese der Antibiotika\\
+  \end{tabularx}
 \end{frame}
-
 
 \begin{frame}[t]
-\frametitle{Chemie der Lactame}
-   \begin{columns}[onlytextwidth]
+  \frametitle{Chemie der Lactame}
+  \begin{columns}[onlytextwidth]
     \begin{column}{0.8\textwidth}
-   \begin{itemize}
-   \item \scriptsize Acides Proton \scalebox{0.4}{\chemfig{N-H}}
-   \item \scriptsize Resonanzstabilizierung
-        \end{itemize}
-        \begin{center}
-   \scalebox{0.7}{
-   \centering
-    \schemestart
-    \chemname{\chemfig{ *5(-[0]-{NH}-(=\lewis{04,O})--)}}{}
-\arrow{<->[][][1mm]}
-\setbondoffset{3pt}
-\chemname{\chemfig{ *5(--{\chemabove{N}{\hspace{3mm}\scriptstyle\oplus}H}=(-\chemabove{\lewis{024,O}}{\hspace{7mm}\scriptstyle\ominus})--)}}{}
-\schemestop
-\chemnameinit{}
-}
-\end{center}
+      \begin{itemize}
+        \item \scriptsize Acides Proton \scalebox{0.4}{\chemfig{N-H}}
+        \item \scriptsize Resonanzstabilizierung
+      \end{itemize}
+      \begin{center}
+        \scalebox{0.7}{
+          \centering
+          \schemestart
+          \chemname{\chemfig{ *5(-[0]-{NH}-(=\chlewis{90}{O})--)}}{}
+          \arrow{<->[][][1mm]}
+          \chemname{\chemfig{
+          *5(--{\chemabove{N}{\hspace{3mm}\scriptstyle\oplus}H}=(-\chemabove{
+          \chlewis{90, 180}{O}}{\hspace{7mm}\scriptstyle\ominus})--)}}{}
+          \schemestop
+          \chemnameinit{}
+        }
+      \end{center}
     \end{column}
     \begin{column}{0.2\textwidth}
-  \begin{tabularx}{\textwidth}{rX}
- ~ &  $pKs$  \\
-\scalebox{0.3}{\chemfig{ *5(--{NH}-(=[:75,0.8]O)--)}} & \scriptsize 24.2 \\[2ex]
-\scalebox{0.3}{\chemfig{ *6(---{NH}-(=[,0.8]O)--)} }& \scriptsize 26.6  \\[2ex]
-\scalebox{0.3}{\chemfig{ *5(--{NH}---)} }& \scriptsize 41  \\[2ex]
-\scalebox{0.3}{\chemfig{NH_3}} & \scriptsize 44  \\[2ex]
-%\scalebox{0.6}{\chemfig{ *5(--{NH}-(=[,0.8]O)--)} }&\scriptsize $\gamma$-butyrolactam  & \scriptsize Kondensation & \scalebox{0.6}{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OC_2H_5} } \\[4ex]
-\end{tabularx}
+      \begin{tabularx}{\textwidth}{rX}
+        ~ &  $pKs$  \\
+        \scalebox{0.3}{\chemfig{ *5(--{NH}-(=[:75,0.8]O)--)}} &
+        \scriptsize 24.2 \\[2ex]
+        \scalebox{0.3}{\chemfig{ *6(---{NH}-(=[,0.8]O)--)} }&
+        \scriptsize 26.6  \\[2ex]
+        \scalebox{0.3}{\chemfig{ *5(--{NH}---)} }& \scriptsize 41  \\[2ex]
+        \scalebox{0.3}{\chemfig{NH_3}} & \scriptsize 44  \\[2ex]
+      \end{tabularx}
     \end{column}
-    \end{columns}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Verwendung der Penicilline}
-    \begin{itemize}
-      \item Die Penicilline sind eine Gruppe von antibiotisch wirksamen Substanzen
-      \item Penicillin ist das Stoffwechselprodukt einiger Schimmelpilze
-      \begin{figure}
-        \includegraphics[scale=0.3]{penicillin}
-      \end{figure}
-      \item halbsyntetisch hergestellt (Fermentation + Synthese)
-    \end{itemize}
+  \begin{itemize}
+    \item Die Penicilline sind eine Gruppe von antibiotisch wirksamen Substanzen
+    \item Penicillin ist das Stoffwechselprodukt einiger Schimmelpilze
+    \item halbsyntetisch hergestellt (Fermentation + Synthese)
+  \end{itemize}
 \end{frame}
 
-
 \begin{frame}[t]\frametitle{Aktivität der Penicilline}
- \begin{itemize}
-      \item \scriptsize Das biologisch wirksame Prinzip ist der $\beta$-Lactam-Ring
-      \item  \scriptsize Die Verhinderung der Amid-Rezonans wird als Kriterium für die biologische Aktivität angesehen
-      \item  \scriptsize Die biologische Reaktivität wird durch Substituenten beeinflusst
-    \end{itemize}
-\centering
-    \scalebox{0.35}{\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]\textcolor{red}{R})=[:-90]O)-[:-30]*4(-(={O})-{N}*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)--)}}
-\begin{table}
-     \begin{tabularx}{\textwidth}{XXX}
- \scriptsize Name  &  \scriptsize Aktivität &  \scriptsize -R \\
- \scriptsize Penten(2)yl-penicillin & \scriptsize 1500 I.E./ml & \scalebox{0.4}{\chemfig{-CH_2-CH=CH-CH_2-CH_3}} \\[1ex]
- \scriptsize Benzylpenicillin       & \scriptsize 1670 I.E./ml & \scalebox{0.4}{\chemfig{-CH_2-C_6H_5}} \\[1ex]
- \scriptsize p-Hydroxybenzylpenicillin & \scriptsize 850-900 I.E./ml & \scalebox{0.4}{\chemfig{-CH_2-C_6H_4-OH}} \\[1ex]
-\scriptsize Heptylpenicillin     & \scriptsize 2200 I.E./ml & \scalebox{0.4}{\chemfig{-CH_2-{(}CH_2{)}_5--[,0.1]CH_3}} \\[1ex]
-%\scalebox{0.6}{\chemfig{ *5(--{NH}-(=[,0.8]O)--)} }&\scriptsize $\gamma$-butyrolactam  & \scriptsize Kondensation & \scalebox{0.6}{\chemfig{H_2N-[:-30]-[:30]-[:-30]-[:30](=[2]O)-[:-30]OC_2H_5} } \\[4ex]
-\end{tabularx}
-\caption*{\scriptsize Aktivität einiger Penicilline \footnotemark}
-\end{table}
-\footnotetext[4]{\url{https://de.wikipedia.org/wiki/Penicilline}}
+  \begin{itemize}
+    \item \scriptsize Das biologisch wirksame Prinzip ist der
+      $\beta$-Lactam-Ring
+    \item  \scriptsize Die Verhinderung der Amid-Rezonans wird als
+      Kriterium für die biologische Aktivität angesehen
+    \item  \scriptsize Die biologische Reaktivität wird durch
+      Substituenten beeinflusst
+  \end{itemize}
+  \centering
+  \scalebox{0.35}{\chemfig{[:-90]\chemabove{N}{H}(-[:210](-[:150]\textcolor{red}{R})=[:-90]O)-[:-30]*4(-(={O})-{N}*5(-(-(=[::-60]O)-[::+60]OH)-(-[::+0])(-[::-108])-S-)--)}}
+  \begin{table}
+    \begin{tabularx}{\textwidth}{XXX}
+      \scriptsize Name  &  \scriptsize Aktivität &  \scriptsize -R \\
+      \scriptsize Penten(2)yl-penicillin & \scriptsize 1500 I.E./ml &
+      \scalebox{0.4}{\chemfig{-CH_2-CH=CH-CH_2-CH_3}} \\[1ex]
+      \scriptsize Benzylpenicillin       & \scriptsize 1670 I.E./ml &
+      \scalebox{0.4}{\chemfig{-CH_2-C_6H_5}} \\[1ex]
+      \scriptsize p-Hydroxybenzylpenicillin & \scriptsize 850-900
+      I.E./ml & \scalebox{0.4}{\chemfig{-CH_2-C_6H_4-OH}} \\[1ex]
+      \scriptsize Heptylpenicillin     & \scriptsize 2200 I.E./ml &
+      \scalebox{0.4}{\chemfig{-CH_2-{(}CH_2{)}_5--[,0.1]CH_3}} \\[1ex]
+    \end{tabularx}
+    \caption*{\scriptsize Aktivität einiger Penicilline \footnotemark}
+  \end{table}
+  \footnotetext[4]{\url{https://de.wikipedia.org/wiki/Penicilline}}
 \end{frame}
 \begin{frame}[plain]
 
-    \Huge Danke!
+  \Huge Danke!
 
 \end{frame}
 \end{document}
