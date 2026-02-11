@@ -76,19 +76,3 @@ Die Projekte nutzen u.a.:
 * wissenschaftliche Typografie
 
 Die Idee war, Messdaten direkt im Dokument auszuwerten.
-
----
-
-## Lizenz / Nutzung
-
-
-
----
-
-## Motivation
-
-Diese Sammlung soll Studierenden helfen:
-
-* schneller eigene Protokolle zu erstellen
-* reproduzierbare Auswertungen zu bauen
-* LaTeX als wissenschaftliches Werkzeug effektiv zu nutzen
