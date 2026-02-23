@@ -9,7 +9,7 @@ Ein Teil der Protokolle wurde mit Lua und LuaLaTeX erstellt, um:
 * Messdaten auszuwerten
 * Diagramme und visuelle Darstellungen automatisch zu erzeugen
 
-Die Projekte entstanden ursprünglich vor ca. 10 Jahren, können aber weiterhin als Grundlage oder Inspiration dienen.
+Die Projekte entstanden ursprünglich vor ca. 10 Jahren, können aber weiterhin als Inspiration dienen.
 
 ---
 
