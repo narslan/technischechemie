@@ -22,9 +22,9 @@ Die Projekte entstanden ursprünglich vor ca. 10 Jahren, können aber weiterhin 
 
 ### Fluoreszenz
 
-* [Abgabe](fluoreszenz/fluoreszenz.pdf)
-* [Aufbau des Fluoreszenz-Spektrometers](fluoreszenz/aufbau.pdf)
-* [Naphtol-Naphtolat Gleichgewichtspektren](fluoreszenz/auswert_fluor)
+* [Abgabe](fluoresenz/fluoresenz.pdf)
+* [Aufbau des Fluoreszenz-Spektrometers](fluoresenz/aufbau.pdf)
+* [Naphtol-Naphtolat Gleichgewichtspektren](fluoresenz/auswert_fluor)
 
 ### Chromatographie
 
